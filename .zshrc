@@ -10,12 +10,15 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
-
+# Customize to your needs..
 alias rm="trash"
 alias eZ="vim ~/.zshrc"
 alias eI="vim ~/.config/i3/config"
 alias ls="exa -bghla -snew"
+alias filemanager="thunar"
+alias pdf="evince"
+alias top="htop"
+alias marvin="ssh hausersn@marvin.informatik.uni-stuttgart.de"
 
 autoload -Uz promptinit
 promptinit
