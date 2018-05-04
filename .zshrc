@@ -20,6 +20,12 @@ alias pdf="evince"
 alias top="htop"
 alias marvin="ssh hausersn@marvin.informatik.uni-stuttgart.de"
 
+alias propaada="gnatmake -gnat12 -gnatwa -gnatwl -gnaty3abcefhiklmnprt"
+alias propac="gcc -std=c99 -pedantic -Wall -Wextra -Werror"
+alias propac++="c++ -std=c++11 -Wall -Werror -pedantic -O3"
+alias propahaskell="ghc -fwarn-tabs"
+alias propajava="javac -Xlint:all -Xlint:-serial -Werror"
+
 autoload -Uz promptinit
 promptinit
 prompt pure
