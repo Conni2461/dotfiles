@@ -1,6 +1,6 @@
 [user]
 	name = Simon Hauser
-	email = st148883@stud.uni-stuttgart.de
+	email = Simon.Hauser.XD@live.de 
 [core]
 	editor = vim
 [alias]
@@ -18,6 +18,7 @@
 	br = branch
 	unstage = reset HEAD --
 	last = log -1 HEAD	
+        uncommit = reset --soft HEAD~1
 
 	graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 

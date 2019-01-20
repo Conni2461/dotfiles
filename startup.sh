@@ -1,7 +1,10 @@
 #!/bin/sh
 
-i3-msg 'workspace 1:🌍; exec chromium'
-sleep 3
-i3-msg 'workspace 2:🖥; exec gnome-terminal -- tmux'
-i3-msg 'workspace 4:🎵; exec spotify'
-compton &
+xinput --set-prop "Microsoft Surface Keyboard Touchpad" "libinput Accel Speed" 0.5
+
+i3-msg 'workspace term; exec gnome-terminal -- tmux'
+sleep 1
+i3-msg 'workspace web; exec chromium'
+sleep 4
+# i3-msg 'workspace music; exec spotify'
+# sleep 3
