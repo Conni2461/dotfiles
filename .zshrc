@@ -63,9 +63,6 @@ alias propajava="javac -Xlint:all -Xlint:-serial -Werror"
 
 export PATH=$PATH:/home/conni/.gem/ruby/2.5.0/bin
 
-export BROWSER=chromium
-export READER=zathura
-
 # nitrogen as Background manager
 # lxappearance as theme manager
 
