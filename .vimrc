@@ -41,6 +41,7 @@
 " Spellcheck set to <leader>e for English and <leader>d for German
 	map <leader>e :setlocal spell! spelllang=en_us<CR>
 	map <leader>d :setlocal spell! spelllang=de_de<CR>
+	map <leader>b :setlocal spell! spelllang=en_us,de_de<CR>
 
 " Splits open at the bottom and right
 	set splitbelow splitright
