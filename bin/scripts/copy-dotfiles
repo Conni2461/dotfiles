@@ -1,0 +1,21 @@
+#!/bin/bash
+
+BASEDIR=$(pwd)
+
+cp ~/.bashrc $BASEDIR
+cp ~/.gitconfig $BASEDIR
+cp ~/.tmux.conf $BASEDIR
+cp ~/.vimrc $BASEDIR
+cp ~/.xinitrc $BASEDIR
+cp ~/.zprofile $BASEDIR
+cp ~/.zshrc $BASEDIR
+
+cp ~/.config/i3/config $BASEDIR/.config/i3
+cp -R ~/.config/polybar/ $BASEDIR/.config/
+cp ~/.config/rofi $BASEDIR/.config/
+
+if [ ! -d $BASEDIR/bin/scripts ]; then
+	mkdir $BASEDIR/bin
+fi
+
+cp -R ~/bin/scripts/ $BASEDIR/bin/scripts/

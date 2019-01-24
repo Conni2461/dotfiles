@@ -20,6 +20,7 @@
 	Plugin 'editorconfig/editorconfig-vim'	" Editorconfig
 	Plugin 'gisphm/vim-gitignore'		" gitignore support
 	Plugin 'terryma/vim-multiple-cursors'	" Multiple cursor support
+	Plugin 'Valloric/YouCompleteMe'		" Codecompletion for c
 	call vundle#end()            		" required
 	filetype plugin indent on    		" required
 
@@ -56,10 +57,10 @@
 	map <leader>s :!clear && shellcheck %<CR>
 
 " Compile document, be it groff/LaTeX/markdown/etc.
-	map <leader>c :w! \| !~/scripts/compiler <c-r>%<CR><CR>
+	map <leader>c :w! \| !compiler <c-r>%<CR><CR>
 
 " Open corresponding .pdf/.html or preview
-	map <leader>p :!~/scripts/opout <c-r>%<CR><CR>
+	map <leader>p :!opout <c-r>%<CR><CR>
 
 " Ensure files are read as what I want:
 	let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}

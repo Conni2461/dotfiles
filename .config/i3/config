@@ -45,7 +45,7 @@ bindsym $mod+Shift+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+d exec --no-startup-id rofi -show run -modi run -config ~/.config/rofi 
+bindsym $mod+d exec --no-startup-id rofi -show run -modi run -config ~/.config/rofi
 
 # To manage sound
 # exec --no-startup-id pulseaudio --start
@@ -191,4 +191,4 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xautolock -time 10 -locker blurlock
-exec --no-startup-id '/home/conni/startup.sh'
+exec --no-startup-id '/home/conni/bin/scripts/startup'
