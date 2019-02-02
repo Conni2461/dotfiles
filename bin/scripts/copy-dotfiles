@@ -9,6 +9,9 @@ cp ~/.vimrc $BASEDIR
 cp ~/.xinitrc $BASEDIR
 cp ~/.zprofile $BASEDIR
 cp ~/.zshrc $BASEDIR
+cp ~/.st.config.h $BASEDIR
+cp ~/.dmenu.config.h $BASEDIR
+cp ~/.surf.config.h $BASEDIR
 
 cp ~/.config/i3/config $BASEDIR/.config/i3
 cp -R ~/.config/polybar/ $BASEDIR/.config/
@@ -18,4 +21,4 @@ if [ ! -d $BASEDIR/bin/scripts ]; then
 	mkdir $BASEDIR/bin
 fi
 
-cp -R ~/bin/scripts/ $BASEDIR/bin/scripts/
+cp -R ~/bin/scripts/ $BASEDIR/bin/

@@ -12,7 +12,8 @@ unalias ls
 alias ls="ls --color=auto"
 
 # Uni
-alias uni="cd /mnt/external/Google\ Drive/Uni/5.\ Semester"
+UNI=/mnt/external/Google\ Drive/Uni/5.\ Semester
+alias uni="cd $UNI"
 alias calw='gcalcli calw'
 
 # Qt
@@ -23,10 +24,6 @@ alias QtCreator="/opt/Qt/Tools/QtCreator/bin/qtcreator"
 alias df="df -khT"
 alias rm="trash"
 alias sizeof="du -hs"
-function ssizeof()
-{
-	sizeof $* | sort -h
-}
 
 # Config files
 alias eZ="vim ~/.zshrc"
@@ -64,11 +61,6 @@ export PATH=$PATH:/home/conni/bin/scripts:/home/conni/.gem/ruby/2.5.0/bin
 
 # nitrogen as Background manager
 # lxappearance as theme manager
-
-function uninstall()
-{
-	yaourt -R $1 --recursive
-}
 
 autoload -Uz promptinit
 promptinit

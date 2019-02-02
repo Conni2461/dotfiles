@@ -2,7 +2,7 @@
 
 if [ $# -eq 0 ]; then
 	curl wttr.in
-	return 0
+	exit 0
 fi
 
 curl wttr.in/$1
