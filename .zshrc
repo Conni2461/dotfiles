@@ -31,6 +31,7 @@ alias eI="vim ~/.config/i3/config"
 alias eL="vim ~/.config/polybar/launch.sh"
 alias eP="vim ~/.config/polybar/config"
 alias eV="vim ~/.vimrc"
+alias eT="vim ~/.tmux.conf"
 unalias l
 alias l='exa -bghl -sname'
 alias ll="exa -bghla -sname"

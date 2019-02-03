@@ -2,6 +2,14 @@
 
 BASEDIR=$(pwd)
 
+function createDir()
+{
+	if [ ! -d $1 ]; then
+		mkdir $1
+	fi
+}
+
+
 cp ~/.bashrc $BASEDIR
 cp ~/.gitconfig $BASEDIR
 cp ~/.tmux.conf $BASEDIR
@@ -13,12 +21,17 @@ cp ~/.st.config.h $BASEDIR
 cp ~/.dmenu.config.h $BASEDIR
 cp ~/.surf.config.h $BASEDIR
 
+createDir $BASEDIR/.config
+createDir $BASEDIR/.config/i3
+createDir $BASEDIR/.config/newsboat
+
 cp ~/.config/i3/config $BASEDIR/.config/i3
 cp -R ~/.config/polybar/ $BASEDIR/.config/
 cp ~/.config/rofi $BASEDIR/.config/
+cp ~/.config/newsboat/urls $BASEDIR/.config/newsboat/
+cp ~/.config/newsboat/config $BASEDIR/.config/newsboat/
 
-if [ ! -d $BASEDIR/bin/scripts ]; then
-	mkdir $BASEDIR/bin
-fi
+createDir $BASEDIR/bin
+createDir $BASEDIR/bin/scripts
 
 cp -R ~/bin/scripts/ $BASEDIR/bin/
