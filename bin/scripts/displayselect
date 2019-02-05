@@ -1,0 +1,12 @@
+#!/bin/bash
+
+choices="laptop\nlaptopdual\nMiniDP\nManual selection"
+
+chosen=$(echo -e "$choices" | dmenu -i)
+
+case "$chosen" in
+	laptop ) xrandr --output eDP1 --auto --output DP1 --off && polybar_launch ;;
+	laptopdual ) xrandr --output eDP1 --auto --output DP1 --auto --right-of eDP1 && polybar_launch ;;
+	MiniDP ) xrandr --output DP1 --auto --output eDP1 --off && polybar_launch ;;
+	"Manual selection" ) arandr && polybar_launch ;;
+esac

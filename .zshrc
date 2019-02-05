@@ -27,6 +27,7 @@ alias eL="vim ~/.config/polybar/launch.sh"
 alias eP="vim ~/.config/polybar/config"
 alias eV="vim ~/.vimrc"
 alias eT="vim ~/.tmux.conf"
+alias sc="cd ~/bin/scripts"
 unalias l
 alias l='exa -bghl -sname'
 alias ll="exa -bghla -sname"
@@ -38,8 +39,15 @@ alias ffm="nnn"
 alias fm="thunar"
 alias rfm="ranger"
 
+alias mkd="mkdir -pv"
+
 alias pdf="evince"
-alias ccat='pygmentize -g'
+alias ccat='highlight --out-format=ansi'
+
+alias yt="youtube-dl --add-metadata -ic" # Download video link
+alias yta="youtube-dl --add-metadata -xic" # Download only audio
+alias YT="youtube-viewer"
+alias starwars="telnet towel.blinkenlights.nl"
 
 # Programs
 # peaclock
@@ -52,6 +60,8 @@ alias ccat='pygmentize -g'
 alias marvin="ssh hausersn@marvin.informatik.uni-stuttgart.de"
 alias run-ubuntu="sudo docker run -ti --rm ubuntu:latest bash"
 alias rasp="ssh pi@pi.apengine.de"
+
+shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o http.*pdf) ; }
 
 export PATH=$PATH:/home/conni/bin/scripts:/home/conni/.gem/ruby/2.5.0/bin
 

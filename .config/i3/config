@@ -17,6 +17,7 @@ gaps outer $default_gaps_outer
 set $mod Mod4
 set $shutdown shutdown -h now
 set $reboot reboot
+set $hibernate systemctl suspend
 
 new_window none
 
@@ -69,6 +70,19 @@ bindsym $mod+Shift+x exec --no-startup-id /home/conni/bin/scripts/rdq "Are you s
 
 # Reboot
 bindsym $mod+Shift+Escape exec --no-startup-id /home/conni/bin/scripts/rdq "Are you sure you want to reboot?" "$reboot"
+
+# Hibernate
+bindsym $mod+F4 exec --no-startup-id /home/conni/bin/scripts/rdq "Are you sure you want to hibernate computer?" "$hibernate"
+
+# Display select
+bindsym $mod+F3 exec --no-startup-id /home/conni/bin/scripts/displayselect
+
+# Emoji selection
+bindsym $mod+grave exec --no-startup-id /home/conni/bin/scripts/dmenuunicode
+
+# Dmenu mount and umount
+bindsym $mod+F9 exec --no-startup-id /home/conni/bin/scripts/dmenumount
+bindsym $mod+F10 exec --no-startup-id /home/conni/bin/scripts/dmenuumount
 
 # To manage sound
 # exec --no-startup-id pulseaudio --start
@@ -208,7 +222,7 @@ bindsym $mod+r mode "resize"
 #       status_command i3status-rs ~/.i3status-rs.conf
 #}
 
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id $HOME/bin/scripts/polybar_launch
 
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id xfce4-power-manager
