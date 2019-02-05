@@ -41,6 +41,7 @@ floating_modifier $mod
 # start a terminal
 #bindsym $mod+Return exec gnome-terminal -- tmux
 bindsym $mod+Return exec st tmux
+bindsym $mod+BackSpace exec st fish
 
 # File Manager
 bindsym $mod+z exec st ranger
@@ -50,6 +51,9 @@ bindsym $mod+t exec st vim
 
 # Webbrowser
 bindsym $mod+c exec chromium
+
+# Newsboat
+bindsym $mod+n exec st newsboat
 
 # kill focused window
 bindsym $mod+Shift+q kill

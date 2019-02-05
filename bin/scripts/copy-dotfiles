@@ -33,5 +33,11 @@ cp ~/.config/newsboat/config $BASEDIR/.config/newsboat/
 
 createDir $BASEDIR/bin
 createDir $BASEDIR/bin/scripts
+createDir $BASEDIR/bin/external
 
 cp -R ~/bin/scripts/ $BASEDIR/bin/
+cp -R ~/bin/external/st/ $BASEDIR/bin/external/
+rm -rf $BASEDIR/bin/external/st/.git
+rm -rf $BASEDIR/bin/external/st/st
+rm -rf $BASEDIR/bin/external/st/st.o
+rm -rf $BASEDIR/bin/external/st/x.o

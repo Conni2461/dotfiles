@@ -16,14 +16,9 @@ UNI=/mnt/external/Google\ Drive/Uni/5.\ Semester
 alias uni="cd $UNI"
 alias calw='gcalcli calw'
 
-# Qt
-alias QtMaintenanceTool="/opt/Qt/MaintenanceTool"
-alias QtCreator="/opt/Qt/Tools/QtCreator/bin/qtcreator"
-
 # Customize to your needs..
 alias df="df -khT"
 alias rm="trash"
-alias sizeof="du -hs"
 
 # Config files
 alias eZ="vim ~/.zshrc"
