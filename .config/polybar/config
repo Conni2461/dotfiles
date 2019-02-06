@@ -6,33 +6,6 @@ height = 34
 background = #00000000
 foreground = #ccffffff
 
-line-color = ${bar/bottom.background}
-line-size = 2
-
-spacing = 3
-padding-right = 4
-module-margin-left = 0
-module-margin-right = 6
-
-font-0 = NotoSans-Regular:size=14;0
-font-1 = unifont:size=12;-3
-font-2 = FontAwesome:size=14;-2
-font-3 = NotoSans-Regular:size=14;-1
-font-4 = MaterialIcons:size=16;-1
-font-5 = Termsynu:size=14:antialias=false;0
-
-modules-left = i3 
-modules-right = filesystem cpu memory wireless-network battery1 battery2 date
-
-[bar/bottom]
-monitor = eDP-1
-bottom = true
-width = 100%
-height = 34
-
-background = ${bar/top.background}
-foreground = ${bar/top.foreground}
-
 line-color = ${bar/top.background}
 line-size = 2
 
@@ -49,7 +22,7 @@ font-4 = MaterialIcons:size=16;-1
 font-5 = Termsynu:size=14:antialias=false;0
 
 modules-left = i3
-modules-right = filesystem cpu memory
+modules-right =  filesystem cpu memory wireless-network backlight battery1 battery2 date
 
 [module/backlight]
 type = internal/xbacklight
@@ -311,39 +284,3 @@ label-mounted = %mountpoint%: %used%/%total%
 
 label-unmounted = %mountpoint%: not mounted
 
-[module/powermenu]
-type = custom/menu
-
-format-padding = 5
-
-label-open = 
-label-close = 
-
-menu-0-0 = "i3wm"
-menu-0-0-foreground = #fba922
-menu-0-0-exec = menu-open-1
-
-menu-1-0 = "Reload | "
-menu-1-0-foreground = #fba922
-menu-1-0-exec = i3-msg reload
-
-menu-1-1 = "Restart | "
-menu-1-1-foreground = #fba922
-menu-1-1-exec = i3-msg restart
-
-menu-1-2 = "Exit"
-menu-1-2-foreground = #fba922
-menu-1-2-exec = i3-msg exit
-
-
-#menu-0-1 = "System"
-#menu-0-1-foreground = #fba922
-#menu-0-1-exec = menu-open-2
-
-#menu-2-0 = "Reboot | "
-#menu-2-0-foreground = #fba922
-#menu-2-0-exec = sudo reboot
-
-#menu-2-1 = "Power off"
-#menu-2-1-foreground = #fba922
-#menu-2-1-exec = sudo poweroff
