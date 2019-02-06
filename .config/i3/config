@@ -74,6 +74,9 @@ bindsym $mod+Shift+Escape exec --no-startup-id /home/conni/bin/scripts/rdq "Are 
 # Hibernate
 bindsym $mod+F4 exec --no-startup-id /home/conni/bin/scripts/rdq "Are you sure you want to hibernate computer?" "$hibernate"
 
+# Restart network
+bindsym $mod+F5 exec --no-startup-id /home/conni/bin/scripts/restart-nmcli
+
 # Display select
 bindsym $mod+F3 exec --no-startup-id /home/conni/bin/scripts/displayselect
 
