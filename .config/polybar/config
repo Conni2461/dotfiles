@@ -232,9 +232,9 @@ interface = wlp3s0
 interval = 3.0
 ping-interval = 10
 
-format-connected = <ramp-signal> <label-connected>
-label-connected = %essid%
-label-disconnected =  not connected
+format-connected = <ramp-signal>
+format-disconnected = <label-disconnected>
+label-disconnected = 
 label-disconnected-foreground = #66
 
 ramp-signal-0 = 

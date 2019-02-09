@@ -13,7 +13,7 @@ alias ls="ls --color=auto"
 
 # Uni
 UNI=/mnt/external/Google\ Drive/Uni/5.\ Semester
-alias uni="cd $UNI"
+alias uni="cd /mnt/external/Google\ Drive/Uni/5.\ Semester"
 alias calw='gcalcli calw'
 
 # Customize to your needs..

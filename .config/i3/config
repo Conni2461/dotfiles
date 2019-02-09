@@ -65,6 +65,9 @@ bindsym $mod+Shift+q kill
 #bindsym $mod+d exec --no-startup-id rofi -show run -modi run -config ~/.config/rofi
 bindsym $mod+d exec --no-startup-id dmenu_run
 
+# Lock screen
+bindsym $mod+Shift+y exec --no-startup-id i3lock-fancy
+
 # Shutdown
 bindsym $mod+Shift+x exec --no-startup-id /home/conni/bin/scripts/rdq "Are you sure you want to shutdown?" "$shutdown"
 
@@ -84,8 +87,8 @@ bindsym $mod+F3 exec --no-startup-id /home/conni/bin/scripts/displayselect
 bindsym $mod+grave exec --no-startup-id /home/conni/bin/scripts/dmenuunicode
 
 # Dmenu mount and umount
-bindsym $mod+F9 exec --no-startup-id /home/conni/bin/scripts/dmenumount
-bindsym $mod+F10 exec --no-startup-id /home/conni/bin/scripts/dmenuumount
+bindsym $mod+F9 exec --no-startup-id gksudo /home/conni/bin/scripts/dmenumount
+bindsym $mod+F10 exec --no-startup-id gksudo /home/conni/bin/scripts/dmenuumount
 
 # To manage sound
 # exec --no-startup-id pulseaudio --start
@@ -229,5 +232,5 @@ exec_always --no-startup-id $HOME/bin/scripts/polybar_launch
 
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id xautolock -time 10 -locker blurlock
-exec --no-startup-id '/home/conni/bin/scripts/startup'
+exec --no-startup-id xautolock -time 10 -locker 'i3lock-fancy' -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
+#exec --no-startup-id '/home/conni/bin/scripts/startup'

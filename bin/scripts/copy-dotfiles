@@ -24,12 +24,16 @@ cp ~/.surf.config.h $BASEDIR
 createDir $BASEDIR/.config
 createDir $BASEDIR/.config/i3
 createDir $BASEDIR/.config/newsboat
+createDir $BASEDIR/.config/dunst
+createDir $BASEDIR/.config/ranger
 
 cp ~/.config/i3/config $BASEDIR/.config/i3
 cp -R ~/.config/polybar/ $BASEDIR/.config/
 cp ~/.config/rofi $BASEDIR/.config/
 cp ~/.config/newsboat/urls $BASEDIR/.config/newsboat/
 cp ~/.config/newsboat/config $BASEDIR/.config/newsboat/
+cp ~/.config/dunst/dunstrc $BASEDIR/.config/dunst/
+cp ~/.config/ranger/rc.conf $BASEDIR/.config/ranger/
 
 createDir $BASEDIR/bin
 createDir $BASEDIR/bin/scripts
