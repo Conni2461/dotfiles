@@ -32,6 +32,7 @@ unalias l
 alias l='exa -bghl -sname'
 alias ll="exa -bghla -sname"
 alias p='sudo pacman'
+alias y='yaourt'
 alias mirrors='sudo pacman-mirrors --fasttrack && p -Syyu'
 
 # Filemanager

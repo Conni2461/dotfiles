@@ -78,10 +78,10 @@ bindsym $mod+Shift+Escape exec --no-startup-id /home/conni/bin/scripts/rdq "Are 
 bindsym $mod+F4 exec --no-startup-id /home/conni/bin/scripts/rdq "Are you sure you want to hibernate computer?" "$hibernate"
 
 # Restart network
-bindsym $mod+F5 exec --no-startup-id /home/conni/bin/scripts/restart-nmcli
+bindsym $mod+F5 exec --no-startup-id gksudo /home/conni/bin/scripts/restart-nmcli
 
 # Display select
-bindsym $mod+F3 exec --no-startup-id /home/conni/bin/scripts/displayselect
+bindsym $mod+F3 exec --no-startup-id gksudo /home/conni/bin/scripts/displayselect
 
 # Emoji selection
 bindsym $mod+grave exec --no-startup-id /home/conni/bin/scripts/dmenuunicode
