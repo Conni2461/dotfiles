@@ -1,13 +1,51 @@
 #!/bin/bash
 
-choices="laptop\nlaptopdual\nHDMI\nboth\nManual selection"
+#Lists
+first="single\nduplicate\nextend\nManual selection"
+screens="laptop\nHDMI\nDP"
+adapter="HDMI\nDP"
 
-chosen=$(echo -e "$choices" | dmenu -i)
+# Functions
+function selectScreen()
+{
+	chosenS=$(echo -e "$screens" | dmenu -i)
+	case "$chosenS" in
+		laptop ) xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --off ;;
+		HDMI ) xrandr --output eDP1 --off --output HDMI1 --auto --output DP1 --off ;;
+		DP ) xrandr --output eDP1 --off --output HDMI1 --off --output DP1 --auto ;;
+	esac
 
-case "$chosen" in
-	laptop ) xrandr --output eDP1 --auto --output HDMI1 --off && polybar_launch ;;
-	laptopdual ) xrandr --output eDP1 --auto --output HDMI1 --auto --right-of eDP1 && polybar_launch ;;
-	HDMI ) xrandr --output DP1 --off --output HDMI1 --auto && polybar_launch ;;
-	both ) xrandr --output DP1 --auto --output HDMI1 --auto && polybar_launch ;;
+	return 0
+}
+
+function selectAdapterD()
+{
+	chosenD=$(echo -e "$adapter" | dmenu -i)
+	case "$chosenD" in
+		HDMI ) xrandr --output eDP1 --auto --output HDMI1 --auto --output DP1 --off ;;
+		DP ) xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --auto ;;
+	esac
+
+	return 0
+}
+
+function selectAdapterE()
+{
+	chosenE=$(echo -e "$adapter" | dmenu -i)
+	case "$chosenE" in
+		HDMI ) xrandr --output eDP1 --auto --output HDMI1 --auto --right-of eDP1 --output DP1 --off ;;
+		DP ) xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --auto --right-of eDP1 ;;
+	esac
+
+	return 0
+}
+
+# Main
+chosenM=$(echo -e "$first" | dmenu -i)
+
+case "$chosenM" in
+	single ) selectScreen && polybar_launch ;;
+	duplicate ) selectAdapterD && polybar_launch ;;
+	extend ) selectAdapterE && polybar_launch ;;
 	"Manual selection" ) arandr && polybar_launch ;;
 esac

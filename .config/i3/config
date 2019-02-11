@@ -185,7 +185,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym $mod+Shift+r exec --no-startup-id gksudo i3-msg restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec --no-startup-id /home/conni/bin/scripts/rdq "Do you really want to exit i3? This will end your X session." "i3-msg exit"
 
@@ -233,4 +233,4 @@ exec_always --no-startup-id $HOME/bin/scripts/polybar_launch
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xautolock -time 10 -locker 'i3lock-fancy' -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
-#exec --no-startup-id '/home/conni/bin/scripts/startup'
+exec --no-startup-id '/home/conni/bin/scripts/startup'
