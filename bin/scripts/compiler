@@ -12,6 +12,12 @@ base="${file%.*}"
 
 cd "$dir" || exit
 
+if [ -f Makefile ] || [ -f makefile ]; then
+	make && exit 0
+	read
+	exit 1
+fi
+
 textype() { \
 	command="pdflatex"
 	( sed 5q "$file" | grep -i -q 'xelatex' ) && command="xelatex"

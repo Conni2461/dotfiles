@@ -22,7 +22,7 @@ font-4 = MaterialIcons:size=16;-1
 font-5 = Termsynu:size=14:antialias=false;0
 
 modules-left = i3
-modules-right =  filesystem cpu memory wireless-network backlight battery1 battery2 date
+modules-right = filesystem cpu memory alsa wireless-network backlight battery1 battery2 date
 
 [bar/top2]
 monitor = DP1
@@ -48,7 +48,7 @@ font-4 = MaterialIcons:size=16;-1
 font-5 = Termsynu:size=14:antialias=false;0
 
 modules-left = i3
-modules-right =  filesystem cpu memory wireless-network backlight battery1 battery2 date
+modules-right = filesystem cpu memory alsa wireless-network backlight battery1 battery2 date
 
 [bar/top3]
 monitor = HDMI1
@@ -74,7 +74,7 @@ font-4 = MaterialIcons:size=16;-1
 font-5 = Termsynu:size=14:antialias=false;0
 
 modules-left = i3
-modules-right =  filesystem cpu memory wireless-network backlight battery1 battery2 date
+modules-right =  filesystem cpu memory alsa wireless-network backlight battery1 battery2 date
 
 [module/backlight]
 type = internal/xbacklight

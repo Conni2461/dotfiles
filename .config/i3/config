@@ -56,6 +56,9 @@ bindsym $mod+c exec chromium
 # Newsboat
 bindsym $mod+n exec st newsboat
 
+# Mutt
+bindym $mod+m exec st mutt
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -63,7 +66,7 @@ bindsym $mod+Shift+q kill
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
 #bindsym $mod+d exec --no-startup-id rofi -show run -modi run -config ~/.config/rofi
-bindsym $mod+d exec --no-startup-id dmenu_run
+bindsym $mod+d exec --no-startup-id dmenu_run -i
 
 # Lock screen
 bindsym $mod+Shift+y exec --no-startup-id i3lock-fancy
@@ -91,9 +94,8 @@ bindsym $mod+F9 exec --no-startup-id gksudo /home/conni/bin/scripts/dmenumount
 bindsym $mod+F10 exec --no-startup-id gksudo /home/conni/bin/scripts/dmenuumount
 
 # To manage sound
-# exec --no-startup-id pulseaudio --start
-# exec --no-startup-id volumeicon
-# bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+exec --no-startup-id volumeicon
+bindsym $mod+Shift+m exec st alsamixer
 
 # change focus
 bindsym $mod+h focus left

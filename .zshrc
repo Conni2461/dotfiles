@@ -64,7 +64,7 @@ alias rasp="ssh pi@pi.apengine.de"
 
 shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o http.*pdf) ; }
 
-export PATH=$PATH:/home/conni/bin/scripts:/home/conni/.gem/ruby/2.5.0/bin
+export PATH=$PATH:/home/conni/bin/scripts
 
 # nitrogen as Background manager
 # lxappearance as theme manager
