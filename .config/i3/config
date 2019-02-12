@@ -21,77 +21,34 @@ set $hibernate systemctl suspend
 
 new_window none
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-font pango:hack 14
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
+font inconsolata 14
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-#bindsym $mod+Return exec gnome-terminal -- tmux
-bindsym $mod+Return exec st tmux
-bindsym $mod+BackSpace exec st fish
+# Programms
+bindsym $mod+Return exec st tmux	# Default shell
+bindsym $mod+BackSpace exec st fish	# Fish shell
+bindsym $mod+z exec st ranger   	# Default File Manager
+bindsym $mod+g exec thunar		# Secondard File Manger (Gui based)
+bindsym $mod+t exec st vim		# Default Text Editor
+bindsym $mod+c exec chromium		# Default Browser
+bindsym $mod+n exec st newsboat		# RSS Feed Reader
+bindsym $mod+m exec st mutt		# Mail programm
+bindsym $mod+p exec st weechat		# Chat programm mainly used for slack
 
-# File Manager
-bindsym $mod+z exec st ranger
-
-# Vim
-bindsym $mod+t exec st vim
-
-# Webbrowser
-bindsym $mod+c exec chromium
-
-# Newsboat
-bindsym $mod+n exec st newsboat
-
-# Mutt
-bindym $mod+m exec st mutt
-
-# kill focused window
+# Shortcuts
 bindsym $mod+Shift+q kill
-
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-#bindsym $mod+d exec --no-startup-id rofi -show run -modi run -config ~/.config/rofi
-bindsym $mod+d exec --no-startup-id dmenu_run -i
-
-# Lock screen
-bindsym $mod+Shift+y exec --no-startup-id i3lock-fancy
-
-# Shutdown
-bindsym $mod+Shift+x exec --no-startup-id /home/conni/bin/scripts/rdq "Are you sure you want to shutdown?" "$shutdown"
-
-# Reboot
-bindsym $mod+Shift+Escape exec --no-startup-id /home/conni/bin/scripts/rdq "Are you sure you want to reboot?" "$reboot"
-
-# Hibernate
-bindsym $mod+F4 exec --no-startup-id /home/conni/bin/scripts/rdq "Are you sure you want to hibernate computer?" "$hibernate"
-
-# Restart network
-bindsym $mod+F5 exec --no-startup-id gksudo /home/conni/bin/scripts/restart-nmcli
-
-# Display select
-bindsym $mod+F3 exec --no-startup-id gksudo /home/conni/bin/scripts/displayselect
-
-# Emoji selection
-bindsym $mod+grave exec --no-startup-id /home/conni/bin/scripts/dmenuunicode
-
-# Dmenu mount and umount
-bindsym $mod+F9 exec --no-startup-id gksudo /home/conni/bin/scripts/dmenumount
-bindsym $mod+F10 exec --no-startup-id gksudo /home/conni/bin/scripts/dmenuumount
+bindsym $mod+d exec --no-startup-id dmenu_run -i										# Dmenu run without case sensetive
+bindsym $mod+Shift+y exec --no-startup-id i3lock-fancy 										# Lock screen
+bindsym $mod+Shift+x exec --no-startup-id /home/conni/bin/scripts/rdq "Are you sure you want to shutdown?" "$shutdown"		# Shutdown
+bindsym $mod+Shift+Escape exec --no-startup-id /home/conni/bin/scripts/rdq "Are you sure you want to reboot?" "$reboot"		# Reboot
+bindsym $mod+F3 exec --no-startup-id gksudo /home/conni/bin/scripts/displayselect 						# Display select
+bindsym $mod+F4 exec --no-startup-id /home/conni/bin/scripts/rdq "Are you sure you want to hibernate computer?" "$hibernate"	# Hibernate
+bindsym $mod+F5 exec --no-startup-id gksudo /home/conni/bin/scripts/restart-nmcli 						# Restart network
+bindsym $mod+grave exec --no-startup-id /home/conni/bin/scripts/dmenuunicode  							# Emoji selection
+bindsym $mod+F9 exec --no-startup-id gksudo /home/conni/bin/scripts/dmenumount							# Dmenu mount
+bindsym $mod+F10 exec --no-startup-id gksudo /home/conni/bin/scripts/dmenuumount 						# Dmenu umount
 
 # To manage sound
 exec --no-startup-id volumeicon
@@ -144,9 +101,6 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
-#bindsym $mod+d focus child
-
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1"
@@ -193,8 +147,6 @@ bindsym $mod+Shift+e exec --no-startup-id /home/conni/bin/scripts/rdq "Do you re
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
         # Pressing left will shrink the window’s width.
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
@@ -218,19 +170,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-#bar {
-#	tray_output none
-#	i3bar_command i3bar -t
-#	colors {
-#		background "#00000000"
-#	}
-#	position top
-#       status_command i3status-rs ~/.i3status-rs.conf
-#}
-
-exec_always --no-startup-id $HOME/bin/scripts/polybar_launch
+exec_always --no-startup-id home/conni/bin/scripts/polybar_launch
 
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id xfce4-power-manager
