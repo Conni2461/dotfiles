@@ -21,7 +21,7 @@ font-3 = NotoSans-Regular:size=14;-1
 font-4 = MaterialIcons:size=16;-1
 font-5 = Termsynu:size=14:antialias=false;0
 
-modules-left = i3
+modules-left = i3 spotify
 modules-right = filesystem cpu memory alsa wireless-network backlight battery1 battery2 date
 
 [bar/top2]
@@ -47,7 +47,7 @@ font-3 = NotoSans-Regular:size=14;-1
 font-4 = MaterialIcons:size=16;-1
 font-5 = Termsynu:size=14:antialias=false;0
 
-modules-left = i3
+modules-left = i3 spotify
 modules-right = filesystem cpu memory alsa wireless-network backlight battery1 battery2 date
 
 [bar/top3]
@@ -73,7 +73,7 @@ font-3 = NotoSans-Regular:size=14;-1
 font-4 = MaterialIcons:size=16;-1
 font-5 = Termsynu:size=14:antialias=false;0
 
-modules-left = i3
+modules-left = i3 spotify
 modules-right =  filesystem cpu memory alsa wireless-network backlight battery1 battery2 date
 
 [module/backlight]
@@ -251,33 +251,6 @@ bar-used-empty = ─
 bar-used-empty-font = 6
 bar-used-empty-foreground = #444444
 
-[module/mpd]
-type = internal/mpd
-format-online = <icon-prev> <icon-stop> <toggle> <icon-next>  <icon-repeat> <icon-random>  <bar-progress> <label-time>  <label-song>
-
-icon-play = 
-icon-pause = 
-icon-stop = 
-icon-prev = 
-icon-next = 
-icon-random = 
-icon-repeat = 
-
-toggle-on-foreground =
-toggle-off-foreground = #55
-
-bar-progress-width = 45
-bar-progress-format = %{A4:mpdseek+2: A5:mpdseek-2:}%fill%%indicator%%empty%%{A A}
-bar-progress-indicator = |
-bar-progress-indicator-foreground = #ff
-bar-progress-indicator-font = 3
-bar-progress-fill = ─
-bar-progress-fill-foreground = #bb
-bar-progress-fill-font = 3
-bar-progress-empty = ─
-bar-progress-empty-font = 3
-bar-progress-empty-foreground = #44
-
 [module/wireless-network]
 type = internal/network
 interface = wlp3s0
@@ -300,6 +273,14 @@ animation-packetloss-0-foreground = #ffa64c
 animation-packetloss-1 = 
 animation-packetloss-1-foreground = ${bar/top.foreground}
 animation-packetloss-framerate = 500
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+exec = python /home/conni/bin/scripts/spotify_status.py -f '{artist}: {song}'
+format-underline = #1db954
 
 [module/alsa]
 type = internal/alsa
