@@ -279,8 +279,10 @@ type = custom/script
 interval = 1
 format-prefix = " "
 format = <label>
-exec = python /home/conni/bin/scripts/spotify_status.py -f '{artist}: {song}'
+exec = /home/conni/bin/scripts/infospotify
 format-underline = #1db954
+
+click-left = /home/conni/bin/scripts/infospotify -p
 
 [module/alsa]
 type = internal/alsa
