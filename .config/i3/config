@@ -26,6 +26,12 @@ font inconsolata 14
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Alsa controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer sset Master 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer sset Master 5%-
+bindsym XF86AudioMute exec --no-startup-id amixer set Master 1+ toggle
+bindsym XF86AudioPlay exec --no-startup-id /home/conni/bin/scripts/infospotify -p
+
 # Programms
 bindsym $mod+Return exec st tmux	# Default shell
 bindsym $mod+BackSpace exec st fish	# Fish shell
@@ -37,6 +43,7 @@ bindsym $mod+n exec st newsboat		# RSS Feed Reader
 bindsym $mod+m exec st mutt		# Mail programm
 bindsym $mod+p exec st weechat		# Chat programm mainly used for slack
 bindsym $mod+i exec surf trello.com 	# Open trello
+bindsym $mod+Shift+m exec st alsamixer
 
 # Shortcuts
 bindsym $mod+Shift+q kill
@@ -50,10 +57,6 @@ bindsym $mod+F5 exec --no-startup-id gksudo /home/conni/bin/scripts/restart-nmcl
 bindsym $mod+grave exec --no-startup-id /home/conni/bin/scripts/dmenuunicode  							# Emoji selection
 bindsym $mod+F9 exec --no-startup-id gksudo /home/conni/bin/scripts/dmenumount							# Dmenu mount
 bindsym $mod+F10 exec --no-startup-id gksudo /home/conni/bin/scripts/dmenuumount 						# Dmenu umount
-
-# To manage sound
-exec --no-startup-id volumeicon
-bindsym $mod+Shift+m exec st alsamixer
 
 # change focus
 bindsym $mod+h focus left
