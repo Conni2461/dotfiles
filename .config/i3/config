@@ -170,7 +170,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-exec_always --no-startup-id home/conni/bin/scripts/polybar_launch
+exec_always --no-startup-id /home/conni/bin/scripts/polybar_launch
 
 exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id xfce4-power-manager
