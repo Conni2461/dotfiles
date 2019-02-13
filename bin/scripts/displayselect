@@ -10,9 +10,9 @@ function selectScreen()
 {
 	chosenS=$(echo -e "$screens" | dmenu -i)
 	case "$chosenS" in
-		laptop ) xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --off ;;
-		HDMI ) xrandr --output eDP1 --off --output HDMI1 --auto --output DP1 --off ;;
-		DP ) xrandr --output eDP1 --off --output HDMI1 --off --output DP1 --auto ;;
+		laptop ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --off ;;
+		HDMI ) sudo -A xrandr --output eDP1 --off --output HDMI1 --auto --output DP1 --off ;;
+		DP ) sudo -A xrandr --output eDP1 --off --output HDMI1 --off --output DP1 --auto ;;
 	esac
 
 	return 0
@@ -22,8 +22,8 @@ function selectAdapterD()
 {
 	chosenD=$(echo -e "$adapter" | dmenu -i)
 	case "$chosenD" in
-		HDMI ) xrandr --output eDP1 --auto --output HDMI1 --auto --output DP1 --off ;;
-		DP ) xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --auto ;;
+		HDMI ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --auto --output DP1 --off ;;
+		DP ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --auto ;;
 	esac
 
 	return 0
@@ -33,8 +33,8 @@ function selectAdapterE()
 {
 	chosenE=$(echo -e "$adapter" | dmenu -i)
 	case "$chosenE" in
-		HDMI ) xrandr --output eDP1 --auto --output HDMI1 --auto --right-of eDP1 --output DP1 --off ;;
-		DP ) xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --auto --right-of eDP1 ;;
+		HDMI ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --auto --right-of eDP1 --output DP1 --off ;;
+		DP ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --auto --right-of eDP1 ;;
 	esac
 
 	return 0
@@ -47,5 +47,5 @@ case "$chosenM" in
 	single ) selectScreen && polybar_launch ;;
 	duplicate ) selectAdapterD && polybar_launch ;;
 	extend ) selectAdapterE && polybar_launch ;;
-	"Manual selection" ) arandr && polybar_launch ;;
+	"Manual selection" ) sudo -A arandr && polybar_launch ;;
 esac

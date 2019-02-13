@@ -51,12 +51,12 @@ bindsym $mod+d exec --no-startup-id dmenu_run -i										# Dmenu run without ca
 bindsym $mod+Shift+y exec --no-startup-id i3lock-fancy 										# Lock screen
 bindsym $mod+Shift+x exec --no-startup-id /home/conni/bin/scripts/rdq "Are you sure you want to shutdown?" "$shutdown"		# Shutdown
 bindsym $mod+Shift+Escape exec --no-startup-id /home/conni/bin/scripts/rdq "Are you sure you want to reboot?" "$reboot"		# Reboot
-bindsym $mod+F3 exec --no-startup-id gksudo /home/conni/bin/scripts/displayselect 						# Display select
+bindsym $mod+F3 exec --no-startup-id /home/conni/bin/scripts/displayselect 							# Display select
 bindsym $mod+F4 exec --no-startup-id /home/conni/bin/scripts/rdq "Are you sure you want to hibernate computer?" "$hibernate"	# Hibernate
-bindsym $mod+F5 exec --no-startup-id gksudo /home/conni/bin/scripts/restart-nmcli 						# Restart network
+bindsym $mod+F5 exec --no-startup-id /home/conni/bin/scripts/restart-nmcli 							# Restart network
 bindsym $mod+grave exec --no-startup-id /home/conni/bin/scripts/dmenuunicode  							# Emoji selection
-bindsym $mod+F9 exec --no-startup-id gksudo /home/conni/bin/scripts/dmenumount							# Dmenu mount
-bindsym $mod+F10 exec --no-startup-id gksudo /home/conni/bin/scripts/dmenuumount 						# Dmenu umount
+bindsym $mod+F9 exec --no-startup-id /home/conni/bin/scripts/dmenumount								# Dmenu mount
+bindsym $mod+F10 exec --no-startup-id /home/conni/bin/scripts/dmenuumount 							# Dmenu umount
 
 # change focus
 bindsym $mod+h focus left
@@ -145,7 +145,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r exec --no-startup-id gksudo i3-msg restart
+bindsym $mod+Shift+r exec --no-startup-id sudo -A i3-msg restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec --no-startup-id /home/conni/bin/scripts/rdq "Do you really want to exit i3? This will end your X session." "i3-msg exit"
 

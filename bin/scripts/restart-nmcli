@@ -1,6 +1,6 @@
 #!/bin/bash
 
-systemctl restart NetworkManager.service
+sudo -A systemctl restart NetworkManager.service
 nmcli radio wifi off
 sleep 1
 nmcli radio wifi on
