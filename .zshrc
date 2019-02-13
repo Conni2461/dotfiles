@@ -28,6 +28,7 @@ alias eP="vim ~/.config/polybar/config"
 alias eV="vim ~/.vimrc"
 alias eT="vim ~/.tmux.conf"
 alias sc="cd ~/bin/scripts"
+alias dot="cd ~/repos/dotfiles"
 unalias l
 alias l='exa -bghl -sname'
 alias ll="exa -bghla -sname"

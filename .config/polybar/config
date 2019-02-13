@@ -301,7 +301,7 @@ mapped = true
 interval = 5
 
 format-volume = <ramp-volume> <label-volume>
-label-muted =   muted
+label-muted = 
 label-muted-foreground = #66
 
 ramp-volume-0 = 
