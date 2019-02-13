@@ -22,6 +22,7 @@ font-4 = MaterialIcons:size=16;-1
 font-5 = Termsynu:size=14:antialias=false;0
 
 modules-left = i3 spotify
+modules-center = status
 modules-right = filesystem cpu memory alsa wireless-network backlight battery1 battery2 date
 
 [bar/top2]
@@ -48,6 +49,7 @@ font-4 = MaterialIcons:size=16;-1
 font-5 = Termsynu:size=14:antialias=false;0
 
 modules-left = i3 spotify
+modules-center = status
 modules-right = filesystem cpu memory alsa wireless-network backlight battery1 battery2 date
 
 [bar/top3]
@@ -74,6 +76,7 @@ font-4 = MaterialIcons:size=16;-1
 font-5 = Termsynu:size=14:antialias=false;0
 
 modules-left = i3 spotify
+modules-center = status
 modules-right =  filesystem cpu memory alsa wireless-network backlight battery1 battery2 date
 
 [module/backlight]
@@ -282,6 +285,12 @@ exec = /home/conni/bin/scripts/infospotify
 format-underline = #1db954
 
 click-left = /home/conni/bin/scripts/infospotify -p
+
+[module/status]
+type = custom/script
+interval = 1
+format = <label>
+exec = /home/conni/bin/scripts/status
 
 [module/alsa]
 type = internal/alsa
