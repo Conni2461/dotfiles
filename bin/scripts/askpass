@@ -1,3 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
-dmenu -fn Monospace-18 -sb "#d79921" -sf "#1d2021" -nf "#000000" -nb "#000000" -p "$1" <&- && echo
+caller="$(ps -o comm= -p $(ps -o ppid= -p $$))"
+prompt="${1:-[$caller]}"
+promptfg=#1d2021
+promptbg=#d79921
+hidden=black
+font="Monospace-18:Bold"
+
+
+dmenu -p "$prompt" -fn "$font" -sb "$promptbg" -sf "$promptfg" -nf "$hidden" -nb "$hidden" <&-
