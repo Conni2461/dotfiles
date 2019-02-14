@@ -1,5 +1,11 @@
 /* See LICENSE file for copyright and license details. */
 
+// APPLYED Patches
+// https://st.suckless.org/patches/externalpipe/st-externalpipe-0.8.1.diff
+// https://st.suckless.org/patches/scrollback/st-scrollback-0.8.diff
+// https://st.suckless.org/patches/scrollback/st-scrollback-mouse-0.8.diff
+// https://st.suckless.org/patches/hidecursor/st-hidecursor-0.8.1.diff
+
 /*
  * appearance
  *
@@ -148,11 +154,25 @@ static MouseShortcut mshortcuts[] = {
 	/* button               mask            string */
 	{ Button4,              XK_ANY_MOD,     "\031" },
 	{ Button5,              XK_ANY_MOD,     "\005" },
+	{ Button4,              XK_NO_MOD,      "\031" },
+	{ Button5,              XK_NO_MOD,      "\005" },
 };
 
 /* Internal keyboard shortcuts. */
 #define MODKEY Mod1Mask
 #define TERMMOD (ControlMask|ShiftMask)
+#define DMODKEY (MODKEY|ShiftMask)
+
+MouseKey mkeys[] = {
+	/* button               mask            function	argument */
+	{ Button4, 		ShiftMask,	kscrollup,	{.i =  1} },
+	{ Button5, 		ShiftMask,	kscrolldown,	{.i =  1} },
+	{ Button4, 		MODKEY,		kscrollup,	{.i =  1} },
+	{ Button5, 		MODKEY,		kscrolldown,	{.i =  1} },
+	{ Button4, 		DMODKEY,	zoom,		{.f = +1} },
+	{ Button5, 		DMODKEY,	zoom,		{.f = -1} },
+};
+
 
 static char *openurlcmd[] = { "/bin/sh", "-c",
 	"xurls | uniq | dmenu -l 10 | xargs -r xdg-open",
@@ -172,6 +192,16 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
 	{ TERMMOD,              XK_I,           iso14755,       {.i =  0} },
+	{ ShiftMask,		XK_Page_Up,	kscrollup,	{.i = -1} },
+	{ ShiftMask,		XK_Page_Down,	kscrolldown,	{.i = -1} },
+	{ MODKEY,		XK_Page_Up,	kscrollup,	{.i = -1} },
+	{ MODKEY,		XK_Page_Down,	kscrolldown,	{.i = -1} },
+	{ MODKEY,		XK_k,		kscrollup,	{.i =  1} },
+	{ MODKEY,		XK_j,		kscrolldown,	{.i =  1} },
+	{ MODKEY,		XK_Up,		kscrollup,	{.i =  1} },
+	{ MODKEY,		XK_Down,	kscrolldown,	{.i =  1} },
+	{ MODKEY,		XK_u,		kscrollup,	{.i = -1} },
+	{ MODKEY,		XK_d,		kscrolldown,	{.i = -1} },
 	{ MODKEY,               XK_l,           externalpipe,   { .v = openurlcmd } },
 };
 

@@ -33,7 +33,7 @@ bindsym XF86AudioMute exec --no-startup-id amixer set Master 1+ toggle
 bindsym XF86AudioPlay exec --no-startup-id /home/conni/bin/scripts/infospotify -p
 
 # Programms
-bindsym $mod+Return exec st tmux	# Default shell
+bindsym $mod+Return exec st	 	# Default shell
 bindsym $mod+BackSpace exec st fish	# Fish shell
 bindsym $mod+z exec st ranger   	# Default File Manager
 bindsym $mod+g exec thunar		# Secondard File Manger (Gui based)
