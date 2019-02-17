@@ -300,7 +300,6 @@ speaker-soundcard = default
 headphone-soundcard = default
 
 master-mixer = Master
-
 speaker-mixer = Speaker
 headphone-mixer = Headphone
 

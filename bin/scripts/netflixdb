@@ -1,5 +1,15 @@
 #!/bin/bash
 
+function addMovie()
+{
+	echo "${1} - Movie"
+}
+
+function addShow()
+{
+	echo "${1} - Show"
+}
+
 CountMovie=$(sed -e '/-----/,$d' ~/docs/netflix | awk NF | cut -d- -f2 | grep Movie | wc -l)
 CountShow=$(sed -e '/-----/,$d' ~/docs/netflix | awk NF | cut -d- -f2 | grep Show | wc -l)
 
