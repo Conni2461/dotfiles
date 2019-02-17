@@ -1,8 +1,8 @@
 #!/bin/bash
 
-pacs=$(expac -Qs --timefmt="%d/%m/%y" "%l|{%w}{%G}%n|%d" | \
+pacs=$(expac -Qs --timefmt="%d.%m.%y" "%l|{%w}{%G}%n|%d" | \
 grep -v -E "{dependency}|{xorg.*}|{base.*}" | \
-sort | \
+sort -t. -k3n -k2n -k1n | \
 sed 's|{[^}]*}||g')
 
 num_of_pacs=$(echo "$pacs" | wc -l)

@@ -40,7 +40,7 @@ bindsym $mod+g exec thunar		# Secondard File Manger (Gui based)
 bindsym $mod+t exec st vim		# Default Text Editor
 bindsym $mod+c exec chromium		# Default Browser
 bindsym $mod+n exec st newsboat		# RSS Feed Reader
-bindsym $mod+m exec st mutt		# Mail programm
+bindsym $mod+m exec st neomutt		# Mail programm
 bindsym $mod+p exec st weechat		# Chat programm mainly used for slack
 bindsym $mod+i exec surf trello.com 	# Open trello
 bindsym $mod+Shift+m exec st alsamixer
