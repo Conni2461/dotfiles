@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /home/conni/bin/scripts/utils
+source ~/bin/scripts/utils
 
 if [ $# -eq 0 ]; then
 	err "Error provice a docker image" || exit 1
