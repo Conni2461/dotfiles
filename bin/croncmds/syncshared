@@ -12,17 +12,24 @@ fi
 
 scp -r home:~/docs/shared /tmp/docs/shared
 
+DIDSYNC=false
 FILES=/tmp/docs/shared/*
+
 for f in ${FILES}; do
 	FNAME=$(basename ${f})
 	LOCAL=/home/conni/docs/shared/${FNAME}
 	diff ${f} ${LOCAL} >/dev/null 2>&1
 	if [ ! $? -eq 0 ]; then
+		DIDSYNC=true
 		yes | cp ${f} ${LOCAL}
 		notify-send "Synced ${FNAME}"
 	else
 		echo ${FNAME} was not copied
 	fi
 done
+
+if [ "$DIDSYNC" == "false" ]; then
+	notify-send "No files synced"
+fi
 
 rm -rf /tmp/docs
