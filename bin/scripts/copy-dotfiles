@@ -38,6 +38,10 @@ cp ~/.config/ranger/rc.conf $BASEDIR/.config/ranger/
 cp ~/.config/zathura/zathurarc $BASEDIR/.config/zathura/zathurarc
 
 createDir $BASEDIR/bin
+createDir $BASEDIR/bin/croncmds
+createDir $BASEDIR/bin/i3cmds
 createDir $BASEDIR/bin/scripts
 
+cp -R ~/bin/croncmds/ $BASEDIR/bin/
+cp -R ~/bin/i3cmds/ $BASEDIR/bin/
 cp -R ~/bin/scripts/ $BASEDIR/bin/

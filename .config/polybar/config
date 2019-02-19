@@ -227,16 +227,16 @@ type = custom/script
 interval = 1
 format-prefix = " "
 format = <label>
-exec = /home/conni/bin/scripts/infospotify
+exec = /home/conni/bin/i3cmds/infospotify
 format-underline = #1db954
 
-click-left = /home/conni/bin/scripts/infospotify -p
+click-left = /home/conni/bin/i3cmds/infospotify -p
 
 [module/status]
 type = custom/script
 interval = 1
 format = <label>
-exec = /home/conni/bin/scripts/status
+exec = /home/conni/bin/i3cmds/status
 
 [module/alsa]
 type = internal/alsa
