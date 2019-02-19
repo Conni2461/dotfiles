@@ -33,7 +33,7 @@ FILES="--exclude=.manjaro-tools \
 --exclude=/var/cache/apt/archives \
 --exclude=/home/*/.cache \
 --exclude=/home/*/.local/share/Trash \
---exclude=/home/*/.thunderbird"
+--exclude=/home/*/.mail"
 
 function usage()
 {

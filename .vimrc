@@ -74,6 +74,10 @@
 " Automatically deletes all trailing whitespaces on save
 	autocmd BufWritePre * %s/\s\+$//e
 
+" Post Save Commands
+	autocmd BufWritePost * silent! execute "!notify-send 'File <afile> saved' >/dev/null 2>&1"
+	autocmd BufWritePost * silent! execute "!syncfile %:p"
+
 " lightline configuration
 	set laststatus=2
 	let g:lightline = {

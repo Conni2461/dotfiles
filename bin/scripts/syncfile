@@ -1,0 +1,7 @@
+#!/bin/bash
+
+fpath=$(dirname $1)
+
+if [ $fpath == "/home/conni/docs/shared" ]; then
+	scp $1 home:~/docs/shared/ >/dev/null 2>&1
+fi

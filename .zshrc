@@ -50,6 +50,8 @@ alias yt="youtube-dl --add-metadata -ic" # Download video link
 alias yta="youtube-dl --add-metadata -xic" # Download only audio
 alias YT="youtube-viewer"
 alias starwars="telnet towel.blinkenlights.nl"
+alias scim="sc-im"
+alias sway='export XKB_DEFAULT_LAYOUT=de; export XKB_OPTIONS="grp:alt_shift_toggle"; sway'
 
 # Programs
 # peaclock
@@ -61,7 +63,7 @@ alias starwars="telnet towel.blinkenlights.nl"
 
 alias marvin="ssh hausersn@marvin.informatik.uni-stuttgart.de"
 alias run-ubuntu="sudo docker run -ti --rm ubuntu:latest bash"
-alias rasp="ssh pi@pi.apengine.de"
+alias rasp="ssh home"
 
 shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o http.*pdf) ; }
 
