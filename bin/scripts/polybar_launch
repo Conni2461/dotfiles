@@ -7,11 +7,10 @@ killall -q polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch bar
-polybar --config=/home/conni/.config/polybar/config top &
-
-display=$(xrandr | grep '\<connected\>' | wc -l)
-if [ "$display" == "2" ]; then
-
-	xrandr | grep '\<DP1 conntected\>' && polybar --config=/home/conni/.config/polybar/config top2 &
-	xrandr | grep '\<HDMI1 conntected\>' && polybar --config=/home/conni/.config/polybar/config top3 &
+if type "xrandr"; then
+	for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+		MONITOR=$m polybar --config=/home/conni/.config/polybar/config --reload top &
+	done
+else
+	polybar --config=/home/conni/.config/polybar/config --reload top &
 fi
