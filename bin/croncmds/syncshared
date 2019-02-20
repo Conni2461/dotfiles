@@ -4,21 +4,22 @@ ping -q -t 1 -c 1 `ip r | grep -m 1 default | cut -d ' ' -f 3` >/dev/null || exi
 
 notify-send "Sync docs shared folder"
 
-DIDSYNC=false
+didsync=false
 
 for f in $(ssh home find docs/shared/ -type f); do
 	echo ${f}
-	LOCAL=/home/conni/${f}
-	diff <(ssh home cat ${f}) <(cat ${LOCAL}) >/dev/null 2>&1
+	local=/home/conni/${f}
+	diff <(ssh home cat ${f}) <(cat ${local}) >/dev/null 2>&1
 	if [ ! $? -eq 0 ]; then
-		DIDSYNC=true
-		scp home:~/${f} ${LOCAL} >/dev/null 2>&1
-		notify-send "Synced $(basename ${f})"
+		didsync=true
+		mkdir -pv $(dirname ${local})
+		scp home:~/${f} ${local}
+		notify-send "Synced ${f}"
 	else
-		echo "$(basename ${f}) was not copied"
+		echo "${f} was not copied"
 	fi
 done
 
-if [ "$DIDSYNC" == "false" ]; then
+if [ "${didsync}" == "false" ]; then
 	notify-send "No files synced"
 fi
