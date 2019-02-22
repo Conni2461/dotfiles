@@ -45,20 +45,20 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 bindsym XF86AudioPlay exec --no-startup-id /home/conni/bin/i3cmds/infospotify -p
 
 # Programms
-bindsym $mod+Return exec st	 	# Default shell
-bindsym $mod+BackSpace exec st fish	# Fish shell
-bindsym $mod+z exec st ranger   	# Default File Manager
-bindsym $mod+g exec thunar		# Secondard File Manger (Gui based)
-bindsym $mod+t exec st vim		# Default Text Editor
-bindsym $mod+c exec chromium		# Default Browser
-bindsym $mod+n exec st newsboat		# RSS Feed Reader
-bindsym $mod+m exec st neomutt		# Mail programm
-bindsym $mod+p exec st weechat		# Chat programm mainly used for slack
-bindsym $mod+i exec surf trello.com 	# Open trello
+bindsym $mod+Return exec st	 									# Default shell
+bindsym $mod+BackSpace exec st fish									# Fish shell
+bindsym $mod+z exec st ranger   									# Default File Manager
+bindsym $mod+g [instance="math"] scratchpad show; [instance="math"] move position center
+bindsym $mod+t exec st vim										# Default Text Editor
+bindsym $mod+c exec chromium										# Default Browser
+bindsym $mod+n exec st newsboat										# RSS Feed Reader
+bindsym $mod+m exec st neomutt										# Mail programm
+bindsym $mod+p exec st weechat										# Chat programm mainly used for slack
+bindsym $mod+i exec surf trello.com 									# Open trello
 bindsym $mod+Shift+m exec st alsamixer
 
 # Shortcuts
-bindsym $mod+Shift+q kill
+bindsym $mod+Shift+q [con_id="__focused__" instance="^(?!math).*$"] kill
 bindsym $mod+d exec --no-startup-id dmenu_run -i										# Dmenu run without case sensetive
 bindsym $mod+Shift+y exec --no-startup-id i3lock-fancy 										# Lock screen
 bindsym $mod+Shift+x exec --no-startup-id /home/conni/bin/i3cmds/rdq "Are you sure you want to shutdown?" "$shutdown"		# Shutdown
@@ -153,6 +153,28 @@ bindsym $mod+Shift+7 move container to workspace $ws7
 bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Open applications on specific workspaces
+assign [class="st"] $ws1
+assign [class="Chromium"] $ws2
+assign [class="Surf"] $ws2
+assign [class="Spotify"] $ws4
+
+# Open specific applications in floating mode
+for_window [title="alsamixer"] floating enable border pixel 1
+for_window [class="Galculator"] floating enable border pixel 1
+for_window [class="GParted"] floating enable border normal
+for_window [class="Lightdm-settings"] floating enable
+for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Manjaro Settings Manager"] floating enable border normal
+for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [class="Yad"] floating enable sticky enable border normal
+
+for_window [instance="math"] floating enable
+for_window [instance="math"] resize set 800 600
+for_window [instance="math"] move scratchpad
+for_window [instance="math"] border pixel 5
+exec --no-startup-id st -n math -f mono:pixelsize=24 -e R -q
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
