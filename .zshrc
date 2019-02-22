@@ -43,7 +43,6 @@ alias rfm="ranger"
 
 alias mkd="mkdir -pv"
 
-alias pdf="evince"
 alias ccat='highlight --out-format=ansi'
 
 alias yt="youtube-dl --add-metadata -ic" # Download video link

@@ -8,7 +8,7 @@ epath=${fpath#"$shared"}
 fname=$(basename ${1})
 
 if [[ ${fpath} == "${shared}"* ]]; then
-	if [ "${epath}" -ne "" ]; then
+	if [ -z "${epath}" ]; then
 		ssh home mkdir -vp /home/pi/docs/shared${epath}/
 	fi
 
