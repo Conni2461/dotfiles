@@ -23,7 +23,7 @@ font-5 = Termsynu:size=14:antialias=false;0
 
 modules-left = i3 spotify
 modules-center = status
-modules-right = filesystem cpu memory alsa wireless-network backlight battery1 battery2 date
+modules-right = filesystem cpu memory pulse wireless-network backlight battery1 battery2 date
 
 [module/backlight]
 type = internal/xbacklight
@@ -239,20 +239,11 @@ interval = 1
 format = <label>
 exec = /home/conni/bin/i3cmds/status
 
-[module/alsa]
-type = internal/alsa
+[module/pulse]
+type = internal/pulseaudio
 
-master-soundcard = default
-speaker-soundcard = default
-headphone-soundcard = default
-
-master-mixer = Master
-speaker-mixer = Speaker
-headphone-mixer = Headphone
-
-headphone-id = 9
-
-mapped = true
+sink = alsa_output.pci-0000_00_1f.3.analog-stereo
+use-ui-max = true
 interval = 5
 
 format-volume = <ramp-volume> <label-volume>
