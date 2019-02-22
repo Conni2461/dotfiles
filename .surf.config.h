@@ -1,6 +1,6 @@
 // Patches
 // https://surf.suckless.org/patches/bookmarking/surf-bookmarks-20170722-723ff26.diff
-
+// https://surf.suckless.org/patches/searchengines/surf-git-20170323-webkit2-searchengines.diff
 
 /* modifier 0 means no modifier */
 static int surfuseragent    = 1;  /* Append Surf version to default WebKit user agent */
@@ -59,6 +59,12 @@ static UriParameters uriparams[] = {
 	  [JavaScript] = { { .i = 0 }, 1 },
 	  [Plugins]    = { { .i = 0 }, 1 },
 	}, },
+};
+
+static SearchEngine searchengines[] = {
+	{ "g", "https://www.google.de/search?q=%s" },
+	{ "leo", "https://dict.leo.org/ende?search=%s" },
+	{ "e", "https://www.ecosia.org/search?q=%s" },
 };
 
 /* default window size: width, height */
