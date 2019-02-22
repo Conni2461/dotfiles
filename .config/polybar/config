@@ -22,7 +22,7 @@ font-4 = MaterialIcons:size=16;-1
 font-5 = Termsynu:size=14:antialias=false;0
 
 modules-left = i3 spotify
-modules-center = status
+modules-center = title
 modules-right = filesystem cpu memory pulse wireless-network backlight battery1 battery2 date
 
 [module/backlight]
@@ -233,11 +233,11 @@ format-underline = #1db954
 
 click-left = /home/conni/bin/i3cmds/infospotify -p
 
-[module/status]
-type = custom/script
-interval = 1
-format = <label>
-exec = /home/conni/bin/i3cmds/status
+[module/title]
+type = internal/xwindow
+
+label = %title%
+label-maxlen = 50
 
 [module/pulse]
 type = internal/pulseaudio

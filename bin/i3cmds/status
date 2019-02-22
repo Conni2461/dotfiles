@@ -1,5 +1,0 @@
-#!/bin/bash
-
-xdotool getactivewindow > /dev/null 2>&1 || exit 1
-
-xprop -id $(xdotool getactivewindow) | grep _NET_WM_NAME | cut -d'"' -f2

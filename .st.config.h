@@ -6,6 +6,7 @@
 // https://st.suckless.org/patches/scrollback/st-scrollback-mouse-0.8.diff
 // https://st.suckless.org/patches/hidecursor/st-hidecursor-0.8.1.diff
 // https://st.suckless.org/patches/boxdraw/st-boxdraw_v2-0.8.2.diff
+// https://st.suckless.org/patches/anysize/st-anysize-0.8.1.diff
 
 /*
  * appearance
