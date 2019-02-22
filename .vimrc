@@ -24,6 +24,9 @@
 	call vundle#end()            		" required
 	filetype plugin indent on    		" required
 
+" Copy visual to clipboard
+	map <C-c> "+y
+
 " Enable autocompletion:
 	set wildmode=longest,list,full
 
