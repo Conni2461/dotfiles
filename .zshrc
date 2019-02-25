@@ -9,6 +9,7 @@ fi
 
 # ls
 unalias ls
+unalias sl
 alias ls="ls --color=auto"
 
 # Uni

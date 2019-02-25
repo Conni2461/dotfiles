@@ -150,7 +150,7 @@ label-visible-padding = 4
 type = internal/cpu
 interval = 0.5
 format = <label> <ramp-coreload>
-label = CPU
+label = 
 
 ramp-coreload-0 = ▁
 ramp-coreload-0-font = 2
@@ -184,7 +184,7 @@ date =    %%{F#99}%d.%m.%Y%%{F-}  %%{F#fff}%H:%M%%{F-}
 [module/memory]
 type = internal/memory
 format = <label> <bar-used>
-label = RAM
+label = 
 
 bar-used-width = 10
 bar-used-foreground-0 = #aaff77
