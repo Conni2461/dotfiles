@@ -9,7 +9,6 @@ function createDir()
 	fi
 }
 
-
 cp ~/.bashrc $BASEDIR
 cp ~/.gitconfig $BASEDIR
 cp ~/.tmux.conf $BASEDIR
@@ -20,6 +19,10 @@ cp ~/.zshrc $BASEDIR
 cp ~/.st.config.h $BASEDIR
 cp ~/.dmenu.config.h $BASEDIR
 cp ~/.surf.config.h $BASEDIR
+cp ~/.dwm.config.h $BASEDIR
+
+createDir $BASEDIR/.dwm
+cp ~/.dwm/autostart.sh $BASEDIR/.dwm
 
 createDir $BASEDIR/.config
 createDir $BASEDIR/.config/i3
@@ -36,8 +39,6 @@ cp ~/.config/newsboat/config $BASEDIR/.config/newsboat/
 cp ~/.config/dunst/dunstrc $BASEDIR/.config/dunst/
 cp ~/.config/ranger/rc.conf $BASEDIR/.config/ranger/
 cp ~/.config/zathura/zathurarc $BASEDIR/.config/zathura/zathurarc
-
-rm -rf bin
 
 createDir $BASEDIR/bin
 createDir $BASEDIR/bin/croncmds
