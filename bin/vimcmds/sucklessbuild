@@ -1,0 +1,12 @@
+#!/bin/bash
+
+link=${1}
+fname=$(basename ${link})
+
+if [ "${fname}" == ".dmenu.config.h" ] || [ "${fname}" == ".dwm.config.h" ] || [ "${fname}" == ".st.config.h" ] || [ "${fname}" == ".surf.config.h" ] ; then
+	org=$(readlink -f ${link})
+	dir=$(dirname ${org})
+	cd ${dir}
+	make
+	sudo -A make install
+fi
