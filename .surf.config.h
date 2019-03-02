@@ -1,6 +1,8 @@
 // Patches
 // https://surf.suckless.org/patches/bookmarking/surf-bookmarks-20170722-723ff26.diff
 // https://surf.suckless.org/patches/searchengines/surf-git-20170323-webkit2-searchengines.diff
+// https://surf.suckless.org/patches/homepage/surf-2.0-homepage.diff
+// http://surf.suckless.org/patches/history/surf-history-20181009-2b71a22.diff
 
 /* modifier 0 means no modifier */
 static int surfuseragent    = 1;  /* Append Surf version to default WebKit user agent */
@@ -10,6 +12,7 @@ static char *styledir       = "~/.surf/styles/";
 static char *certdir        = "~/.surf/certificates/";
 static char *cachedir       = "~/.surf/cache/";
 static char *cookiefile     = "~/.surf/cookies.txt";
+static char *historyfile    = "~/.surf/history.txt";
 
 /* Webkit default features */
 /* Highest priority value will be used.
@@ -67,6 +70,8 @@ static SearchEngine searchengines[] = {
 	{ "e", "https://www.ecosia.org/search?q=%s" },
 };
 
+#define HOMEPAGE "https://google.com"
+
 /* default window size: width, height */
 static int winsize[] = { 800, 600 };
 
@@ -122,6 +127,14 @@ static WebKitFindOptions findopts = WEBKIT_FIND_OPTIONS_CASE_INSENSITIVE |
              "mv ~/.surf/bookmarks.tmp ~/.surf/bookmarks", \
              winid, r, NULL \
         } \
+}
+
+#define SETURI(p) {\
+	.v = (char *[]){ "/bin/sh", "-c", \
+		"prop=\"`surf_history_dmenu.sh`\" &&" \
+		"xprop -id $1 -f $0 8s -set $0 \"$prop\"", \
+		p, winid, NULL \
+	} \
 }
 
 /* styles */
@@ -203,6 +216,7 @@ static Key keys[] = {
 	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_b,      toggle,     { .i = ScrollBars } },
 	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_t,      toggle,     { .i = StrictTLS } },
 	{ MODKEY|GDK_SHIFT_MASK, GDK_KEY_m,      toggle,     { .i = Style } },
+	{ MODKEY               , GDK_KEY_Return, spawn,      SETURI("_SURF_GO") },
 };
 
 /* button definitions */
