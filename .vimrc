@@ -78,9 +78,9 @@
 	autocmd BufWritePre * %s/\s\+$//e
 
 " Post Save Commands
-	autocmd BufWritePost * !sucklessbuild %:p
 	autocmd BufWritePost * silent! execute "!notify-send 'File <afile> saved'" | redraw!
 	autocmd BufWritePost * silent! execute "!syncfile %:p" | redraw!
+	autocmd BufWritePost ~/.dmenu.config.h,~/.dwm.config.h,~/.st.config.h,~/.surf.config.h !sucklessbuild %:p
 
 " lightline configuration
 	set laststatus=2
