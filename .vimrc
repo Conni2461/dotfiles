@@ -24,8 +24,9 @@
 	call vundle#end()            		" required
 	filetype plugin indent on    		" required
 
-" Copy visual to clipboard
-	map <C-c> "+y
+" Copy paste with primary clipboard
+	vnoremap <C-c> "*y :let @+=@*<CR>
+	map <C-v> "+P
 
 " Enable autocompletion:
 	set wildmode=longest,list,full

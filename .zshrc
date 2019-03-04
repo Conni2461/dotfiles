@@ -11,6 +11,7 @@ fi
 unalias ls
 unalias sl
 alias ls="ls --color=auto"
+alias tree="exa --tree"
 
 # Uni
 UNI=/mnt/external/Google\ Drive/Uni/5.\ Semester
