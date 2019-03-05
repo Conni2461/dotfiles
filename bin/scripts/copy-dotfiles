@@ -16,6 +16,7 @@ cp ~/.vimrc $BASEDIR
 cp ~/.xinitrc $BASEDIR
 cp ~/.zprofile $BASEDIR
 cp ~/.zshrc $BASEDIR
+cp ~/.aliasrc $BASEDIR
 cp ~/.st.config.h $BASEDIR
 cp ~/.dmenu.config.h $BASEDIR
 cp ~/.surf.config.h $BASEDIR
@@ -49,6 +50,7 @@ createDir $BASEDIR/bin/i3cmds
 createDir $BASEDIR/bin/scripts
 createDir $BASEDIR/bin/vimcmds
 
+cp ~/bin/unicode $BASEDIR/bin/
 cp -R ~/bin/croncmds/ $BASEDIR/bin/
 cp -R ~/bin/i3cmds/ $BASEDIR/bin/
 cp -R ~/bin/scripts/ $BASEDIR/bin/
