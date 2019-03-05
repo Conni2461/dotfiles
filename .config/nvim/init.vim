@@ -1,13 +1,15 @@
 " Plugin
 	set nocompatible              " required
 	filetype off                  " required
-	
+
 	set rtp+=~/.config/nvim/bundle/Vundle.vim
-	call vundle#begin()
+	call vundle#begin('~/.config/nvim/bundle')
 	Plugin 'VundleVim/Vundle.vim'		" required
 	Plugin 'junegunn/goyo.vim'		" writing mode use <leader>f
 	set rtp+=/usr/bin/fzf			" adding installed fzf package
 	Plugin 'junegunn/fzf.vim'		" fzf vim plugin
+	Plugin 'vimwiki/vimwiki'		" vimwiki
+	Plugin 'tpope/vim-commentary'		" Comment out line with gcc and in visual mode with gc
 	Plugin 'itchyny/lightline.vim'		" Statusline replacement
 	Plugin 'scrooloose/nerdtree'		" Folder
 	Plugin 'editorconfig/editorconfig-vim'	" Editorconfig
@@ -15,19 +17,23 @@
 	Plugin 'terryma/vim-multiple-cursors'	" Multiple cursor support
 	Plugin 'Valloric/YouCompleteMe'		" Codecompletion for c
 	call vundle#end()            		" required
-	
+
 	filetype plugin indent on    		" required
 
 " Some Basics
 	let mapleader = " "
 
-	set mouse=
+	set bg=light
+	set mouse=a
+	set nohlsearch
+	set clipboard=unnamedplus
+
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
 
 " Copy paste with primary clipboard
-	vnoremap <C-c> "*y :let @+=@*<CR>
+	vnoremap <C-c> "+y
 	map <C-v> "+P
 
 " Enable autocompletion:
@@ -37,13 +43,14 @@
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Nerdtree plugin map
-	map <leader>t :NERDTreeToggle<CR>
+	map <C-n> :NERDTreeToggle<CR>
+	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " FZF plugin: fuzzy search
 	map <leader>q :Files<CR>
 
 " Goyo plugin makes text more readable when writing:
-	map <leader>f :Goyo \| set linebreak<CR>
+	map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
 
 " Spellcheck set to <leader>e for English and <leader>d for German
 	map <leader>e :setlocal spell! spelllang=en_us<CR>
@@ -63,7 +70,7 @@
 	map <leader>s :!clear && shellcheck %<CR>
 
 " Compile document, be it groff/LaTeX/markdown/etc.
-	map <leader>c :w! \| !compiler <c-r>%<CR><CR>
+	map <leader>c :w! \| !compiler <c-r>%<CR>
 
 " Open corresponding .pdf/.html or preview
 	map <leader>p :!opout <c-r>%<CR><CR>
@@ -73,9 +80,6 @@
 	autocmd BufRead,BufNewFile /tmp/calcurse*,~/.calcurse/notes/* set filetype=markdown
 	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 	autocmd BufRead,BufNewFile *.tex set filetype=tex
-
-" Readmes autowrap text
-	autocmd BufRead,BufNewFile *.md set tw=79
 
 " Automatically deletes all trailing whitespaces on save
 	autocmd BufWritePre * %s/\s\+$//e
