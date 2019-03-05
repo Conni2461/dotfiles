@@ -12,6 +12,13 @@
 // https://dwm.suckless.org/patches/statuspadding/dwm-statuspadding-20150524-c8e9479.diff
 // https://dwm.suckless.org/patches/uselessgap/dwm-uselessgap-6.1.diff
 
+#include "layouts.c"
+#include "selfrestart.c"
+
+#define XF86AudioMute		0x1008ff12
+#define XF86AudioLowerVolume	0x1008ff11
+#define XF86AudioRaiseVolume	0x1008ff13
+
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 5;        /* gap pixel between windows */
@@ -58,7 +65,6 @@ static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] 
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
-#include "layouts.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
@@ -82,10 +88,11 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
-
-#include "selfrestart.c"
+static const char *dmenucmd[] 		= { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *termcmd[]  		= { "st", NULL };
+static const char *volup[] 		= { "pactl", "set-sink-volume", "0", "+5%", NULL };
+static const char *voldown[] 		= { "pactl", "set-sink-volume", "0", "-5%", NULL };
+static const char *voltoggle[] 		= { "pactl", "set-sink-volume", "0", "toggle", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        	function        argument */
@@ -96,6 +103,8 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_k,      	rotatestack,    {.i = -1 } },
 	{ MODKEY,                       XK_j,      	focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      	focusstack,     {.i = -1 } },
+	{ MODKEY,                       XK_Left,      	focusstack,     {.i = +1 } },
+	{ MODKEY,                       XK_Right,      	focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      	incnmaster,     {.i = +1 } },
 	{ MODKEY,                       XK_d,      	incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      	setmfact,       {.f = -0.05} },
@@ -132,6 +141,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_Escape,	spawn,		CMD("/home/conni/bin/i3cmds/rdq 'Are you sure you want to reboot?' 'reboot'")},
 	{ MODKEY|ShiftMask,		XK_r,	   	self_restart,   {0} },
 	{ MODKEY|ShiftMask,             XK_e,      	quit,           {0} },
+	{ 0,				XF86AudioRaiseVolume,	spawn,		{.v = volup } },
+	{ 0,				XF86AudioLowerVolume,	spawn,		{.v = voldown } },
+	{ 0,				XF86AudioMute,		spawn,		{.v = voltoggle } },
 };
 
 /* button definitions */
