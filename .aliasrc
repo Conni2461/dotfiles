@@ -1,0 +1,78 @@
+#!/bin/bash
+
+# Use neovim for vim if present
+command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
+
+unalias e
+unalias d
+
+# ls and other file stuff
+unalias ls
+unalias sl
+unalias l
+alias ls='ls -hN --color=auto --group-directories-first'
+alias l='exa -bghl -sname'
+alias ll='exa -bghla -sname'
+alias tree='exa --tree'
+alias grep='grep --color=auto'
+alias diff='diff --color=auto'
+alias mkd='mkdir -pv'
+
+# UNI
+UNI=/mnt/external/Google\ Drive/Uni/5.\ Semester
+alias uni="cd /mnt/external/Google\ Drive/Uni/5.\ Semester"
+
+# System
+alias p='sudo pacman'
+alias y='yaourt'
+alias mirr='sudo pacman-mirrors --fasttrack && p -Syyu'
+alias SS='sudo systemctl'
+
+# Other
+alias ka='killall'
+alias calw='gcalcli calw'
+alias df='df -kHT'
+alias rm='trash'
+alias f='ranger'
+alias g='git'
+alias e='$EDITOR'
+alias v='$EDITOR'
+alias x='sxiv -ft *'
+alias sdn='sudo shutdown -h now'
+alias ccat='highlight --out-format=ansi'
+alias yt="youtube-dl --add-metadata -i -o '%(upload_date)s-%(title)s.%(ext)s'"
+alias yta="yt -x -f bestaudio/best"
+alias YT="youtube-viewer"
+alias lsp='pacman -Qett --color=always | less'
+alias ffmpeg='ffmpeg -hide_banner'
+alias scim="sc-im"
+alias sway='export XKB_DEFAULT_LAYOUT=de; export XKB_OPTIONS="grp:alt_shift_toggle"; sway'
+alias marvin="ssh hausersn@marvin.informatik.uni-stuttgart.de"
+alias ru="sudo docker run -ti --rm ubuntu:latest bash"
+
+# Shortcuts
+## Files
+alias eB='vim ~/.bashrc'
+alias eZ='vim ~/.zshrc'
+alias eA='vim ~/.aliasrc'
+alias eV='vim ~/.config/nvim/init.vim'
+alias eI='vim ~/.config/i3/config'
+alias eI='vim ~/.dwm.config.h'
+alias eP='vim ~/.config/polybar/config'
+alias eM='vim ~/.config/mutt/muttrc'
+alias eU='vim ~/.config/newsboat/urls'
+alias eN='vim ~/.config/newsboat/config'
+
+## Directories
+alias h='cd ~/'
+alias d='cd ~/docs'
+alias D='cd ~/Downloads'
+alias sc='cd ~/bin/scripts'
+alias cf='cd ~/.config'
+alias dot='cd ~/repos/dotfiles'
+alias mn='cd /mnt'
+
+shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o http.*pdf) ; }
+se() { du -a ~/bin/* | awk '{print $2}' | fzf | xargs -r $EDITOR ; }
+vf() { fzf | xargs -r -I % $EDITOR % ; }
+

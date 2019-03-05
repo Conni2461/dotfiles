@@ -7,75 +7,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-alias vim="nvim"
-
-# ls
-unalias ls
-unalias sl
-alias ls="ls --color=auto"
-alias tree="exa --tree"
-
-# Uni
-UNI=/mnt/external/Google\ Drive/Uni/5.\ Semester
-alias uni="cd /mnt/external/Google\ Drive/Uni/5.\ Semester"
-alias calw='gcalcli calw'
-
-# Customize to your needs..
-alias df="df -khT"
-alias rm="trash"
-
-# Config files
-alias eZ="vim ~/.zshrc"
-alias eI="vim ~/.config/i3/config"
-alias eL="vim ~/.config/polybar/launch.sh"
-alias eP="vim ~/.config/polybar/config"
-alias eV="vim ~/.vimrc"
-alias eT="vim ~/.tmux.conf"
-alias sc="cd ~/bin/scripts"
-alias dot="cd ~/repos/dotfiles"
-unalias l
-alias l='exa -bghl -sname'
-alias ll="exa -bghla -sname"
-alias p='sudo pacman'
-alias y='yaourt'
-alias mirrors='sudo pacman-mirrors --fasttrack && p -Syyu'
-
-# Filemanager
-alias ffm="nnn"
-alias fm="thunar"
-alias rfm="ranger"
-
-alias mkd="mkdir -pv"
-
-alias ccat='highlight --out-format=ansi'
-
-alias yt="youtube-dl --add-metadata -ic" # Download video link
-alias yta="youtube-dl --add-metadata -xic" # Download only audio
-alias YT="youtube-viewer"
-alias starwars="telnet towel.blinkenlights.nl"
-alias scim="sc-im"
-alias sway='export XKB_DEFAULT_LAYOUT=de; export XKB_OPTIONS="grp:alt_shift_toggle"; sway'
-
-# Programs
-# peaclock
-# calcurse
-# gotop
-# cava
-# cmatrix
-# tty-clock
-
-alias marvin="ssh hausersn@marvin.informatik.uni-stuttgart.de"
-alias run-ubuntu="sudo docker run -ti --rm ubuntu:latest bash"
-alias rasp="ssh home"
-
-shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o http.*pdf) ; }
-se() { du -a ~/bin/* | awk '{print $2}' | fzf | xargs -r $EDITOR ; }
-vf() { fzf | xargs -r -I % $EDITOR % ; }
-
-export PATH=$PATH:/home/conni/bin/scripts:/home/conni/bin/croncmds:/home/conni/bin/i3cmds:/home/conni/bin/vimcmds
-
-# nitrogen as Background manager
-# lxappearance as theme manager
+source "$HOME/.aliasrc"
 
 autoload -Uz promptinit
 promptinit
