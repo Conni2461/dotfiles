@@ -26,13 +26,15 @@ createDir $BASEDIR/.dwm
 cp ~/.dwm/autostart.sh $BASEDIR/.dwm
 
 createDir $BASEDIR/.config
+createDir $BASEDIR/.config/nvim
 createDir $BASEDIR/.config/i3
 createDir $BASEDIR/.config/newsboat
 createDir $BASEDIR/.config/dunst
 createDir $BASEDIR/.config/ranger
 createDir $BASEDIR/.config/zathura
 
-cp ~/.config/i3/config $BASEDIR/.config/i3
+cp ~/.config/nvim/init.vim $BASEDIR/.config/nvim/
+cp ~/.config/i3/config $BASEDIR/.config/i3/
 cp -R ~/.config/polybar/ $BASEDIR/.config/
 cp ~/.config/rofi $BASEDIR/.config/
 cp ~/.config/newsboat/urls $BASEDIR/.config/newsboat/

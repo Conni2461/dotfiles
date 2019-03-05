@@ -7,6 +7,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+alias vim="nvim"
+
 # ls
 unalias ls
 unalias sl
@@ -67,6 +69,8 @@ alias run-ubuntu="sudo docker run -ti --rm ubuntu:latest bash"
 alias rasp="ssh home"
 
 shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o http.*pdf) ; }
+se() { du -a ~/bin/* | awk '{print $2}' | fzf | xargs -r $EDITOR ; }
+vf() { fzf | xargs -r -I % $EDITOR % ; }
 
 export PATH=$PATH:/home/conni/bin/scripts:/home/conni/bin/croncmds:/home/conni/bin/i3cmds:/home/conni/bin/vimcmds
 
