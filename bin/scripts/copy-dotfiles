@@ -37,7 +37,6 @@ createDir $BASEDIR/.config/zathura
 cp ~/.config/nvim/init.vim $BASEDIR/.config/nvim/
 cp ~/.config/i3/config $BASEDIR/.config/i3/
 cp -R ~/.config/polybar/ $BASEDIR/.config/
-cp ~/.config/rofi $BASEDIR/.config/
 cp ~/.config/newsboat/urls $BASEDIR/.config/newsboat/
 cp ~/.config/newsboat/config $BASEDIR/.config/newsboat/
 cp ~/.config/dunst/dunstrc $BASEDIR/.config/dunst/

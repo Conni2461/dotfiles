@@ -5,6 +5,8 @@
 	set rtp+=~/.config/nvim/bundle/Vundle.vim
 	call vundle#begin('~/.config/nvim/bundle')
 	Plugin 'VundleVim/Vundle.vim'		" required
+	Plugin 'tpope/vim-fugitive'		" A Git wrapper so awesome, it should be illegal
+	Plugin 'scrooloose/syntastic'		" Syntax checking hacks for vim
 	Plugin 'junegunn/goyo.vim'		" writing mode use <leader>f
 	set rtp+=/usr/bin/fzf			" adding installed fzf package
 	Plugin 'junegunn/fzf.vim'		" fzf vim plugin
@@ -31,6 +33,10 @@
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
+
+" Disable ex mode
+	map q: <Nop>
+	nnoremap Q <Nop>
 
 " Copy paste with primary clipboard
 	vnoremap <C-c> "+y

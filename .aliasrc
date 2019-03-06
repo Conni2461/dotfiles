@@ -29,6 +29,7 @@ alias mirr='sudo pacman-mirrors --fasttrack && p -Syyu'
 alias SS='sudo systemctl'
 
 # Other
+alias time='command time'
 alias ka='killall'
 alias calw='gcalcli calw'
 alias df='df -kHT'
