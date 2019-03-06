@@ -1,26 +1,19 @@
 " Plugin
-	set nocompatible              " required
-	filetype off                  " required
-
-	set rtp+=~/.config/nvim/bundle/Vundle.vim
-	call vundle#begin('~/.config/nvim/bundle')
-	Plugin 'VundleVim/Vundle.vim'		" required
-	Plugin 'tpope/vim-fugitive'		" A Git wrapper so awesome, it should be illegal
-	Plugin 'scrooloose/syntastic'		" Syntax checking hacks for vim
-	Plugin 'junegunn/goyo.vim'		" writing mode use <leader>f
-	set rtp+=/usr/bin/fzf			" adding installed fzf package
-	Plugin 'junegunn/fzf.vim'		" fzf vim plugin
-	Plugin 'vimwiki/vimwiki'		" vimwiki
-	Plugin 'tpope/vim-commentary'		" Comment out line with gcc and in visual mode with gc
-	Plugin 'itchyny/lightline.vim'		" Statusline replacement
-	Plugin 'scrooloose/nerdtree'		" Folder
-	Plugin 'editorconfig/editorconfig-vim'	" Editorconfig
-	Plugin 'gisphm/vim-gitignore'		" gitignore support
-	Plugin 'terryma/vim-multiple-cursors'	" Multiple cursor support
-	Plugin 'Valloric/YouCompleteMe'		" Codecompletion for c
-	call vundle#end()            		" required
-
-	filetype plugin indent on    		" required
+	call plug#begin('~/.config/nvim/plugged')
+	Plug 'tpope/vim-fugitive'		" A Git wrapper so awesome, it should be illegal
+	Plug 'scrooloose/syntastic'		" Syntax checking hacks for vim
+	Plug 'junegunn/goyo.vim'		" writing mode use <leader>f
+	Plug '/usr/bin/fzf'			" adding installed fzf package
+	Plug 'junegunn/fzf.vim'			" fzf vim plugin
+	Plug 'vimwiki/vimwiki'			" vimwiki
+	Plug 'tpope/vim-commentary'		" Comment out line with gcc and in visual mode with gc
+	Plug 'itchyny/lightline.vim'		" Statusline replacement
+	Plug 'scrooloose/nerdtree'		" Folder
+	Plug 'editorconfig/editorconfig-vim'	" Editorconfig
+	Plug 'gisphm/vim-gitignore'		" gitignore support
+	Plug 'terryma/vim-multiple-cursors'	" Multiple cursor support
+	Plug 'Valloric/YouCompleteMe'		" Codecompletion for c
+	call plug#end()
 
 " Some Basics
 	let mapleader = " "
@@ -30,6 +23,8 @@
 	set nohlsearch
 	set clipboard=unnamedplus
 
+	set nocompatible
+	filetype plugin on
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
@@ -40,7 +35,7 @@
 
 " Copy paste with primary clipboard
 	vnoremap <C-c> "+y
-	map <C-v> "+P
+	map <C-p> "+P
 
 " Enable autocompletion:
 	set wildmode=longest,list,full
