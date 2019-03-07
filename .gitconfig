@@ -1,6 +1,6 @@
 [user]
 	name = Simon Hauser
-	email = Simon.Hauser.XD@live.de 
+	email = Simon.Hauser.XD@live.de
 [core]
 	editor = vim
 [alias]
@@ -17,10 +17,15 @@
 	mm = merge --no-ff
 	br = branch
 	unstage = reset HEAD --
-	last = log -1 HEAD	
+	last = log -1 HEAD
         uncommit = reset --soft HEAD~1
 
 	graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+
+	# External commands
+	af = "!git add $(fgst -a)"
+	cf = "!git checkout -- $(fgst -c)"
+	uf = "!git reset HEAD -- $(fgst -u)"
 
 [color]
 	diff = auto

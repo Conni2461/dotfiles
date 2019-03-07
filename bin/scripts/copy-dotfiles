@@ -48,9 +48,11 @@ createDir $BASEDIR/bin/croncmds
 createDir $BASEDIR/bin/i3cmds
 createDir $BASEDIR/bin/scripts
 createDir $BASEDIR/bin/vimcmds
+createDir $BASEDIR/bin/gitcmds
 
 cp ~/bin/unicode $BASEDIR/bin/
 cp -R ~/bin/croncmds/ $BASEDIR/bin/
 cp -R ~/bin/i3cmds/ $BASEDIR/bin/
 cp -R ~/bin/scripts/ $BASEDIR/bin/
 cp -R ~/bin/vimcmds/ $BASEDIR/bin/
+cp -R ~/bin/gitcmds/ $BASEDIR/bin/

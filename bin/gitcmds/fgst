@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Var
+allFiles=$(git status -s)
+files=""
+
+# Functions
+
+function isRepo()
+{
+	git rev-parse HEAD > /dev/null || exit
+}
+
+function nothingToDo()
+{
+	if [ "$allFiles" == "" ]; then
+		exit
+	fi
+}
+
+function addFiles()
+{
+	files=$(echo "$allFiles" | egrep -v '^A|^M\ ')
+}
+
+function checkoutFiles()
+{
+	files=$(echo "$allFiles" | egrep -v '^A|^M\ |\?\?')
+}
+
+function unstageFiles()
+{
+	files=$(echo "$allFiles" | egrep '^A|^M')
+}
+
+# Main
+
+case $1 in
+	-a )	addFiles
+		;;
+	-c )	checkoutFiles
+		;;
+	-u )	unstageFiles
+	       	;;
+	* )	exit 1
+		;;
+esac
+
+
+echo "$files" | FZF_DEFAULT_OPTS="--height 40% --reverse" fzf -m | while read -r item; do
+	echo "$item" | awk '{print $2}'
+done

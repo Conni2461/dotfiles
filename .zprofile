@@ -22,7 +22,7 @@ path=(
   /usr/local/{bin,sbin}
   $path
 )
-export PATH=$PATH:/home/conni/bin/scripts:/home/conni/bin/croncmds:/home/conni/bin/i3cmds:/home/conni/bin/vimcmds
+export PATH=$PATH:/home/conni/bin/scripts:/home/conni/bin/croncmds:/home/conni/bin/i3cmds:/home/conni/bin/gitcmds:/home/conni/bin/vimcmds
 
 # Set the default Less options.
 # Mouse-wheel scrolling has been disabled by -X (disable screen clearing).
