@@ -49,7 +49,7 @@ bindsym $mod+Return exec st	 									# Default shell
 bindsym $mod+z exec st ranger   									# Default File Manager
 bindsym $mod+g [instance="math"] scratchpad show; [instance="math"] move position center
 bindsym $mod+t exec st vim										# Default Text Editor
-bindsym $mod+c exec chromium										# Default Browser
+bindsym $mod+c exec firefox										# Default Browser
 bindsym $mod+n exec st newsboat										# RSS Feed Reader
 bindsym $mod+m exec st neomutt										# Mail programm
 bindsym $mod+p exec st weechat										# Chat programm mainly used for slack
@@ -155,7 +155,7 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Open applications on specific workspaces
 assign [class="st"] $ws1
-assign [class="Chromium"] $ws2
+assign [class="Firefox"] $ws2
 assign [class="Surf"] $ws2
 assign [class="Spotify"] $ws4
 
