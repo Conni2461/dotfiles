@@ -52,16 +52,17 @@ alias ru="sudo docker run -ti --rm ubuntu:latest bash"
 
 # Shortcuts
 ## Files
-alias eB='vim ~/.bashrc'
-alias eZ='vim ~/.zshrc'
 alias eA='vim ~/.aliasrc'
-alias eV='vim ~/.config/nvim/init.vim'
-alias eI='vim ~/.config/i3/config'
+alias eB='vim ~/.bashrc'
 alias eD='vim ~/.dwm.config.h'
-alias eP='vim ~/.config/polybar/config'
+alias eG='vim ~/.gitconfig'
+alias eI='vim ~/.config/i3/config'
 alias eM='vim ~/.config/mutt/muttrc'
-alias eU='vim ~/.config/newsboat/urls'
 alias eN='vim ~/.config/newsboat/config'
+alias eP='vim ~/.config/polybar/config'
+alias eU='vim ~/.config/newsboat/urls'
+alias eV='vim ~/.config/nvim/init.vim'
+alias eZ='vim ~/.zshrc'
 
 ## Directories
 alias h='cd ~/'
