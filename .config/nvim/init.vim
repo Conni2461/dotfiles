@@ -13,6 +13,7 @@
 	Plug 'gisphm/vim-gitignore'		" gitignore support
 	Plug 'terryma/vim-multiple-cursors'	" Multiple cursor support
 	Plug 'Valloric/YouCompleteMe'		" Codecompletion for c
+	Plug 'wikitopian/hardmode'		" Hard mode for vim
 	call plug#end()
 
 " Some Basics
@@ -28,6 +29,10 @@
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
+
+" Enable vim hard mode by default
+	autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+	nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
 " Disable ex mode
 	map q: <Nop>

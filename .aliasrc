@@ -47,7 +47,6 @@ alias YT="youtube-viewer"
 alias lsp='pacman -Qett --color=always | less'
 alias ffmpeg='ffmpeg -hide_banner'
 alias scim="sc-im"
-alias sway='export XKB_DEFAULT_LAYOUT=de; export XKB_OPTIONS="grp:alt_shift_toggle"; sway'
 alias marvin="ssh hausersn@marvin.informatik.uni-stuttgart.de"
 alias ru="sudo docker run -ti --rm ubuntu:latest bash"
 
@@ -58,7 +57,7 @@ alias eZ='vim ~/.zshrc'
 alias eA='vim ~/.aliasrc'
 alias eV='vim ~/.config/nvim/init.vim'
 alias eI='vim ~/.config/i3/config'
-alias eI='vim ~/.dwm.config.h'
+alias eD='vim ~/.dwm.config.h'
 alias eP='vim ~/.config/polybar/config'
 alias eM='vim ~/.config/mutt/muttrc'
 alias eU='vim ~/.config/newsboat/urls'
