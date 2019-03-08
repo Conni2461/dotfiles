@@ -2,7 +2,7 @@
 	name = Simon Hauser
 	email = Simon.Hauser.XD@live.de
 [core]
-	editor = vim
+	editor = nvim
 [alias]
 	aa = add --all
 	bv = branch -vv
