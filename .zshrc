@@ -7,6 +7,8 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+setopt clobber
+
 source "$HOME/.aliasrc"
 
 autoload -Uz promptinit

@@ -2,12 +2,12 @@
 # Profile file. Runs on login
 
 export EDITOR='nvim'
+export VISUAL='nvim'
 export TERMINAL="st"
 export BROWSER='firefox'
 export READER='zathura'
 export FILE="ranger"
 export SUDO_ASKPASS="$HOME/bin/scripts/askpass"
-export VISUAL='nvim'
 export PAGER='less'
 
 if [[ -z "$LANG" ]]; then

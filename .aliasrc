@@ -19,7 +19,6 @@ alias diff='diff --color=auto'
 alias mkd='mkdir -pv'
 
 # UNI
-UNI=/mnt/external/Google\ Drive/Uni/5.\ Semester
 alias uni="cd /mnt/external/Google\ Drive/Uni/5.\ Semester"
 
 # System
@@ -63,6 +62,7 @@ alias eP='vim ~/.config/polybar/config'
 alias eU='vim ~/.config/newsboat/urls'
 alias eV='vim ~/.config/nvim/init.vim'
 alias eZ='vim ~/.zshrc'
+alias eZP='vim ~/.zprofile'
 
 ## Directories
 alias h='cd ~/'
