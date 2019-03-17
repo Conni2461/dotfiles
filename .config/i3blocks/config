@@ -2,6 +2,15 @@ command=~/bin/statusbar/$BLOCK_NAME
 separator_block_width=15
 markup=pango
 
+[status]
+interval=1
+
+#[infospotify]
+#label=🎼
+#interval=1
+#min_width=300
+#align=left
+
 [news]
 label=📰
 interval=once

@@ -208,7 +208,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-	font pango:mono 10
+	font pango:mono 11
 	i3bar_command i3bar -t
 	colors {
 		background "#00000000"

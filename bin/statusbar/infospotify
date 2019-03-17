@@ -50,18 +50,16 @@ printinfo()
 	glyp=""
 
 	if [ "$status" == "Playing" ]; then
-		glyp=""
+		glyp="▶"
 	else
-		glyp=""
+		glyp="⏸"
 	fi
 
 	echo "$glyp $artist: $title"
 }
 
 # Check if spotify is running
-qdbus org.mpris.MediaPlayer2.spotify >/dev/null 2>&1 || exit 1
-
-
+ps -ef | grep "\<spotify\>" | grep -v grep >/dev/null || echo && exit
 
 if [ $# -eq 0 ]; then
 	printinfo
