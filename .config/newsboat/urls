@@ -1,5 +1,4 @@
 # News
-http://rss.cnn.com/rss/cnn_topstories.rss news
 
 # Programming
 https://www.fluentcpp.com/feed programming
@@ -10,3 +9,6 @@ https://forum.manjaro.org/c/announcements.rss programming
 http://feeds.soundcloud.com/users/soundcloud:users:39953405/sounds.rss podcasts
 http://feeds.soundcloud.com/users/soundcloud:users:377025653/sounds.rss podcasts
 http://rss.simplecast.com/podcasts/7603/rss podcasts
+
+# Movies
+https://letterboxd.com/behaind/rss/
