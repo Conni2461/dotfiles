@@ -1,19 +1,28 @@
 " Plugin
 	call plug#begin('~/.config/nvim/plugged')
-	Plug 'tpope/vim-fugitive'		" A Git wrapper so awesome, it should be illegal
-	Plug 'scrooloose/syntastic'		" Syntax checking hacks for vim
-	Plug 'junegunn/goyo.vim'		" writing mode use <leader>f
-	Plug '/usr/bin/fzf'			" adding installed fzf package
-	Plug 'junegunn/fzf.vim'			" fzf vim plugin
-	Plug 'vimwiki/vimwiki'			" vimwiki
-	Plug 'tpope/vim-commentary'		" Comment out line with gcc and in visual mode with gc
-	Plug 'itchyny/lightline.vim'		" Statusline replacement
-	Plug 'scrooloose/nerdtree'		" Folder
-	Plug 'editorconfig/editorconfig-vim'	" Editorconfig
-	Plug 'gisphm/vim-gitignore'		" gitignore support
-	Plug 'terryma/vim-multiple-cursors'	" Multiple cursor support
-	Plug 'Valloric/YouCompleteMe'		" Codecompletion for c
-	Plug 'wikitopian/hardmode'		" Hard mode for vim
+	Plug 'tpope/vim-fugitive'						" A Git wrapper so awesome, it should be illegal
+	Plug 'airblade/vim-gitgutter'						" Shows git diff in 'gutter' (sign column)
+	Plug 'gisphm/vim-gitignore'						" gitignore support
+
+	Plug '/usr/bin/fzf'							" adding installed fzf package
+	Plug 'junegunn/fzf.vim'							" fzf vim plugin
+
+	Plug 'junegunn/goyo.vim'						" writing mode use <leader>f
+	Plug 'vimwiki/vimwiki'							" vimwiki
+	Plug 'tpope/vim-commentary'						" Comment out line with gcc and in visual mode with gc
+
+	Plug 'itchyny/lightline.vim'						" Statusline replacement
+
+	Plug 'scrooloose/nerdtree'						" Folder
+	Plug 'Xuyuanp/nerdtree-git-plugin'					" Show git status in NerdTree
+	Plug 'ryanoasis/vim-devicons'						" Icons for NerdTree
+	Plug 'terryma/vim-multiple-cursors'					" Multiple cursor support
+
+	Plug 'editorconfig/editorconfig-vim'					" Editorconfig
+	Plug 'Chiel92/vim-autoformat'						" Format current file
+
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }		" Autocomplete
+	Plug 'zchee/deoplete-clang'						" Autocomplete library for C/C++
 	call plug#end()
 
 " Some Basics
@@ -30,13 +39,30 @@
 	set encoding=utf-8
 	set number relativenumber
 
-" Enable vim hard mode by default
-	autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
-	nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
+" Enable deoplete by default
+	let g:deoplete#enable_at_startup = 1
+
+" Required deoplete clang settings
+	let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+	let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/'
 
 " Disable ex mode
 	map q: <Nop>
 	nnoremap Q <Nop>
+
+" Disbale recording
+	map q <Nop>
+
+" Exit insert, dd line, enter insert
+	inoremap <C-d> <esc>ddi
+
+" Navigate Display Lines
+	nnoremap <silent><expr> k	v:count == 0 ? 'gk' : 'k'
+	nnoremap <silent><expr> j	v:count == 0 ? 'gj' : 'j'
+	vnoremap <silent><expr> k	v:count == 0 ? 'gk' : 'k'
+	vnoremap <silent><expr> j	v:count == 0 ? 'gj' : 'j'
+	nnoremap <silent><expr> <Up>	v:count == 0 ? 'gk' : 'k'
+	nnoremap <silent><expr> <Down>	v:count == 0 ? 'gj' : 'j'
 
 " Copy paste with primary clipboard
 	vnoremap <C-c> "+y
