@@ -75,7 +75,7 @@
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Nerdtree plugin map
-	map <C-n> :NERDTreeToggle<CR>
+	map <leader>n :NERDTreeToggle<CR><CR>
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " FZF plugin: fuzzy search

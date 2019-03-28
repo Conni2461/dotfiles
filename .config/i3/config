@@ -33,7 +33,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id xautolock -time 10 -locker 'i3lock-fancy' -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
 
 exec --no-startup-id /home/conni/bin/i3cmds/startup
-exec_always --no-startup-id /home/conni/bin/croncmds/getforecast
+exec_always --no-startup-id /home/conni/bin/croncmds/getforecast kornwestheim
 exec_always --no-startup-id /home/conni/bin/croncmds/syncshared
 exec_always --no-startup-id /home/conni/bin/croncmds/newsup
 exec_always --no-startup-id /home/conni/.config/mutt/etc/mailsync.sh
@@ -41,7 +41,7 @@ exec_always --no-startup-id /home/conni/.config/mutt/etc/mailsync.sh
 # Alsa controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && pkill -RTMIN+10 i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+10 i3block<F4>
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+10 i3block
 bindsym XF86AudioPlay exec --no-startup-id /home/conni/bin/i3cmds/infospotify -p
 
 # Programms
@@ -158,9 +158,10 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 assign [class="st"] $ws1
 assign [class="Firefox"] $ws2
 assign [class="Surf"] $ws2
-assign [class="Spotify"] $ws4
+assign [title="Spotify"] $ws4
 
 # Open specific applications in floating mode
+for_window [title="Spotify"] floating enable border normal resize set 2000 1400
 for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="Galculator"] floating enable border pixel 1
 for_window [class="GParted"] floating enable border normal

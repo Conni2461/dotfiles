@@ -1,4 +1,4 @@
-set recolor "true"
+#set recolor "true"
 
 set statusbar-h-padding 0
 set statusbar-v-padding 0
