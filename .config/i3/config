@@ -154,12 +154,6 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# Open applications on specific workspaces
-assign [class="st"] $ws1
-assign [class="Firefox"] $ws2
-assign [class="Surf"] $ws2
-assign [title="Spotify"] $ws4
-
 # Open specific applications in floating mode
 for_window [title="Spotify"] floating enable border normal resize set 2000 1400
 for_window [title="alsamixer"] floating enable border pixel 1

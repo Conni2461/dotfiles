@@ -2,6 +2,8 @@
 
 # Use neovim for vim if present
 command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
+command -v neomutt >/dev/null && alias mutt="neomutt"
+alias slack="weechat"
 
 unalias e
 unalias d
