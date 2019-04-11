@@ -206,9 +206,6 @@ bindsym $mod+r mode "resize"
 bar {
 	font pango:mono 11
 	i3bar_command i3bar -t
-	colors {
-		background "#00000000"
-	}
 	status_command i3blocks
 	position top
 	mode dock
