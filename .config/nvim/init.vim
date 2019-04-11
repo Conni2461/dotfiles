@@ -40,6 +40,9 @@
 	set encoding=utf-8
 	set number relativenumber
 
+" Fix selecting(visual mode) color
+	hi Visual ctermfg=234 ctermbg=252 cterm=none
+
 " Settings for grammarous
 	let g:grammarous#languagetool_cmd = 'languagetool'
 	let g:grammarous#use_vim_spelllang = 1
