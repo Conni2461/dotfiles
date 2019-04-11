@@ -1,12 +1,13 @@
 /* See LICENSE file for copyright and license details. */
 
 // APPLYED Patches
-// https://st.suckless.org/patches/externalpipe/st-externalpipe-0.8.1.diff
-// https://st.suckless.org/patches/scrollback/st-scrollback-0.8.diff
+// https://st.suckless.org/patches/externalpipe/st-externalpipe-20181016-3be4cf1.diff
+// https://st.suckless.org/patches/scrollback/st-scrollback-20190331-21367a0.diff
 // https://st.suckless.org/patches/scrollback/st-scrollback-mouse-0.8.diff
+// https://st.suckless.org/patches/scrollback/st-scrollback-mouse-altscreen-20190131-e23acb9.diff
 // https://st.suckless.org/patches/hidecursor/st-hidecursor-0.8.1.diff
-// https://st.suckless.org/patches/boxdraw/st-boxdraw_v2-0.8.2.diff
-// https://st.suckless.org/patches/anysize/st-anysize-0.8.1.diff
+// https://st.suckless.org/patches/spoiler/st-spoiler-20180309-c5ba9c0.diff
+// https://st.suckless.org/patches/alpha/st-alpha-0.8.2.diff
 
 /*
  * appearance
@@ -65,18 +66,6 @@ static unsigned int blinktimeout = 800;
 static unsigned int cursorthickness = 2;
 
 /*
- * 1: render most of the lines/blocks characters without using the font for
- *    perfect alignment between cells (U2500 - U259F except dashes/diagonals).
- *    Bold affects lines thickness if boxdraw_bold is not 0. Italic is ignored.
- * 0: disable (render all U25XX glyphs normally from the font).
- */
-const int boxdraw = 0;
-const int boxdraw_bold = 0;
-
-/* braille (U28XX):  1: render as adjacent "pixels",  0: use font */
-const int boxdraw_braille = 0;
-
-/*
  * bell volume. It must be a value between -100 and 100. Use 0 for disabling
  * it
  */
@@ -101,6 +90,8 @@ char *termname = "st-256color";
  *	stty tabs
  */
 unsigned int tabspaces = 8;
+
+float alpha = 0.95;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
@@ -179,10 +170,8 @@ static MouseShortcut mshortcuts[] = {
 
 MouseKey mkeys[] = {
 	/* button               mask            function	argument */
-	{ Button4, 		ShiftMask,	kscrollup,	{.i =  1} },
-	{ Button5, 		ShiftMask,	kscrolldown,	{.i =  1} },
-	{ Button4, 		MODKEY,		kscrollup,	{.i =  1} },
-	{ Button5, 		MODKEY,		kscrolldown,	{.i =  1} },
+	{ Button4, 		XK_NO_MOD,	kscrollup,	{.i =  1} },
+	{ Button5, 		XK_NO_MOD,	kscrolldown,	{.i =  1} },
 	{ Button4, 		DMODKEY,	zoom,		{.f = +1} },
 	{ Button5, 		DMODKEY,	zoom,		{.f = -1} },
 };
