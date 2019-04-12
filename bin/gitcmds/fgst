@@ -15,6 +15,8 @@ case $1 in
 	*  )	exit 1;;
 esac
 
-echo "$files" | FZF_DEFAULT_OPTS="--reverse" fzf -m --preview "${script}" | while read -r item; do
+export FZF_DEFAULT_OPTS="-m --reverse --bind ctrl-k:preview-up,shift-up:preview-up,ctrl-j:preview-down,shift-down:preview-down"
+
+echo "$files" | fzf --preview "${script}" | while read -r item; do
 	echo "$item" | awk '{print $2}'
 done
