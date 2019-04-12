@@ -77,5 +77,5 @@ alias mn='cd /mnt'
 
 shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o http.*pdf) ; }
 se() { du -a ~/bin/* | awk '{print $2}' | fzf | xargs -r $EDITOR ; }
-vf() { fzf --preview='head -$LINES {}' | xargs -r -I % $EDITOR % ; }
+vf() { fzf --preview='highlight --out-format=ansi {}' | xargs -r -I % $EDITOR % ; }
 
