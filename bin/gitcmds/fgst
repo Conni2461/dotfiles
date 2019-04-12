@@ -1,52 +1,20 @@
 #!/bin/bash
 
-# Var
+# scripts
+previewScript='tmp=$(echo {} | egrep "^AM" | cut -d" " -f2); [ -z $tmp ] && tmp=$(echo {} | egrep "^\ M" | cut -d" " -f3); [ -z $tmp ] && exit; git diff $tmp'
+
 allFiles=$(git status -s)
-files=""
 
-# Functions
-
-function isRepo()
-{
-	git rev-parse HEAD > /dev/null || exit
-}
-
-function nothingToDo()
-{
-	if [ "$allFiles" == "" ]; then
-		exit
-	fi
-}
-
-function addFiles()
-{
-	files=$(echo "$allFiles" | egrep -v '^A|^M\ ')
-}
-
-function checkoutFiles()
-{
-	files=$(echo "$allFiles" | egrep -v '^A|^M\ |\?\?')
-}
-
-function unstageFiles()
-{
-	files=$(echo "$allFiles" | egrep '^A|^M')
-}
-
-# Main
+git rev-parse HEAD > /dev/null || exit
+[ "${allFiles}" = "" ] && exit
 
 case $1 in
-	-a )	addFiles
-		;;
-	-c )	checkoutFiles
-		;;
-	-u )	unstageFiles
-	       	;;
-	* )	exit 1
-		;;
+	-a )	files=$(echo "$allFiles" | egrep -v '^A\ |^M\ ') script=$previewScript ;;
+	-c )	files=$(echo "$allFiles" | egrep -v '^A\ |^M\ |\?\?') script=$previewScript;;
+	-u )	files=$(echo "$allFiles" | egrep '^A|^M');;
+	*  )	exit 1;;
 esac
 
-
-echo "$files" | FZF_DEFAULT_OPTS="--height 40% --reverse" fzf -m | while read -r item; do
+echo "$files" | FZF_DEFAULT_OPTS="--reverse" fzf -m --preview "${script}" | while read -r item; do
 	echo "$item" | awk '{print $2}'
 done
