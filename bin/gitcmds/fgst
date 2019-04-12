@@ -2,10 +2,10 @@
 
 # scripts
 previewScript='tmp=$(echo {} | egrep "^AM" | cut -d" " -f2);
-	       [ -z $tmp ] && tmp=$(echo {} | egrep "^\ M" | cut -d" " -f3);
-	       [ -z $tmp ] && tmp=$(echo {} | egrep "^MM" | cut -d" " -f2);
-	       [ -z $tmp ] && echo {} | egrep "^??" >/dev/null && highlight --out-format=ansi --force $(echo {} | cut -d" " -f2) && exit;
-	       git diff --color $tmp'
+               [ -z $tmp ] && tmp=$(echo {} | egrep "^\ M" | cut -d" " -f3);
+               [ -z $tmp ] && tmp=$(echo {} | egrep "^MM" | cut -d" " -f2);
+               [ -z $tmp ] && echo {} | egrep "^??" >/dev/null && highlight --out-format=ansi --force $(echo {} | cut -d" " -f2) | nl -ba && exit;
+               git diff --color $tmp'
 
 allFiles=$(git status -s)
 
