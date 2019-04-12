@@ -1,5 +1,5 @@
 [global]
-font = Iosevka Term 11
+font = Monospace 12
 
 # Allow a small subset of html markup:
 #   <b>bold</b>
@@ -11,7 +11,7 @@ font = Iosevka Term 11
 # <http://developer.gnome.org/pango/stable/PangoMarkupFormat.html>.
 # If markup is not allowed, those tags will be stripped out of the
 # message.
-markup = yes
+markup = full
 plain_text = no
 
 # The format of the message.  Possible variables are:
@@ -25,7 +25,7 @@ plain_text = no
 format = "<b>%s</b>\n%b"
 
 # Sort messages by urgency.
-sort = no
+sort = yes
 
 # Show how many messages are currently hidden (because of geometry).
 indicate_hidden = yes
@@ -84,7 +84,7 @@ transparency = 5
 # Don't remove messages, if the user is idle (no mouse or keyboard input)
 # for longer than idle_threshold seconds.
 # Set to 0 to disable.
-idle_threshold = 0
+idle_threshold = 120
 
 # Which monitor should the notifications be displayed on.
 monitor = 0
