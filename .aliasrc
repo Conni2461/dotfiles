@@ -40,7 +40,7 @@ alias e='$EDITOR'
 alias v='$EDITOR'
 alias x='sxiv -ft *'
 alias sdn='sudo shutdown -h now'
-alias ccat='highlight --out-format=ansi'
+alias ccat='highlight --out-format=ansi --force'
 alias yt="youtube-dl --add-metadata -i -o '%(upload_date)s-%(title)s.%(ext)s'"
 alias yta="yt -x -f bestaudio/best"
 alias YT="youtube-viewer"
