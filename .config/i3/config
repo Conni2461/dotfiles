@@ -21,7 +21,7 @@ set $hibernate systemctl suspend
 
 new_window none
 
-font inconsolata 14
+font pango:mono 13
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
