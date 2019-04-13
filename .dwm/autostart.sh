@@ -5,5 +5,3 @@ dunst &
 compton &
 nitrogen --restore &
 xfce4-power-manager
-
-slstatus &

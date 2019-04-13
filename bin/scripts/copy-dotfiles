@@ -21,7 +21,6 @@ cp ~/.st.config.h $BASEDIR
 cp ~/.dmenu.config.h $BASEDIR
 cp ~/.surf.config.h $BASEDIR
 cp ~/.dwm.config.h $BASEDIR
-cp ~/.slstatus.config.h $BASEDIR
 cp ~/.Xresources $BASEDIR
 
 createDir $BASEDIR/.dwm

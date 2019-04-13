@@ -1,3 +1,0 @@
-#!/bin/bash
-
-yaourt -R $1 --recursive
