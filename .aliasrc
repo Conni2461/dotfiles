@@ -12,6 +12,8 @@ unalias d
 unalias ls
 unalias sl
 unalias l
+unalias lt
+unalias lc
 alias ls='ls -hN --color=auto --group-directories-first'
 alias l='exa -bghl -sname'
 alias ll='exa -bghla -sname'

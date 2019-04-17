@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # scripts
-previewScript='tmp=$(echo {} | egrep "^AM" | cut -d" " -f2);
-               [ -z $tmp ] && tmp=$(echo {} | egrep "^\ M" | cut -d" " -f3);
-               [ -z $tmp ] && tmp=$(echo {} | egrep "^MM" | cut -d" " -f2);
-	       [ -z $tmp ] && echo {} | egrep "^\ D" >/dev/null && git diff --color -- $(echo {} | cut -d " " -f3) && exit;
-               [ -z $tmp ] && echo {} | egrep "^??" >/dev/null && highlight --out-format=ansi --force $(echo {} | cut -d" " -f2) | nl -ba && exit;
+previewScript='tmp=$(echo {} | grep "^AM" | cut -d" " -f2);
+               [ -z $tmp ] && tmp=$(echo {} | grep "^\ M" | cut -d" " -f3);
+               [ -z $tmp ] && tmp=$(echo {} | grep "^MM" | cut -d" " -f2);
+               [ -z $tmp ] && echo {} | grep "^\ D" >/dev/null && git diff --color -- $(echo {} | cut -d " " -f3) && exit;
+               [ -z $tmp ] && echo {} | grep "^??" >/dev/null && highlight --out-format=ansi --force $(echo {} | cut -d" " -f2) | nl -ba && exit;
                git diff --color $tmp'
 
 git rev-parse HEAD > /dev/null 2>&1 || exit
@@ -13,9 +13,9 @@ allFiles=$(git status -s)
 [ "${allFiles}" = "" ] && exit
 
 case $1 in
-	-a ) files=$(echo "$allFiles" | egrep -v '^A\ |^M\ '); script=$previewScript ;;
-	-c ) files=$(echo "$allFiles" | egrep -v '^A\ |^M\ |\?\?'); script=$previewScript ;;
-	-u ) files=$(echo "$allFiles" | egrep '^A|^M');;
+	-a ) files=$(echo "$allFiles" | grep -vE '^A\ |^M\ '); script=$previewScript ;;
+	-c ) files=$(echo "$allFiles" | grep -vE '^A\ |^M\ |\?\?'); script=$previewScript ;;
+	-u ) files=$(echo "$allFiles" | grep -E '^A|^M');;
 	*  ) exit 1;;
 esac
 
