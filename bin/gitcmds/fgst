@@ -1,12 +1,26 @@
 #!/bin/bash
 
 # scripts
-previewScript='tmp=$(echo {} | grep "^AM" | cut -d" " -f2);
-               [ -z $tmp ] && tmp=$(echo {} | grep "^\ M" | cut -d" " -f3);
-               [ -z $tmp ] && tmp=$(echo {} | grep "^MM" | cut -d" " -f2);
-               [ -z $tmp ] && echo {} | grep "^\ D" >/dev/null && git diff --color -- $(echo {} | cut -d " " -f3) && exit;
-               [ -z $tmp ] && echo {} | grep "^??" >/dev/null && highlight --out-format=ansi --force $(echo {} | cut -d" " -f2) | nl -ba && exit;
-               git diff --color $tmp'
+previewScript='tmp=$(echo {} | grep "^AM" | cut -d" " -f2)
+               if [ "${tmp}" != "" ]; then
+                   git diff --color $tmp
+		   exit
+               fi
+               tmp=$(echo {} | grep "^\ M" | cut -d" " -f3)
+               if [ "${tmp}" != "" ]; then
+                   git diff --color $tmp
+                   exit
+               fi
+               tmp=$(echo {} | grep "^MM" | cut -d" " -f2)
+               if [ "${tmp}" != "" ]; then
+                   git diff --color $tmp
+                   exit
+               fi
+
+               echo {} | grep "^\ D" >/dev/null && git diff --color -- $(echo {} | cut -d " " -f3) && exit;
+
+               echo {} | grep "^??" >/dev/null && file=$(echo {} | cut -d" " -f2);
+               [ -d ${file} ] && exa --color always --tree ${file} || highlight --out-format=ansi --force ${file} | nl -ba;'
 
 git rev-parse HEAD > /dev/null 2>&1 || exit
 allFiles=$(git status -s)
