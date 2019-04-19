@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # scripts
-previewScript='tmp=$(echo {} | grep "^AM" | cut -d" " -f2)
+script='tmp=$(echo {} | grep "^AM" | cut -d" " -f2)
                if [ "${tmp}" != "" ]; then
                    git diff --color $tmp
 		   exit
@@ -16,6 +16,11 @@ previewScript='tmp=$(echo {} | grep "^AM" | cut -d" " -f2)
                    git diff --color $tmp
                    exit
                fi
+               tmp=$(echo {} | grep -E "^A|^M" | cut -d" " -f3)
+               if [ "${tmp}" != "" ]; then
+                   git diff --color --cached $tmp
+                   exit
+               fi
 
                echo {} | grep "^\ D" >/dev/null && git diff --color -- $(echo {} | cut -d " " -f3) && exit;
 
@@ -27,8 +32,8 @@ allFiles=$(git status -s)
 [ "${allFiles}" = "" ] && exit
 
 case $1 in
-	-a ) files=$(echo "$allFiles" | grep -vE '^A\ |^M\ '); script=$previewScript ;;
-	-c ) files=$(echo "$allFiles" | grep -vE '^A\ |^M\ |\?\?'); script=$previewScript ;;
+	-a ) files=$(echo "$allFiles" | grep -vE '^A\ |^M\ ');;
+	-c ) files=$(echo "$allFiles" | grep -vE '^A\ |^M\ |\?\?');;
 	-u ) files=$(echo "$allFiles" | grep -E '^A|^M');;
 	*  ) exit 1;;
 esac
