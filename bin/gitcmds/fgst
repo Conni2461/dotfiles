@@ -1,20 +1,10 @@
 #!/bin/bash
 
 # scripts
-script='tmp=$(echo {} | grep "^AM" | cut -d" " -f2)
+script='tmp=$(echo {} | grep -E "^AM|^\ M|^MM" | tr -d "AM" | sed -e "s/^[[:space:]]*//")
                if [ "${tmp}" != "" ]; then
                    git diff --color $tmp
 		   exit
-               fi
-               tmp=$(echo {} | grep "^\ M" | cut -d" " -f3)
-               if [ "${tmp}" != "" ]; then
-                   git diff --color $tmp
-                   exit
-               fi
-               tmp=$(echo {} | grep "^MM" | cut -d" " -f2)
-               if [ "${tmp}" != "" ]; then
-                   git diff --color $tmp
-                   exit
                fi
                tmp=$(echo {} | grep -E "^A|^M" | cut -d" " -f3)
                if [ "${tmp}" != "" ]; then
@@ -22,7 +12,7 @@ script='tmp=$(echo {} | grep "^AM" | cut -d" " -f2)
                    exit
                fi
 
-               echo {} | grep "^\ D" >/dev/null && git diff --color -- $(echo {} | cut -d " " -f3) && exit;
+               echo {} | grep -E "^AD|^\ D" >/dev/null && git diff --color -- $(echo {} | tr -d "AD" | sed -e "s/^[[:space:]]*//") && exit;
 
                echo {} | grep "^??" >/dev/null && file=$(echo {} | cut -d" " -f2);
                [ -d ${file} ] && exa --color always --tree ${file} || highlight --out-format=ansi --force ${file} | nl -ba;'
