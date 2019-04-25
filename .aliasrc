@@ -33,6 +33,7 @@ alias mirr='sudo pacman-mirrors --fasttrack && p -Syyu'
 alias SS='sudo systemctl'
 
 # Other
+alias wiki='nvim -c "VimwikiIndex"'
 alias time='command time'
 alias ka='killall'
 alias df='df -kHT'

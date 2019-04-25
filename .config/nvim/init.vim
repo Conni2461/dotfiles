@@ -1,5 +1,7 @@
 " Plugin
 	call plug#begin('~/.config/nvim/plugged')
+	Plug 'yuttie/comfortable-motion.vim'                                    " Smooth Scrolling
+
 	Plug 'tpope/vim-fugitive'						" A Git wrapper so awesome, it should be illegal
 	Plug 'airblade/vim-gitgutter'						" Shows git diff in 'gutter' (sign column)
 	Plug 'gisphm/vim-gitignore'						" gitignore support
