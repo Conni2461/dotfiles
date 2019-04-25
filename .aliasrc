@@ -14,6 +14,7 @@ unalias sl
 unalias l
 unalias lt
 unalias lc
+unalias rm
 alias ls='ls -hN --color=auto --group-directories-first'
 alias l='exa -bghl -sname'
 alias ll='exa -bghla -sname'
@@ -35,8 +36,8 @@ alias SS='sudo systemctl'
 alias time='command time'
 alias ka='killall'
 alias df='df -kHT'
-alias rm='trash'
-alias f='ranger'
+alias del='trash'
+alias f='nnn'
 alias g='git'
 alias e='$EDITOR'
 alias v='$EDITOR'
@@ -78,3 +79,38 @@ shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o
 se() { du -a ~/bin/* | awk '{print $2}' | fzf | xargs -r $EDITOR ; }
 vf() { fzf --bind ctrl-k:preview-up,shift-up:preview-up,ctrl-j:preview-down,shift-down:preview-down --preview='highlight --out-format=ansi --force {} | nl -ba' | xargs -r -I % $EDITOR % ; }
 fh() { print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//' ) ; }
+
+declare -a DIRS
+
+savedir() {
+  local i
+  for ((i=1;i<=9;i++)); do
+    test "$1" = "${DIRS[$i]}" && return
+  done
+  for ((i=9;i>1;i--)); do
+    DIRS[$i]="${DIRS[((i-1))]}"
+  done
+  DIRS[1]="$1"
+}
+
+showdirs() {
+  local i=1
+  while [ "${DIRS[$i]}" ]; do
+    echo "$i: ${DIRS[$i]}"
+    ((i++))
+  done
+}
+
+gotodir() {
+  local d
+  showdirs
+  printf "goto: "
+  read -n 1 d
+  echo
+  cd "${DIRS[$d]}"
+}
+
+PROMPT_COMMAND=prompt_command
+prompt_command() { savedir "$OLDPWD"; }
+
+alias cdh=gotodir

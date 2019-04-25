@@ -45,7 +45,7 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill
 
 # Programms
 bindsym $mod+Return exec st	 									# Default shell
-bindsym $mod+z exec st ranger   									# Default File Manager
+bindsym $mod+z exec st nnn      									# Default File Manager
 bindsym $mod+g [instance="math"] scratchpad show; [instance="math"] move position center
 bindsym $mod+i exec st nvim										# Default Text Editor
 bindsym $mod+c exec firefox										# Default Browser
