@@ -57,7 +57,7 @@ bindsym $mod+Shift+m exec st alsamixer
 
 # Shortcuts
 bindsym $mod+Shift+q [con_id="__focused__" instance="^(?!math).*$"] kill
-bindsym $mod+d exec --no-startup-id dmenu_run -i                                                                                # Dmenu run without case sensetive
+bindsym $mod+d exec --no-startup-id dmenu_run -i                                                                                # Dmenu run case insensetive
 bindsym $mod+u exec --no-startup-id /home/conni/bin/i3cmds/cabl                                                                 # Script to handle mouse selection
 bindsym $mod+Shift+y exec --no-startup-id i3lock-fancy                                                                          # Lock screen
 bindsym $mod+Shift+x exec --no-startup-id /home/conni/bin/i3cmds/rdq "Are you sure you want to shutdown?" "$shutdown"           # Shutdown
