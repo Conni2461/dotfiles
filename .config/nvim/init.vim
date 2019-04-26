@@ -86,6 +86,12 @@
 " Enable autocompletion:
         set wildmode=longest,list,full
 
+" Tab jumping
+" - Use ^] to jump to tag under cursor
+" - Use g^] for ambiguous tags
+" - Use ^t to jump back up the tag stack
+        command! MakeTags !ctags -R .
+
 " Disable automatic commenting on newline:
         autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
