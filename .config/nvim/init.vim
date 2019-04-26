@@ -50,7 +50,13 @@
         nnoremap <leader>l :set list!<CR>
 
 " Fix selecting(visual mode) color
-        hi Visual ctermfg=234 ctermbg=252 cterm=none
+        hi Visual     ctermfg=234 ctermbg=252 cterm=none
+
+" Fix vimdiff colors
+        hi DiffAdd    ctermfg=234 cterm=bold
+        hi DiffDelete ctermfg=234 cterm=bold
+        hi DiffChange ctermfg=234 cterm=bold
+        hi DiffText   ctermfg=234 cterm=bold
 
 " Disable ex mode
         map q: <Nop>
