@@ -8,9 +8,9 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 # Launch bar
 if type "xrandr"; then
-	for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-		MONITOR=$m polybar --config=/home/conni/.config/polybar/config --reload top &
-	done
+        for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+                MONITOR=$m polybar --config=/home/conni/.config/polybar/config --reload top &
+        done
 else
-	polybar --config=/home/conni/.config/polybar/config --reload top &
+        polybar --config=/home/conni/.config/polybar/config --reload top &
 fi

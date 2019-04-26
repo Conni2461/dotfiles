@@ -7,7 +7,7 @@ xdotool getactivewindow > /dev/null 2>&1 || exit 1
 window=$(xprop -id $(xdotool getactivewindow) | grep _NET_WM_NAME | cut -d'"' -f2)
 
 if (( ${#window} > $max_length)); then
-	window="${window:0:$max_length} ..."
+        window="${window:0:$max_length} ..."
 fi
 
 echo $window

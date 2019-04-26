@@ -4,9 +4,9 @@ BASEDIR=$(pwd)
 
 function createDir()
 {
-	if [ ! -d $1 ]; then
-		mkdir $1
-	fi
+        if [ ! -d $1 ]; then
+                mkdir $1
+        fi
 }
 
 cp ~/.bashrc $BASEDIR
