@@ -26,6 +26,8 @@
 
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }           " Autocomplete
         Plug 'zchee/deoplete-clang'                                             " Autocomplete library for C/C++
+
+        Plug 'mbbill/undotree'                                                  " Tree to show things to undo
         call plug#end()
 
 " Some Basics
@@ -49,17 +51,6 @@
 
 " Fix selecting(visual mode) color
         hi Visual ctermfg=234 ctermbg=252 cterm=none
-
-" Settings for grammarous
-        let g:grammarous#languagetool_cmd = 'languagetool'
-        let g:grammarous#use_vim_spelllang = 1
-
-" Enable deoplete by default
-        let g:deoplete#enable_at_startup = 1
-
-" Required deoplete clang settings
-        let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-        let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/'
 
 " Disable ex mode
         map q: <Nop>
@@ -94,16 +85,6 @@
 
 " Disable automatic commenting on newline:
         autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" Nerdtree plugin map
-        map <leader>n :NERDTreeToggle<CR><CR>
-        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
-" FZF plugin: fuzzy search
-        map <leader>q :Files<CR>
-
-" Goyo plugin makes text more readable when writing:
-        map <leader>f :Goyo \| set bg=light \| set linebreak<CR>
 
 " Spellcheck set to <leader>e for English and <leader>d for German
         map <leader>e :setlocal spell! spelllang=en_us<CR>
@@ -150,6 +131,30 @@
         \         'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding']]
         \     }
         \ }
+
+" Settings for grammarous
+        let g:grammarous#languagetool_cmd = 'languagetool'
+        let g:grammarous#use_vim_spelllang = 1
+
+" Enable deoplete by default
+        let g:deoplete#enable_at_startup = 1
+
+" Required deoplete clang settings
+        let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
+        let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/'
+
+" Nerdtree plugin map
+        map <leader>n :NERDTreeToggle<CR><CR>
+        autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" FZF plugin: fuzzy search
+        map <leader>q :Files<CR>
+
+" Goyo plugin makes text more readable when writing:
+        map <leader>f :Goyo \| set bg=light \| hi Visual ctermfg=234 ctermbg=252 cterm=none \| set linebreak<CR>
+
+" Undotree shortcut
+        nnoremap <leader>u :UndotreeToggle<CR>
 
 " Snippets
 ""LATEX
