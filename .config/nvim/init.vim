@@ -5,6 +5,7 @@
         Plug 'tpope/vim-fugitive'                                               " A Git wrapper so awesome, it should be illegal
         Plug 'airblade/vim-gitgutter'                                           " Shows git diff in 'gutter' (sign column)
         Plug 'gisphm/vim-gitignore'                                             " gitignore support
+        Plug 'PotatoesMaster/i3-vim-syntax'                                     " i3 support
 
         Plug '/usr/bin/fzf'                                                     " adding installed fzf package
         Plug 'junegunn/fzf.vim'                                                 " fzf vim plugin
@@ -117,8 +118,14 @@
 
 " Ensure files are read as what I want:
         let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
+        let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
         autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
         autocmd BufRead,BufNewFile *.tex set filetype=tex
+
+" Enable Goyo by default for mutt writing
+        " Goyo's width will be the line limit in mutt.
+        autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
+        autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo \| set bg=light<CR>  " \| hi Visual ctermfg=234 ctermbg=252 cterm=none
 
 " Automatically deletes all trailing whitespaces on save
         autocmd BufWritePre * %s/\s\+$//e
