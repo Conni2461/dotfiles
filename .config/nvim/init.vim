@@ -124,8 +124,10 @@
 
 " Enable Goyo by default for mutt writing
         " Goyo's width will be the line limit in mutt.
-        autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=80
-        autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo \| set bg=light<CR>  " \| hi Visual ctermfg=234 ctermbg=252 cterm=none
+        autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=120
+        autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
+        autocmd BufRead,BufNewFile /tmp/newmutt* set bg=light
+        autocmd BufRead,BufNewFile /tmp/newmutt* hi Visual ctermfg=234 ctermbg=252 cterm=none
 
 " Automatically deletes all trailing whitespaces on save
         autocmd BufWritePre * %s/\s\+$//e
