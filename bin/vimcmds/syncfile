@@ -19,5 +19,5 @@ function run()
 
 
 if [[ ${fpath} == "${shared}"* ]]; then
-        run &
+        run ${1} &
 fi
