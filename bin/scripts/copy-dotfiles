@@ -44,6 +44,7 @@ cp ~/.config/newsboat/config $BASEDIR/.config/newsboat/
 cp ~/.config/dunst/dunstrc $BASEDIR/.config/dunst/
 cp ~/.config/ranger/rc.conf $BASEDIR/.config/ranger/
 cp ~/.config/zathura/zathurarc $BASEDIR/.config/zathura/zathurarc
+cp ~/.config/compton.conf $BASEDIR/.config/compton.conf
 
 createDir $BASEDIR/bin
 createDir $BASEDIR/bin/croncmds
