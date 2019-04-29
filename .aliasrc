@@ -28,7 +28,6 @@ alias uni="cd /mnt/external/Google\ Drive/Uni/6.\ Semester"
 
 # System
 alias p='sudo pacman'
-alias y='yaourt'
 alias mirr='sudo pacman-mirrors --fasttrack && p -Syyu'
 alias SS='sudo systemctl'
 
