@@ -13,7 +13,6 @@
         Plug 'junegunn/goyo.vim'                                                " writing mode use <leader>f
         Plug 'vimwiki/vimwiki'                                                  " vimwiki
         Plug 'tpope/vim-commentary'                                             " Comment out line with gcc and in visual mode with gc
-        Plug 'rhysd/vim-grammarous'                                             " Vim grammar checker that uses languagetool
 
         Plug 'itchyny/lightline.vim'                                            " Statusline replacement
 
@@ -146,10 +145,6 @@
         \         'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding']]
         \     }
         \ }
-
-" Settings for grammarous
-        let g:grammarous#languagetool_cmd = 'languagetool'
-        let g:grammarous#use_vim_spelllang = 1
 
 " Enable deoplete by default
         let g:deoplete#enable_at_startup = 1
