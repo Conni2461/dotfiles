@@ -11,7 +11,6 @@ export SUDO_ASKPASS="$HOME/bin/scripts/askpass"
 export PAGER='less'
 
 # NNN Settings
-export NNN_OPENER=mimeopen
 export NNN_CONTEXT_COLORS='1234'
 export NNN_SCRIPT=/home/conni/.config/nnn/plugins
 export NNN_USE_EDITOR=1

@@ -22,7 +22,7 @@ allFiles=$(git status -s)
 [ "${allFiles}" = "" ] && exit
 
 case $1 in
-        -a ) files=$(echo "$allFiles" | grep -vE '^A\ |^M\ ');;
+        -a ) files=$(echo "$allFiles" | grep -vE '^A\ |^M\ |^R\ ');;
         -c ) files=$(echo "$allFiles" | grep -vE '^A\ |^M\ |\?\?');;
         -u ) files=$(echo "$allFiles" | grep -E '^A|^M');;
         *  ) exit 1;;
