@@ -7,6 +7,5 @@ if [ "${fname}" == ".dmenu.config.h" ] || [ "${fname}" == ".dwm.config.h" ] || [
         org=$(readlink -f ${link})
         dir=$(dirname ${org})
         cd ${dir}
-        make
-        sudo -A make install
+        make && sudo -A make install
 fi

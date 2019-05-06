@@ -28,7 +28,7 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const int horizpadbar        = 6;        /* horizontal padding for statusbar */
 static const int vertpadbar         = 7;        /* vertical padding for statusbar */
 static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char dmenufont[]       = "monospace:size=13";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -81,8 +81,6 @@ static const Layout layouts[] = {
         { MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
         { MODKEY|ShiftMask,             KEY,      tag,            {.ui = 1 << TAG} }, \
         { MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
-#define CMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
-
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
@@ -93,6 +91,8 @@ static const char *termcmd[]            = { "st", NULL };
 static const char *volup[]              = { "pactl", "set-sink-volume", "0", "+5%", NULL };
 static const char *voldown[]            = { "pactl", "set-sink-volume", "0", "-5%", NULL };
 static const char *voltoggle[]          = { "pactl", "set-sink-volume", "0", "toggle", NULL };
+static const char *shutdowncmd[]        = { "/home/conni/bin/i3cmds/rdq", "Are you sure you want to shutdown?", "shutdown -h now", NULL };
+static const char *rebootcmd[]          = { "/home/conni/bin/i3cmds/rdq", "Are you sure you want to reboot?", "reboot", NULL };
 
 static Key keys[] = {
         /* modifier                     key             function        argument */
@@ -137,8 +137,8 @@ static Key keys[] = {
         TAGKEYS(                        XK_8,                           7)
         TAGKEYS(                        XK_9,                           8)
 
-        { MODKEY|ShiftMask,             XK_x,           spawn,          CMD("/home/conni/bin/i3cmds/rdq 'Are you sure you want to shutdown?' 'shutdown -h now'")},
-        { MODKEY|ShiftMask,             XK_Escape,      spawn,          CMD("/home/conni/bin/i3cmds/rdq 'Are you sure you want to reboot?' 'reboot'")},
+        { MODKEY|ShiftMask,             XK_x,           spawn,          {.v = shutdowncmd } },
+        { MODKEY|ShiftMask,             XK_Escape,      spawn,          {.v = rebootcmd } },
         { MODKEY|ShiftMask,             XK_r,           self_restart,   {0} },
         { MODKEY|ShiftMask,             XK_e,           quit,           {0} },
         { 0,                            XF86AudioRaiseVolume,   spawn,          {.v = volup } },
