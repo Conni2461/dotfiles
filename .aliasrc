@@ -30,6 +30,7 @@ alias uni="cd /mnt/external/Google\ Drive/Uni/6.\ Semester"
 alias p='sudo pacman'
 alias mirr='sudo pacman-mirrors --fasttrack && p -Syyu'
 alias SS='sudo systemctl'
+alias startx='startx ~/.xinitrc'
 
 # Other
 alias wiki='nvim -c "VimwikiIndex"'
@@ -49,6 +50,7 @@ alias ffmpeg='ffmpeg -hide_banner'
 alias scim="sc-im"
 alias marvin="ssh hausersn@marvin.informatik.uni-stuttgart.de"
 alias ru="sudo docker run -ti --rm ubuntu:latest bash"
+alias cvpn="sudo openvpn --config ~/docs/conni.ovpn"
 
 # Shortcuts
 ## Files

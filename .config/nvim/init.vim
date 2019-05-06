@@ -78,7 +78,7 @@
 
 " Copy paste with primary clipboard
         vnoremap <C-c> "+y
-        map <C-p> "+P
+        map <C-p> "+p
 
 " Enable autocompletion:
         set wildmode=longest,list,full
