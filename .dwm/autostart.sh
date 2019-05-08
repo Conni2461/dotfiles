@@ -4,7 +4,6 @@ xinput --set-prop "Microsoft Surface Keyboard Touchpad" "libinput Accel Speed" 0
 dunst &
 compton &
 nitrogen --restore &
-xfce4-power-manager &
 xautolock -time 10 -locker 'i3lock-fancy' -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" &
 
 /home/conni/bin/croncmds/getforecast kornwestheim &
