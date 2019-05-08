@@ -1,8 +1,10 @@
 [user]
         name = Simon Hauser
         email = Simon.Hauser.XD@live.de
+
 [core]
         editor = nvim
+
 [alias]
         aa = add --all
         bv = branch -vv
@@ -31,3 +33,15 @@
         diff = auto
         status = auto
         branch = auto
+
+[diff]
+        tool = vimdiff3
+
+[difftool "vimdiff3"]
+        path = nvim
+
+[merge]
+        tool = vimdiff3
+
+[mergetool "vimdiff3"]
+        path = nvim
