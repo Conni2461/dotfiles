@@ -181,6 +181,12 @@ static char *openurlcmd[] = { "/bin/sh", "-c",
         "sed 's/.*│//g' | tr -d '\n' | grep -aEo '((http|https)://|www\\.)[a-zA-Z0-9./&?=_-]*' | uniq | sed 's/^www./http:\\/\\/www\\./g' | dmenu -l 10 | xargs -r xdg-open",
         "externalpipe", NULL };
 
+static char *copyurlcmd[] = { "/bin/sh", "-c",
+        "sed 's/.*│//g' | tr -d '\n' | grep -aEo '((http|https)://|www\\.)[a-zA-Z0-9./&?=_-]*' | uniq | sed 's/^www./http:\\/\\/www\\./g' | dmenu -p 'Copy which url?' -l 10 | tr -d '\n' | xclip -selection clipboard",
+        "externalpipe", NULL };
+
+static char *copyoutput[] = { "/bin/sh", "-c", "./st-copyout", "externalpipe", NULL };
+
 static Shortcut shortcuts[] = {
         /* mask                 keysym          function        argument */
         { XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
@@ -214,6 +220,8 @@ static Shortcut shortcuts[] = {
         { MODKEY|ShiftMask,     XK_U,           zoom,           {.f = +2} },
         { MODKEY|ShiftMask,     XK_D,           zoom,           {.f = -2} },
         { MODKEY,               XK_l,           externalpipe,   { .v = openurlcmd } },
+        { MODKEY,               XK_y,           externalpipe,   { .v = copyurlcmd } },
+        { MODKEY,               XK_o,           externalpipe,   { .v = copyoutput } },
 };
 
 /*
