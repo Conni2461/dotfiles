@@ -55,13 +55,14 @@ static const Rule rules[] = {
          *      WM_CLASS(STRING) = instance, class
          *      WM_NAME(STRING) = title
          */
-        /* class      instance    title       tags mask     isfloating   monitor */
-        { "Gimp",     NULL,       NULL,       0,            1,           -1 },
-        { "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+        /* class                instance    title       tags mask     isfloating   monitor */
+        { "alsamixer",          NULL,       NULL,       0,            1,           -1 },
+        { "Nitrogen",           NULL,       NULL,       0,            1,           -1 },
+        { "Lxappearance",       NULL,       NULL,       0,            1,           -1 },
 };
 
 /* layout(s) */
-static const float mfact     = 0.50; /* factor of master area size [0.05..0.95] */
+static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 0;    /* 1 means respect size hints in tiled resizals */
 
@@ -86,13 +87,22 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[]           = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[]           = { "dmenu_run", "-i" , "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]            = { "st", NULL };
 static const char *volup[]              = { "pactl", "set-sink-volume", "0", "+5%", NULL };
 static const char *voldown[]            = { "pactl", "set-sink-volume", "0", "-5%", NULL };
 static const char *voltoggle[]          = { "pactl", "set-sink-volume", "0", "toggle", NULL };
 static const char *shutdowncmd[]        = { "/home/conni/bin/i3cmds/rdq", "Are you sure you want to shutdown?", "shutdown -h now", NULL };
 static const char *rebootcmd[]          = { "/home/conni/bin/i3cmds/rdq", "Are you sure you want to reboot?", "reboot", NULL };
+static const char *nnn[]                = { "st", "nnn", NULL };
+static const char *nvim[]               = { "st", "nvim", NULL };
+static const char *firefox[]            = { "firefox", NULL };
+static const char *newsboat[]           = { "st", "newsboat", NULL };
+static const char *neomutt[]            = { "st", "neomutt", NULL };
+static const char *slack[]              = { "st", "weechat", NULL };
+static const char *alsa[]               = { "st", "alsamixer", NULL };
+static const char *trello[]             = { "surf", "trello.com", NULL };
+
 
 static Key keys[] = {
         /* modifier                     key             function        argument */
@@ -106,7 +116,7 @@ static Key keys[] = {
         { MODKEY,                       XK_Left,        focusstack,     {.i = +1 } },
         { MODKEY,                       XK_Right,       focusstack,     {.i = -1 } },
         { MODKEY,                       XK_i,           incnmaster,     {.i = +1 } },
-        { MODKEY,                       XK_d,           incnmaster,     {.i = -1 } },
+        { MODKEY,                       XK_o,           incnmaster,     {.i = -1 } },
         { MODKEY,                       XK_h,           setmfact,       {.f = -0.05} },
         { MODKEY,                       XK_l,           setmfact,       {.f = +0.05} },
         { MODKEY,                       XK_Return,      zoom,           {0} },
