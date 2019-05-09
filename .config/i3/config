@@ -21,7 +21,7 @@ set $hibernate systemctl suspend
 
 new_window none
 
-font pango:mono 13
+font pango:mono 16
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -196,7 +196,6 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 bar {
-        font pango:mono 13
         i3bar_command i3bar -t
         status_command i3blocks
         position top

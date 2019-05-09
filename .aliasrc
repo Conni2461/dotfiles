@@ -5,16 +5,7 @@ command -v nvim >/dev/null && alias vim="nvim" vimdiff="nvim -d"
 command -v neomutt >/dev/null && alias mutt="neomutt"
 alias slack="weechat"
 
-unalias e
-unalias d
-
 # ls and other file stuff
-unalias ls
-unalias sl
-unalias l
-unalias lt
-unalias lc
-unalias rm
 alias ls='ls -hN --color=auto --group-directories-first'
 alias l='exa -bghl -sname'
 alias ll='exa -bghla -sname'
