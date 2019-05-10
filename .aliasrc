@@ -24,6 +24,7 @@ alias SS='sudo systemctl'
 alias startx='startx ~/.xinitrc'
 
 # Other
+alias type='type -a'
 alias wiki='nvim -c "VimwikiIndex"'
 alias time='command time'
 alias ka='killall'

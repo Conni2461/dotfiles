@@ -14,7 +14,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "inconsolata:pixelsize=21:antialias=true:autohint=true";
+static char *font = "monospace:pixelsize=24:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
