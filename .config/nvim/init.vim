@@ -51,6 +51,7 @@
 
 " Fix selecting(visual mode) color
         hi Visual     ctermfg=234 ctermbg=252 cterm=none
+        hi SpellBad   ctermfg=234 cterm=bold
 
 " Fix vimdiff colors
         hi DiffAdd    ctermfg=234 cterm=bold
