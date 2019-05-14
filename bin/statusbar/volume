@@ -1,11 +1,13 @@
 #!/bin/sh
 
 case $BLOCK_BUTTON in
-        1) setsid "$TERMINAL" -e pulsemixer & ;;
-        2) pulsemixer --toggle-mute ;;
-        4) pulsemixer --change-volume +5 ;;
-        5) pulsemixer --change-volume -5 ;;
-        3) pgrep -x dunst >/dev/null && notify-send "<b>📢 Volume module:</b>
+        1)      setsid "$TERMINAL" -n 'floatt' -e pulsemixer &
+                sleep 0.2
+                i3-msg '[instance="floatt"] move position center' >/dev/null ;;
+        2)      pulsemixer --toggle-mute ;;
+        4)      pulsemixer --change-volume +5 ;;
+        5)      pulsemixer --change-volume -5 ;;
+        3)      pgrep -x dunst >/dev/null && notify-send "<b>📢 Volume module:</b>
 - Shows volume 🔊, 🔇 if muted.
 - Middle click to mute.
 - Scroll to change."

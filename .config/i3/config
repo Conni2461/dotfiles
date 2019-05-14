@@ -156,6 +156,9 @@ for_window [title="alsamixer"] floating enable border pixel 1
 for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 
+for_window [instance="floatt"] floating enable
+for_window [instance="floatt"] resize set 1800 1200
+
 for_window [instance="math"] floating enable
 for_window [instance="math"] resize set 800 600
 for_window [instance="math"] move scratchpad
