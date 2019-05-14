@@ -51,7 +51,12 @@
 
 " Fix selecting(visual mode) color
         hi Visual     ctermfg=234 ctermbg=252 cterm=none
+
+" Fix vim spellchecking
         hi SpellBad   ctermfg=234 cterm=bold
+        hi SpellCap   ctermfg=234 cterm=bold
+        hi SpellRare  ctermfg=234 cterm=bold
+        hi SpellLocal ctermfg=234 cterm=bold
 
 " Fix vimdiff colors
         hi DiffAdd    ctermfg=234 cterm=bold
