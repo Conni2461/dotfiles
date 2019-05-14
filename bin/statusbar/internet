@@ -2,7 +2,7 @@
 
 case $BLOCK_BUTTON in
         1)      $TERMINAL -n 'floatt' -e nmtui &
-                sleep 0.1
+                sleep 0.2
                 i3-msg '[instance="floatt"] move position center' >/dev/null ;;
         3)      pgrep -x dunst >/dev/null && notify-send "<b>🌐 Internet module:</b>
 - Click for \`nmtui\` for wifi access

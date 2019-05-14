@@ -6,7 +6,7 @@
 
 case $BLOCK_BUTTON in
         1)      "$TERMINAL" -n 'floatt' -e neomutt &
-                sleep 0.1
+                sleep 0.2
                 i3-msg '[instance="floatt"] move position center' >/dev/null ;;
         2)      setsid $HOME/.config/mutt/etc/mailsync.sh >/dev/null & ;;
         3)      pgrep -x dunst >/dev/null && notify-send "<b>📬 Mail module:</b>
