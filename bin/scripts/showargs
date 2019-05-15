@@ -1,0 +1,7 @@
+#!/usr/bin/perl -w
+
+print "@ARGV\n";
+foreach (@ARGV) {
+        $i++;
+        printf "%3d [%s]\n",$i,$_;
+}
