@@ -1,0 +1,5 @@
+#!/bin/bash
+
+i3 "exec --no-startup-id $TERMINAL -n floatt -e $1;"
+sleep 0.2
+i3 "[instance=\"floatt\"] move position center"

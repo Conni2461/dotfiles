@@ -5,9 +5,7 @@
 # When clicked, brings up `newsboat`.
 
 case $BLOCK_BUTTON in
-        1)      setsid "$TERMINAL" -n 'floatt' -e newsboat &
-                sleep 0.2
-                i3-msg '[instance="floatt"] move position center' >/dev/null ;;
+        1)      fspawn newsboat >/dev/null ;;
         2)      setsid newsup >/dev/null & exit ;;
         3)      pgrep -x dunst >/dev/null && notify-send "<b>📰 News module:</b>
 - Shows unread news items

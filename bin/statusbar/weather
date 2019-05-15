@@ -8,11 +8,9 @@ showweather() { printf "%s" "$(sed '16q;d' "$HOME/.local/share/weatherreport" | 
 sed '13q;d' "$HOME/.local/share/weatherreport" | grep -o "m\\(-\\)*[0-9]\\+" | sort -n -t 'm' -k 2n | sed -e 1b -e '$!d' | tr '\n|m' ' ' | awk '{print " ❄️",$1 "°","🌞",$2 "°"}' ;}
 
 case $BLOCK_BUTTON in
-    1)          $TERMINAL -n "floatt" -e less -S "$HOME/.local/share/weatherreport" &
-                sleep 0.2
-                i3-msg '[instance="floatt"] move position center' >/dev/null ;;
-    2)          getforecast && showweather ;;
-    3)          pgrep -x dunst >/dev/null && notify-send "🌈 Weather module" "\- Left click for full forecast.
+    1)  fspawn "less -S $HOME/.local/share/weatherreport" >/dev/null ;;
+    2)  getforecast && showweather ;;
+    3)  pgrep -x dunst >/dev/null && notify-send "🌈 Weather module" "\- Left click for full forecast.
 - Middle click to update forecast.
 ☔: Chance of rain/snow
 ❄: Daily low
