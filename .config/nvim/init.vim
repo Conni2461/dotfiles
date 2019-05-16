@@ -52,6 +52,9 @@
 " Fix selecting(visual mode) color
         hi Visual     ctermfg=234 ctermbg=252 cterm=none
 
+" Fix hlsearch coloring
+        hi Search     ctermfg=234 cterm=bold
+
 " Fix vim spellchecking
         hi SpellBad   ctermfg=234 cterm=bold
         hi SpellCap   ctermfg=234 cterm=bold
