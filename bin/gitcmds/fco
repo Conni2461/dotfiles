@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 tags=$(git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || exit
 branches=$(git branch --all | grep -v HEAD |
@@ -8,4 +8,4 @@ target=$(
 (echo "$tags"; echo "$branches") |
         fzf --no-hscroll --no-multi --delimiter="\t" -n 2 \
         --ansi --preview="git log -200 --pretty=format:%s $(echo {+2..} |  sed 's/$/../' )" ) || exit
-git checkout $(echo "$target" | awk '{print $2}')
+git checkout "$(echo "$target" | awk '{print $2}')"

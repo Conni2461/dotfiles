@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # i3blocks mail module.
 # Displays number of unread mail and an loading icon if updating.
@@ -6,7 +6,7 @@
 
 case $BLOCK_BUTTON in
         1)      fspawn neomutt >/dev/null ;;
-        2)      setsid $HOME/.config/mutt/etc/mailsync.sh >/dev/null & ;;
+        2)      setsid "${HOME}"/.config/mutt/etc/mailsync.sh >/dev/null & ;;
         3)      pgrep -x dunst >/dev/null && notify-send "<b>📬 Mail module:</b>
 - Shows unread mail
 - Shows 🔃 if syncing mail
@@ -14,4 +14,4 @@ case $BLOCK_BUTTON in
 - Middle click syncs mail" ;;
 esac
 
-echo "$(du -a ~/.local/share/mail/*/{INBOX,Inbox}/new/* 2>/dev/null | sed -n '$=')$(cat /tmp/imapsyncicon_$USER 2>/dev/null)"
+echo "$(du -a ~/.local/share/mail/*/{INBOX,Inbox}/new/* 2>/dev/null | sed -n '$=')$(cat /tmp/imapsyncicon_"${USER}" 2>/dev/null)"

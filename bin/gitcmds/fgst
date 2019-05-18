@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # scripts
 script='tmp=$(echo {} | grep -E "^AM|^\ M|^MM|UU" | sed -e "s/^[[:space:]]*//" | cut -d" " -f2)

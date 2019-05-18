@@ -12,14 +12,14 @@ for f in $(ssh home find docs/shared/ -type f); do
         diff <(ssh home cat ${f}) <(cat ${local}) >/dev/null 2>&1
         if [ ! $? -eq 0 ]; then
                 didsync=true
-                mkdir -pv $(dirname ${local})
-                scp home:~/${f} ${local}
+                mkdir -pv $(dirname "${local}")
+                scp home:~/"${f}" "${local}"
                 notify-send "Synced ${f}"
         else
                 echo "${f} was not copied"
         fi
 done
 
-if [ "${didsync}" == "false" ]; then
+if [ "${didsync}" = "false" ]; then
         notify-send "No files synced"
 fi

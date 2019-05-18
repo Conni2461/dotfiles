@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 i3 "exec --no-startup-id $TERMINAL -n floatt -e $1;"
 sleep 0.2

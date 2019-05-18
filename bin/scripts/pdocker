@@ -1,9 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 
-source ~/bin/scripts/utils
+. "${HOME}"/bin/scripts/utils
 
 if [ $# -eq 0 ]; then
         err "Error provice a docker image" || exit 1
 fi
 
-sudo docker -run -v 'pwd':'pwd' -w 'pwd' -i -t $1 /bin/bash
+sudo docker -run -v 'pwd':'pwd' -w 'pwd' -i -t "${1}" /bin/bash

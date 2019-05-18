@@ -1,65 +1,65 @@
-#!/bin/bash
+#!/bin/sh
 
 BASEDIR=$(pwd)
 
-function createDir()
+createDir()
 {
-        if [ ! -d $1 ]; then
-                mkdir $1
+        if [ ! -d "${1}" ]; then
+                mkdir "${1}"
         fi
 }
 
-cp ~/.bashrc $BASEDIR
-cp ~/.profile $BASEDIR
-cp ~/.gitconfig $BASEDIR
-cp ~/.tmux.conf $BASEDIR
-cp ~/.vimrc $BASEDIR
-cp ~/.xinitrc $BASEDIR
-cp ~/.aliasrc $BASEDIR
-cp ~/.functionrc $BASEDIR
-cp ~/.st.config.h $BASEDIR
-cp ~/.dmenu.config.h $BASEDIR
-cp ~/.surf.config.h $BASEDIR
-cp ~/.dwm.config.h $BASEDIR
-cp ~/.Xresources $BASEDIR
+cp ~/.bashrc "${BASEDIR}"
+cp ~/.profile "${BASEDIR}"
+cp ~/.gitconfig "${BASEDIR}"
+cp ~/.tmux.conf "${BASEDIR}"
+cp ~/.vimrc "${BASEDIR}"
+cp ~/.xinitrc "${BASEDIR}"
+cp ~/.aliasrc "${BASEDIR}"
+cp ~/.functionrc "${BASEDIR}"
+cp ~/.st.config.h "${BASEDIR}"
+cp ~/.dmenu.config.h "${BASEDIR}"
+cp ~/.surf.config.h "${BASEDIR}"
+cp ~/.dwm.config.h "${BASEDIR}"
+cp ~/.Xresources "${BASEDIR}"
 
-createDir $BASEDIR/.dwm
-cp ~/.dwm/autostart.sh $BASEDIR/.dwm
+createDir "${BASEDIR}"/.dwm
+cp ~/.dwm/autostart.sh "${BASEDIR}"/.dwm
 
-createDir $BASEDIR/.config
-createDir $BASEDIR/.config/nvim
-createDir $BASEDIR/.config/i3
-createDir $BASEDIR/.config/i3blocks
-createDir $BASEDIR/.config/newsboat
-createDir $BASEDIR/.config/dunst
-createDir $BASEDIR/.config/ranger
-createDir $BASEDIR/.config/zathura
-createDir $BASEDIR/.config/fontconfig
+createDir "${BASEDIR}"/.config
+createDir "${BASEDIR}"/.config/nvim
+createDir "${BASEDIR}"/.config/i3
+createDir "${BASEDIR}"/.config/i3blocks
+createDir "${BASEDIR}"/.config/newsboat
+createDir "${BASEDIR}"/.config/dunst
+createDir "${BASEDIR}"/.config/ranger
+createDir "${BASEDIR}"/.config/zathura
+createDir "${BASEDIR}"/.config/fontconfig
 
-cp ~/.config/nvim/init.vim $BASEDIR/.config/nvim/
-cp ~/.config/i3/config $BASEDIR/.config/i3/
-cp ~/.config/i3blocks/config $BASEDIR/.config/i3blocks/
-cp -R ~/.config/polybar/ $BASEDIR/.config/
-cp ~/.config/newsboat/urls $BASEDIR/.config/newsboat/
-cp ~/.config/newsboat/config $BASEDIR/.config/newsboat/
-cp ~/.config/dunst/dunstrc $BASEDIR/.config/dunst/
-cp ~/.config/ranger/rc.conf $BASEDIR/.config/ranger/
-cp ~/.config/zathura/zathurarc $BASEDIR/.config/zathura/zathurarc
-cp ~/.config/fontconfig/fonts.conf $BASEDIR/.config/fontconfig/fonts.conf
-cp ~/.config/compton.conf $BASEDIR/.config/compton.conf
+cp ~/.config/nvim/init.vim "${BASEDIR}"/.config/nvim/
+cp ~/.config/i3/config "${BASEDIR}"/.config/i3/
+cp ~/.config/i3blocks/config "${BASEDIR}"/.config/i3blocks/
+cp -R ~/.config/polybar/ "${BASEDIR}"/.config/
+cp ~/.config/newsboat/urls "${BASEDIR}"/.config/newsboat/
+cp ~/.config/newsboat/config "${BASEDIR}"/.config/newsboat/
+cp ~/.config/dunst/dunstrc "${BASEDIR}"/.config/dunst/
+cp ~/.config/ranger/rc.conf "${BASEDIR}"/.config/ranger/
+cp ~/.config/zathura/zathurarc "${BASEDIR}"/.config/zathura/zathurarc
+cp ~/.config/fontconfig/fonts.conf "${BASEDIR}"/.config/fontconfig/fonts.conf
+cp ~/.config/compton.conf "${BASEDIR}"/.config/compton.conf
 
-createDir $BASEDIR/bin
-createDir $BASEDIR/bin/croncmds
-createDir $BASEDIR/bin/i3cmds
-createDir $BASEDIR/bin/scripts
-createDir $BASEDIR/bin/vimcmds
-createDir $BASEDIR/bin/gitcmds
-createDir $BASEDIR/bin/statusbar
+createDir "${BASEDIR}"/bin
+createDir "${BASEDIR}"/bin/croncmds
+createDir "${BASEDIR}"/bin/i3cmds
+createDir "${BASEDIR}"/bin/scripts
+createDir "${BASEDIR}"/bin/vimcmds
+createDir "${BASEDIR}"/bin/gitcmds
+createDir "${BASEDIR}"/bin/statusbar
 
-cp ~/bin/unicode $BASEDIR/bin/
-cp -R ~/bin/croncmds/ $BASEDIR/bin/
-cp -R ~/bin/i3cmds/ $BASEDIR/bin/
-cp -R ~/bin/scripts/ $BASEDIR/bin/
-cp -R ~/bin/vimcmds/ $BASEDIR/bin/
-cp -R ~/bin/gitcmds/ $BASEDIR/bin/
-cp -R ~/bin/statusbar/ $BASEDIR/bin/
+cp ~/bin/unicode "${BASEDIR}"/bin/
+cp -R ~/bin/croncmds/ "${BASEDIR}"/bin/
+cp -R ~/bin/i3cmds/ "${BASEDIR}"/bin/
+cp -R ~/bin/scripts/ "${BASEDIR}"/bin/
+cp -R ~/bin/vimcmds/ "${BASEDIR}"/bin/
+cp -R ~/bin/gitcmds/ "${BASEDIR}"/bin/
+cp -R ~/bin/statusbar/ "${BASEDIR}"/bin/

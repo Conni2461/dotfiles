@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 #Lists
 first="single\nduplicate\nextend\nManual selection"
@@ -6,9 +6,9 @@ screens="laptop\nHDMI\nDP"
 adapter="HDMI\nDP"
 
 # Functions
-function selectScreen()
+selectScreen()
 {
-        chosenS=$(echo -e "$screens" | dmenu -i)
+        chosenS=$(echo "$screens" | dmenu -i)
         case "$chosenS" in
                 laptop ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --off ;;
                 HDMI ) sudo -A xrandr --output eDP1 --off --output HDMI1 --auto --output DP1 --off ;;
@@ -18,9 +18,9 @@ function selectScreen()
         return 0
 }
 
-function selectAdapterD()
+selectAdapterD()
 {
-        chosenD=$(echo -e "$adapter" | dmenu -i)
+        chosenD=$(echo "$adapter" | dmenu -i)
         case "$chosenD" in
                 HDMI ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --auto --output DP1 --off ;;
                 DP ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --auto ;;
@@ -29,9 +29,9 @@ function selectAdapterD()
         return 0
 }
 
-function selectAdapterE()
+selectAdapterE()
 {
-        chosenE=$(echo -e "$adapter" | dmenu -i)
+        chosenE=$(echo "$adapter" | dmenu -i)
         case "$chosenE" in
                 HDMI ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --auto --right-of eDP1 --output DP1 --off ;;
                 DP ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --auto --right-of eDP1 ;;
@@ -41,7 +41,7 @@ function selectAdapterE()
 }
 
 # Main
-chosenM=$(echo -e "$first" | dmenu -i)
+chosenM=$(echo "$first" | dmenu -i)
 
 case "$chosenM" in
         single ) selectScreen && polybar_launch ;;

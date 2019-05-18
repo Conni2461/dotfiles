@@ -1,23 +1,22 @@
-#!/bin/bash
+#!/bin/sh
 
 shared=/home/conni/docs/shared
-fpath=$(dirname ${1})
+fpath=$(dirname "${1}")
 epath=${fpath#"$shared"}
-fname=$(basename ${1})
+fname=$(basename "${1}")
 
-function run()
+run()
 {
         ping -q -t 1 -c 1 $(ip r | grep -m 1 default | cut -d ' ' -f 3) >/dev/null || exit
 
         if [ -z "${epath}" ]; then
-                ssh home mkdir -vp /home/pi/docs/shared${epath}/
+                ssh home mkdir -vp /home/pi/docs/shared"${epath}"/
         fi
 
-        scp ${1} home:~/docs/shared${epath}/
+        scp "${1}" home:~/docs/shared"${epath}"/
         notify-send "Synced ${fname}"
 }
 
-
-if [[ ${fpath} == "${shared}"* ]]; then
-        run ${1} &
-fi
+case "${fpath}" in
+        "${shared}"* ) echo here ;;
+esac

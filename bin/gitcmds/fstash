@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # fstash - easier way to deal with stashes
 # type fstash to get a list of your stashes

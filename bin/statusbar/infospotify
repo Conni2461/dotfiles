@@ -1,20 +1,20 @@
-#!/bin/bash
+#!/bin/sh
 
-source ~/bin/scripts/utils
+. "${HOME}"/bin/scripts/utils
 
 usage()
 {
-        echo "Controll Spotify via CLI"
-        echo "-v || --version                   print Version number"
-        echo "-h || --help                      print Help text"
-        echo
-        echo "-s                                print status: playing, paused"
-        echo "-p                                toggle play pause"
-        echo "-n                                play next song"
-        echo "-b                                play previous song"
-        echo "-i                                print information use -f to format."
-        echo
-        echo "Default Format: <status> <Artist>: <Title>"
+        echo "Controll Spotify via CLI
+                -v || --version                   print Version number
+                -h || --help                      print Help text
+
+                -s                                print status: playing, paused
+                -p                                toggle play pause
+                -n                                play next song
+                -b                                play previous song
+                -i                                print information use -f to format.
+
+                Default Format: <status> <Artist>: <Title>"
 }
 
 version()
@@ -49,7 +49,7 @@ printinfo()
         status=$(stat)
         glyp=""
 
-        if [ "$status" == "Playing" ]; then
+        if [ "$status" = "Playing" ]; then
                 glyp="▶"
         else
                 glyp="⏸"

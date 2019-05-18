@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 scrot /tmp/lockscreensave.png
 convert /tmp/lockscreensave.png -channel RGBA  -blur 0x6 /tmp/lockscreensave_blur.png
