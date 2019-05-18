@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 max_length=80
 
