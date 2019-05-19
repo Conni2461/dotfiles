@@ -18,5 +18,5 @@ run()
 }
 
 case "${fpath}" in
-        "${shared}"* ) echo here ;;
+        "${shared}"* ) run "${1}" & ;;
 esac
