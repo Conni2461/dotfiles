@@ -17,10 +17,8 @@ cp ~/.vimrc "${BASEDIR}"
 cp ~/.xinitrc "${BASEDIR}"
 cp ~/.aliasrc "${BASEDIR}"
 cp ~/.functionrc "${BASEDIR}"
-cp ~/.st.config.h "${BASEDIR}"
 cp ~/.dmenu.config.h "${BASEDIR}"
 cp ~/.surf.config.h "${BASEDIR}"
-cp ~/.dwm.config.h "${BASEDIR}"
 cp ~/.Xresources "${BASEDIR}"
 
 createDir "${BASEDIR}"/.dwm
