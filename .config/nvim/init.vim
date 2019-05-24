@@ -4,6 +4,7 @@
 
         Plug 'tpope/vim-fugitive'                                               " A Git wrapper so awesome, it should be illegal
         Plug 'airblade/vim-gitgutter'                                           " Shows git diff in 'gutter' (sign column)
+
         Plug 'gisphm/vim-gitignore'                                             " gitignore support
         Plug 'PotatoesMaster/i3-vim-syntax'                                     " i3 support
 
@@ -13,6 +14,7 @@
         Plug 'junegunn/goyo.vim'                                                " writing mode use <leader>f
         Plug 'vimwiki/vimwiki'                                                  " vimwiki
         Plug 'tpope/vim-commentary'                                             " Comment out line with gcc and in visual mode with gc
+        Plug 'jiangmiao/auto-pairs'                                             " insert or delete brackets, parens, quotes in pair
 
         Plug 'itchyny/lightline.vim'                                            " Statusline replacement
 
