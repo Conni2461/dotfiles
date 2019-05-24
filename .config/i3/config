@@ -32,9 +32,9 @@ exec --no-startup-id nitrogen --restore; sleep 1; compton -b
 exec --no-startup-id xautolock -time 10 -locker 'lock' -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
 exec --no-startup-id xinput --set-prop "Microsoft Surface Keyboard Touchpad" "libinput Accel Speed" 0.5
 
-exec_always --no-startup-id syncshared
-exec_always --no-startup-id newsup
-exec_always --no-startup-id /usr/local/bin/mailsync
+exec_always --no-startup-id syncshared >/dev/null
+exec_always --no-startup-id newsup >/dev/null
+exec_always --no-startup-id /usr/local/bin/mailsync >/dev/null
 
 # Alsa controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && pkill -RTMIN+10 i3blocks
