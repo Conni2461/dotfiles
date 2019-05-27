@@ -3,6 +3,7 @@
         Plug 'yuttie/comfortable-motion.vim'                                    " Smooth Scrolling
 
         Plug 'tpope/vim-fugitive'                                               " A Git wrapper so awesome, it should be illegal
+        Plug 'tpope/vim-rhubarb'                                                " Github extension for fugitive
         Plug 'airblade/vim-gitgutter'                                           " Shows git diff in 'gutter' (sign column)
 
         Plug 'gisphm/vim-gitignore'                                             " gitignore support
@@ -28,6 +29,7 @@
 
         Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }           " Autocomplete
         Plug 'zchee/deoplete-clang'                                             " Autocomplete library for C/C++
+        Plug 'SevereOverfl0w/deoplete-github'                                   " Deoplete github extension
 
         Plug 'mbbill/undotree'                                                  " Tree to show things to undo
         call plug#end()
@@ -157,10 +159,17 @@
 
 " Enable deoplete by default
         let g:deoplete#enable_at_startup = 1
+        let g:deoplete#sources = {}
 
 " Required deoplete clang settings
         let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
         let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/'
+
+" Deoplete setup for github extension
+        let g:deoplete#sources.gitcommit=['github']
+        let g:deoplete#keyword_patterns = {}
+        let g:deoplete#keyword_patterns.gitcommit = '[^ \t]+'
+        call deoplete#custom#var('omni', 'input_patterns', {'github': '[^ \t]+'})
 
 " Nerdtree plugin map
         map <leader>n :NERDTreeToggle<CR><CR>
