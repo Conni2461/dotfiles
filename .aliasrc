@@ -48,18 +48,15 @@ alias newsboat='newsboat && pkill -RTMIN+6 i3blocks'
 # Shortcuts
 ## Files
 alias eA='vim ~/.aliasrc'
+alias eF='vim ~/.functionrc'
 alias eB='vim ~/.bashrc'
-alias eD='vim ~/.dwm.config.h'
+alias eP='vim ~/.profile'
 alias eG='vim ~/.gitconfig'
 alias eI='vim ~/.config/i3/config'
-alias eIB='vim ~/.config/i3blocks/config'
 alias eM='vim ~/.config/mutt/muttrc'
 alias eN='vim ~/.config/newsboat/config'
-alias eP='vim ~/.config/polybar/config'
 alias eU='vim ~/.config/newsboat/urls'
 alias eV='vim ~/.config/nvim/init.vim'
-alias eZ='vim ~/.zshrc'
-alias eZP='vim ~/.zprofile'
 
 ## Directories
 alias ..='cd ..'
