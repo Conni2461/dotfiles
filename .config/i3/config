@@ -50,7 +50,6 @@ bindsym $mod+n exec --no-startup-id fspawn newsboat                             
 bindsym $mod+m exec --no-startup-id fspawn neomutt                                                      # Mail programm
 bindsym $mod+p exec --no-startup-id fspawn weechat                                                      # Chat programm mainly used for slack
 bindsym $mod+c exec --no-startup-id $BROWSER                                                            # Default Browser
-bindsym $mod+t exec --no-startup-id surf trello.com                                                     # Open trello
 bindsym $mod+Shift+m exec --no-startup-id fspawn pulsemixer                                             # Open Audiomixer
 
 # Shortcuts

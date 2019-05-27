@@ -127,8 +127,7 @@
         map <leader>p :!opout <c-r>%<CR><CR>
 
 " Ensure files are read as what I want:
-        let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
-        let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+        let g:vimwiki_list = [{'path': '~/docs/shared/vimwiki/'}]
         autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
         autocmd BufRead,BufNewFile *.tex set filetype=tex
 
