@@ -17,6 +17,7 @@ cp ~/.vimrc "${BASEDIR}"
 cp ~/.xinitrc "${BASEDIR}"
 cp ~/.aliasrc "${BASEDIR}"
 cp ~/.functionrc "${BASEDIR}"
+cp ~/.aliascomp "${BASEDIR}"
 cp ~/.dmenu.config.h "${BASEDIR}"
 cp ~/.surf.config.h "${BASEDIR}"
 cp ~/.Xresources "${BASEDIR}"
@@ -35,6 +36,7 @@ createDir "${BASEDIR}"/.config/zathura
 createDir "${BASEDIR}"/.config/fontconfig
 
 cp ~/.config/nvim/init.vim "${BASEDIR}"/.config/nvim/
+cp -R ~/.config/nvim/snippets/ "${BASEDIR}"/.config/nvim/
 cp ~/.config/i3/config "${BASEDIR}"/.config/i3/
 cp ~/.config/i3blocks/config "${BASEDIR}"/.config/i3blocks/
 cp -R ~/.config/polybar/ "${BASEDIR}"/.config/

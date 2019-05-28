@@ -6,9 +6,10 @@ HISTSIZE= HISTFILESIZE= # Infinite history.
 tput smkx
 bind 'set completion-ignore-case on'
 
+[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+
 export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 
 source "$HOME/.aliasrc"
 source "$HOME/.functionrc"
-
-[ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
+source "$HOME/.aliascomp"
