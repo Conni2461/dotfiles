@@ -8,6 +8,8 @@
 
         Plug 'gisphm/vim-gitignore'                                             " gitignore support
         Plug 'PotatoesMaster/i3-vim-syntax'                                     " i3 support
+        Plug 'godlygeek/tabular'                                                " Align plugin
+        Plug 'plasticboy/vim-markdown'                                          " Markdown plugin
 
         Plug '/usr/bin/fzf'                                                     " adding installed fzf package
         Plug 'junegunn/fzf.vim'                                                 " fzf vim plugin
@@ -70,6 +72,15 @@
         hi DiffDelete ctermfg=234 cterm=bold
         hi DiffChange ctermfg=234 cterm=bold
         hi DiffText   ctermfg=234 cterm=bold
+
+" Fix folding color
+        hi Folded     ctermfg=234 cterm=bold
+
+" Folding setup
+        set nofoldenable
+        " set foldmethod=indent
+        " set foldlevel=1
+        " set foldclose=all
 
 " Disable ex mode
         map q: <Nop>
@@ -183,6 +194,12 @@
 
 " Undotree shortcut
         nnoremap <leader>u :UndotreeToggle<CR>
+
+" Tabular shortcuts
+        nmap <Leader>a= :Tabularize /=<CR>
+        vmap <Leader>a= :Tabularize /=<CR>
+        nmap <Leader>a: :Tabularize /:<CR>
+        vmap <Leader>a: :Tabularize /:<CR>
 
 " Snippets
         runtime snippets/latex.vim

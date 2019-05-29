@@ -3,7 +3,7 @@ stty -ixon # Disable ctrl-s and ctrl-q.
 # shopt -s autocd #Allows you to cd into directory merely by typing the directory name.
 HISTSIZE= HISTFILESIZE= # Infinite history.
 
-tput smkx
+printf '\033[?1h\033=' >/dev/tty
 bind 'set completion-ignore-case on'
 
 [ -r /usr/share/bash-completion/bash_completion ] && . /usr/share/bash-completion/bash_completion
