@@ -4,6 +4,7 @@
 
 [core]
         editor = nvim
+        pager = diff-so-fancy | less --tabs=4 -RTX
 
 [alias]
         aa = add --all
@@ -29,7 +30,11 @@
         cf = "!files=$(fgst -c); [ \"$files\" = \"\" ] && exit; git checkout -- $files >/dev/null && echo \"Files checkouted:\" && echo \"$files\""
         uf = "!files=$(fgst -u); [ \"$files\" = \"\" ] && exit; git reset HEAD -- $files >/dev/null && echo \"Files reseted:\" && echo \"$files\""
 
+        pr = "!pull-request"
+
 [color]
+        ui = true
+
         diff = auto
         status = auto
         branch = auto
@@ -45,3 +50,18 @@
 
 [mergetool "vimdiff3"]
         path = nvim
+
+
+[color "diff-highlight"]
+        oldNormal = red bold
+        oldHighlight = red bold 52
+        newNormal = green bold
+        newHighlight = green bold 22
+
+[color "diff"]
+        meta = yellow
+        frag = magenta bold
+        commit = yellow bold
+        old = red bold
+        new = green bold
+        whitespace = red reverse
