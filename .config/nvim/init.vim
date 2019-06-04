@@ -49,6 +49,7 @@
         syntax on
         set encoding=utf-8
         set number relativenumber
+        set textwidth=80
 
 " Tabs and spaces
         set expandtab
@@ -99,6 +100,8 @@
         vnoremap <silent><expr> j       v:count == 0 ? 'gj' : 'j'
         nnoremap <silent><expr> <Up>    v:count == 0 ? 'gk' : 'k'
         nnoremap <silent><expr> <Down>  v:count == 0 ? 'gj' : 'j'
+        nnoremap H 0
+        nnoremap L $
 
 " Copy paste with primary clipboard
         vnoremap <C-c> "+y
