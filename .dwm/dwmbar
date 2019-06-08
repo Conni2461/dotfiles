@@ -1,0 +1,41 @@
+#!/bin/sh
+
+fnews()
+{
+        rnews=$(news)
+        [ "${rnews}" != "" ] && echo "📰 ${rnews} | "
+}
+
+fpacpackages()
+{
+        rpac=$(pacpackages)
+        [ "${rpac}" != "" ] && echo "📦 ${rpac} | "
+}
+
+fmailbox()
+{
+        rbox=$(mailbox)
+        [ "${rbox}" != "" ] && echo "📬 ${rbox} | "
+}
+
+fweather()
+{
+        rweather=$(weather)
+        [ "${rweather}" != "" ] && echo "${rweather} | "
+}
+
+fbattery()
+{
+        capacity=$(cat /sys/class/power_supply/"$1"/capacity) || exit
+        status=$(cat /sys/class/power_supply/"$1"/status)
+
+        [ "${capacity}" -lt 25 ] && warn="❗" || warn=" "
+        printf "%s%s%s" "$(echo "$status" | sed -e "s/,//;s/Discharging/🔋/;s/Not Charging/🛑/;s/Charging/🔌/;s/Unknown/♻️/;s/Full/⚡/;s/ 0*/ /g;s/ :/ /g")" "$warn" "$(echo "$capacity" | sed -e 's/$/%/')"
+}
+
+while true; do
+        xsetroot -name "$(fnews)$(fpacpackages)$(fmailbox)$(fweather)$(volume) | $(internet) | $(disk /home 🏠) | $(fbattery BAT1) | $(fbattery BAT2) | 📅 $(clock)"
+
+        sleep 1m
+done
+

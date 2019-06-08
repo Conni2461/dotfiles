@@ -1,7 +1,7 @@
 #!/bin/bash
 # Profile file. Runs on login
 
-export PATH=$PATH:/home/conni/bin/scripts:/home/conni/bin/croncmds:/home/conni/bin/i3cmds:/home/conni/bin/gitcmds:/home/conni/bin/statusbar:/home/conni/bin/vimcmds:/home/conni/bin/external/fstools
+export PATH=$PATH:/home/conni/bin/scripts:/home/conni/bin/croncmds:/home/conni/bin/wmcmds:/home/conni/bin/gitcmds:/home/conni/bin/statusbar:/home/conni/bin/vimcmds:/home/conni/bin/external/fstools
 
 export EDITOR='nvim'
 export VISUAL='nvim'
