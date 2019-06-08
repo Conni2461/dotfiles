@@ -1,0 +1,15 @@
+#!/bin/bash
+
+case "$1" in
+        "-i" )  pactl set-sink-volume 0 +5%
+                refbar
+                ;;
+        "-d" )  pactl set-sink-volume 0 -5%
+                refbar
+                ;;
+        "-t" )  pactl set-sink-mute 0 toggle
+                refbar
+                ;;
+        * )     exit 1
+                ;;
+esac
