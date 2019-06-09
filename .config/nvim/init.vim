@@ -18,6 +18,7 @@
         Plug 'vimwiki/vimwiki'                                                  " vimwiki
         Plug 'tpope/vim-commentary'                                             " Comment out line with gcc and in visual mode with gc
         Plug 'jiangmiao/auto-pairs'                                             " insert or delete brackets, parens, quotes in pair
+        Plug 'Yggdroot/indentLine'                                              " Show indet lines
 
         Plug 'itchyny/lightline.vim'                                            " Statusline replacement
 
