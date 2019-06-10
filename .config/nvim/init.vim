@@ -15,6 +15,7 @@
 	Plug 'junegunn/fzf.vim'                                         " fzf vim plugin
 
 	Plug 'junegunn/goyo.vim'                                        " writing mode use <leader>f
+	Plug 'junegunn/limelight.vim'                                   " focus mode
 	Plug 'vimwiki/vimwiki'                                          " vimwiki
 	Plug 'tpope/vim-commentary'                                     " Comment out line with gcc and in visual mode with gc
 
@@ -48,17 +49,16 @@
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
+	set cursorline
 
 " Tabs and spaces
 	set tabstop=4
 	set shiftwidth=4
 	set noexpandtab
-	set listchars=tab:\|\ " Set default tab charlist to pipe with space at the end
+	set listchars=tab:\¦\ " Set default tab charlist to pipe with space at the end
 	set list
 	let s:defaultList=1
 	nnoremap <leader>r :%retab!<CR>
-	hi Whitespace cterm=none ctermfg=241 ctermbg=none
-	hi NonText    cterm=none ctermfg=241 ctermbg=none
 
 	function ToggleListchars()
 		if s:defaultList
@@ -71,31 +71,41 @@
 	endfunction
 	nnoremap <leader>l :call ToggleListchars()<CR>
 
-" Cursor Colors
-	set cursorline
-	hi CursorColumn cterm=none ctermfg=none ctermbg=237
-	hi CursorLine   cterm=none ctermfg=none ctermbg=237
+" Apply colors called at the beginning and when toggling goyo
+	function ApplyColors()
+		" Fix visual mode color
+		hi Visual ctermfg=234 ctermbg=252 cterm=none
 
-" Fix selecting(visual mode) color
-	hi Visual ctermfg=234 ctermbg=252 cterm=none
+		" Tabs and Spaces colors
+		hi Whitespace cterm=none ctermfg=241 ctermbg=none
+		hi NonText    cterm=none ctermfg=241 ctermbg=none
 
-" Fix hlsearch coloring
-	hi Search ctermfg=234 cterm=bold
+		" Cursor Colors
+		hi CursorColumn cterm=none ctermfg=none ctermbg=237
+		hi CursorLine   cterm=none ctermfg=none ctermbg=237
 
-" Fix vim spellchecking
-	hi SpellBad   ctermfg=234 cterm=bold
-	hi SpellCap   ctermfg=234 cterm=bold
-	hi SpellRare  ctermfg=234 cterm=bold
-	hi SpellLocal ctermfg=234 cterm=bold
+		" Fix hlsearch coloring
+		hi Search ctermfg=234 cterm=bold
 
-" Fix vimdiff colors
-	hi DiffAdd    ctermfg=234 cterm=bold
-	hi DiffDelete ctermfg=234 cterm=bold
-	hi DiffChange ctermfg=234 cterm=bold
-	hi DiffText   ctermfg=234 cterm=bold
+		" Fix vim spellchecking
+		hi SpellBad   ctermfg=234 cterm=bold
+		hi SpellCap   ctermfg=234 cterm=bold
+		hi SpellRare  ctermfg=234 cterm=bold
+		hi SpellLocal ctermfg=234 cterm=bold
 
-" Fix folding color
-	hi Folded ctermfg=234 cterm=bold
+		" Fix vimdiff colors
+		hi DiffAdd    ctermfg=234 cterm=bold
+		hi DiffDelete ctermfg=234 cterm=bold
+		hi DiffChange ctermfg=234 cterm=bold
+		hi DiffText   ctermfg=234 cterm=bold
+
+		" Fix folding color
+		hi Folded ctermfg=234 cterm=bold
+
+		" Split border
+		hi VertSplit ctermfg=238 ctermbg=247
+	endfunction
+	call ApplyColors()
 
 " Folding setup
 	set nofoldenable
@@ -152,6 +162,10 @@
 	map <C-j> <C-w>j
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
+	map <C-Left>  <C-w>h
+	map <C-Down>  <C-w>j
+	map <C-Up>    <C-w>k
+	map <C-Right> <C-w>l
 
 " Check file in shellcheck:
 	map <leader>s :!clear && shellcheck %<CR>
@@ -170,9 +184,7 @@
 " Enable Goyo by default for mutt writing
 	" Goyo's width will be the line limit in mutt.
 	autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=120
-	autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
-	autocmd BufRead,BufNewFile /tmp/newmutt* set bg=light
-	autocmd BufRead,BufNewFile /tmp/newmutt* hi Visual ctermfg=234 ctermbg=252 cterm=none
+	autocmd BufRead,BufNewFile /tmp/neomutt* :call ToggleGoyo()
 
 " Automatically deletes all trailing whitespaces on save
 	autocmd BufWritePre * %s/\s\+$//e
@@ -211,8 +223,30 @@
 " FZF plugin: fuzzy search
 	map <leader>q :Files<CR>
 
-" Goyo plugin makes text more readable when writing:
-	map <leader>f :Goyo \| set bg=light \| hi Visual ctermfg=234 ctermbg=252 cterm=none \| set linebreak<CR>
+" Limelight setup
+	let g:limelight_conceal_ctermfg=240
+
+" Goyo plugin makes text more readable when writing
+	function ToggleGoyo()
+		if exists('#goyo')
+			Goyo!
+			Limelight!
+			set bg=light
+			call ApplyColors()
+			set nolinebreak
+			set cursorline
+			set list
+		else
+			Goyo
+			Limelight
+			set bg=light
+			call ApplyColors()
+			set linebreak
+			set nocursorline
+			set nolist
+		endif
+	endfunction
+	map <leader>f :call ToggleGoyo()<CR>
 
 " Undotree shortcut
 	nnoremap <leader>u :UndotreeToggle<CR>
