@@ -24,7 +24,6 @@ cp ~/.Xresources "${BASEDIR}"
 
 createDir "${BASEDIR}"/.dwm
 cp ~/.dwm/autostart.sh "${BASEDIR}"/.dwm
-cp ~/.dwm/dwmbar "${BASEDIR}"/.dwm
 
 createDir "${BASEDIR}"/.config
 createDir "${BASEDIR}"/.config/nvim

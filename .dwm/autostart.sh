@@ -10,4 +10,4 @@ syncshared >/dev/null &
 newsup >/dev/null &
 mailsync >/dev/null &
 
-./dwmbar &
+dwmbar &
