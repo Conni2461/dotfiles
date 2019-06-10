@@ -7,16 +7,16 @@ fname=$(basename "${1}")
 
 run()
 {
-        ping -q -t 1 -c 1 $(ip r | grep -m 1 default | cut -d ' ' -f 3) >/dev/null || exit
+	ping -q -t 1 -c 1 $(ip r | grep -m 1 default | cut -d ' ' -f 3) >/dev/null || exit
 
-        if [ "${epath}" != "" ]; then
-                ssh home mkdir -vp /home/pi/docs/shared"${epath}"/
-        fi
+	if [ "${epath}" != "" ]; then
+		ssh home mkdir -vp /home/pi/docs/shared"${epath}"/
+	fi
 
-        scp "${1}" home:~/docs/shared"${epath}"/
-        notify-send "Synced ${fname}"
+	scp "${1}" home:~/docs/shared"${epath}"/
+	notify-send "Synced ${fname}"
 }
 
 case "${fpath}" in
-        "${shared}"* ) run "${1}" & ;;
+	"${shared}"* ) run "${1}" & ;;
 esac

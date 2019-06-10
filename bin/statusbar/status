@@ -5,7 +5,7 @@ max_length=80
 window=$(xtitle)
 
 if (( ${#window} > $max_length)); then
-        window="${window:0:$max_length} ..."
+	window="${window:0:$max_length} ..."
 fi
 
 echo $window

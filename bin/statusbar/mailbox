@@ -5,9 +5,9 @@
 # When clicked, brings up `neomutt`.
 
 case $BLOCK_BUTTON in
-        1)      fspawn neomutt >/dev/null ;;
-        2)      setsid "${HOME}"/.config/mutt/etc/mailsync.sh >/dev/null & ;;
-        3)      pgrep -x dunst >/dev/null && notify-send "<b>📬 Mail module:</b>
+	1) fspawn neomutt >/dev/null ;;
+	2) setsid "${HOME}"/.config/mutt/etc/mailsync.sh >/dev/null & ;;
+	3) pgrep -x dunst >/dev/null && notify-send "<b>📬 Mail module:</b>
 - Shows unread mail
 - Shows 🔃 if syncing mail
 - Left click opens neomutt

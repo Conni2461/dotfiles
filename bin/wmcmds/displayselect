@@ -8,44 +8,44 @@ adapter="HDMI\nDP"
 # Functions
 selectScreen()
 {
-        chosenS=$(echo "$screens" | dmenu -i)
-        case "$chosenS" in
-                laptop ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --off ;;
-                HDMI ) sudo -A xrandr --output eDP1 --off --output HDMI1 --auto --output DP1 --off ;;
-                DP ) sudo -A xrandr --output eDP1 --off --output HDMI1 --off --output DP1 --auto ;;
-        esac
+	chosenS=$(echo "$screens" | dmenu -i)
+	case "$chosenS" in
+		laptop ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --off ;;
+		HDMI ) sudo -A xrandr --output eDP1 --off --output HDMI1 --auto --output DP1 --off ;;
+		DP ) sudo -A xrandr --output eDP1 --off --output HDMI1 --off --output DP1 --auto ;;
+	esac
 
-        return 0
+	return 0
 }
 
 selectAdapterD()
 {
-        chosenD=$(echo "$adapter" | dmenu -i)
-        case "$chosenD" in
-                HDMI ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --auto --output DP1 --off ;;
-                DP ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --auto ;;
-        esac
+	chosenD=$(echo "$adapter" | dmenu -i)
+	case "$chosenD" in
+		HDMI ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --auto --output DP1 --off ;;
+		DP ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --auto ;;
+	esac
 
-        return 0
+	return 0
 }
 
 selectAdapterE()
 {
-        chosenE=$(echo "$adapter" | dmenu -i)
-        case "$chosenE" in
-                HDMI ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --auto --right-of eDP1 --output DP1 --off ;;
-                DP ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --auto --right-of eDP1 ;;
-        esac
+	chosenE=$(echo "$adapter" | dmenu -i)
+	case "$chosenE" in
+		HDMI ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --auto --right-of eDP1 --output DP1 --off ;;
+		DP ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --auto --right-of eDP1 ;;
+	esac
 
-        return 0
+	return 0
 }
 
 # Main
 chosenM=$(echo "$first" | dmenu -i)
 
 case "$chosenM" in
-        single ) selectScreen && polybar_launch ;;
-        duplicate ) selectAdapterD && polybar_launch ;;
-        extend ) selectAdapterE && polybar_launch ;;
-        "Manual selection" ) sudo -A arandr && polybar_launch ;;
+	single ) selectScreen && polybar_launch ;;
+	duplicate ) selectAdapterD && polybar_launch ;;
+	extend ) selectAdapterE && polybar_launch ;;
+	"Manual selection" ) sudo -A arandr && polybar_launch ;;
 esac

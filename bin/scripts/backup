@@ -37,39 +37,39 @@ FILES="--exclude=.manjaro-tools \
 
 function usage()
 {
-        echo "-f                write to file"
-        echo "-s                write via ssh"
+	echo "-f                write to file"
+	echo "-s                write via ssh"
 }
 
 function version()
 {
-        echo "Version 0.1"
+	echo "Version 0.1"
 }
 
 check_priv || exit 1
 
 if [ "$#" == 0 ]; then
-        usage
-        exit
+	usage
+	exit
 fi
 
 while [ "$1" != "" ]; do
-        case $1 in
-                --help )        usage
-                                exit
-                                ;;
-                --version )     version
-                                exit
-                                ;;
-                -f )            OPTIONS="${OPTIONS}f /backup.tar.gz"
-                                ;;
-                -s )            ADDITIONALS='| ssh pi@pi.apengine.de "( cat > ssh_backup.tar.gz )"'
-                                ;;
-                * )             err "$1 is not a valid option" || usage
-                                exit 1
-                                ;;
-        esac
-        shift
+	case $1 in
+		--help )        usage
+						exit
+						;;
+		--version )     version
+						exit
+						;;
+		-f )            OPTIONS="${OPTIONS}f /backup.tar.gz"
+						;;
+		-s )            ADDITIONALS='| ssh pi@pi.apengine.de "( cat > ssh_backup.tar.gz )"'
+						;;
+		* )             err "$1 is not a valid option" || usage
+						exit 1
+						;;
+	esac
+	shift
 done
 
 tar ${OPTIONS} ${FILES} / ${ADDITIONALS}

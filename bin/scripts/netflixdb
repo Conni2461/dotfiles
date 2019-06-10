@@ -2,12 +2,12 @@
 
 addMovie()
 {
-        echo "${1} - Movie"
+	echo "${1} - Movie"
 }
 
 addShow()
 {
-        echo "${1} - Show"
+	echo "${1} - Show"
 }
 
 CountMovie=$(sed -e '/-----/,$d' ~/docs/shared/lists/netflix | awk NF | cut -d- -f2 | grep -c Movie)

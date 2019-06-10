@@ -5,9 +5,9 @@
 # When clicked, brings up `newsboat`.
 
 case $BLOCK_BUTTON in
-        1)      fspawn newsboat >/dev/null ;;
-        2)      setsid newsup >/dev/null & exit ;;
-        3)      pgrep -x dunst >/dev/null && notify-send "<b>📰 News module:</b>
+	1) fspawn newsboat >/dev/null ;;
+	2) setsid newsup >/dev/null & exit ;;
+	3) pgrep -x dunst >/dev/null && notify-send "<b>📰 News module:</b>
 - Shows unread news items
 - Shows 🔃 if updating with \`newsup\`
 - Left click opens newsboat

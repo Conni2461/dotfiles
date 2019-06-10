@@ -56,6 +56,7 @@
 	set listchars=tab:\|\ " Set default tab charlist to pipe with space at the end
 	set list
 	let s:defaultList=1
+	nnoremap <leader>r :%retab!<CR>
 	hi Whitespace cterm=none ctermfg=241 ctermbg=none
 	hi NonText    cterm=none ctermfg=241 ctermbg=none
 

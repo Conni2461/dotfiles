@@ -2,6 +2,6 @@
 
 print "@ARGV\n";
 foreach (@ARGV) {
-        $i++;
-        printf "%3d [%s]\n",$i,$_;
+	$i++;
+	printf "%3d [%s]\n",$i,$_;
 }

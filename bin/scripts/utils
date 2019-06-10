@@ -2,26 +2,26 @@
 
 err()
 {
-        echo >&2 "$(tput bold; tput setaf 1)[-] ERROR: ${*}$(tput sgr0)"
-        return 1
+	echo >&2 "$(tput bold; tput setaf 1)[-] ERROR: ${*}$(tput sgr0)"
+	return 1
 }
 
 # simple warning message wrapper
 warn()
 {
-        echo >&2 "$(tput bold; tput setaf 1)[!] WARNING: ${*}$(tput sgr0)"
+	echo >&2 "$(tput bold; tput setaf 1)[!] WARNING: ${*}$(tput sgr0)"
 }
 
 # simple echo wrapper
 msg()
 {
-        echo "$(tput bold; tput setaf 2)[+] ${*}$(tput sgr0)"
+	echo "$(tput bold; tput setaf 2)[+] ${*}$(tput sgr0)"
 }
 
 # check for root privilege
 check_priv()
 {
-        if [ "$(id -u)" -ne 0 ]; then
-                err "you must be root"
-        fi
+	if [ "$(id -u)" -ne 0 ]; then
+		err "you must be root"
+	fi
 }
