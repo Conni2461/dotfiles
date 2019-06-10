@@ -31,7 +31,6 @@ createDir "${BASEDIR}"/.config/i3
 createDir "${BASEDIR}"/.config/i3blocks
 createDir "${BASEDIR}"/.config/newsboat
 createDir "${BASEDIR}"/.config/dunst
-createDir "${BASEDIR}"/.config/ranger
 createDir "${BASEDIR}"/.config/zathura
 createDir "${BASEDIR}"/.config/fontconfig
 
@@ -43,7 +42,6 @@ cp -R ~/.config/polybar/ "${BASEDIR}"/.config/
 cp ~/.config/newsboat/urls "${BASEDIR}"/.config/newsboat/
 cp ~/.config/newsboat/config "${BASEDIR}"/.config/newsboat/
 cp ~/.config/dunst/dunstrc "${BASEDIR}"/.config/dunst/
-cp ~/.config/ranger/rc.conf "${BASEDIR}"/.config/ranger/
 cp ~/.config/zathura/zathurarc "${BASEDIR}"/.config/zathura/zathurarc
 cp ~/.config/fontconfig/fonts.conf "${BASEDIR}"/.config/fontconfig/fonts.conf
 cp ~/.config/compton.conf "${BASEDIR}"/.config/compton.conf

@@ -1,67 +1,67 @@
 [user]
-        name = Simon Hauser
-        email = Simon.Hauser.XD@live.de
+		name = Simon Hauser
+		email = Simon.Hauser.XD@live.de
 
 [core]
-        editor = nvim
-        pager = diff-so-fancy | less --tabs=4 -RTX
+		editor = nvim
+		pager = diff-so-fancy | less --tabs=4 -RTX
 
 [alias]
-        aa = add --all
-        bv = branch -vv
-        ba = branch -ra
-        bd = branch -d
-        ca = commit --amend
-        cb = checkout -b
-        st = status --short --branch
-        ci = commit -v
-        co = checkout
-        di = diff
-        mm = merge --no-ff
-        br = branch
-        unstage = reset HEAD --
-        last = log -1 HEAD
-        uncommit = reset --soft HEAD~1
+		aa = add --all
+		bv = branch -vv
+		ba = branch -ra
+		bd = branch -d
+		ca = commit --amend
+		cb = checkout -b
+		st = status --short --branch
+		ci = commit -v
+		co = checkout
+		di = diff
+		mm = merge --no-ff
+		br = branch
+		unstage = reset HEAD --
+		last = log -1 HEAD
+		uncommit = reset --soft HEAD~1
 
-        graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+		graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 
-        # External commands
-        af = "!files=$(fgst -a); [ \"$files\" = \"\" ] && exit; git add $files && echo \"Files added:\" && echo \"$files\""
-        cf = "!files=$(fgst -c); [ \"$files\" = \"\" ] && exit; git checkout -- $files >/dev/null && echo \"Files checkouted:\" && echo \"$files\""
-        uf = "!files=$(fgst -u); [ \"$files\" = \"\" ] && exit; git reset HEAD -- $files >/dev/null && echo \"Files reseted:\" && echo \"$files\""
+		# External commands
+		af = "!files=$(fgst -a); [ \"$files\" = \"\" ] && exit; git add $files && echo \"Files added:\" && echo \"$files\""
+		cf = "!files=$(fgst -c); [ \"$files\" = \"\" ] && exit; git checkout -- $files >/dev/null && echo \"Files checkouted:\" && echo \"$files\""
+		uf = "!files=$(fgst -u); [ \"$files\" = \"\" ] && exit; git reset HEAD -- $files >/dev/null && echo \"Files reseted:\" && echo \"$files\""
 
-        pr = "!pull-request"
+		pr = "!pull-request"
 
 [color]
-        ui = true
+		ui = true
 
-        diff = auto
-        status = auto
-        branch = auto
+		diff = auto
+		status = auto
+		branch = auto
 
 [diff]
-        tool = vimdiff3
+		tool = vimdiff3
 
 [difftool "vimdiff3"]
-        path = nvim
+		path = nvim
 
 [merge]
-        tool = vimdiff3
+		tool = vimdiff3
 
 [mergetool "vimdiff3"]
-        path = nvim
+		path = nvim
 
 
 [color "diff-highlight"]
-        oldNormal = red bold
-        oldHighlight = red bold 52
-        newNormal = green bold
-        newHighlight = green bold 22
+		oldNormal = red bold
+		oldHighlight = red bold 52
+		newNormal = green bold
+		newHighlight = green bold 22
 
 [color "diff"]
-        meta = yellow
-        frag = magenta bold
-        commit = yellow bold
-        old = red bold
-        new = green bold
-        whitespace = red reverse
+		meta = yellow
+		frag = magenta bold
+		commit = yellow bold
+		old = red bold
+		new = green bold
+		whitespace = red reverse

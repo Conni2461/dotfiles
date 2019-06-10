@@ -7,32 +7,35 @@ fh() { print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | s
 
 declare -a DIRS
 
-savedir() {
-  local i
-  for ((i=1;i<=9;i++)); do
-    test "$1" = "${DIRS[$i]}" && return
-  done
-  for ((i=9;i>1;i--)); do
-    DIRS[$i]="${DIRS[((i-1))]}"
-  done
-  DIRS[1]="$1"
+savedir()
+{
+	local i
+	for ((i=1;i<=9;i++)); do
+		test "$1" = "${DIRS[$i]}" && return
+	done
+	for ((i=9;i>1;i--)); do
+		DIRS[$i]="${DIRS[((i-1))]}"
+	done
+	DIRS[1]="$1"
 }
 
-showdirs() {
-  local i=1
-  while [ "${DIRS[$i]}" ]; do
-    echo "$i: ${DIRS[$i]}"
-    ((i++))
-  done
+showdirs()
+{
+	local i=1
+	while [ "${DIRS[$i]}" ]; do
+		echo "$i: ${DIRS[$i]}"
+		((i++))
+	done
 }
 
-gotodir() {
-  local d
-  showdirs
-  printf "goto: "
-  read -n 1 d
-  echo
-  cd "${DIRS[$d]}"
+gotodir()
+{
+	local d
+	showdirs
+	printf "goto: "
+	read -n 1 d
+	echo
+	cd "${DIRS[$d]}"
 }
 
 PROMPT_COMMAND=prompt_command
