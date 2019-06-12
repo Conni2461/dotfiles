@@ -11,8 +11,7 @@
 	Plug 'godlygeek/tabular'                                        " Align plugin
 	Plug 'plasticboy/vim-markdown'                                  " Markdown plugin
 
-	Plug '/usr/bin/fzf'                                             " adding installed fzf package
-	Plug 'junegunn/fzf.vim'                                         " fzf vim plugin
+	Plug 'junegunn/fzf.vim'                                         " fuzzy findinding vim plugin
 
 	Plug 'junegunn/goyo.vim'                                        " writing mode use <leader>f
 	Plug 'junegunn/limelight.vim'                                   " focus mode
@@ -24,6 +23,7 @@
 	Plug 'scrooloose/nerdtree'                                      " Folder
 	Plug 'Xuyuanp/nerdtree-git-plugin'                              " Show git status in NerdTree
 	Plug 'ryanoasis/vim-devicons'                                   " Icons for NerdTree
+	Plug 'majutsushi/tagbar'
 	Plug 'terryma/vim-multiple-cursors'                             " Multiple cursor support
 
 	Plug 'editorconfig/editorconfig-vim'                            " Editorconfig
@@ -43,6 +43,8 @@
 	set mouse=a
 	set nohlsearch
 	set clipboard=unnamedplus
+	set noshowmode
+	set showtabline=0
 
 	set nocompatible
 	filetype plugin on
@@ -145,6 +147,7 @@
 " - Use g^] for ambiguous tags
 " - Use ^t to jump back up the tag stack
 	command! MakeTags !ctags -R .
+	nmap <leader>g <C-]>
 
 " Disable automatic commenting on newline:
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -197,8 +200,11 @@
 	set laststatus=2
 	let g:lightline = {
 		\'active': {
-		\'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
-		\'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding']]
+			\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'tabs', 'modified']],
+			\'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
+		\},
+		\'component_function': {
+			\'gitbranch': 'fugitive#head'
 		\}
 	\}
 
@@ -217,11 +223,14 @@
 	call deoplete#custom#var('omni', 'input_patterns', {'github': '[^ \t]+'})
 
 " Nerdtree plugin map
-	map <leader>n :NERDTreeToggle<CR><CR>
+	map <leader>n :NERDTreeToggle<CR>
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" FZF plugin: fuzzy search
-	map <leader>q :Files<CR>
+" Tagbar
+	nmap <leader>t :TagbarToggle<CR>
+
+" fuzzy search
+	map <leader>q :FZF<CR>
 
 " Limelight setup
 	let g:limelight_conceal_ctermfg=240
