@@ -20,20 +20,17 @@
 
 	Plug 'itchyny/lightline.vim'                                    " Statusline replacement
 
-	Plug 'scrooloose/nerdtree'                                      " Folder
-	Plug 'Xuyuanp/nerdtree-git-plugin'                              " Show git status in NerdTree
-	Plug 'ryanoasis/vim-devicons'                                   " Icons for NerdTree
-	Plug 'majutsushi/tagbar'
-	Plug 'terryma/vim-multiple-cursors'                             " Multiple cursor support
-
-	Plug 'editorconfig/editorconfig-vim'                            " Editorconfig
-	Plug 'Chiel92/vim-autoformat'                                   " Format current file
+	Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }          " Folder
+	Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }  " Show git status in NerdTree
+	Plug 'ryanoasis/vim-devicons', { 'on': 'NERDTreeToggle' }       " Icons for NerdTree
+	Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }              " Shows tags in right bar
+	Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }              " Tree to show things to undo
 
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }   " Autocomplete
 	Plug 'zchee/deoplete-clang'                                     " Autocomplete library for C/C++
 	Plug 'SevereOverfl0w/deoplete-github'                           " Deoplete github extension
 
-	Plug 'mbbill/undotree'                                          " Tree to show things to undo
+	Plug 'vim-syntastic/syntastic'                                  " Syntax checking
 	call plug#end()
 
 " Some Basics
@@ -103,9 +100,6 @@
 
 		" Fix folding color
 		hi Folded ctermfg=234 cterm=bold
-
-		" Split border
-		hi VertSplit ctermfg=238 ctermbg=247
 	endfunction
 	call ApplyColors()
 
