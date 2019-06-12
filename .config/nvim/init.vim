@@ -164,8 +164,18 @@
 	map <C-Up>    <C-w>k
 	map <C-Right> <C-w>l
 
-" Check file in shellcheck:
-	map <leader>s :!clear && shellcheck %<CR>
+" Check file in open error window:
+	let s:openErrors=0
+	function ToggleErrors()
+		if s:openErrors
+			lclose
+			let s:openErrors=0
+		else
+			Errors
+			let s:openErrors=1
+		endif
+	endfunction
+	map <leader>s :call ToggleErrors()<CR>
 
 " Compile document, be it groff/LaTeX/markdown/etc.
 	map <leader>c :w! \| !compiler <c-r>%<CR>
@@ -195,12 +205,27 @@
 	let g:lightline = {
 		\'active': {
 			\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'tabs', 'modified']],
-			\'right': [['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
+			\'right': [['syntastic', 'lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
+		\},
+		\'component_expand': {
+			\'syntastic': 'SyntasticStatuslineFlag',
+		\},
+		\'component_type': {
+			\'syntastic': 'error',
 		\},
 		\'component_function': {
 			\'gitbranch': 'fugitive#head'
 		\}
 	\}
+	function! SyntasticCheckHook(errors)
+		call lightline#update()
+	endfunction
+
+" Syntastic
+	let g:syntastic_always_populate_loc_list = 1
+	let g:syntastic_auto_loc_list = 0
+	autocmd VimEnter * SyntasticCheck
+	let g:syntastic_check_on_wq = 1
 
 " Enable deoplete by default
 	let g:deoplete#enable_at_startup = 1
