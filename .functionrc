@@ -3,7 +3,8 @@
 shdl() { curl -O $(curl -s http://sci-hub.tw/"$@" | grep location.href | grep -o http.*pdf) ; }
 se() { du -a ~/bin/* | awk '{print $2}' | fzf | xargs -r $EDITOR ; }
 vf() { fzf --bind ctrl-k:preview-up,shift-up:preview-up,ctrl-j:preview-down,shift-down:preview-down --preview='highlight --out-format=ansi --force {} | nl -ba' | xargs -r -I % $EDITOR % ; }
-fh() { print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed 's/ *[0-9]* *//' ) ; }
+writecmd (){ perl -e 'ioctl STDOUT, 0x5412, $_ for split //, do{ chomp($_ = <>); $_ }' ; }
+fh(){([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -re 's/^\s*[0-9]+\s*//' | writecmd ; }
 
 declare -a DIRS
 
