@@ -17,6 +17,7 @@
 	Plug 'junegunn/limelight.vim'                                   " focus mode
 	Plug 'vimwiki/vimwiki'                                          " vimwiki
 	Plug 'tpope/vim-commentary'                                     " Comment out line with gcc and in visual mode with gc
+	Plug 'tpope/vim-surround'                                       " Surround wordsR with anything
 
 	Plug 'itchyny/lightline.vim'                                    " Statusline replacement
 
@@ -49,6 +50,15 @@
 	set encoding=utf-8
 	set number relativenumber
 	set cursorline
+
+" History
+	set history=10000
+	set undofile
+	set undodir=~/.local/share/nvim/undo
+	set undolevels=1000
+	set undoreload=10000
+	set backupdir=~/.local/share/nvim/backup/
+	set directory=~/.local/share/nvim/backup/
 
 " Tabs and spaces
 	set tabstop=4
