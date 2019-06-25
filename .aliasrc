@@ -14,9 +14,6 @@ alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias mkd='mkdir -pv'
 
-# UNI
-alias uni="cd /mnt/external/Google\ Drive/Uni/6.\ Semester"
-
 # System
 alias p='sudo pacman'
 alias mirr='sudo pacman-mirrors --fasttrack && p -Syyu'
@@ -66,5 +63,4 @@ alias d='cd ~/docs'
 alias D='cd ~/Downloads'
 alias sc='cd ~/bin/scripts'
 alias cf='cd ~/.config'
-alias dot='cd ~/repos/dotfiles'
 alias mn='cd /mnt'

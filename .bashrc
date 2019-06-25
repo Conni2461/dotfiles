@@ -13,3 +13,5 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput se
 source "$HOME/.aliasrc"
 source "$HOME/.functionrc"
 source "$HOME/.aliascomp"
+
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
