@@ -17,7 +17,8 @@
 	Plug 'junegunn/limelight.vim'                                   " focus mode
 	Plug 'vimwiki/vimwiki'                                          " vimwiki
 	Plug 'tpope/vim-commentary'                                     " Comment out line with gcc and in visual mode with gc
-	Plug 'tpope/vim-surround'                                       " Surround wordsR with anything
+	Plug 'tpope/vim-surround'                                       " Surround words with anything
+	Plug 'RRethy/vim-illuminate'                                    " Highlight same words
 
 	Plug 'itchyny/lightline.vim'                                    " Statusline replacement
 
@@ -152,6 +153,14 @@
 	nnoremap H 0
 	nnoremap L $
 
+" Bubble single lines
+	nmap <C-Up> :m .-2<CR>
+	nmap <C-Down> :m  .+1<CR>
+
+" Bubble multiple lines
+	vnoremap <silent> <C-Up>  @='"zxk"zP`[V`]'<CR>
+	vnoremap <silent> <C-Down>  @='"zx"zp`[V`]'<CR>
+
 " Copy paste with primary clipboard
 	vnoremap <C-c> "+y
 	map <C-p> "+p
@@ -182,10 +191,6 @@
 	map <C-j> <C-w>j
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
-	map <C-Left>  <C-w>h
-	map <C-Down>  <C-w>j
-	map <C-Up>    <C-w>k
-	map <C-Right> <C-w>l
 
 " Check file in open error window:
 	let s:openErrors=0
@@ -210,6 +215,7 @@
 	let g:vimwiki_list = [{'path': '~/docs/shared/vimwiki/'}]
 	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
 	autocmd BufRead,BufNewFile *.tex set filetype=tex
+	autocmd BufRead,BufNewFile *.h set filetype=c
 
 " Enable Goyo by default for mutt writing
 	" Goyo's width will be the line limit in mutt.
@@ -312,3 +318,4 @@
 	runtime snippets/latex.vim
 	runtime snippets/bib.vim
 	runtime snippets/markdown.vim
+	runtime snippets/c.vim
