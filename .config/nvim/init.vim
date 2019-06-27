@@ -21,6 +21,7 @@
 	Plug 'RRethy/vim-illuminate'                                    " Highlight same words
 
 	Plug 'itchyny/lightline.vim'                                    " Statusline replacement
+	Plug 'mengelbrecht/lightline-bufferline'
 
 	Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }          " Folder
 	Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }  " Show git status in NerdTree
@@ -231,24 +232,28 @@
 
 " lightline configuration
 	set laststatus=2
+	let g:lightline#bufferline#show_number=1
 	let g:lightline = {
 		\'active': {
-			\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'tabs', 'modified']],
+			\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'buffers', 'modified']],
 			\'right': [['syntastic', 'lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
 		\},
 		\'component_expand': {
 			\'syntastic': 'SyntasticStatuslineFlag',
+			\'buffers': 'lightline#bufferline#buffers',
 		\},
 		\'component_type': {
 			\'syntastic': 'error',
+			\'buffers': 'tabsel',
 		\},
 		\'component_function': {
-			\'gitbranch': 'fugitive#head'
+			\'gitbranch': 'fugitive#head',
 		\}
 	\}
 	function! SyntasticCheckHook(errors)
 		call lightline#update()
 	endfunction
+	autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
 " Syntastic
 	let g:syntastic_always_populate_loc_list = 1

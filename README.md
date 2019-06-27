@@ -67,6 +67,7 @@ A full list of used plugins:
 - https://github.com/tpope/vim-surround
 - https://github.com/RRethy/vim-illuminate
 - https://github.com/itchyny/lightline.vim
+- https://github.com/mengelbrecht/lightline-bufferline
 - https://github.com/scrooloose/nerdtree
 - https://github.com/Xuyuanp/nerdtree-git-plugin
 - https://github.com/ryanoasis/vim-devicons
