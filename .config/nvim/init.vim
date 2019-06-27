@@ -47,9 +47,11 @@
 	set bg=light
 	set mouse=a
 	set nohlsearch
+	set smartcase
 	set clipboard=unnamedplus
 	set noshowmode
 	set showtabline=0
+	set scrolloff=2
 
 	set nocompatible
 	filetype plugin on
@@ -57,6 +59,12 @@
 	set encoding=utf-8
 	set number relativenumber
 	set cursorline
+
+	command! Vimrc :vs $MYVIMRC
+
+" Nvim specifics
+	" Shows realtime changes with :s/
+	set inccommand=nosplit
 
 " Sandwich! :w!! to save with sudo
 	ca w!! w !sudo tee >/dev/null "%"
@@ -182,6 +190,7 @@
 " Copy paste with primary clipboard
 	vnoremap <C-c> "+y
 	map <C-p> "+p
+	nnoremap s "_d
 
 " Enable autocompletion:
 	set wildmode=longest,list,full
