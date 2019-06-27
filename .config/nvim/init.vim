@@ -70,6 +70,15 @@
 	set backupdir=~/.local/share/nvim/backup/
 	set directory=~/.local/share/nvim/backup/
 
+" Buffer Setup
+	"set hidden
+	nnoremap <leader>n  :enew<CR>
+	nnoremap <leader>h  :bprevious<CR>
+	nnoremap <leader>l  :bnext<CR>
+	nnoremap <leader>bq :bp <BAR> bd #<CR>
+	nnoremap <leader>bl :ls<CR>
+
+
 " Tabs and spaces
 	set tabstop=4
 	set shiftwidth=4
@@ -88,7 +97,7 @@
 			let s:defaultList=1
 		endif
 	endfunction
-	nnoremap <leader>l :call ToggleListchars()<CR>
+	nnoremap <leader>v :call ToggleListchars()<CR>
 
 " Apply colors called at the beginning and when toggling goyo
 	function ApplyColors()
@@ -200,12 +209,6 @@
 	map <C-j> <C-w>j
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
-
-" Buffer Navigation
-	nnoremap <leader>3 :b#<CR>
-	nnoremap <leader>n :bn<CR>
-	nnoremap Q :bd!<CR>
-	nnoremap <leader>, :Buffers<CR>
 
 " Check file in open error window:
 	let s:openErrors=0
