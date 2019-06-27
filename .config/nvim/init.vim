@@ -232,10 +232,11 @@
 
 " lightline configuration
 	set laststatus=2
+	let g:lightline#bufferline#read_only=''
 	let g:lightline#bufferline#show_number=1
 	let g:lightline = {
 		\'active': {
-			\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'buffers', 'modified']],
+			\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'buffers']],
 			\'right': [['syntastic', 'lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
 		\},
 		\'component_expand': {
