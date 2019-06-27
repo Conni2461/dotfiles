@@ -1,5 +1,8 @@
 " Plugin
 	call plug#begin('~/.config/nvim/plugged')
+	Plug 'mhinz/vim-startify'                                       " Fancy startup screen
+	Plug 'tpope/vim-obsession'                                      " Better session support with :mksession
+
 	Plug 'yuttie/comfortable-motion.vim'                            " Smooth Scrolling
 
 	Plug 'tpope/vim-fugitive'                                       " A Git wrapper so awesome, it should be illegal
@@ -13,6 +16,7 @@
 
 	Plug 'junegunn/fzf.vim'                                         " fuzzy findinding vim plugin
 
+	Plug 'reedes/vim-wordy'                                         " Grammar checking plugin
 	Plug 'junegunn/goyo.vim'                                        " writing mode use <leader>f
 	Plug 'junegunn/limelight.vim'                                   " focus mode
 	Plug 'vimwiki/vimwiki'                                          " vimwiki
@@ -52,6 +56,9 @@
 	set encoding=utf-8
 	set number relativenumber
 	set cursorline
+
+" Sandwich! :w!! to save with sudo
+	ca w!! w !sudo tee >/dev/null "%"
 
 " History
 	set history=10000

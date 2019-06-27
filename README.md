@@ -47,10 +47,12 @@ Git bare article https://www.atlassian.com/git/tutorials/dotfiles
 ## Vim Plugins
 
 To install all VimPlugins open nvim and run: `:PlugInstall`
-All futher commands can be found on [vim-plugs github page](https://github.com/junegunn/vim-plug).
+All further commands can be found on [vim-plugs github page](https://github.com/junegunn/vim-plug).
 
 A full list of used plugins:
 
+- https://github.com/mhinz/vim-startify
+- https://github.com/tpope/vim-obsession
 - https://github.com/yuttie/comfortable-motion.vim
 - https://github.com/tpope/vim-fugitive
 - https://github.com/tpope/vim-rhubarb
@@ -60,6 +62,7 @@ A full list of used plugins:
 - https://github.com/godlygeek/tabular
 - https://github.com/plasticboy/vim-markdown
 - https://github.com/junegunn/fzf.vim
+- https://github.com/reedes/vim-wordy
 - https://github.com/junegunn/goyo.vim
 - https://github.com/junegunn/limelight.vim
 - https://github.com/vimwiki/vimwiki
