@@ -8,6 +8,7 @@
 	Plug 'tpope/vim-fugitive'                                       " A Git wrapper so awesome, it should be illegal
 	Plug 'tpope/vim-rhubarb'                                        " Github extension for fugitive
 	Plug 'airblade/vim-gitgutter'                                   " Shows git diff in 'gutter' (sign column)
+	Plug 'rhysd/git-messenger.vim'                                  " Show git messages with <leader>gm
 
 	Plug 'gisphm/vim-gitignore'                                     " gitignore support
 	Plug 'PotatoesMaster/i3-vim-syntax'                             " i3 support
@@ -245,6 +246,7 @@
 
 " lightline configuration
 	set laststatus=2
+	let g:lightline#bufferline#filename_modifier = ':t'
 	let g:lightline#bufferline#read_only=''
 	let g:lightline#bufferline#show_number=1
 	let g:lightline = {

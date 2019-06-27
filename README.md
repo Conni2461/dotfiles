@@ -57,6 +57,7 @@ A full list of used plugins:
 - https://github.com/tpope/vim-fugitive
 - https://github.com/tpope/vim-rhubarb
 - https://github.com/airblade/vim-gitgutter
+- https://github.com/rhysd/git-messenger.vim
 - https://github.com/gisphm/vim-gitignore
 - https://github.com/PotatoesMaster/i3-vim-syntax
 - https://github.com/godlygeek/tabular
