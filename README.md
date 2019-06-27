@@ -77,3 +77,8 @@ A full list of used plugins:
 - https://github.com/zchee/deoplete-clang
 - https://github.com/SevereOverfl0w/deoplete-github
 - https://github.com/vim-syntastic/syntastic
+
+
+## Additional stuff
+
+Dotfiles also provide [clipmenu](https://github.com/cdown/clipmenu) which requires dmenu, xsel and clipnotify.
