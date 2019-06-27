@@ -66,7 +66,7 @@
 	set tabstop=4
 	set shiftwidth=4
 	set noexpandtab
-	set listchars=tab:\¦\ " Set default tab charlist to pipe with space at the end
+	set listchars=tab:\¦\ " Required comment
 	set list
 	let s:defaultList=1
 	nnoremap <leader>r :%retab!<CR>
@@ -76,7 +76,7 @@
 			set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:·
 			let s:defaultList=0
 		else
-			set listchars=tab:\|\ " Set default tab charlist to pipe with space at the end
+			set listchars=tab:\¦\ " Required comment
 			let s:defaultList=1
 		endif
 	endfunction
