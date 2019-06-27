@@ -180,9 +180,9 @@
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Spellcheck set to <leader>e for English and <leader>d for German
-	map <leader>e :setlocal spell! spelllang=en_us<CR>
-	map <leader>d :setlocal spell! spelllang=de_de<CR>
-	map <leader>b :setlocal spell! spelllang=en_us,de_de<CR>
+	nmap <leader>e :setlocal spell! spelllang=en_us<CR>
+	nmap <leader>d :setlocal spell! spelllang=de_de<CR>
+	nmap <leader>b :setlocal spell! spelllang=en_us,de_de<CR>
 
 " Splits open at the bottom and right
 	set splitbelow splitright
@@ -210,13 +210,13 @@
 			let s:openErrors=1
 		endif
 	endfunction
-	map <leader>s :call ToggleErrors()<CR>
+	nmap <leader>s :call ToggleErrors()<CR>
 
 " Compile document, be it groff/LaTeX/markdown/etc.
-	map <leader>c :w! \| !compiler <c-r>%<CR>
+	nmap <leader>c :w! \| !compiler <c-r>%<CR>
 
 " Open corresponding .pdf/.html or preview
-	map <leader>p :!opout <c-r>%<CR><CR>
+	nmap <leader>p :!opout <c-r>%<CR><CR>
 
 " Ensure files are read as what I want:
 	let g:vimwiki_list = [{'path': '~/docs/shared/vimwiki/'}]
@@ -283,14 +283,14 @@
 	call deoplete#custom#var('omni', 'input_patterns', {'github': '[^ \t]+'})
 
 " Nerdtree plugin map
-	map <leader>t :NERDTreeToggle<CR>
+	nmap <leader>t :NERDTreeToggle<CR>
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Tagbar
 	nmap <leader>o :TagbarToggle<CR>
 
 " fuzzy search
-	map <leader>q :FZF<CR>
+	nmap <leader>q :FZF<CR>
 
 " Limelight setup
 	let g:limelight_conceal_ctermfg=240
@@ -315,7 +315,7 @@
 			set nolist
 		endif
 	endfunction
-	map <leader>f :call ToggleGoyo()<CR>
+	nmap <leader>f :call ToggleGoyo()<CR>
 
 " Undotree shortcut
 	nnoremap <leader>u :UndotreeToggle<CR>
