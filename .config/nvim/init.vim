@@ -193,6 +193,12 @@
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
 
+" Buffer Navigation
+	nnoremap <leader>3 :b#<CR>
+	nnoremap <leader>n :bn<CR>
+	nnoremap Q :bd!<CR>
+	nnoremap <leader>, :Buffers<CR>
+
 " Check file in open error window:
 	let s:openErrors=0
 	function ToggleErrors()
@@ -277,11 +283,11 @@
 	call deoplete#custom#var('omni', 'input_patterns', {'github': '[^ \t]+'})
 
 " Nerdtree plugin map
-	map <leader>n :NERDTreeToggle<CR>
+	map <leader>t :NERDTreeToggle<CR>
 	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " Tagbar
-	nmap <leader>t :TagbarToggle<CR>
+	nmap <leader>o :TagbarToggle<CR>
 
 " fuzzy search
 	map <leader>q :FZF<CR>
