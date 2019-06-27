@@ -23,7 +23,7 @@ config checkout
 config config --local status.showUntrackedFiles no
 ```
 
-## Homw to work with git bare dotfiles
+## Hom to work with git bare dotfiles
 
 ```
 # Show status of dotfile repository
@@ -41,3 +41,38 @@ Also you should change the email and name in the `.gitconfig` as well as the rem
 ```
 git remote set-url origin <url>
 ```
+
+Git bare article https://www.atlassian.com/git/tutorials/dotfiles
+
+## Vim Plugins
+
+To install all VimPlugins open nvim and run: `:PlugInstall`
+All futher commands can be found on [vim-plugs github page](https://github.com/junegunn/vim-plug).
+
+A full list of used plugins:
+
+- https://github.com/yuttie/comfortable-motion.vim
+- https://github.com/tpope/vim-fugitive
+- https://github.com/tpope/vim-rhubarb
+- https://github.com/airblade/vim-gitgutter
+- https://github.com/gisphm/vim-gitignore
+- https://github.com/PotatoesMaster/i3-vim-syntax
+- https://github.com/godlygeek/tabular
+- https://github.com/plasticboy/vim-markdown
+- https://github.com/junegunn/fzf.vim
+- https://github.com/junegunn/goyo.vim
+- https://github.com/junegunn/limelight.vim
+- https://github.com/vimwiki/vimwiki
+- https://github.com/tpope/vim-commentary
+- https://github.com/tpope/vim-surround
+- https://github.com/RRethy/vim-illuminate
+- https://github.com/itchyny/lightline.vim
+- https://github.com/scrooloose/nerdtree
+- https://github.com/Xuyuanp/nerdtree-git-plugin
+- https://github.com/ryanoasis/vim-devicons
+- https://github.com/majutsushi/tagbar
+- https://github.com/mbbill/undotree
+- https://github.com/Shougo/deoplete.nvim
+- https://github.com/zchee/deoplete-clang
+- https://github.com/SevereOverfl0w/deoplete-github
+- https://github.com/vim-syntastic/syntastic
