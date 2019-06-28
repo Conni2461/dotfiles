@@ -2,6 +2,7 @@
 	call plug#begin('~/.config/nvim/plugged')
 	Plug 'mhinz/vim-startify'                                       " Fancy startup screen
 	Plug 'tpope/vim-obsession'                                      " Better session support with :mksession
+	Plug 'kshenoy/vim-signature'                                    " Marker
 
 	Plug 'yuttie/comfortable-motion.vim'                            " Smooth Scrolling
 

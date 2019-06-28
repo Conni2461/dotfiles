@@ -53,6 +53,7 @@ A full list of used plugins:
 
 - https://github.com/mhinz/vim-startify
 - https://github.com/tpope/vim-obsession
+- https://github.com/kshenoy/vim-signature
 - https://github.com/yuttie/comfortable-motion.vim
 - https://github.com/tpope/vim-fugitive
 - https://github.com/tpope/vim-rhubarb
