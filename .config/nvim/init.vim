@@ -11,6 +11,8 @@
 	Plug 'airblade/vim-gitgutter'                                   " Shows git diff in 'gutter' (sign column)
 	Plug 'rhysd/git-messenger.vim'                                  " Show git messages with <leader>gm
 
+	Plug 'vim-scripts/a.vim'                                        " Switch between header and source files with :A
+	Plug 'octol/vim-cpp-enhanced-highlight'                         " additional c++ highlighting
 	Plug 'gisphm/vim-gitignore'                                     " gitignore support
 	Plug 'PotatoesMaster/i3-vim-syntax'                             " i3 support
 	Plug 'godlygeek/tabular'                                        " Align plugin
@@ -83,9 +85,8 @@
 	nnoremap <leader>n  :enew<CR>
 	nnoremap <leader>h  :bprevious<CR>
 	nnoremap <leader>l  :bnext<CR>
-	nnoremap <leader>bq :bp <BAR> bd #<CR>
+	nnoremap <leader>bq :bp <BAR> bd # <BAR> call lightline#update()<CR>
 	nnoremap <leader>bl :ls<CR>
-
 
 " Tabs and spaces
 	set tabstop=4
@@ -278,7 +279,6 @@
 			\'gitbranch': 'fugitive#head',
 		\}
 	\}
-	autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
 " ALE
 	let g:ale_linters = {'c': ['clangd'], }

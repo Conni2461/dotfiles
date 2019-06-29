@@ -59,6 +59,8 @@ A full list of used plugins:
 - https://github.com/tpope/vim-rhubarb
 - https://github.com/airblade/vim-gitgutter
 - https://github.com/rhysd/git-messenger.vim
+- https://github.com/vim-scripts/a.vim
+- https://github.com/octol/vim-cpp-enhanced-highlight
 - https://github.com/gisphm/vim-gitignore
 - https://github.com/PotatoesMaster/i3-vim-syntax
 - https://github.com/godlygeek/tabular
@@ -73,15 +75,15 @@ A full list of used plugins:
 - https://github.com/RRethy/vim-illuminate
 - https://github.com/itchyny/lightline.vim
 - https://github.com/mengelbrecht/lightline-bufferline
+- https://github.com/maximbaz/lightline-ale'
 - https://github.com/scrooloose/nerdtree
 - https://github.com/Xuyuanp/nerdtree-git-plugin
 - https://github.com/ryanoasis/vim-devicons
 - https://github.com/majutsushi/tagbar
 - https://github.com/mbbill/undotree
 - https://github.com/Shougo/deoplete.nvim
-- https://github.com/zchee/deoplete-clang
+- https://github.com/w0rp/ale
 - https://github.com/SevereOverfl0w/deoplete-github
-- https://github.com/vim-syntastic/syntastic
 
 
 ## Additional stuff
