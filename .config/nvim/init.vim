@@ -28,6 +28,7 @@
 
 	Plug 'itchyny/lightline.vim'                                    " Statusline replacement
 	Plug 'mengelbrecht/lightline-bufferline'
+	Plug 'maximbaz/lightline-ale'
 
 	Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }          " Folder
 	Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }  " Show git status in NerdTree
@@ -36,10 +37,8 @@
 	Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }              " Tree to show things to undo
 
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }   " Autocomplete
-	Plug 'zchee/deoplete-clang'                                     " Autocomplete library for C/C++
+	Plug 'w0rp/ale'                                                 " Syntax checking with LSP
 	Plug 'SevereOverfl0w/deoplete-github'                           " Deoplete github extension
-
-	Plug 'vim-syntastic/syntastic'                                  " Syntax checking
 	call plug#end()
 
 " Some Basics
@@ -220,19 +219,6 @@
 	map <C-k> <C-w>k
 	map <C-l> <C-w>l
 
-" Check file in open error window:
-	let s:openErrors=0
-	function ToggleErrors()
-		if s:openErrors
-			lclose
-			let s:openErrors=0
-		else
-			Errors
-			let s:openErrors=1
-		endif
-	endfunction
-	nmap <leader>s :call ToggleErrors()<CR>
-
 " Compile document, be it groff/LaTeX/markdown/etc.
 	nmap <leader>c :w! \| !compiler <c-r>%<CR>
 
@@ -259,44 +245,59 @@
 
 " lightline configuration
 	set laststatus=2
+
 	let g:lightline#bufferline#filename_modifier = ':t'
 	let g:lightline#bufferline#read_only=''
 	let g:lightline#bufferline#show_number=1
+
+	let g:lightline#ale#indicator_checking = "\uf110"
+	let g:lightline#ale#indicator_warnings = "\uf071"
+	let g:lightline#ale#indicator_errors = "\uf05e"
+	let g:lightline#ale#indicator_ok = "\uf00c"
+
 	let g:lightline = {
 		\'active': {
 			\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'buffers']],
-			\'right': [['syntastic', 'lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
+			\'right': [['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
 		\},
 		\'component_expand': {
-			\'syntastic': 'SyntasticStatuslineFlag',
+			\'linter_checking': 'lightline#ale#checking',
+			\'linter_warnings': 'lightline#ale#warnings',
+			\'linter_errors': 'lightline#ale#errors',
+			\'linter_ok': 'lightline#ale#ok',
 			\'buffers': 'lightline#bufferline#buffers',
 		\},
 		\'component_type': {
-			\'syntastic': 'error',
+			\'linter_checking': 'left',
+			\'linter_warnings': 'warning',
+			\'linter_errors': 'error',
+			\'linter_ok': 'left',
 			\'buffers': 'tabsel',
 		\},
 		\'component_function': {
 			\'gitbranch': 'fugitive#head',
 		\}
 	\}
-	function! SyntasticCheckHook(errors)
-		call lightline#update()
-	endfunction
 	autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
-" Syntastic
-	let g:syntastic_always_populate_loc_list = 1
-	let g:syntastic_auto_loc_list = 0
-	autocmd VimEnter * SyntasticCheck
-	let g:syntastic_check_on_wq = 1
+" ALE
+	let g:ale_linters = {'c': ['clangd'], }
+	function ToggleErrors()
+		if g:ale_open_list
+			let g:ale_open_list = 0
+			lclose
+		else
+			let g:ale_open_list = 1
+			ALELint
+		endif
+	endfunction
+	nmap <leader>s :call ToggleErrors()<CR>
 
 " Enable deoplete by default
 	let g:deoplete#enable_at_startup = 1
+	let g:deoplete#enable_refresh_always = 1
 	let g:deoplete#sources = {}
-
-" Required deoplete clang settings
-	let g:deoplete#sources#clang#libclang_path = '/usr/lib/libclang.so'
-	let g:deoplete#sources#clang#clang_header = '/usr/lib/clang/'
+	call g:deoplete#custom#option('sources', { '_': ['ale'],})
 
 " Deoplete setup for github extension
 	let g:deoplete#sources.gitcommit=['github']
