@@ -11,7 +11,6 @@
 	Plug 'airblade/vim-gitgutter'                                   " Shows git diff in 'gutter' (sign column)
 	Plug 'rhysd/git-messenger.vim'                                  " Show git messages with <leader>gm
 
-	Plug 'vim-scripts/a.vim'                                        " Switch between header and source files with :A
 	Plug 'octol/vim-cpp-enhanced-highlight'                         " additional c++ highlighting
 	Plug 'gisphm/vim-gitignore'                                     " gitignore support
 	Plug 'PotatoesMaster/i3-vim-syntax'                             " i3 support
@@ -20,13 +19,16 @@
 
 	Plug 'junegunn/fzf.vim'                                         " fuzzy findinding vim plugin
 
-	Plug 'reedes/vim-wordy'                                         " Grammar checking plugin
 	Plug 'junegunn/goyo.vim'                                        " writing mode use <leader>f
 	Plug 'junegunn/limelight.vim'                                   " focus mode
 	Plug 'vimwiki/vimwiki'                                          " vimwiki
 	Plug 'tpope/vim-commentary'                                     " Comment out line with gcc and in visual mode with gc
 	Plug 'tpope/vim-surround'                                       " Surround words with anything
 	Plug 'RRethy/vim-illuminate'                                    " Highlight same words
+
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }   " Autocomplete
+	Plug 'w0rp/ale'                                                 " Syntax checking with LSP
+	Plug 'SevereOverfl0w/deoplete-github'                           " Deoplete github extension
 
 	Plug 'itchyny/lightline.vim'                                    " Statusline replacement
 	Plug 'mengelbrecht/lightline-bufferline'
@@ -37,10 +39,6 @@
 	Plug 'ryanoasis/vim-devicons', { 'on': 'NERDTreeToggle' }       " Icons for NerdTree
 	Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }              " Shows tags in right bar
 	Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }              " Tree to show things to undo
-
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }   " Autocomplete
-	Plug 'w0rp/ale'                                                 " Syntax checking with LSP
-	Plug 'SevereOverfl0w/deoplete-github'                           " Deoplete github extension
 	call plug#end()
 
 " Some Basics
@@ -282,6 +280,11 @@
 
 " ALE
 	let g:ale_linters = {'c': ['clangd'], }
+
+	let g:ale_lint_on_text_changed = 'never'
+	let g:ale_lint_on_insert_leave = 0
+	let g:ale_lint_on_enter = 0
+
 	function ToggleErrors()
 		if g:ale_open_list
 			let g:ale_open_list = 0
