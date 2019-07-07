@@ -11,6 +11,7 @@
 	Plug 'airblade/vim-gitgutter'                                   " Shows git diff in 'gutter' (sign column)
 	Plug 'rhysd/git-messenger.vim'                                  " Show git messages with <leader>gm
 
+	Plug 'ericcurtin/CurtineIncSw.vim'
 	Plug 'octol/vim-cpp-enhanced-highlight'                         " additional c++ highlighting
 	Plug 'gisphm/vim-gitignore'                                     " gitignore support
 	Plug 'PotatoesMaster/i3-vim-syntax'                             " i3 support

@@ -20,7 +20,7 @@ fmailbox()
 
 fweather()
 {
-		rweather=$(weather)
+		rweather=$(weather kornwestheim)
 		[ "${rweather}" != "" ] && echo "${rweather} | "
 }
 
@@ -34,7 +34,7 @@ fbattery()
 }
 
 while true; do
-		xsetroot -name "$(fnews)$(fpacpackages)$(fmailbox)$(fweather)$(volume) | $(internet) | $(disk /home 🏠) | $(fbattery BAT1) | $(fbattery BAT2) | 📅 $(clock)"
+		xsetroot -name "$(fnews)$(fpacpackages)$(fmailbox)$(fweather)$(volume) | $(internet) | $(fbattery BAT1) | $(fbattery BAT2) | 📅 $(clock)"
 
 		sleep 1m
 done
