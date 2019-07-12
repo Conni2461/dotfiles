@@ -1,45 +1,46 @@
 " Plugin
 	call plug#begin('~/.config/nvim/plugged')
-	Plug 'mhinz/vim-startify'                                       " Fancy startup screen
-	Plug 'tpope/vim-obsession'                                      " Better session support with :mksession
-	Plug 'kshenoy/vim-signature'                                    " Marker
+	Plug 'mhinz/vim-startify'
+	Plug 'tpope/vim-obsession'
+	Plug 'kshenoy/vim-signature'
 
-	Plug 'yuttie/comfortable-motion.vim'                            " Smooth Scrolling
+	Plug 'yuttie/comfortable-motion.vim'
 
-	Plug 'tpope/vim-fugitive'                                       " A Git wrapper so awesome, it should be illegal
-	Plug 'tpope/vim-rhubarb'                                        " Github extension for fugitive
-	Plug 'airblade/vim-gitgutter'                                   " Shows git diff in 'gutter' (sign column)
-	Plug 'rhysd/git-messenger.vim'                                  " Show git messages with <leader>gm
+	Plug 'tpope/vim-fugitive'
+	Plug 'tpope/vim-rhubarb'
+	Plug 'airblade/vim-gitgutter'
+	Plug 'rhysd/git-messenger.vim'
 
 	Plug 'ericcurtin/CurtineIncSw.vim'
-	Plug 'octol/vim-cpp-enhanced-highlight'                         " additional c++ highlighting
-	Plug 'gisphm/vim-gitignore'                                     " gitignore support
-	Plug 'PotatoesMaster/i3-vim-syntax'                             " i3 support
-	Plug 'godlygeek/tabular'                                        " Align plugin
-	Plug 'plasticboy/vim-markdown'                                  " Markdown plugin
+	Plug 'octol/vim-cpp-enhanced-highlight'
+	Plug 'gisphm/vim-gitignore'
+	Plug 'PotatoesMaster/i3-vim-syntax'
+	Plug 'godlygeek/tabular'
+	Plug 'plasticboy/vim-markdown'
 
-	Plug 'junegunn/fzf.vim'                                         " fuzzy findinding vim plugin
+	Plug 'junegunn/fzf.vim'
 
-	Plug 'junegunn/goyo.vim'                                        " writing mode use <leader>f
-	Plug 'junegunn/limelight.vim'                                   " focus mode
-	Plug 'vimwiki/vimwiki'                                          " vimwiki
-	Plug 'tpope/vim-commentary'                                     " Comment out line with gcc and in visual mode with gc
-	Plug 'tpope/vim-surround'                                       " Surround words with anything
-	Plug 'RRethy/vim-illuminate'                                    " Highlight same words
+	Plug 'junegunn/goyo.vim'
+	Plug 'junegunn/limelight.vim'
+	Plug 'vimwiki/vimwiki'
+	Plug 'tpope/vim-commentary'
+	Plug 'tpope/vim-surround'
+	Plug 'RRethy/vim-illuminate'
 
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }   " Autocomplete
-	Plug 'w0rp/ale'                                                 " Syntax checking with LSP
-	Plug 'SevereOverfl0w/deoplete-github'                           " Deoplete github extension
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	Plug 'w0rp/ale'
+	Plug 'SevereOverfl0w/deoplete-github'
 
-	Plug 'itchyny/lightline.vim'                                    " Statusline replacement
+	Plug 'itchyny/lightline.vim'
 	Plug 'mengelbrecht/lightline-bufferline'
 	Plug 'maximbaz/lightline-ale'
 
-	Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }          " Folder
-	Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }  " Show git status in NerdTree
-	Plug 'ryanoasis/vim-devicons', { 'on': 'NERDTreeToggle' }       " Icons for NerdTree
-	Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }              " Shows tags in right bar
-	Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }              " Tree to show things to undo
+	Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+	Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
+	Plug 'ryanoasis/vim-devicons', { 'on': 'NERDTreeToggle' }
+	Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+	Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+	Plug 'wsdjeg/vim-todo', { 'on': 'OpenTodo' }
 	call plug#end()
 
 " Some Basics
