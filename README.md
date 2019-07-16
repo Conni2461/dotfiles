@@ -10,7 +10,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # Ignore the .cfg folder. This makes sure that you don't create weird recursion problems
 echo ".cfg" >> .gitignore
 # Close the repository
-git clone --bare https://github.com/conni2461/dotfiles.git
+git clone --bare https://github.com/conni2461/dotfiles.git $HOME/.cfg
 # Get the files
 config checkout
 ```
