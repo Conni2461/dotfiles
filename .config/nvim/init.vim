@@ -46,6 +46,8 @@
 " Some Basics
 	let mapleader = " "
 
+	imap jk <Esc>
+
 	set bg=light
 	set mouse=a
 	set nohlsearch
