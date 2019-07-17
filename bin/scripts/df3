@@ -1,0 +1,4 @@
+#!/bin/sh
+
+df -kHT | head -n 1
+df -kHT | grep '/dev/sda'
