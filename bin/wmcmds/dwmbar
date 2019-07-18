@@ -18,6 +18,12 @@ fmailbox()
 	[ "${rbox}" != "" ] && echo "📬 ${rbox} | "
 }
 
+fweather()
+{
+	rweather=$(weather)
+	[ "${rweather}" != "" ] && echo "${rweather} | "
+}
+
 fbattery()
 {
 	capacity=$(cat /sys/class/power_supply/"$1"/capacity) || exit
@@ -28,7 +34,7 @@ fbattery()
 }
 
 while true; do
-	xsetroot -name "$(fnews)$(fpacpackages)$(fmailbox)$(volume) | $(internet) | 📅 $(clock)"
+	xsetroot -name "$(fnews)$(fpacpackages)$(fmailbox)$(fweather)$(volume) | $(internet) | $(fbattery BAT1) | $(fbattery BAT2) | 📅 $(clock)"
 
 	sleep 1m
 done
