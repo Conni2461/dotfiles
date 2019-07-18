@@ -19,6 +19,6 @@ numlockx &
 
 case $1 in
 		i3  )   exec i3  ;;
-		dwm )   exec dwm ;;
-		*   )   exec dwm ;;
+		dwm )   exec startdwm ;;
+		*   )   exec startdwm ;;
 esac
