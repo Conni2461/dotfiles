@@ -40,7 +40,6 @@
 	Plug 'ryanoasis/vim-devicons', { 'on': 'NERDTreeToggle' }
 	Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 	Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-	Plug 'wsdjeg/vim-todo', { 'on': 'OpenTodo' }
 	call plug#end()
 
 " Some Basics

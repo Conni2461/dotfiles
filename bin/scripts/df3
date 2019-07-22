@@ -1,4 +1,4 @@
 #!/bin/sh
 
 df -kHT | head -n 1
-df -kHT | grep '/dev/sda'
+df -kHT | grep -E '/dev/sda|/dev/sdb'

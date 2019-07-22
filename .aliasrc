@@ -7,8 +7,8 @@ alias slack="weechat"
 
 # ls and other file stuff
 alias ls='ls -hN --color=auto --group-directories-first'
-alias l='exa -bghl -sname'
-alias ll='exa -bghla -sname'
+alias l='exa -bghl -sname --icons --git'
+alias ll='exa -bghla -sname --icons --git'
 alias tree='exa --tree'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
