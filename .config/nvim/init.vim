@@ -27,13 +27,10 @@
 	Plug 'tpope/vim-surround'
 	Plug 'RRethy/vim-illuminate'
 
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-	Plug 'w0rp/ale'
-	Plug 'SevereOverfl0w/deoplete-github'
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 	Plug 'itchyny/lightline.vim'
 	Plug 'mengelbrecht/lightline-bufferline'
-	Plug 'maximbaz/lightline-ale'
 
 	Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 	Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
@@ -57,6 +54,11 @@
 	set scrolloff=2
 
 	set nocompatible
+	set cmdheight=2
+	set updatetime=300
+	set shortmess+=c
+	set signcolumn=yes
+
 	filetype plugin on
 	syntax on
 	set encoding=utf-8
@@ -202,7 +204,6 @@
 " - Use g^] for ambiguous tags
 " - Use ^t to jump back up the tag stack
 	command! MakeTags !ctags -R .
-	nmap <leader>g <C-]>
 
 " Disable automatic commenting on newline:
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -252,64 +253,69 @@
 	let g:lightline#bufferline#read_only=''
 	let g:lightline#bufferline#show_number=1
 
-	let g:lightline#ale#indicator_checking = "\uf110"
-	let g:lightline#ale#indicator_warnings = "\uf071"
-	let g:lightline#ale#indicator_errors = "\uf05e"
-	let g:lightline#ale#indicator_ok = "\uf00c"
-
 	let g:lightline = {
 		\'active': {
 			\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'buffers']],
-			\'right': [['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
+			\'right': [['cocstatus', 'currentfunction', 'lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
 		\},
 		\'component_expand': {
-			\'linter_checking': 'lightline#ale#checking',
-			\'linter_warnings': 'lightline#ale#warnings',
-			\'linter_errors': 'lightline#ale#errors',
-			\'linter_ok': 'lightline#ale#ok',
 			\'buffers': 'lightline#bufferline#buffers',
 		\},
 		\'component_type': {
-			\'linter_checking': 'left',
-			\'linter_warnings': 'warning',
-			\'linter_errors': 'error',
-			\'linter_ok': 'left',
 			\'buffers': 'tabsel',
 		\},
 		\'component_function': {
 			\'gitbranch': 'fugitive#head',
+			\'cocstatus': 'coc#status',
+			\'currentfunction': 'CocCurrentFunction'
 		\}
 	\}
 
-" ALE
-	let g:ale_linters = {'c': ['clangd'], }
+" Coc Setup
+	let g:coc_global_extensions =['coc-json', 'coc-python', 'coc-highlight', 'coc-git', 'coc-texlab']
+	inoremap <silent><expr> <TAB>
+		\ pumvisible() ? "\<C-n>" :
+		\ <SID>check_back_space() ? "\<TAB>" :
+		\ coc#refresh()
+	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
-	let g:ale_lint_on_text_changed = 'never'
-	let g:ale_lint_on_insert_leave = 0
-	let g:ale_lint_on_enter = 0
+	function! s:check_back_space() abort
+		let col = col('.') - 1
+		return !col || getline('.')[col - 1]  =~# '\s'
+	endfunction
 
-	function ToggleErrors()
-		if g:ale_open_list
-			let g:ale_open_list = 0
-			lclose
+	inoremap <silent><expr> <c-space> coc#refresh()
+	inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+	" Use `[c` and `]c` to navigate diagnostics
+	nmap <silent> [c <Plug>(coc-diagnostic-prev)
+	nmap <silent> ]c <Plug>(coc-diagnostic-next)
+
+	" Remap keys for gotos
+	nmap <silent> gd <Plug>(coc-definition)
+	nmap <silent> gy <Plug>(coc-type-definition)
+	nmap <silent> gi <Plug>(coc-implementation)
+	nmap <silent> gr <Plug>(coc-references)
+
+	" Use K to show documentation in preview window
+	nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+	function! s:show_documentation()
+		if (index(['vim','help'], &filetype) >= 0)
+			execute 'h '.expand('<cword>')
 		else
-			let g:ale_open_list = 1
-			ALELint
+			call CocAction('doHover')
 		endif
 	endfunction
-	nmap <leader>s :call ToggleErrors()<CR>
 
-" Enable deoplete by default
-	let g:deoplete#enable_at_startup = 1
-	let g:deoplete#enable_refresh_always = 1
-	let g:deoplete#sources = {}
-	call g:deoplete#custom#option('sources', { '_': ['ale'],})
+	autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Deoplete setup for github extension
-	let g:deoplete#sources.gitcommit=['github']
-	let g:deoplete#keyword_patterns = {}
-	let g:deoplete#keyword_patterns.gitcommit = '[^ \t]+'
-	call deoplete#custom#var('omni', 'input_patterns', {'github': '[^ \t]+'})
+	" Remap for rename current word
+	nmap <leader>rn <Plug>(coc-rename)
+
+	" Remap for format selected region
+	xmap <leader>f  <Plug>(coc-format-selected)
+	nmap <leader>f  <Plug>(coc-format-selected)
 
 " Nerdtree plugin map
 	nmap <leader>t :NERDTreeToggle<CR>

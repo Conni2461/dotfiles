@@ -9,6 +9,8 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+set $dmenu_font monospace:size=12
+
 set $default_gaps_inner 5
 set $default_gaps_outer 0
 gaps inner $default_gaps_inner
@@ -42,28 +44,27 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% &&
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+10 i3block
 
 # Programms
-bindsym $mod+Return exec $TERMINAL                                                                      # Default shell
-bindsym $mod+z exec --no-startup-id fspawn nnn                                                          # Default File Manager
-bindsym $mod+g exec --no-startup-id ddspawn R                                                           # spawn R scratchpad
-bindsym $mod+u exec --no-startup-id ddspawn tmuxdd                                                      # spawn tmux scratchpad
-bindsym $mod+n exec --no-startup-id fspawn newsboat                                                     # RSS Feed Reader
-bindsym $mod+m exec --no-startup-id fspawn neomutt                                                      # Mail programm
-bindsym $mod+p exec --no-startup-id fspawn weechat                                                      # Chat programm mainly used for slack
-bindsym $mod+c exec --no-startup-id $BROWSER                                                            # Default Browser
-bindsym $mod+Shift+m exec --no-startup-id fspawn pulsemixer                                             # Open Audiomixer
+bindsym $mod+Return exec $TERMINAL
+bindsym $mod+z exec --no-startup-id fspawn nnn
+bindsym $mod+g exec --no-startup-id ddspawn R
+bindsym $mod+u exec --no-startup-id ddspawn tmuxdd
+bindsym $mod+n exec --no-startup-id fspawn newsboat
+bindsym $mod+m exec --no-startup-id fspawn neomutt
+bindsym $mod+p exec --no-startup-id fspawn weechat
+bindsym $mod+Shift+m exec --no-startup-id fspawn pulsemixer
 
 # Shortcuts
 bindsym $mod+Shift+q [con_id="__focused__" instance="^(?!dropdown_).*$"] kill
-bindsym $mod+d exec --no-startup-id dmenu_run -i                                                         # Dmenu run case insensetive
-bindsym $mod+Shift+y exec --no-startup-id lock                                                           # Lock screen
-bindsym $mod+Shift+x exec --no-startup-id rdq "Are you sure you want to shutdown?" "$shutdown"           # Shutdown
-bindsym $mod+Shift+Escape exec --no-startup-id rdq "Are you sure you want to reboot?" "$reboot"          # Reboot
-bindsym $mod+F3 exec --no-startup-id displayselect                                                       # Display select
-bindsym $mod+F4 exec --no-startup-id rdq "Are you sure you want to hibernate computer?" "$hibernate"     # Hibernate
-bindsym $mod+F5 exec --no-startup-id restart-nmcli                                                       # Restart network
-bindsym $mod+grave exec --no-startup-id dmenuunicode                                                     # Emoji selection
-bindsym $mod+F9 exec --no-startup-id dmenumount                                                          # Dmenu mount
-bindsym $mod+F10 exec --no-startup-id dmenuumount                                                        # Dmenu umount
+bindsym $mod+d exec --no-startup-id dmenu_run -i -fn "$demnu_font"
+bindsym $mod+Shift+y exec --no-startup-id lock
+bindsym $mod+Shift+x exec --no-startup-id rdq "Are you sure you want to shutdown?" "$shutdown"
+bindsym $mod+Shift+Escape exec --no-startup-id rdq "Are you sure you want to reboot?" "$reboot"
+bindsym $mod+F3 exec --no-startup-id displayselect
+bindsym $mod+F4 exec --no-startup-id rdq "Are you sure you want to hibernate computer?" "$hibernate"
+bindsym $mod+F5 exec --no-startup-id restart-nmcli
+bindsym $mod+grave exec --no-startup-id dmenuunicode
+bindsym $mod+F9 exec --no-startup-id dmenumount
+bindsym $mod+F10 exec --no-startup-id dmenuumount
 
 # change focus
 bindsym $mod+h focus left
