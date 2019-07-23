@@ -253,23 +253,56 @@
 	let g:lightline#bufferline#read_only=''
 	let g:lightline#bufferline#show_number=1
 
+	let g:coc_status_error_sign = "\uf071"
+	let g:coc_status_warning_sign = "\uf05e"
+
+	function! LightLineCocError()
+		let s:error_sign = get(g:, 'coc_status_error_sign')
+		let info = get(b:, 'coc_diagnostic_info', {})
+		if empty(info)
+			return ''
+		endif
+		let errmsgs = []
+		if get(info, 'error', 0)
+			call add(errmsgs, s:error_sign . info['error'])
+		endif
+		return trim(join(errmsgs, ' ') . ' ' . get(g:, 'coc_status', ''))
+	endfunction
+
+	function! LightLineCocWarn() abort
+		let s:warning_sign = get(g:, 'coc_status_warning_sign')
+		let info = get(b:, 'coc_diagnostic_info', {})
+		if empty(info)
+			return ''
+		endif
+		let warnmsgs = []
+		if get(info, 'warning', 0)
+			call add(warnmsgs, s:warning_sign . info['warning'])
+		endif
+		return trim(join(warnmsgs, ' ') . ' ' . get(g:, 'coc_status', ''))
+	endfunction
+
+autocmd User CocDiagnosticChange call lightline#update()
+
 	let g:lightline = {
 		\'active': {
 			\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'buffers']],
-			\'right': [['cocstatus', 'currentfunction', 'lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
+			\'right': [['lineinfo', 'cocerror', 'cocwarn'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
 		\},
 		\'component_expand': {
 			\'buffers': 'lightline#bufferline#buffers',
+			\'cocerror': 'LightLineCocError',
+			\'cocwarn': 'LightLineCocWarn',
 		\},
 		\'component_type': {
 			\'buffers': 'tabsel',
 		\},
 		\'component_function': {
 			\'gitbranch': 'fugitive#head',
-			\'cocstatus': 'coc#status',
-			\'currentfunction': 'CocCurrentFunction'
 		\}
 	\}
+
+	au User CocDiagnosticChange call lightline#update()
 
 " Coc Setup
 	let g:coc_global_extensions =['coc-json', 'coc-python', 'coc-highlight', 'coc-git', 'coc-texlab']

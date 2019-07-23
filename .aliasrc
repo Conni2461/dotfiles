@@ -38,9 +38,7 @@ alias ccat='highlight --out-format=ansi --force'
 alias lsp='pacman -Qett --color=always | less'
 alias ffmpeg='ffmpeg -hide_banner'
 alias scim="sc-im"
-alias marvin="ssh hausersn@marvin.informatik.uni-stuttgart.de"
 alias ru="sudo docker run -ti --rm ubuntu:latest bash"
-alias cvpn="sudo openvpn --config /etc/openvpn/client/client.conf"
 alias newsboat='newsboat && pkill -RTMIN+6 i3blocks'
 alias :wq='echo you are not in vim'
 
