@@ -287,7 +287,7 @@ autocmd User CocDiagnosticChange call lightline#update()
 	let g:lightline = {
 		\'active': {
 			\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'buffers']],
-			\'right': [['lineinfo', 'cocerror', 'cocwarn'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
+			\'right': [['cocerror', 'cocwarn', 'lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
 		\},
 		\'component_expand': {
 			\'buffers': 'lightline#bufferline#buffers',
@@ -296,6 +296,8 @@ autocmd User CocDiagnosticChange call lightline#update()
 		\},
 		\'component_type': {
 			\'buffers': 'tabsel',
+			\'cocerror': 'error',
+			\'cocwarn': 'warning',
 		\},
 		\'component_function': {
 			\'gitbranch': 'fugitive#head',
