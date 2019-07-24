@@ -12,11 +12,8 @@
 	Plug 'rhysd/git-messenger.vim'
 
 	Plug 'ericcurtin/CurtineIncSw.vim'
-	Plug 'octol/vim-cpp-enhanced-highlight'
-	Plug 'gisphm/vim-gitignore'
-	Plug 'PotatoesMaster/i3-vim-syntax'
 	Plug 'godlygeek/tabular'
-	Plug 'plasticboy/vim-markdown'
+	Plug 'sheerun/vim-polyglot'
 
 	Plug 'junegunn/fzf.vim'
 
