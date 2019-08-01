@@ -32,11 +32,11 @@
 	Plug 'itchyny/lightline.vim'
 	Plug 'mengelbrecht/lightline-bufferline'
 
-	Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-	Plug 'Xuyuanp/nerdtree-git-plugin', { 'on': 'NERDTreeToggle' }
-	Plug 'ryanoasis/vim-devicons', { 'on': 'NERDTreeToggle' }
+	Plug 'mcchrish/nnn.vim'
 	Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 	Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+
+	Plug 'segeljakt/vim-silicon'
 	call plug#end()
 
 " Some Basics
@@ -282,7 +282,7 @@
 		return trim(join(warnmsgs, ' ') . ' ' . get(g:, 'coc_status', ''))
 	endfunction
 
-autocmd User CocDiagnosticChange call lightline#update()
+	autocmd User CocDiagnosticChange call lightline#update()
 
 	let g:lightline = {
 		\'active': {
@@ -353,8 +353,15 @@ autocmd User CocDiagnosticChange call lightline#update()
 	nmap <leader>f  <Plug>(coc-format-selected)
 
 " Nerdtree plugin map
-	nmap <leader>t :NERDTreeToggle<CR>
-	autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+	let g:nnn#set_default_mappings = 0
+	let g:nnn#layout = 'new'
+	let g:nnn#layout = { 'left': '~20%' }
+	let g:nnn#action = {
+		\ '<c-t>': 'tab split',
+		\ '<c-x>': 'split',
+		\ '<c-v>': 'vsplit' }
+	let g:nnn#command = 'NNN_RESTRICT_NAV_OPEN=1 nnn -l'
+	nnoremap <silent> <leader>t : NnnPicker<CR>
 
 " Tagbar
 	nmap <leader>o :TagbarToggle<CR>

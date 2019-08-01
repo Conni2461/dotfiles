@@ -1,21 +1,24 @@
 #!/bin/bash
 # Profile file. Runs on login
 
-export PATH=$PATH:/home/conni/bin/scripts:/home/conni/bin/croncmds:/home/conni/bin/wmcmds:/home/conni/bin/gitcmds:/home/conni/bin/statusbar:/home/conni/bin/vimcmds:/home/conni/bin/external/fstools
+export PATH=$PATH:/home/conni/bin/scripts:/home/conni/bin/croncmds:/home/conni/bin/wmcmds:/home/conni/bin/gitcmds:/home/conni/bin/statusbar:/home/conni/bin/vimcmds:/home/conni/bin/external/fstools:/home/conni/.cargo/bin
 
 export EDITOR='nvim'
 export VISUAL='nvim'
 export TERMINAL="st"
 export BROWSER='firefox'
 export READER='zathura'
-export FILE="ranger"
+export FILE="nnn"
 export SUDO_ASKPASS="$HOME/bin/scripts/askpass"
 export PAGER='less'
 
 # NNN Settings
-export NNN_CONTEXT_COLORS='1234'
+export NNN_BMS='D:~/Downloads;d:~/docs;s:~/bin;o:~/repos'
 export NNN_USE_EDITOR=1
+export NNN_CONTEXT_COLORS='1234'
+export NNN_NOTE=$HOME/docs/shared/vimwiki
 export NNN_TRASH=1
+export NNN_OPS_PROG=1
 
 # less/man colors
 export LESS=-R

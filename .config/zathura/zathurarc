@@ -6,6 +6,8 @@ set page-padding 1
 
 map u scroll full-up
 map d scroll full-down
+map <Left> scroll full-up
+map <Right> scroll full-down
 map D toggle_page_mode
 map r reload
 map R rotate

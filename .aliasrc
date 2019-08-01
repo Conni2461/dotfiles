@@ -16,7 +16,6 @@ alias mkd='mkdir -pv'
 
 # System
 alias p='sudo pacman'
-alias mirr='sudo pacman-mirrors --fasttrack && p -Syyu'
 alias SS='sudo systemctl'
 alias startx='startx ~/.xinitrc'
 
