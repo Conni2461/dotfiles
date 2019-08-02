@@ -1,6 +1,6 @@
 #!/bin/sh
 
-date '+%d.%m.%Y %H:%M'
+date '+%m/%d/%Y %I:%M %p'
 
 case $BLOCK_BUTTON in
 	1) pgrep -x dunst >/dev/null && notify-send "This Month" "$(cal --color=always | sed "s/..7m/<b><span color=\"red\">/;s/..27m/<\/span><\/b>/")" ;;

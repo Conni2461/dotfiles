@@ -40,6 +40,7 @@ alias scim="sc-im"
 alias ru="sudo docker run -ti --rm ubuntu:latest bash"
 alias newsboat='newsboat && pkill -RTMIN+6 i3blocks'
 alias :wq='echo you are not in vim'
+alias R='R --no-save'
 
 # Shortcuts
 ## Files
