@@ -1,3 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
-kill "$(pstree -lp | grep -- -dwmbar\([0-9] | sed "s/.*sleep(\([0-9]\+\)).*/\1/")"
+pid="$(pstree -lp | grep -- -dwmbar\([0-9] | sed "s/.*sleep(\([0-9]\+\)).*/\1/")"
+
+re='^[0-9]+$'
+if [[ $pid =~ $re ]] ; then
+	kill $pid
+fi

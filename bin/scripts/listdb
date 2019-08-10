@@ -1,0 +1,19 @@
+#!/bin/sh
+
+addMovie()
+{
+	echo "${1} - Movie"
+}
+
+addShow()
+{
+	echo "${1} - Show"
+}
+
+CountMovie=$(sed -e '/-----/,$d' ~/docs/shared/lists/$1 | awk NF | cut -d- -f2 | grep -c Movie)
+CountShow=$(sed -e '/-----/,$d' ~/docs/shared/lists/$1 | awk NF | cut -d- -f2 | grep -c Show)
+
+echo "Movies to watch:          ${CountMovie}"
+echo "Shows to watch:           ${CountShow}"
+echo "Upcoming:"
+sed -e '1,/-----/d' ~/docs/shared/lists/$1 | awk NF

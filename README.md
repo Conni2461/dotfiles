@@ -78,11 +78,10 @@ A full list of used plugins:
 - https://github.com/neoclide/coc.nvim
 - https://github.com/itchyny/lightline.vim
 - https://github.com/mengelbrecht/lightline-bufferline
-- https://github.com/scrooloose/nerdtree
-- https://github.com/Xuyuanp/nerdtree-git-plugin
-- https://github.com/ryanoasis/vim-devicons
+- https://github.com/mcchrish/nnn.vim
 - https://github.com/majutsushi/tagbar
 - https://github.com/mbbill/undotree
+- https://github.com/segeljakt/vim-silicon
 
 
 ## Additional stuff

@@ -1,8 +1,12 @@
 #!/bin/sh
 
-xinput --set-prop "Microsoft Surface Keyboard Touchpad" "libinput Accel Speed" 0.5
-dunst &
-compton &
+/home/conni/bin/external/nfancurve/temp.sh &> /dev/null &
+disown -h %$(jobs -l | grep temp.sh | cut -d' ' -f 1 | tr -d -c '[:digit:]')
+
+g810-led -a ff0000 &
+pgrep dunst >/dev/null || dunst &
+pgrep compton >/dev/null || compton &
+fixdisplay &
 nitrogen --restore &
 pgrep clipmenud >/dev/null|| clipmenud &
 
@@ -11,5 +15,6 @@ newsup >/dev/null &
 mailsync >/dev/null &
 
 dwmbar &
+conky &
 
-calnotify 30
+calnotify 30 &

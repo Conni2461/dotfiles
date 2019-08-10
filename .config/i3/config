@@ -23,16 +23,18 @@ set $hibernate systemctl suspend
 
 new_window none
 
-font pango:mono 16
+font pango:mono 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # Autostart programs
+exec --no-startup-id g810-led -a ff0000
 exec --no-startup-id dunst
-exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-exec --no-startup-id xautolock -time 10 -locker 'lock' -notify 30 -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'"
-exec --no-startup-id xinput --set-prop "Microsoft Surface Keyboard Touchpad" "libinput Accel Speed" 0.5
+exec --no-startup-id compton -b
+exec --no-startup-id fixdisplay
+exec --no-startup-id nitrogen --restore
+exec --no-startup-id clipmenud
 
 exec_always --no-startup-id syncshared >/dev/null
 exec_always --no-startup-id newsup >/dev/null
@@ -156,7 +158,7 @@ for_window [class="Lxappearance"] floating enable sticky enable border normal
 for_window [class="Nitrogen"] floating enable sticky enable border normal
 
 for_window [instance="floatt"] floating enable
-for_window [instance="floatt"] resize set 1800 1200
+for_window [instance="floatt"] resize set 1280 720
 for_window [instance="floatt"] border pixel 2
 for_window [instance="floatt"] move position center
 
@@ -164,7 +166,7 @@ for_window [instance="dropdown_*"] floating enable
 for_window [instance="dropdown_*"] move scratchpad
 for_window [instance="dropdown_*"] sticky enable
 for_window [instance="dropdown_*"] scratchpad show
-for_window [instance="dropdown_*"] resize set 1800 1200
+for_window [instance="dropdown_*"] resize set 1280 720
 for_window [instance="dropdown_*"] border pixel 2
 for_window [instance="dropdown_*"] move position center
 
