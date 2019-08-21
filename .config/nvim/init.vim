@@ -109,7 +109,7 @@
 			let s:defaultList=1
 		endif
 	endfunction
-	nnoremap <leader>v :call ToggleListchars()<CR>
+	nnoremap <leader>m :call ToggleListchars()<CR>
 
 " Apply colors called at the beginning and when toggling goyo
 	function ApplyColors()
@@ -211,7 +211,6 @@
 " Spellcheck set to <leader>e for English and <leader>d for German
 	nmap <leader>e :setlocal spell! spelllang=en_us<CR>
 	nmap <leader>d :setlocal spell! spelllang=de_de<CR>
-	nmap <leader>b :setlocal spell! spelllang=en_us,de_de<CR>
 
 " Splits open at the bottom and right
 	set splitbelow splitright
@@ -360,14 +359,23 @@
 		\ '<c-t>': 'tab split',
 		\ '<c-x>': 'split',
 		\ '<c-v>': 'vsplit' }
-	let g:nnn#command = 'NNN_RESTRICT_NAV_OPEN=1 nnn -l'
-	nnoremap <silent> <leader>t : NnnPicker<CR>
+	let g:nnn#command = 'NNN_RESTRICT_NAV_OPEN=1 nnn'
+	nnoremap <silent> <leader>v : NnnPicker<CR>
 
 " Tagbar
 	nmap <leader>o :TagbarToggle<CR>
 
 " fuzzy search
-	nmap <leader>q :FZF<CR>
+	nmap <leader>q :GFiles<CR>
+	nmap <leader>Q :Files<CR>
+
+	nmap <leader>B :Buffers<CR>
+	nmap <leader>H :History<CR>
+
+	nmap <leader>t :Btags<CR>
+	nmap <leader>T :Tags<CR>
+
+	nmap <leader>' :Marks<CR>
 
 " Limelight setup
 	let g:limelight_conceal_ctermfg=240
@@ -398,10 +406,10 @@
 	nnoremap <leader>u :UndotreeToggle<CR>
 
 " Tabular shortcuts
-	nmap <Leader>a= :Tabularize /=<CR>
-	vmap <Leader>a= :Tabularize /=<CR>
-	nmap <Leader>a: :Tabularize /:<CR>
-	vmap <Leader>a: :Tabularize /:<CR>
+	nmap <leader>a= :Tabularize /=<CR>
+	vmap <leader>a= :Tabularize /=<CR>
+	nmap <leader>a: :Tabularize /:<CR>
+	vmap <leader>a: :Tabularize /:<CR>
 
 " Snippets
 	runtime snippets/latex.vim
