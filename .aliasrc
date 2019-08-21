@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Use neovim for vim if present
-command -v nvim >/dev/null && alias vim="if jobs | grep -q nvim; then fg; else command nvim; fi" vimdiff="nvim -d"
+command -v nvim >/dev/null && vim() { if jobs | grep -q nvim; then fg; else command nvim $1; fi } && alias vimdiff="nvim -d"
 command -v neomutt >/dev/null && alias mutt='neomutt && pkill -RTMIN+12 i3blocks'
 alias slack="weechat"
 
