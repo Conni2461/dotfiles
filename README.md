@@ -63,10 +63,6 @@ config push
 
 Also you should change the email and name in the `.gitconfig` as well as the remote adresse.
 
-```
-git remote set-url origin <url>
-```
-
 [Git bare article](https://www.atlassian.com/git/tutorials/dotfiles)
 
 ## Bash
