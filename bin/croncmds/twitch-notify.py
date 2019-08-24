@@ -3,6 +3,7 @@
 import requests
 import notify2
 import sys
+from pathlib import Path
 
 def sendmessage(message):
     notify2.init("Test")
@@ -11,6 +12,8 @@ def sendmessage(message):
 # Settings
 user_id = "53590600"
 headers = { 'Client-ID': "tka77qrif09sy7zagfjs9jrbkh494k", }
+home = str(Path.home())
+savefile = home +"/.local/share/twitch-streams.txt"
 
 if user_id is "your-user-id" or headers["Client-ID"] is "your-client-id":
     sys.exit("ERROR: Set user_id and client_id")
@@ -50,7 +53,7 @@ for stream in live_streams["data"]:
 # Load oldData
 old_data = set()
 try:
-    with open("/tmp/twitch-streams.txt", "r") as f:
+    with open(savefile, "r") as f:
         for line in f:
             if line is not '\n' or '':
                 old_data.add(line.replace('\n', ''))
@@ -69,6 +72,6 @@ if len(went_live) != 0 or len(went_offline) != 0:
         sendmessage(line.split("LIVE", 1)[0] + "NO LONGER LIVE")
 
     # Update file
-    with open("/tmp/twitch-streams.txt", "w") as f:
+    with open(savefile, "w") as f:
         for item in output:
             f.write("%s\n" % item)

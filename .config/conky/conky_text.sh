@@ -17,7 +17,7 @@ fi
 if [ "$(cat /tmp/twitch-streams.txt)" != "" ]; then
 	echo
 	echo '${color1}${font}TWITCH'
-	echo '${color}${exec cat /tmp/twitch-streams.txt | sed "s/<b>//g" | sed "s/<\/b>//g"}'
+	echo '${color}${exec cat $HOME/.local/share/twitch-streams.txt | sed "s/<b>//g" | sed "s/<\/b>//g"}'
 fi
 
 echo
