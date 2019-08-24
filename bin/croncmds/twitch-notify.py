@@ -1,16 +1,17 @@
 #!/bin/python
 
-import json
 import requests
+import notify2
 import subprocess
 import sys
 
 def sendmessage(message):
-    subprocess.Popen(['notify-send', "Twitch", message])
+    notify2.init("Test")
+    notify2.Notification("Twitch", message).show()
 
 # Settings
-user_id = "your-user-id"
-headers = { 'Client-ID': "your-client-id", }
+user_id = "53590600"
+headers = { 'Client-ID': "tka77qrif09sy7zagfjs9jrbkh494k", }
 
 if user_id is "your-user-id" or headers["Client-ID"] is "your-client-id":
     sys.exit("ERROR: Set user_id and client_id")
