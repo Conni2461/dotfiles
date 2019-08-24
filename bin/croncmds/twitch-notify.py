@@ -45,7 +45,7 @@ for stream in live_streams["data"]:
         game_cache[game_id] = channel_game
 
     # Build output string
-    output.add(channel_name + " is LIVE playing " + channel_game)
+    output.add("<b>" + channel_name + "</b> is <b>LIVE</b> playing <b>" + channel_game + "</b>")
 
 # Load oldData
 old_data = set()
