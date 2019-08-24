@@ -1,6 +1,31 @@
-# Linux Dotfiles
+```
+     _       _    __ _ _
+  __| | ___ | |_ / _(_) | ___  ___
+ / _` |/ _ \| __| |_| | |/ _ \/ __|
+| (_| | (_) | |_|  _| | |  __/\__ \
+ \__,_|\___/ \__|_| |_|_|\___||___/
 
-## How to clone as git bare
+   ____                        _ ____  _  _    __   _
+  / __ \  ___ ___  _ __  _ __ (_)___ \| || |  / /_ / |
+ / / _` |/ __/ _ \| '_ \| '_ \| | __) | || |_| '_ \| |
+| | (_| | (_| (_) | | | | | | | |/ __/|__   _| (_) | |
+ \ \__,_|\___\___/|_| |_|_| |_|_|_____|  |_|  \___/|_|
+  \____/
+```
+
+[![license](https://img.shields.io/github/license/conni2461/dotfiles.svg?style=flat-square)]()
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ef9d3503d02343ac8f6d1c0a7eb25d66)](https://app.codacy.com/app/Conni2461/dotfiles?utm_source=github.com&utm_medium=referral&utm_content=Conni2461/dotfiles&utm_campaign=Badge_Grade_Dashboard)
+
+## Introduction
+
+## Table of Contents
+
+-   [Install](#Install)
+-   [Use](#Use)
+-   [Bash](#Bash)
+-   [Vim](#Vim)
+
+## Install
 
 ```
 # Move to your home folder
@@ -23,7 +48,7 @@ config checkout
 config config --local status.showUntrackedFiles no
 ```
 
-## Hom to work with git bare dotfiles
+## Use
 
 ```
 # Show status of dotfile repository
@@ -42,9 +67,13 @@ Also you should change the email and name in the `.gitconfig` as well as the rem
 git remote set-url origin <url>
 ```
 
-Git bare article https://www.atlassian.com/git/tutorials/dotfiles
+[Git bare article](https://www.atlassian.com/git/tutorials/dotfiles)
 
-## Vim Plugins
+## Bash
+
+Dotfiles also provide [clipmenu](https://github.com/cdown/clipmenu) which requires dmenu, xsel and clipnotify.
+
+## Vim
 
 To install all VimPlugins open nvim and run: `:PlugInstall`
 All further commands can be found on [vim-plugs github page](https://github.com/junegunn/vim-plug).
@@ -54,36 +83,31 @@ Also ccls and bash-language-server.
 
 A full list of used plugins:
 
-- https://github.com/mhinz/vim-startify
-- https://github.com/tpope/vim-obsession
-- https://github.com/kshenoy/vim-signature
-- https://github.com/yuttie/comfortable-motion.vim
-- https://github.com/tpope/vim-fugitive
-- https://github.com/tpope/vim-rhubarb
-- https://github.com/airblade/vim-gitgutter
-- https://github.com/rhysd/git-messenger.vim
-- https://github.com/ericcurtin/CurtineIncSw.vim
-- https://github.com/octol/vim-cpp-enhanced-highlight
-- https://github.com/gisphm/vim-gitignore
-- https://github.com/PotatoesMaster/i3-vim-syntax
-- https://github.com/godlygeek/tabular
-- https://github.com/plasticboy/vim-markdown
-- https://github.com/junegunn/fzf.vim
-- https://github.com/junegunn/goyo.vim
-- https://github.com/junegunn/limelight.vim
-- https://github.com/vimwiki/vimwiki
-- https://github.com/tpope/vim-commentary
-- https://github.com/tpope/vim-surround
-- https://github.com/RRethy/vim-illuminate
-- https://github.com/neoclide/coc.nvim
-- https://github.com/itchyny/lightline.vim
-- https://github.com/mengelbrecht/lightline-bufferline
-- https://github.com/mcchrish/nnn.vim
-- https://github.com/majutsushi/tagbar
-- https://github.com/mbbill/undotree
-- https://github.com/segeljakt/vim-silicon
-
-
-## Additional stuff
-
-Dotfiles also provide [clipmenu](https://github.com/cdown/clipmenu) which requires dmenu, xsel and clipnotify.
+-   [startify](https://github.com/mhinz/vim-startify)
+-   [obsession](https://github.com/tpope/vim-obsession)
+-   [signature](https://github.com/kshenoy/vim-signature)
+-   [motion](https://github.com/yuttie/comfortable-motion.vim)
+-   [fugitive](https://github.com/tpope/vim-fugitive)
+-   [rhubarb](https://github.com/tpope/vim-rhubarb)
+-   [gitgutter](https://github.com/airblade/vim-gitgutter)
+-   [git-messenger](https://github.com/rhysd/git-messenger.vim)
+-   [Curtine Inc Sw](https://github.com/ericcurtin/CurtineIncSw.vim)
+-   [Cpp highlight](https://github.com/octol/vim-cpp-enhanced-highlight)
+-   [Gitignore highlight](https://github.com/gisphm/vim-gitignore)
+-   [i3 highlight](https://github.com/PotatoesMaster/i3-vim-syntax)
+-   [tabular support](https://github.com/godlygeek/tabular)
+-   [enhanced markdown support](https://github.com/plasticboy/vim-markdown)
+-   [fzf](https://github.com/junegunn/fzf.vim)
+-   [goyo](https://github.com/junegunn/goyo.vim)
+-   [limelight](https://github.com/junegunn/limelight.vim)
+-   [vimwiki](https://github.com/vimwiki/vimwiki)
+-   [commentary](https://github.com/tpope/vim-commentary)
+-   [surround](https://github.com/tpope/vim-surround)
+-   [illuminate](https://github.com/RRethy/vim-illuminate)
+-   [coc](https://github.com/neoclide/coc.nvim)
+-   [lightline](https://github.com/itchyny/lightline.vim)
+-   [lightline bufferline](https://github.com/mengelbrecht/lightline-bufferline)
+-   [nnn](https://github.com/mcchrish/nnn.vim)
+-   [tagbar](https://github.com/majutsushi/tagbar)
+-   [undotree](https://github.com/mbbill/undotree)
+-   [silicon](https://github.com/segeljakt/vim-silicon)
