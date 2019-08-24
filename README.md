@@ -1,17 +1,15 @@
-```
-     _       _    __ _ _
-  __| | ___ | |_ / _(_) | ___  ___
- / _` |/ _ \| __| |_| | |/ _ \/ __|
-| (_| | (_) | |_|  _| | |  __/\__ \
- \__,_|\___/ \__|_| |_|_|\___||___/
+	     _       _    __ _ _
+	  __| | ___ | |_ / _(_) | ___  ___
+	 / _` |/ _ \| __| |_| | |/ _ \/ __|
+	| (_| | (_) | |_|  _| | |  __/\__ \
+	 \__,_|\___/ \__|_| |_|_|\___||___/
 
-   ____                        _ ____  _  _    __   _
-  / __ \  ___ ___  _ __  _ __ (_)___ \| || |  / /_ / |
- / / _` |/ __/ _ \| '_ \| '_ \| | __) | || |_| '_ \| |
-| | (_| | (_| (_) | | | | | | | |/ __/|__   _| (_) | |
- \ \__,_|\___\___/|_| |_|_| |_|_|_____|  |_|  \___/|_|
-  \____/
-```
+	   ____                        _ ____  _  _    __   _
+	  / __ \  ___ ___  _ __  _ __ (_)___ \| || |  / /_ / |
+	 / / _` |/ __/ _ \| '_ \| '_ \| | __) | || |_| '_ \| |
+	| | (_| | (_| (_) | | | | | | | |/ __/|__   _| (_) | |
+	 \ \__,_|\___\___/|_| |_|_| |_|_|_____|  |_|  \___/|_|
+	  \____/
 
 [![license](https://img.shields.io/github/license/conni2461/dotfiles.svg?style=flat-square)]()
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ef9d3503d02343ac8f6d1c0a7eb25d66)](https://app.codacy.com/app/Conni2461/dotfiles?utm_source=github.com&utm_medium=referral&utm_content=Conni2461/dotfiles&utm_campaign=Badge_Grade_Dashboard)
@@ -27,7 +25,7 @@
 
 ## Install
 
-```
+```sh
 # Move to your home folder
 cd
 # Create a alias to work with the git bare repository. Don't close the bash session or you have to run this command again.
@@ -42,7 +40,7 @@ config checkout
 
 Now files like `.bashrc` and `.gitconfig` are untracked. Either remove or move elsewhere.
 
-```
+```sh
 config checkout
 # Change git setup to only show tracked Files
 config config --local status.showUntrackedFiles no
@@ -50,7 +48,7 @@ config config --local status.showUntrackedFiles no
 
 ## Use
 
-```
+```sh
 # Show status of dotfile repository
 config status
 # Add a file
