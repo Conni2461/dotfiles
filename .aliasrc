@@ -3,7 +3,6 @@
 # Use neovim for vim if present
 command -v nvim >/dev/null && vim() { if jobs | grep -q nvim; then fg; else command nvim $*; fi } && alias vimdiff="nvim -d"
 command -v neomutt >/dev/null && alias mutt='neomutt && pkill -RTMIN+12 i3blocks'
-alias slack="weechat"
 
 # ls and other file stuff
 alias ls='ls -hN --color=auto --group-directories-first'
@@ -26,7 +25,6 @@ alias wiki='nvim -c "VimwikiIndex"'
 alias ka='killall'
 alias df='df -kHT'
 alias del='trash'
-alias f='nnn'
 alias g='git'
 alias e='vim'
 alias v='vim'
