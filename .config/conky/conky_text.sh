@@ -11,13 +11,13 @@ echo '${color1}${font}TOKYO         ${color}${tztime Asia/Tokyo %m/%d/%Y %I:%M%p
 if [ "$(calcurse -a)" != "" ]; then
 	echo
 	echo '${color1}${font}APPOINTMENTS'
-	echo '${color}${exec calcurse -a | sed -n '1!p'}'
+	echo '${color}${exec calcurse -a | sed -n "1!p"}'
 fi
 
 if [ "$(cat /tmp/twitch-streams.txt)" != "" ]; then
 	echo
 	echo '${color1}${font}TWITCH'
-	echo '${color}${exec cat /tmp/twitch-streams.txt}'
+	echo '${color}${exec cat /tmp/twitch-streams.txt | sed "s/<b>//g" | sed "s/<\/b>//g"}'
 fi
 
 echo

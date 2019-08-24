@@ -2,7 +2,6 @@
 
 import requests
 import notify2
-import subprocess
 import sys
 
 def sendmessage(message):
