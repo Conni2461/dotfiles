@@ -66,7 +66,7 @@ if len(went_live) != 0 or len(went_offline) != 0:
     for line in iter(went_live):
         sendmessage(line)
     for line in iter(went_offline):
-        sendmessage(line.replace("LIVE", "NO LONGER LIVE"))
+        sendmessage(line.split("LIVE", 1)[0] + "NO LONGER LIVE")
 
     # Update file
     with open("/tmp/twitch-streams.txt", "w") as f:
