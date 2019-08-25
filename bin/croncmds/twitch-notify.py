@@ -28,7 +28,7 @@ for channel in raw_data["data"]:
     followed_channels.append(channel["to_name"])
 
 # Get Stream info
-r = requests.get('https://api.twitch.tv/helix/streams?user_login=%s&user_login%s' % (followed_channels[0], '&user_login='.join(followed_channels[1:])), headers=headers)
+r = requests.get('https://api.twitch.tv/helix/streams?user_login=%s&user_login=%s' % (followed_channels[0], '&user_login='.join(followed_channels[1:])), headers=headers)
 live_streams = r.json()
 
 game_cache = {}
