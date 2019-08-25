@@ -1,0 +1,3 @@
+#!/bin/sh
+
+sqlite3 -separator ';;;' $HOME/.local/share/newsboat/cache.db "SELECT author,title FROM rss_item WHERE unread = 1 ORDER BY author COLLATE NOCASE;" | sed "s/;;;/: /g"

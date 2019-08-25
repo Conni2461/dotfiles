@@ -14,10 +14,16 @@ if [ "$(calcurse -a)" != "" ]; then
 	echo '${color}${exec calcurse -a | sed -n "1!p"}'
 fi
 
-if [ "$(cat /tmp/twitch-streams.txt)" != "" ]; then
+if [ "$(listnews)" != "" ]; then
+	echo
+	echo '${color1}${font}NEWS'
+	echo '${color}${exec listnews}'
+fi
+
+if [ "$(cat $HOME/.local/share/twitch-streams.txt)" != "" ]; then
 	echo
 	echo '${color1}${font}TWITCH'
-	echo '${color}${exec cat $HOME/.local/share/twitch-streams.txt | sed "s/<b>//g" | sed "s/<\/b>//g"}'
+	echo '${color}${exec cat $HOME/.local/share/twitch-streams.txt | sed "s/<b>//g" | sed "s/<\/b>//g" | sort }'
 fi
 
 echo

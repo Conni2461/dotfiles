@@ -4,6 +4,7 @@ external-url-viewer "urlscan -dc -r 'linkhandler {}'"
 
 datetime-format %d.%m.%y
 text-width 120
+history-limit 0
 
 bind-key j down
 bind-key k up
