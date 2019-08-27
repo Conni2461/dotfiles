@@ -1,0 +1,3 @@
+#!/bin/sh
+
+cat $HOME/.local/share/twitch-streams.txt | sed "s/<b>//g" | sed "s/<\/b>//g" | sort

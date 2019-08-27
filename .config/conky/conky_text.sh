@@ -20,10 +20,10 @@ if [ "$(listnews)" != "" ]; then
 	echo '${color}${exec listnews}'
 fi
 
-if [ "$(cat $HOME/.local/share/twitch-streams.txt)" != "" ]; then
+if [ "$(liststreams)" != "" ]; then
 	echo
 	echo '${color1}${font}TWITCH'
-	echo '${color}${exec cat $HOME/.local/share/twitch-streams.txt | sed "s/<b>//g" | sed "s/<\/b>//g" | sort }'
+	echo '${color}${exec liststreams}'
 fi
 
 echo
