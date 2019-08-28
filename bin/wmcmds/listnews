@@ -1,3 +1,8 @@
 #!/bin/sh
 
-sqlite3 $HOME/.local/share/newsboat/cache.db "SELECT author || ': ' || title FROM rss_item WHERE unread = 1 ORDER BY author COLLATE NOCASE;"
+sqlite3 $HOME/.local/share/newsboat/cache.db \
+	"SELECT rss_feed.title || ': ' || rss_item.title
+	FROM rss_feed
+	INNER JOIN rss_item ON rss_feed.rssurl = rss_item.feedurl
+	WHERE unread = 1
+	ORDER BY rss_feed.title COLLATE NOCASE;"
