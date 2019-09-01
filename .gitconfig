@@ -4,7 +4,7 @@
 
 [core]
 	editor = nvim
-	pager = diff-so-fancy
+	pager = diff-so-fancy | less --tabs=4 -RFX
 
 [alias]
 	aa = add --all

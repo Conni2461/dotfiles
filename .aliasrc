@@ -2,7 +2,7 @@
 
 # Use neovim for vim if present
 command -v nvim >/dev/null && vim() { if jobs | grep -q nvim; then fg; else command nvim $*; fi } && alias vimdiff="nvim -d"
-command -v neomutt >/dev/null && alias mutt='neomutt && pkill -RTMIN+12 i3blocks'
+command -v neomutt >/dev/null && alias mutt='neomutt'
 
 # ls and other file stuff
 alias ls='ls -hN --color=auto --group-directories-first'
@@ -36,7 +36,6 @@ alias lsp='pacman -Qett --color=always | less'
 alias ffmpeg='ffmpeg -hide_banner'
 alias scim="sc-im"
 alias ru="sudo docker run -ti --rm ubuntu:latest bash"
-alias newsboat='newsboat && pkill -RTMIN+6 i3blocks'
 alias :q='echo you are not in vim'
 alias :wq='echo you are not in vim'
 alias R='R --no-save'

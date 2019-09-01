@@ -1,0 +1,4 @@
+#!/bin/sh
+
+gdf | sed 1q
+gdf | grep -Ew '\/|/home|/mnt/internal'
