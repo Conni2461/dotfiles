@@ -6,12 +6,11 @@ ping -q -t 1 -c 1 `ip r | grep -m 1 default | cut -d ' ' -f 3` >/dev/null || exi
 
 notify-send "Updating RSS feeds..."
 
-pgrep -x newsboat >/dev/null && /usr/bin/xdotool key --window "$(/usr/bin/xdotool search --name newsboat)" R && exit
+pgrep -x newsboat >/dev/null && exit
 
 echo 🔃 > ~/.config/newsboat/.update
 pkill -RTMIN+6 i3blocks
 newsboat -x reload
 rm -f ~/.config/newsboat/.update
-refbar
 pkill -RTMIN+6 i3blocks
 notify-send "RSS feed update complete."

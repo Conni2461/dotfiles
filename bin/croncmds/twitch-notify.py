@@ -5,8 +5,8 @@ import notify2
 import sys
 from pathlib import Path
 
+
 def sendmessage(message):
-    notify2.init("Test")
     notify2.Notification("Twitch", message).show()
 
 # Settings
@@ -17,6 +17,12 @@ savefile = home +"/.local/share/twitch-streams.txt"
 
 if user_id is "your-user-id" or headers["Client-ID"] is "your-client-id":
     sys.exit("ERROR: Set user_id and client_id")
+
+# Init notify2
+try:
+    notify2.init("Twitch-notify")
+except:
+    print("Notification do not work")
 
 # Let's fetch and parse data from twitch
 r = requests.get("https://api.twitch.tv/helix/users/follows?from_id=%s" % user_id, headers=headers)

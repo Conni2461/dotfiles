@@ -1,7 +1,5 @@
 " Plugin
 	call plug#begin('~/.config/nvim/plugged')
-	Plug 'mhinz/vim-startify'
-	Plug 'tpope/vim-obsession'
 	Plug 'kshenoy/vim-signature'
 
 	Plug 'yuttie/comfortable-motion.vim'
@@ -11,12 +9,8 @@
 	Plug 'airblade/vim-gitgutter'
 	Plug 'rhysd/git-messenger.vim'
 
-	Plug 'ericcurtin/CurtineIncSw.vim'
-	Plug 'octol/vim-cpp-enhanced-highlight'
 	Plug 'gisphm/vim-gitignore'
 	Plug 'PotatoesMaster/i3-vim-syntax'
-	Plug 'godlygeek/tabular'
-	Plug 'plasticboy/vim-markdown'
 
 	Plug 'junegunn/fzf.vim'
 
@@ -27,16 +21,16 @@
 	Plug 'tpope/vim-surround'
 	Plug 'RRethy/vim-illuminate'
 
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	Plug 'dense-analysis/ale'
+	Plug 'SevereOverfl0w/deoplete-github'
 
 	Plug 'itchyny/lightline.vim'
 	Plug 'mengelbrecht/lightline-bufferline'
+	Plug 'maximbaz/lightline-ale'
 
-	Plug 'mcchrish/nnn.vim'
 	Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 	Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-
-	Plug 'segeljakt/vim-silicon'
 	call plug#end()
 
 " Some Basics
@@ -252,115 +246,64 @@
 	let g:lightline#bufferline#read_only=''
 	let g:lightline#bufferline#show_number=1
 
-	let g:coc_status_error_sign = "\uf071"
-	let g:coc_status_warning_sign = "\uf05e"
-
-	function! LightLineCocError()
-		let s:error_sign = get(g:, 'coc_status_error_sign')
-		let info = get(b:, 'coc_diagnostic_info', {})
-		if empty(info)
-			return ''
-		endif
-		let errmsgs = []
-		if get(info, 'error', 0)
-			call add(errmsgs, s:error_sign . info['error'])
-		endif
-		return trim(join(errmsgs, ' ') . ' ' . get(g:, 'coc_status', ''))
-	endfunction
-
-	function! LightLineCocWarn() abort
-		let s:warning_sign = get(g:, 'coc_status_warning_sign')
-		let info = get(b:, 'coc_diagnostic_info', {})
-		if empty(info)
-			return ''
-		endif
-		let warnmsgs = []
-		if get(info, 'warning', 0)
-			call add(warnmsgs, s:warning_sign . info['warning'])
-		endif
-		return trim(join(warnmsgs, ' ') . ' ' . get(g:, 'coc_status', ''))
-	endfunction
-
-	autocmd User CocDiagnosticChange call lightline#update()
+	let g:lightline#ale#indicator_checking = "\uf110"
+	let g:lightline#ale#indicator_warnings = "\uf071"
+	let g:lightline#ale#indicator_errors = "\uf05e"
+	let g:lightline#ale#indicator_ok = "\uf00c"
 
 	let g:lightline = {
 		\'active': {
 			\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'buffers']],
-			\'right': [['cocerror', 'cocwarn', 'lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
+			\'right': [['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
 		\},
 		\'component_expand': {
+			\'linter_checking': 'lightline#ale#checking',
+			\'linter_warnings': 'lightline#ale#warnings',
+			\'linter_errors': 'lightline#ale#errors',
+			\'linter_ok': 'lightline#ale#ok',
 			\'buffers': 'lightline#bufferline#buffers',
-			\'cocerror': 'LightLineCocError',
-			\'cocwarn': 'LightLineCocWarn',
 		\},
 		\'component_type': {
+			\'linter_checking': 'left',
+			\'linter_warnings': 'warning',
+			\'linter_errors': 'error',
+			\'linter_ok': 'left',
 			\'buffers': 'tabsel',
-			\'cocerror': 'error',
-			\'cocwarn': 'warning',
 		\},
 		\'component_function': {
 			\'gitbranch': 'fugitive#head',
 		\}
 	\}
 
-	au User CocDiagnosticChange call lightline#update()
+" ALE
+	let g:ale_linters = {'c': ['clangd'], }
 
-" Coc Setup
-	let g:coc_global_extensions =['coc-json', 'coc-python', 'coc-highlight', 'coc-git', 'coc-texlab']
-	inoremap <silent><expr> <TAB>
-		\ pumvisible() ? "\<C-n>" :
-		\ <SID>check_back_space() ? "\<TAB>" :
-		\ coc#refresh()
-	inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+	let g:ale_lint_on_text_changed = 'never'
+	let g:ale_lint_on_insert_leave = 0
+	let g:ale_lint_on_enter = 0
 
-	function! s:check_back_space() abort
-		let col = col('.') - 1
-		return !col || getline('.')[col - 1]  =~# '\s'
-	endfunction
-
-	inoremap <silent><expr> <c-space> coc#refresh()
-	inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
-	" Use `[c` and `]c` to navigate diagnostics
-	nmap <silent> [c <Plug>(coc-diagnostic-prev)
-	nmap <silent> ]c <Plug>(coc-diagnostic-next)
-
-	" Remap keys for gotos
-	nmap <silent> gd <Plug>(coc-definition)
-	nmap <silent> gy <Plug>(coc-type-definition)
-	nmap <silent> gi <Plug>(coc-implementation)
-	nmap <silent> gr <Plug>(coc-references)
-
-	" Use K to show documentation in preview window
-	nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-	function! s:show_documentation()
-		if (index(['vim','help'], &filetype) >= 0)
-			execute 'h '.expand('<cword>')
+	function ToggleErrors()
+		if g:ale_open_list
+			let g:ale_open_list = 0
+			lclose
 		else
-			call CocAction('doHover')
+			let g:ale_open_list = 1
+			ALELint
 		endif
 	endfunction
+	nmap <leader>s :call ToggleErrors()<CR>
 
-	autocmd CursorHold * silent call CocActionAsync('highlight')
+" Enable deoplete by default
+	let g:deoplete#enable_at_startup = 1
+	let g:deoplete#enable_refresh_always = 1
+	let g:deoplete#sources = {}
+	call g:deoplete#custom#option('sources', { '_': ['ale'],})
 
-	" Remap for rename current word
-	nmap <leader>rn <Plug>(coc-rename)
-
-	" Remap for format selected region
-	xmap <leader>f  <Plug>(coc-format-selected)
-	nmap <leader>f  <Plug>(coc-format-selected)
-
-" Nerdtree plugin map
-	let g:nnn#set_default_mappings = 0
-	let g:nnn#layout = 'new'
-	let g:nnn#layout = { 'left': '~20%' }
-	let g:nnn#action = {
-		\ '<c-t>': 'tab split',
-		\ '<c-x>': 'split',
-		\ '<c-v>': 'vsplit' }
-	let g:nnn#command = 'NNN_RESTRICT_NAV_OPEN=1 nnn'
-	nnoremap <silent> <leader>v : NnnPicker<CR>
+" Deoplete setup for github extension
+	let g:deoplete#sources.gitcommit=['github']
+	let g:deoplete#keyword_patterns = {}
+	let g:deoplete#keyword_patterns.gitcommit = '[^ \t]+'
+	call deoplete#custom#var('omni', 'input_patterns', {'github': '[^ \t]+'})
 
 " Tagbar
 	nmap <leader>o :TagbarToggle<CR>
@@ -404,12 +347,6 @@
 
 " Undotree shortcut
 	nnoremap <leader>u :UndotreeToggle<CR>
-
-" Tabular shortcuts
-	nmap <leader>a= :Tabularize /=<CR>
-	vmap <leader>a= :Tabularize /=<CR>
-	nmap <leader>a: :Tabularize /:<CR>
-	vmap <leader>a: :Tabularize /:<CR>
 
 " Snippets
 	runtime snippets/latex.vim
