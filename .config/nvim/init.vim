@@ -25,6 +25,8 @@
 	Plug 'dense-analysis/ale'
 	Plug 'SevereOverfl0w/deoplete-github'
 
+	Plug 'rhysd/vim-grammarous'
+
 	Plug 'itchyny/lightline.vim'
 	Plug 'mengelbrecht/lightline-bufferline'
 	Plug 'maximbaz/lightline-ale'
@@ -282,6 +284,8 @@
 	let g:ale_lint_on_insert_leave = 0
 	let g:ale_lint_on_enter = 0
 
+	let g:ale_open_list = 0
+
 	function ToggleErrors()
 		if g:ale_open_list
 			let g:ale_open_list = 0
@@ -289,6 +293,7 @@
 		else
 			let g:ale_open_list = 1
 			ALELint
+			wincmd j
 		endif
 	endfunction
 	nmap <leader>s :call ToggleErrors()<CR>
@@ -304,6 +309,16 @@
 	let g:deoplete#keyword_patterns = {}
 	let g:deoplete#keyword_patterns.gitcommit = '[^ \t]+'
 	call deoplete#custom#var('omni', 'input_patterns', {'github': '[^ \t]+'})
+
+" LanguageTool
+	let g:grammarous#use_vim_spelllang = 1
+	let g:grammarous#languagetool_cmd = 'languagetool'
+
+	nmap <leader>ls :GrammarousCheck<CR>
+	nmap <leader>lo <Plug>(grammarous-open-info-window)<CR>
+	nmap <leader>lc <Plug>(grammarous-close-info-window)<CR>
+	nmap <leader>ll <Plug>(grammarous-move-to-next-error)<CR>
+	nmap <leader>lh <Plug>(grammarous-move-to-previous-error)<CR>
 
 " Tagbar
 	nmap <leader>o :TagbarToggle<CR>
