@@ -5,4 +5,4 @@ sqlite3 $HOME/.local/share/newsboat/cache.db \
 	FROM rss_feed
 	INNER JOIN rss_item ON rss_feed.rssurl = rss_item.feedurl
 	WHERE unread = 1
-	ORDER BY rss_feed.title COLLATE NOCASE;"
+	ORDER BY rss_feed.title COLLATE NOCASE ASC, rss_item.pubDate DESC;"
