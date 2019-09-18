@@ -32,9 +32,10 @@ alias z='zathura'
 alias x='sxiv -ft *'
 alias sdn='sudo shutdown -h now'
 alias ccat='highlight --out-format=ansi --force'
+alias yt="youtube-dl --add-metadata -i -o '%(upload_date)s-%(title)s.%(ext)s'"
+alias yta="yt -x -f bestaudio/best"
 alias lsp='pacman -Qett --color=always | less'
 alias ffmpeg='ffmpeg -hide_banner'
-alias scim="sc-im"
 alias ru="sudo docker run -ti --rm ubuntu:latest bash"
 alias :q='echo you are not in vim'
 alias :wq='echo you are not in vim'
