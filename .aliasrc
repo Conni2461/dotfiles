@@ -40,7 +40,8 @@ alias ru="sudo docker run -ti --rm ubuntu:latest bash"
 alias :q='echo you are not in vim'
 alias :wq='echo you are not in vim'
 alias R='R --no-save'
-alias trans='trans en:de'
+alias transen='trans en:de'
+alias transde='trans de:en'
 
 # Shortcuts
 ## Files
