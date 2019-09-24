@@ -231,8 +231,9 @@
 
 " Enable Goyo by default for mutt writing
 	" Goyo's width will be the line limit in mutt.
+	autocmd BufRead,BufNewFile /tmp/neomutt* :call lightline#init()
 	autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=120
-	autocmd BufRead,BufNewFile /tmp/neomutt* :call ToggleGoyo()
+	autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
 
 " Automatically deletes all trailing whitespaces on save
 	autocmd BufWritePre * %s/\s\+$//e
@@ -339,26 +340,28 @@
 	let g:limelight_conceal_ctermfg=240
 
 " Goyo plugin makes text more readable when writing
-	function ToggleGoyo()
-		if exists('#goyo')
-			Goyo!
-			Limelight!
-			set bg=light
-			call ApplyColors()
-			set nolinebreak
-			set cursorline
-			set list
-		else
-			Goyo
-			Limelight
-			set bg=light
-			call ApplyColors()
-			set linebreak
-			set nocursorline
-			set nolist
-		endif
+	function! s:goyo_enter()
+		Limelight
+		set bg=light
+		call ApplyColors()
+		set linebreak
+		set nocursorline
+		set nolist
 	endfunction
-	nmap <leader>f :call ToggleGoyo()<CR>
+
+	function! s:goyo_leave()
+		Limelight!
+		set bg=light
+		call ApplyColors()
+		set nolinebreak
+		set cursorline
+		set list
+	endfunction
+
+	autocmd! User GoyoEnter nested call <SID>goyo_enter()
+	autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+	nmap <leader>f :Goyo<CR>
 
 " Undotree shortcut
 	nnoremap <leader>u :UndotreeToggle<CR>
