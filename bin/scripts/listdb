@@ -1,14 +1,6 @@
 #!/bin/sh
 
-addMovie()
-{
-	echo "${1} - Movie"
-}
-
-addShow()
-{
-	echo "${1} - Show"
-}
+if [ "$1" == "" ]; then exit 1; fi
 
 CountMovie=$(sed -e '/-----/,$d' ~/docs/shared/lists/$1 | awk NF | cut -d- -f2 | grep -c Movie)
 CountShow=$(sed -e '/-----/,$d' ~/docs/shared/lists/$1 | awk NF | cut -d- -f2 | grep -c Show)
