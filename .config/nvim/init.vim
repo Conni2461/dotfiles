@@ -13,6 +13,7 @@
 	Plug 'PotatoesMaster/i3-vim-syntax'
 
 	Plug 'junegunn/fzf.vim'
+	Plug 'liuchengxu/vim-clap'
 
 	Plug 'junegunn/goyo.vim'
 	Plug 'junegunn/limelight.vim'
