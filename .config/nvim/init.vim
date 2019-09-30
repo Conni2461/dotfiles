@@ -280,7 +280,14 @@
 	\}
 
 " ALE
-	let g:ale_linters = {'c': ['clangd'], }
+	let g:ale_linters = {
+	\   'c': ['clangd'],
+	\   'cpp': ['clangd'],
+	\   'python': ['pylint'],
+	\   'sh': ['shellcheck'],
+	\   'tex': ['lacheck'],
+	\   'vim': ['vint'],
+	\}
 
 	let g:ale_lint_on_text_changed = 'never'
 	let g:ale_lint_on_insert_leave = 0
@@ -304,7 +311,9 @@
 	let g:deoplete#enable_at_startup = 1
 	let g:deoplete#enable_refresh_always = 1
 	let g:deoplete#sources = {}
-	call g:deoplete#custom#option('sources', { '_': ['ale'],})
+	call deoplete#custom#option('sources', {
+	\ '_': ['ale'],
+	\})
 
 " Deoplete setup for github extension
 	let g:deoplete#sources.gitcommit=['github']
