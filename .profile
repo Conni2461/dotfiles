@@ -12,14 +12,6 @@ export FILE="nnn"
 export SUDO_ASKPASS="$HOME/bin/scripts/askpass"
 export PAGER='less'
 
-# NNN Settings
-export NNN_BMS='D:~/Downloads;d:~/docs;s:~/bin;o:~/repos'
-export NNN_USE_EDITOR=1
-export NNN_CONTEXT_COLORS='1234'
-export NNN_NOTE=$HOME/docs/shared/vimwiki
-export NNN_TRASH=1
-export NNN_OPS_PROG=1
-
 # less/man colors
 export LESS=-R
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"; a="${a%_}"
