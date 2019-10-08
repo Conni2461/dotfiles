@@ -44,7 +44,6 @@ set index-active-fg "#1c1c1c"
 set render-loading-bg "#1c1c1c"
 set render-loading-fg "#d0d0d0"
 
-set smooth-scroll true
 set window-title-home-tilde true
 set statusbar-basename true
 set selection-clipboard clipboard
