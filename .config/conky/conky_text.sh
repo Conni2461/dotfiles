@@ -11,7 +11,7 @@ echo '${color1}${font}TOKYO         ${color}${tztime Asia/Tokyo %m/%d/%Y %I:%M%p
 if [ "$(calcurse -a)" != "" ]; then
 	echo
 	echo '${color1}${font}APPOINTMENTS'
-	echo '${color}${exec calcurse -a | awk '\''!a[$0]++'\'' | sed -n "1!p" | sed -e "s/^ - *//" | sed -e "s/ \* //g" | sed -e "s/^[ \t]/    /"}'
+	echo '${color}${exec calcurse -a | awk '\''!a[$0]++'\'' | sed -n "1!p" | sed -e "s/^ - *//;s/ \* //g;s/^[ \t]/    /"}'
 fi
 
 if [ "$(listnews)" != "" ]; then
