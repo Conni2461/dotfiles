@@ -85,7 +85,7 @@
 	nnoremap <leader>n  :enew<CR>
 	nnoremap <leader>h  :bprevious<CR>
 	nnoremap <leader>l  :bnext<CR>
-	nnoremap <leader>bq :bp <BAR> bd # <BAR> call lightline#update()<CR>
+	nnoremap <leader>bq :bd<CR>
 	nnoremap <leader>bl :ls<CR>
 
 " Tabs and spaces
