@@ -193,9 +193,6 @@
 	map <C-p> "+p
 	nnoremap s "_d
 
-" Enable autocompletion:
-	set wildmode=longest,list,full
-
 " Tab jumping
 " - Use ^] to jump to tag under cursor
 " - Use g^] for ambiguous tags

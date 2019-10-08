@@ -1,9 +1,9 @@
 #!/bin/python
 
-import requests
-import notify2
 import sys
 from pathlib import Path
+import requests
+import notify2
 
 
 def sendmessage(message):
@@ -15,7 +15,7 @@ headers = { 'Client-ID': "tka77qrif09sy7zagfjs9jrbkh494k", }
 home = str(Path.home())
 savefile = home +"/.local/share/twitch-streams.txt"
 
-if user_id is "your-user-id" or headers["Client-ID"] is "your-client-id":
+if user_id == "your-user-id" or headers["Client-ID"] == "your-client-id":
     sys.exit("ERROR: Set user_id and client_id")
 
 # Init notify2
@@ -25,8 +25,7 @@ except:
     print("Notification do not work")
 
 # Let's fetch and parse data from twitch
-r = requests.get("https://api.twitch.tv/helix/users/follows?from_id=%s" % user_id, headers=headers)
-raw_data = r.json()
+raw_data = requests.get("https://api.twitch.tv/helix/users/follows?from_id=%s" % user_id, headers=headers).json()
 
 # Get followed channels
 followed_channels = []
@@ -34,8 +33,7 @@ for channel in raw_data["data"]:
     followed_channels.append(channel["to_name"])
 
 # Get Stream info
-r = requests.get('https://api.twitch.tv/helix/streams?user_login=%s&user_login=%s' % (followed_channels[0], '&user_login='.join(followed_channels[1:])), headers=headers)
-live_streams = r.json()
+live_streams = requests.get('https://api.twitch.tv/helix/streams?user_login=%s&user_login=%s' % (followed_channels[0], '&user_login='.join(followed_channels[1:])), headers=headers).json()
 
 game_cache = {}
 output = set()
@@ -61,7 +59,7 @@ old_data = set()
 try:
     with open(savefile, "r") as f:
         for line in f:
-            if line is not '\n' or '':
+            if line != '\n' or line != '':
                 old_data.add(line.replace('\n', ''))
 except FileNotFoundError:
     print('File not created yet')
