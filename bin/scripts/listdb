@@ -1,11 +1,24 @@
 #!/bin/sh
 
-if [ "$1" == "" ]; then exit 1; fi
+if [ "$1" = "" ]; then exit 1; fi
 
-CountMovie=$(sed -e '/-----/,$d' ~/docs/shared/lists/$1 | awk NF | cut -d- -f2 | grep -c Movie)
-CountShow=$(sed -e '/-----/,$d' ~/docs/shared/lists/$1 | awk NF | cut -d- -f2 | grep -c Show)
+if [ "$2" = "-t" ]; then
+	upcoming=$(sed -e '1,/-----/d' "$HOME/docs/shared/lists/$1" | awk NF)
+	dates=$(echo "$upcoming" | cut -d- -f 1 | awk NF | sed '/^$/d')
+	while read -r line; do
+		if [ "$line" = "$(date '+%d.%m')" ]; then
+			beginning=$(echo "$upcoming" | awk "/$line/{p=1}p" | sed -e "s/$(date '+%d.%m')   /\t/g")
+			final=$(echo "$beginning" | sed -e '/[0-9][0-9].[0-9][0-9].*/,$d;s/^[ \t]*//;s/^- //g')
+			echo "$final"
+		fi
+	done <<< "$dates"
+	exit
+fi
+
+CountMovie=$(sed -e '/-----/,$d' "$HOME/docs/shared/lists/$1" | awk NF | cut -d- -f2 | grep -c Movie)
+CountShow=$(sed -e '/-----/,$d' "$HOME/docs/shared/lists/$1" | awk NF | cut -d- -f2 | grep -c Show)
 
 echo "Movies to watch:          ${CountMovie}"
 echo "Shows to watch:           ${CountShow}"
 echo "Upcoming:"
-sed -e '1,/-----/d' ~/docs/shared/lists/$1 | awk NF
+sed -e '1,/-----/d' "$HOME/docs/shared/lists/$1" | awk NF

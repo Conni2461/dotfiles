@@ -20,6 +20,26 @@ if [ "$(listnews)" != "" ]; then
 	echo '${color}${exec listnews}'
 fi
 
+if [ ! -f /tmp/today_netflix ] || [ "$(date +%M)" = "00" ]; then
+	netflixdb -t >/tmp/today_netflix
+fi
+
+if [ "$(cat /tmp/today_netflix)" != "" ]; then
+	echo
+	echo '${color1}${font}NETFLIX'
+	echo '${color}${exec cat /tmp/today_netflix}'
+fi
+
+if [ ! -f /tmp/today_amazon ] || [ "$(date +%M)" = "00" ]; then
+	amazondb -t >/tmp/today_amazon
+fi
+
+if [ "$(cat /tmp/today_amazon)" != "" ]; then
+	echo
+	echo '${color1}${font}AMAZON'
+	echo '${color}${exec cat /tmp/today_amazon}'
+fi
+
 if [ "$(liststreams)" != "" ]; then
 	echo
 	echo '${color1}${font}TWITCH'
