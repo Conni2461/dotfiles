@@ -1,5 +1,17 @@
 #!/bin/sh
 
+ftodo()
+{
+	rtodo=$(todo)
+	[ "${rtodo}" != "" ] && echo "📝 ${rtodo} | "
+}
+
+fappointments()
+{
+	rappointments=$(appointments)
+	[ "${rappointments}" != "" ] && echo "📅 ${rappointments} | "
+}
+
 fnews()
 {
 	rnews=$(news)
@@ -12,16 +24,16 @@ fpacpackages()
 	[ "${rpac}" != "" ] && echo "📦 ${rpac} | "
 }
 
-fmailbox()
-{
-	rbox=$(mailbox)
-	[ "${rbox}" != "" ] && echo "📬 ${rbox} | "
-}
-
 fweather()
 {
 	rweather=$(weather)
 	[ "${rweather}" != "" ] && echo "${rweather} | "
+}
+
+fmailbox()
+{
+	rbox=$(mailbox)
+	[ "${rbox}" != "" ] && echo "📬 ${rbox} | "
 }
 
 fbattery()
@@ -34,7 +46,7 @@ fbattery()
 }
 
 while true; do
-	xsetroot -name "$(fnews)$(fpacpackages)$(fmailbox)$(fweather)$(volume) | $(internet) | $(fbattery BAT1) | $(fbattery BAT2) | 📅 $(clock)"
+	xsetroot -name "$(fappointments)$(ftodo)$(fnews)$(fmailbox)$(fpacpackages)$(fweather)$(volume) | $(internet) | $(fbattery BAT1) | $(fbattery BAT2) | $(clock)"
 
-	sleep 1m
+	sleep 15
 done
