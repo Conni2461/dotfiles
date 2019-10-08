@@ -1,0 +1,3 @@
+#!/bin/sh
+
+echo $(($(calcurse -t | wc -l) - 1)) | sed 's/^0$//g'

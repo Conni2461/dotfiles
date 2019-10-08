@@ -1,0 +1,3 @@
+#!/bin/sh
+
+calcurse -a | grep -Pc '\t|\*' | sed 's/^0$//g'
