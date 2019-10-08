@@ -49,7 +49,7 @@
 # CONSTANTS
 
 SP_VERSION="0.1"
-SP_DEST="org.mpris.MediaPlayer2.spotify"
+SP_DEST="org.mpris.MediaPlayer2.spotifyd"
 SP_PATH="/org/mpris/MediaPlayer2"
 SP_MEMB="org.mpris.MediaPlayer2.Player"
 
@@ -285,7 +285,7 @@ alias sp-prev="  sp-dbus Previous"
 # when running locally, but is crucial when we don't have an X display handy
 # (for instance, when running sp over ssh.)
 
-SPOTIFY_PID="$(pidof -s spotify)"
+SPOTIFY_PID="$(pidof -s spotifyd)"
 
 if [[ -z "$SPOTIFY_PID" ]]; then
   echo "Error: Spotify is not running."
