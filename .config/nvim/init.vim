@@ -3,7 +3,10 @@
 		echo "Downloading junegunn/vim-plug to manage plugins..."
 		silent !mkdir -p ~/.config/nvim/autoload/
 		silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
-		autocmd VimEnter * PlugInstall
+		augroup plug
+			au!
+			au VimEnter * PlugInstall
+		augroup END
 	endif
 
 " Plugin
@@ -11,6 +14,7 @@
 	Plug 'kshenoy/vim-signature'
 
 	Plug 'yuttie/comfortable-motion.vim'
+	Plug 'gillyb/stable-windows'
 
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-rhubarb'
@@ -153,7 +157,10 @@
 	set foldenable
 	set foldmethod=syntax
 	set foldlevel=0
-	autocmd BufRead * normal zR
+	augroup fold
+		au!
+		au BufRead * normal zR
+	augroup END
 	" source: gist.github.com/sjl/3360978
 	function! MyFoldText() " {{{
 		let line = getline(v:foldstart)
@@ -208,7 +215,10 @@
 	command! MakeTags !ctags -R .
 
 " Disable automatic commenting on newline:
-	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+	augroup commenting
+		au!
+		au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+	augroup END
 
 " Spellcheck set to <leader>e for English and <leader>d for German
 	nmap <leader>e :setlocal spell! spelllang=en_us<CR>
@@ -231,22 +241,34 @@
 
 " Ensure files are read as what I want:
 	let g:vimwiki_list = [{'path': '~/docs/shared/vimwiki/'}]
-	autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
-	autocmd BufRead,BufNewFile *.tex set filetype=tex
-	autocmd BufRead,BufNewFile *.h set filetype=c
+	augroup files
+		au!
+		au BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
+		au BufRead,BufNewFile *.tex set filetype=tex
+		au BufRead,BufNewFile *.h set filetype=c
+	augroup END
 
 " Enable Goyo by default for mutt writing
 	" Goyo's width will be the line limit in mutt.
-	autocmd BufRead,BufNewFile /tmp/neomutt* :call lightline#init()
-	autocmd BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=120
-	autocmd BufRead,BufNewFile /tmp/neomutt* :Goyo
+	augroup mutt
+		au!
+		au BufRead,BufNewFile /tmp/neomutt* :call lightline#init()
+		au BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=120
+		au BufRead,BufNewFile /tmp/neomutt* :Goyo
+	augroup END
 
 " Automatically deletes all trailing whitespaces on save
-	autocmd BufWritePre * %s/\s\+$//e
+	augroup whitespaces
+		au!
+		au BufWritePre * %s/\s\+$//e
+	augroup END
 
 " Post Save Commands
-	autocmd BufWritePost * silent! execute "!notify-send 'File <afile> saved'" | redraw!
-	autocmd BufWritePost * silent! execute "!syncfile %:p" | redraw!
+	augroup post
+		au!
+		au BufWritePost * silent! execute "!notify-send 'File <afile> saved'" | redraw!
+		au BufWritePost * silent! execute "!syncfile %:p" | redraw!
+	augroup END
 
 " lightline configuration
 	set laststatus=2
@@ -373,8 +395,11 @@
 		set list
 	endfunction
 
-	autocmd! User GoyoEnter nested call <SID>goyo_enter()
-	autocmd! User GoyoLeave nested call <SID>goyo_leave()
+	augroup goyo
+		au!
+		au User GoyoEnter nested call <SID>goyo_enter()
+		au User GoyoLeave nested call <SID>goyo_leave()
+	augroup END
 
 	nmap <leader>f :Goyo<CR>
 
