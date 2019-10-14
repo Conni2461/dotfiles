@@ -24,7 +24,6 @@
 	Plug 'gisphm/vim-gitignore'
 	Plug 'PotatoesMaster/i3-vim-syntax'
 
-	Plug 'junegunn/fzf.vim'
 	Plug 'liuchengxu/vim-clap'
 
 	Plug 'junegunn/goyo.vim'
@@ -75,6 +74,10 @@
 	set cursorline
 
 	command! Vimrc :vs $MYVIMRC
+	augroup reload
+		au!
+		au BufWritePost $MYVIMRC source $MYVIMRC
+	augroup END
 
 " Nvim specifics
 	" Shows realtime changes with :s/
@@ -150,6 +153,9 @@
 
 		" Fix folding color
 		hi Folded ctermfg=234 cterm=bold
+
+		" Fix tooltip and Clap
+		hi Pmenu ctermfg=255 ctermbg=238
 	endfunction
 	call ApplyColors()
 
@@ -254,7 +260,7 @@
 		au!
 		au BufRead,BufNewFile /tmp/neomutt* :call lightline#init()
 		au BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=120
-		au BufRead,BufNewFile /tmp/neomutt* :Goyo
+		au BufRead,BufNewFile /tmp/neomutt* Goyo
 	augroup END
 
 " Automatically deletes all trailing whitespaces on save
@@ -361,17 +367,13 @@
 " Tagbar
 	nmap <leader>o :TagbarToggle<CR>
 
-" fuzzy search
-	nmap <leader>q :GFiles<CR>
-	nmap <leader>Q :Files<CR>
+" Clap search
+	nmap <leader>q :Clap files<CR>
+	nmap <leader>b :Clap buffers<CR>
+	nmap <leader>g :Clap grep<CR>
+	nmap <leader>t :Clap tags<CR>
+	nmap <leader>' :Clap marks<CR>
 
-	nmap <leader>B :Buffers<CR>
-	nmap <leader>H :History<CR>
-
-	nmap <leader>t :Btags<CR>
-	nmap <leader>T :Tags<CR>
-
-	nmap <leader>' :Marks<CR>
 
 " Limelight setup
 	let g:limelight_conceal_ctermfg=240
@@ -395,11 +397,8 @@
 		set list
 	endfunction
 
-	augroup goyo
-		au!
-		au User GoyoEnter nested call <SID>goyo_enter()
-		au User GoyoLeave nested call <SID>goyo_leave()
-	augroup END
+	au! User GoyoEnter nested call <SID>goyo_enter()
+	au! User GoyoLeave nested call <SID>goyo_leave()
 
 	nmap <leader>f :Goyo<CR>
 
