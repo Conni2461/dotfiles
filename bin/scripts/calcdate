@@ -1,0 +1,24 @@
+#!/bin/sh
+
+usage="$0 HH:mm TZ"
+
+if [ "$1" = "" ]; then
+	echo "$usage"
+	exit 1
+fi
+
+c_hour=$(TZ=$2 date +%H)
+c_minutes=$(TZ=$2 date +%M)
+
+t_hour=$(echo "$1" | cut -d : -f 1)
+t_minutes=$(echo "$1" | cut -d : -f 2)
+
+h=$((t_hour - c_hour))
+m=$((t_minutes - c_minutes))
+
+if [ "$m" -lt "0" ]; then
+	h=$((h - 1))
+	m=$((m + 60))
+fi
+
+echo "${h}:${m}h till $1 $2"
