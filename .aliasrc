@@ -6,8 +6,8 @@ command -v neomutt >/dev/null && alias mutt='neomutt'
 
 # ls and other file stuff
 alias ls='ls -hN --color=auto --group-directories-first'
-alias l='exa -bghl -sname --icons --git'
-alias ll='exa -bghla -sname --icons --git'
+alias l='exa -bghl -sname --icons'
+alias ll='exa -bghla -sname --icons'
 alias tree='exa -sname --tree --icons'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
