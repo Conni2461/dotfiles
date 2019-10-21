@@ -408,12 +408,17 @@
 	command! -nargs=* ReadBib call s:ReadBib(<f-args>)
 
 	" Own Clap provider
-	" Edit output with loadbib function before read
+	let g:clap_provider_quick_open = {
+		\ 'source': ['~/.aliasrc', '~/.functionrc', '~/.bashrc', '~/.profile', '~/.gitconfig', '~/.config/nvim/init.vim', '~/.tmux.conf'],
+		\ 'sink': 'e',
+		\ }
+
 	let g:clap_provider_load_bib = {
 		\ 'source': 'loadbib -l',
 		\ 'sink': 'ReadBib',
 		\ }
 
+	nnoremap <leader>xo  :Clap quick_open<CR>
 	nnoremap <leader>xb  :Clap load_bib<CR>
 
 " Limelight setup
