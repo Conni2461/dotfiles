@@ -1,0 +1,34 @@
+#!/bin/bash
+
+accessbib()
+{
+	result=$(echo "$1" | cut -d':' -f 1)
+
+	opening=$(grep -wn "${result}" "${HOME}/bin/shared/bibliography.bib" | cut -d':' -f 1)
+	closingcandidates=$(grep -n '^}$' "${HOME}/bin/shared/bibliography.bib" | cut -d':' -f 1)
+
+	while read -r line; do
+		if [ "${opening}" -lt "${line}" ]; then
+			closing="${line}"
+			break
+		fi
+	done <<< "$closingcandidates"
+
+	awk "NR >= ${opening} && NR <= ${closing}" "${HOME}/bin/shared/bibliography.bib"
+}
+
+export -f accessbib
+
+authors=$(grep '@' "${HOME}/bin/shared/bibliography.bib" | cut -d'{' -f 2 | sed -E 's/,//g;s/^[ \t]*//')
+titles=$(grep -w 'title' "${HOME}/bin/shared/bibliography.bib" | cut -d'=' -f 2 | awk '{sub(/\{\\.+\}/," ",$1)}1' | sed -E 's/\{|\}//g;s/,//g;s/^[ \t]*//')
+papers=$(paste -d';' <(echo "${authors}") <(echo "${titles}") | sed -e 's/;/: /')
+
+export FZF_DEFAULT_OPTS="-m --reverse --bind ctrl-k:preview-up,shift-up:preview-up,ctrl-j:preview-down,shift-down:preview-down"
+
+selected=$(echo "${papers}" | fzf --preview "accessbib {} | fold -s -w 100")
+
+if [ "${selected}" == "" ]; then
+	exit 0
+fi
+
+accessbib "${selected}"
