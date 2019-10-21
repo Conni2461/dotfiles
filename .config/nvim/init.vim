@@ -261,6 +261,7 @@
 	" Goyo's width will be the line limit in mutt.
 	augroup mutt
 		au!
+		au BufRead,BufNewFile /tmp/neomutt* Vista!
 		au BufRead,BufNewFile /tmp/neomutt* :call lightline#init()
 		au BufRead,BufNewFile /tmp/neomutt* let g:goyo_width=120
 		au BufRead,BufNewFile /tmp/neomutt* Goyo
@@ -419,6 +420,11 @@
 	let g:limelight_conceal_ctermfg=240
 
 " Goyo plugin makes text more readable when writing
+	function! ToggleGoyo()
+		Vista!
+		Goyo
+	endfunction
+
 	function! s:goyo_enter()
 		Limelight
 		set bg=light
@@ -440,7 +446,7 @@
 	au! User GoyoEnter nested call <SID>goyo_enter()
 	au! User GoyoLeave nested call <SID>goyo_leave()
 
-	nnoremap <leader>f :Goyo<CR>
+	nnoremap <leader>f :call ToggleGoyo()<CR>
 
 " Undotree shortcut
 	nnoremap <leader>u :UndotreeToggle<CR>
