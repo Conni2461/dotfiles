@@ -43,7 +43,7 @@
 	Plug 'mengelbrecht/lightline-bufferline'
 	Plug 'maximbaz/lightline-ale'
 
-	Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
+	Plug 'liuchengxu/vista.vim'
 	Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 	call plug#end()
 
@@ -79,6 +79,8 @@
 		au BufWritePost $MYVIMRC source $MYVIMRC
 	augroup END
 
+	nnoremap <leader>r :source $MYVIMRC<CR> | normal zR
+
 " Nvim specifics
 	" Shows realtime changes with :s/
 	set inccommand=nosplit
@@ -97,11 +99,11 @@
 
 " Buffer Setup
 	"set hidden
-	nnoremap <leader>n  :enew<CR>
-	nnoremap <leader>h  :bprevious<CR>
-	nnoremap <leader>l  :bnext<CR>
+	nnoremap <leader>bn :enew<CR>
+	nnoremap <leader>bh :bprevious<CR>
+	nnoremap <leader>bl :bnext<CR>
 	nnoremap <leader>bq :bd<CR>
-	nnoremap <leader>bl :ls<CR>
+	" <leader>bg opens Clap buffers
 
 " Tabs and spaces
 	set tabstop=4
@@ -110,7 +112,7 @@
 	set listchars=tab:\¦\ " Required comment
 	set list
 	let s:defaultList=1
-	nnoremap <leader>r :%retab!<CR>
+	nnoremap <leader>vr :%retab!<CR>
 
 	function ToggleListchars()
 		if s:defaultList
@@ -121,7 +123,7 @@
 			let s:defaultList=1
 		endif
 	endfunction
-	nnoremap <leader>m :call ToggleListchars()<CR>
+	nnoremap <leader>vh :call ToggleListchars()<CR>
 
 " Apply colors called at the beginning and when toggling goyo
 	function ApplyColors()
@@ -202,8 +204,8 @@
 	nnoremap L $
 
 " Bubble single lines
-	nmap <C-Up> :m .-2<CR>
-	nmap <C-Down> :m  .+1<CR>
+	nnoremap <C-Up> :m .-2<CR>
+	nnoremap <C-Down> :m  .+1<CR>
 
 " Bubble multiple lines
 	vnoremap <silent> <C-Up>  @='"zxk"zP`[V`]'<CR>
@@ -226,9 +228,10 @@
 		au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 	augroup END
 
-" Spellcheck set to <leader>e for English and <leader>d for German
-	nmap <leader>e :setlocal spell! spelllang=en_us<CR>
-	nmap <leader>d :setlocal spell! spelllang=de_de<CR>
+" Spellcheck
+	nnoremap <leader>se :setlocal spell! spelllang=en_us<CR>
+	nnoremap <leader>sd :setlocal spell! spelllang=de_de<CR>
+	nnoremap <leader>sf :setlocal spell! spelllang=en_us,de_de<CR>
 
 " Splits open at the bottom and right
 	set splitbelow splitright
@@ -240,10 +243,10 @@
 	map <C-l> <C-w>l
 
 " Compile document, be it groff/LaTeX/markdown/etc.
-	nmap <leader>c :w! \| !compiler <c-r>%<CR>
+	nnoremap <leader>c :w! \| !compiler <c-r>%<CR>
 
 " Open corresponding .pdf/.html or preview
-	nmap <leader>p :!opout <c-r>%<CR><CR>
+	nnoremap <leader>p :!opout <c-r>%<CR><CR>
 
 " Ensure files are read as what I want:
 	let g:vimwiki_list = [{'path': '~/docs/shared/vimwiki/'}]
@@ -276,6 +279,7 @@
 		au BufWritePost * silent! execute "!syncfile %:p" | redraw!
 	augroup END
 
+
 " lightline configuration
 	set laststatus=2
 
@@ -290,7 +294,7 @@
 
 	let g:lightline = {
 		\'active': {
-			\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'buffers']],
+			\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'buffers'], ['method']],
 			\'right': [['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
 		\},
 		\'component_expand': {
@@ -309,8 +313,10 @@
 		\},
 		\'component_function': {
 			\'gitbranch': 'fugitive#head',
+			\'method': 'NearestMethodOrFunction',
 		\}
 	\}
+
 
 " ALE
 	let g:ale_linters = {
@@ -338,7 +344,13 @@
 			wincmd j
 		endif
 	endfunction
-	nmap <leader>s :call ToggleErrors()<CR>
+	nnoremap <leader>ae :call ToggleErrors()<CR>
+
+	nnoremap <leader>ad :ALEGoToDefinition<CR>
+	nnoremap <leader>at :ALEGoToTypeDefinition<CR>
+	nnoremap <leader>ar :ALEFindReferences<CR>
+	nnoremap <leader>ah :ALEHover<CR>
+	nnoremap <leader>as :ALESymbolSearch<CR>
 
 " Enable deoplete by default
 	let g:deoplete#enable_at_startup = 1
@@ -358,22 +370,38 @@
 	let g:grammarous#use_vim_spelllang = 1
 	let g:grammarous#languagetool_cmd = 'languagetool'
 
-	nmap <leader>ls :GrammarousCheck<CR>
-	nmap <leader>lo <Plug>(grammarous-open-info-window)<CR>
-	nmap <leader>lc <Plug>(grammarous-close-info-window)<CR>
-	nmap <leader>ll <Plug>(grammarous-move-to-next-error)<CR>
-	nmap <leader>lh <Plug>(grammarous-move-to-previous-error)<CR>
+	nnoremap <leader>ls :GrammarousCheck<CR>
+	nnoremap <leader>lo <Plug>(grammarous-open-info-window)<CR>
+	nnoremap <leader>lc <Plug>(grammarous-close-info-window)<CR>
+	nnoremap <leader>ll <Plug>(grammarous-move-to-next-error)<CR>
+	nnoremap <leader>lh <Plug>(grammarous-move-to-previous-error)<CR>
 
-" Tagbar
-	nmap <leader>o :TagbarToggle<CR>
+" Vista
+	nnoremap <leader>o :Vista!!<CR>
+	let g:vista_default_executive = 'ctags'
+
+	function! NearestMethodOrFunction() abort
+		return get(b:, 'vista_nearest_method_or_function', '')
+	endfunction
+
+	augroup vista
+		au!
+		au VimEnter * call vista#RunForNearestMethodOrFunction()
+	augroup END
 
 " Clap search
-	nmap <leader>q :Clap files<CR>
-	nmap <leader>b :Clap buffers<CR>
-	nmap <leader>g :Clap grep<CR>
-	nmap <leader>t :Clap tags<CR>
-	nmap <leader>' :Clap marks<CR>
+	nnoremap <leader>q  :Clap files<CR>
+	nnoremap <leader>bg :Clap buffers<CR>
+	nnoremap <leader>g  :Clap grep<CR>
+	nnoremap <leader>t  :Clap tags<CR>
+	nnoremap <leader>'  :Clap marks<CR>
 
+	" Own Clap provider
+	" Edit output with loadbib function before read
+	let g:clap_provider_load_bib = {
+		\ 'source': 'loadbib -l',
+		\ 'sink': 'read',
+		\ }
 
 " Limelight setup
 	let g:limelight_conceal_ctermfg=240
@@ -400,7 +428,7 @@
 	au! User GoyoEnter nested call <SID>goyo_enter()
 	au! User GoyoLeave nested call <SID>goyo_leave()
 
-	nmap <leader>f :Goyo<CR>
+	nnoremap <leader>f :Goyo<CR>
 
 " Undotree shortcut
 	nnoremap <leader>u :UndotreeToggle<CR>
