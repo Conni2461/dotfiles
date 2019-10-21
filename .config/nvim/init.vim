@@ -396,12 +396,24 @@
 	nnoremap <leader>t  :Clap tags<CR>
 	nnoremap <leader>'  :Clap marks<CR>
 
+	function! s:ReadBib(...)
+		let l:input = join(a:000)
+		let l:command = "echo '" . l:input . "' | cut -d':' -f 1"
+		let l:file = system(l:command)
+
+		execute "read !loadbib -g" l:file
+	endfunction
+
+	command! -nargs=* ReadBib call s:ReadBib(<f-args>)
+
 	" Own Clap provider
 	" Edit output with loadbib function before read
 	let g:clap_provider_load_bib = {
 		\ 'source': 'loadbib -l',
-		\ 'sink': 'read',
+		\ 'sink': 'ReadBib',
 		\ }
+
+	nnoremap <leader>xb  :Clap load_bib<CR>
 
 " Limelight setup
 	let g:limelight_conceal_ctermfg=240

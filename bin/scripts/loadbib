@@ -2,9 +2,8 @@
 
 accessbib()
 {
-	result=$(echo "$1" | cut -d':' -f 1)
 
-	opening=$(grep -wn "${result}" "${HOME}/bin/shared/bibliography.bib" | cut -d':' -f 1)
+	opening=$(grep -wn "$1" "${HOME}/bin/shared/bibliography.bib" | cut -d':' -f 1)
 	closingcandidates=$(grep -n '^}$' "${HOME}/bin/shared/bibliography.bib" | cut -d':' -f 1)
 
 	while read -r line; do
@@ -17,6 +16,16 @@ accessbib()
 	awk "NR >= ${opening} && NR <= ${closing}" "${HOME}/bin/shared/bibliography.bib"
 }
 
+if [ "$1" == "-g" ]; then
+	if [ "$2" == "" ]; then
+		echo "Second parameter must be a valid selected value. Choose one from -l. Example: Arnold_2012"
+		exit 1
+	fi
+
+	accessbib "$2"
+	exit 0
+fi
+
 export -f accessbib
 
 authors=$(grep '@' "${HOME}/bin/shared/bibliography.bib" | cut -d'{' -f 2 | sed -E 's/,//g;s/^[ \t]*//')
@@ -25,10 +34,16 @@ papers=$(paste -d';' <(echo "${authors}") <(echo "${titles}") | sed -e 's/;/: /'
 
 export FZF_DEFAULT_OPTS="-m --reverse --bind ctrl-k:preview-up,shift-up:preview-up,ctrl-j:preview-down,shift-down:preview-down"
 
-selected=$(echo "${papers}" | fzf --preview "accessbib {} | fold -s -w 100")
+if [ "$1" == "-l" ]; then
+	echo "${papers}"
+	exit
+else
+	selected=$(echo "${papers}" | fzf --preview 'accessbib $(echo {} | cut -d':' -f 1) | fold -s -w 100')
+fi
 
 if [ "${selected}" == "" ]; then
 	exit 0
 fi
 
-accessbib "${selected}"
+result=$(echo "$1" | cut -d':' -f 1)
+accessbib "${result}"
