@@ -1,8 +1,6 @@
 #!/bin/bash
-
 accessbib()
 {
-
 	opening=$(grep -wn "$1" "${HOME}/bin/shared/bibliography.bib" | cut -d':' -f 1)
 	closingcandidates=$(grep -n '^}$' "${HOME}/bin/shared/bibliography.bib" | cut -d':' -f 1)
 
@@ -45,5 +43,5 @@ if [ "${selected}" == "" ]; then
 	exit 0
 fi
 
-result=$(echo "$1" | cut -d':' -f 1)
+result=$(echo "$selected" | cut -d':' -f 1)
 accessbib "${result}"
