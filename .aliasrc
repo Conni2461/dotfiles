@@ -6,8 +6,8 @@ command -v neomutt >/dev/null && alias mutt='neomutt'
 
 # ls and other file stuff
 alias ls='ls -hN --color=auto --group-directories-first'
-alias l='exa -bghl -sname --icons'
-alias ll='exa -bghla -sname --icons'
+alias l='exa -bghl -sname --group-directories-first --icons'
+alias ll='exa -bghla -sname --group-directories-first --icons'
 alias tree='exa -sname --tree --icons'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
@@ -42,6 +42,7 @@ alias :wq='echo you are not in vim'
 alias R='R --no-save'
 alias transen='trans en:de'
 alias transde='trans de:en'
+alias ssh='TERM=xterm ssh'
 
 # Shortcuts
 ## Files
