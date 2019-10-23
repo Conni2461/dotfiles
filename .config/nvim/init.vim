@@ -23,6 +23,8 @@
 
 	Plug 'gisphm/vim-gitignore'
 	Plug 'PotatoesMaster/i3-vim-syntax'
+	Plug 'octol/vim-cpp-enhanced-highlight'
+	Plug 'ericcurtin/CurtineIncSw.vim'
 
 	Plug 'liuchengxu/vim-clap'
 
@@ -352,6 +354,9 @@
 	nnoremap <leader>ar :ALEFindReferences<CR>
 	nnoremap <leader>ah :ALEHover<CR>
 	nnoremap <leader>as :ALESymbolSearch<CR>
+
+" CurtineIncSw
+	nnoremap <leader>m :call CurtineIncSw()<CR>
 
 " Enable deoplete by default
 	let g:deoplete#enable_at_startup = 1
