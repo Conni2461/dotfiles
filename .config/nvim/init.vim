@@ -160,6 +160,11 @@
 
 		" Fix tooltip and Clap
 		hi Pmenu ctermfg=255 ctermbg=238
+
+		" Fix Git Gutter
+		hi GitGutterAdd    ctermfg=2
+		hi GitGutterChange ctermfg=3
+		hi GitGutterDelete ctermfg=1
 	endfunction
 	call ApplyColors()
 
