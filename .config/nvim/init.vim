@@ -15,11 +15,13 @@
 
 	Plug 'yuttie/comfortable-motion.vim'
 	Plug 'gillyb/stable-windows'
+	Plug 'jiangmiao/auto-pairs'
 
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-rhubarb'
 	Plug 'airblade/vim-gitgutter'
 	Plug 'rhysd/git-messenger.vim'
+	Plug 'junegunn/gv.vim'
 
 	Plug 'gisphm/vim-gitignore'
 	Plug 'PotatoesMaster/i3-vim-syntax'
@@ -328,8 +330,8 @@
 
 " ALE
 	let g:ale_linters = {
-	\   'c': ['clangd'],
-	\   'cpp': ['clangd'],
+	\   'c': ['cquery'],
+	\   'cpp': ['cquery'],
 	\   'python': ['pylint'],
 	\   'sh': ['shellcheck'],
 	\   'tex': ['lacheck'],
@@ -337,8 +339,8 @@
 	\}
 
 	let g:ale_lint_on_text_changed = 'never'
-	let g:ale_lint_on_insert_leave = 0
-	let g:ale_lint_on_enter = 0
+	let g:ale_lint_on_insert_leave = 1
+	let g:ale_lint_on_enter = 1
 
 	let g:ale_open_list = 0
 

@@ -72,9 +72,6 @@ Dotfiles also provide [clipmenu](https://github.com/cdown/clipmenu) which requir
 To install all VimPlugins open nvim and run: `:PlugInstall`
 All further commands can be found on [vim-plugs github page](https://github.com/junegunn/vim-plug).
 
-Vim plugins require nodejs and npm for coc.nvim.
-Also ccls and bash-language-server.
-
 A full list of used plugins:
 
 -   [signature](https://github.com/kshenoy/vim-signature)
