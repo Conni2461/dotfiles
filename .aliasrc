@@ -43,6 +43,7 @@ alias R='R --no-save'
 alias transen='trans en:de'
 alias transde='trans de:en'
 alias ssh='TERM=xterm ssh'
+alias tty-clock='tty-clock -sct'
 
 # Shortcuts
 ## Files
