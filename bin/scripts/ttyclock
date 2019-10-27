@@ -1,8 +1,0 @@
-#!/bin/sh
-
-trap "clear; exit" INT
-while true; do
-	clear
-	figlet $(date +%r)
-	sleep 1
-done
