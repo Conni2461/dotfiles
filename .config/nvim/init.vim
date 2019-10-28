@@ -14,7 +14,6 @@
 	Plug 'kshenoy/vim-signature'
 
 	Plug 'yuttie/comfortable-motion.vim'
-	Plug 'gillyb/stable-windows'
 	Plug 'jiangmiao/auto-pairs'
 
 	Plug 'tpope/vim-fugitive'
@@ -27,6 +26,7 @@
 	Plug 'PotatoesMaster/i3-vim-syntax'
 	Plug 'octol/vim-cpp-enhanced-highlight'
 	Plug 'ericcurtin/CurtineIncSw.vim'
+	Plug 'rhysd/vim-clang-format'
 
 	Plug 'liuchengxu/vim-clap'
 
@@ -378,6 +378,10 @@
 	let g:deoplete#keyword_patterns = {}
 	let g:deoplete#keyword_patterns.gitcommit = '[^ \t]+'
 	call deoplete#custom#var('omni', 'input_patterns', {'github': '[^ \t]+'})
+
+" Clang Format
+	let g:clang_format#detect_style_file=1
+	let g:clang_format#enable_fallback_style=0
 
 " LanguageTool
 	let g:grammarous#use_vim_spelllang = 1
