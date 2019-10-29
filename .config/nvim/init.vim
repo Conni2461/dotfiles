@@ -276,12 +276,6 @@
 		au BufRead,BufNewFile /tmp/neomutt* Goyo
 	augroup END
 
-" Automatically deletes all trailing whitespaces on save
-	augroup whitespaces
-		au!
-		au BufWritePre * %s/\s\+$//e
-	augroup END
-
 " Post Save Commands
 	augroup post
 		au!
@@ -338,9 +332,14 @@
 	\   'vim': ['vint'],
 	\}
 
+	let g:ale_fixers = {
+	\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+	\}
+
 	let g:ale_lint_on_text_changed = 'never'
 	let g:ale_lint_on_insert_leave = 1
 	let g:ale_lint_on_enter = 1
+	let g:ale_fix_on_save = 1
 
 	let g:ale_open_list = 0
 
