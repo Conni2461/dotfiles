@@ -1,13 +1,16 @@
 #!/bin/python
 
-import sys
 import os
 from pathlib import Path
 import requests
 import configparser
 
-def sendmail(header, content):
-    os.system("echo %s | mail -s '%s' %s" % (content, header, receiver))
+def sendmail(header, content, sha):
+    with open("/tmp/%s.txt" % sha, "w") as f:
+        f.write(content)
+
+    os.system("cat /tmp/%s.txt | mail -s '%s' %s" % (sha, header, receiver))
+    os.remove("/tmp/%s.txt" % sha)
 
 def getCommitMessage(sha):
     return data["commit"]["message"]
@@ -71,7 +74,7 @@ if len(new_commits) != 0 or len(new_commits) != 0:
         diff = getCommitDiff(data)
 
         content = "%s\n\n%s" % (message, diff)
-        sendmail("New commit to %s/%s" %(mantainer, repo), content)
+        sendmail("New commit to %s/%s" %(mantainer, repo), content, sha)
 
     # Update file
     with open(savefile, "w") as f:
