@@ -1,5 +1,6 @@
 #!/bin/python
 
+import sys
 import os
 from pathlib import Path
 import requests
@@ -7,7 +8,15 @@ import configparser
 
 def sendmail(header, content):
     os.system("echo %s | mail -s '%s' %s" % (content, header, receiver))
-    pass
+
+def getCommitMessage(sha):
+    return data["commit"]["message"]
+
+def getCommitDiff(sha):
+    output = ""
+    for file in data["files"]:
+        output = "%s\n" % file["patch"]
+    return output
 
 home = str(Path.home())
 
@@ -41,7 +50,7 @@ data = requests.get("https://api.github.com/repos/%s/%s/commits" % (mantainer, r
 
 output = set()
 for commit in data:
-    output.add(commit["commit"]["message"].replace('\n', ' '))
+    output.add(commit["sha"])
 
 old_data = set()
 try:
@@ -56,8 +65,13 @@ new_commits = output - old_data
 
 if len(new_commits) != 0 or len(new_commits) != 0:
     # Send mail
-    for line in iter(new_commits):
-        sendmail("New commit to %s/%s" %(mantainer, repo), line)
+    for sha in iter(new_commits):
+        data = requests.get("https://api.github.com/repos/%s/%s/commits/%s" % (mantainer, repo, sha), headers=headers).json()
+        message = getCommitMessage(data)
+        diff = getCommitDiff(data)
+
+        content = "%s\n\n%s" % (message, diff)
+        sendmail("New commit to %s/%s" %(mantainer, repo), content)
 
     # Update file
     with open(savefile, "w") as f:
