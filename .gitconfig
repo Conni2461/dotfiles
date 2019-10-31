@@ -18,10 +18,10 @@
 	ci = commit -v -S
 	co = checkout
 	di = diff
-	mm = merge --no-ff
+	mm = merge --no-ff -S
 	br = branch
 	unstage = reset HEAD --
-	last = log -1 HEAD
+	last = log -1 HEAD --show-signature
 	uncommit = reset --soft HEAD~1
 
 	graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
