@@ -1,6 +1,6 @@
 " Install vimplug
 	if ! filereadable(expand('~/.config/nvim/autoload/plug.vim'))
-		echo "Downloading junegunn/vim-plug to manage plugins..."
+		echo 'Downloading junegunn/vim-plug to manage plugins...'
 		silent !mkdir -p ~/.config/nvim/autoload/
 		silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
 		augroup plug
@@ -52,11 +52,11 @@
 	call plug#end()
 
 " Some Basics
-	let mapleader = " "
+	let mapleader = ' '
 
 	imap jk <Esc>
 
-	set bg=light
+	set background=light
 	set mouse=a
 	set nohlsearch
 	set smartcase
@@ -83,7 +83,7 @@
 		au BufWritePost $MYVIMRC source $MYVIMRC
 	augroup END
 
-	nnoremap <leader>r :source $MYVIMRC<CR> | normal zR
+	nnoremap <leader>r :source $MYVIMRC<CR> \| normal zR
 
 " Nvim specifics
 	" Shows realtime changes with :s/
@@ -173,13 +173,9 @@
 " Folding setup
 	set foldenable
 	set foldmethod=syntax
-	set foldlevel=0
-	augroup fold
-		au!
-		au BufRead * normal zR
-	augroup END
+	set foldlevelstart=99
 	" source: gist.github.com/sjl/3360978
-	function! MyFoldText() " {{{
+	function! MyFoldText()
 		let line = getline(v:foldstart)
 
 		let nucolwidth = &fdc + &number * &numberwidth
@@ -188,9 +184,10 @@
 
 		let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
 		let fillcharcount = windowwidth - strdisplaywidth(line) - len(foldedlinecount)
-		return line . '…' . repeat(" ",fillcharcount) . foldedlinecount . '…' . ' '
-	endfunction " }}}
+		return line . '…' . repeat(' ',fillcharcount) . foldedlinecount . '…' . ' '
+	endfunction
 	set foldtext=MyFoldText()
+	nnoremap <s-tab> za
 
 " Disable ex mode
 	map q: <Nop>
@@ -417,7 +414,7 @@
 		let l:command = "echo '" . l:input . "' | cut -d':' -f 1"
 		let l:file = system(l:command)
 
-		execute "read !loadbib -g" l:file
+		execute 'read !loadbib -g' l:file
 	endfunction
 
 	command! -nargs=* ReadBib call s:ReadBib(<f-args>)
@@ -447,7 +444,7 @@
 
 	function! s:goyo_enter()
 		Limelight
-		set bg=light
+		set background=light
 		call ApplyColors()
 		set linebreak
 		set nocursorline
@@ -456,7 +453,7 @@
 
 	function! s:goyo_leave()
 		Limelight!
-		set bg=light
+		set background=light
 		call ApplyColors()
 		set nolinebreak
 		set cursorline
