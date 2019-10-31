@@ -15,7 +15,7 @@
 	ca = commit --amend
 	cb = checkout -b
 	st = status --short --branch
-	ci = commit -v
+	ci = commit -v -S
 	co = checkout
 	di = diff
 	mm = merge --no-ff
