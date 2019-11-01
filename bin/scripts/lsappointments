@@ -12,6 +12,11 @@ echo "$output" | while IFS= read -r line ; do
 		lastDate="$line"
 		echo "$line" | sed -e 's/^ - *//'
 	else
-		echo "$line" | sed -e 's/^[ \t]/    - /'
+		allDay=$(echo "$line" | grep '\*')
+		if [ "$allDay" != "" ]; then
+			echo "$line" | sed -e 's/^ \* /- /'
+		else
+			echo "$line" | sed -e 's/^[ \t]/    - /'
+		fi
 	fi
 done

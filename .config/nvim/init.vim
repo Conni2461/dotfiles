@@ -26,7 +26,6 @@
 	Plug 'PotatoesMaster/i3-vim-syntax'
 	Plug 'octol/vim-cpp-enhanced-highlight'
 	Plug 'ericcurtin/CurtineIncSw.vim'
-	Plug 'rhysd/vim-clang-format'
 
 	Plug 'liuchengxu/vim-clap'
 
@@ -128,6 +127,11 @@
 		endif
 	endfunction
 	nnoremap <leader>vh :call ToggleListchars()<CR>
+
+	augroup SplitsSize
+		au!
+		au VimResized * execute "normal! \<c-w>="
+	augroup END
 
 " Apply colors called at the beginning and when toggling goyo
 	function ApplyColors()
