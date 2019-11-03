@@ -14,11 +14,10 @@ if [ "$(calcurse -a)" != "" ]; then
 	echo "\${color}\${exec lsappointments}"
 fi
 
-news=$(listnews | sed 's/\#/\\#/g')
-if [ "${news}" != "" ]; then
+if [ "$(listnews)" != "" ]; then
 	echo
 	echo "\${color1}\${font}NEWS"
-	echo "\${color}${news}"
+	echo "\${color}\${exec listnews}"
 fi
 
 if [ ! -f /tmp/today_netflix ] || [ "$(date +%M:%S)" = "00:00" ]; then
