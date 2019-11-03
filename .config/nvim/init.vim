@@ -327,7 +327,7 @@
 	let g:ale_linters = {
 	\   'c': ['cquery'],
 	\   'cpp': ['cquery'],
-	\   'python': ['pylint'],
+	\   'python': ['pyls'],
 	\   'sh': ['shellcheck'],
 	\   'tex': ['lacheck'],
 	\   'vim': ['vint'],
