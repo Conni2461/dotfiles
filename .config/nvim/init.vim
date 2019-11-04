@@ -14,7 +14,7 @@
 	Plug 'kshenoy/vim-signature'
 
 	Plug 'yuttie/comfortable-motion.vim'
-	Plug 'jiangmiao/auto-pairs'
+	Plug 'jiangmiao/pear-tree'
 
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-rhubarb'
@@ -148,6 +148,9 @@
 
 		" Fix hlsearch coloring
 		hi Search ctermfg=234 cterm=bold
+
+		" Split Delimiter
+		hi VertSplit cterm=none
 
 		" Fix vim spellchecking
 		hi SpellBad   ctermfg=234 cterm=bold
@@ -361,6 +364,12 @@
 	nnoremap <leader>ar :ALEFindReferences<CR>
 	nnoremap <leader>ah :ALEHover<CR>
 	nnoremap <leader>as :ALESymbolSearch<CR>
+
+" Pear tree
+	" Smart pairs are disabled by default:
+	let g:pear_tree_smart_openers = 1
+	let g:pear_tree_smart_closers = 1
+	let g:pear_tree_smart_backspace = 1
 
 " CurtineIncSw
 	nnoremap <leader>m :call CurtineIncSw()<CR>
