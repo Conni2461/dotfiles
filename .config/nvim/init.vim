@@ -14,7 +14,8 @@
 	Plug 'kshenoy/vim-signature'
 
 	Plug 'yuttie/comfortable-motion.vim'
-	Plug 'tmsvg/pear-tree'
+	Plug 'jiangmiao/auto-pairs'
+	Plug 'tpope/vim-endwise'
 
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-rhubarb'
@@ -341,8 +342,8 @@
 
 	let g:ale_fixers = {
 	\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-	\   'cpp': ['clang-format']
 	\}
+"	\   'cpp': ['clang-format']
 
 	let g:ale_lint_on_text_changed = 'never'
 	let g:ale_lint_on_insert_leave = 1
@@ -368,13 +369,6 @@
 	nnoremap <leader>ar :ALEFindReferences<CR>
 	nnoremap <leader>ah :ALEHover<CR>
 	nnoremap <leader>as :ALESymbolSearch<CR>
-
-" Pear tree
-	" Smart pairs are disabled by default:
-	let g:pear_tree_smart_openers = 1
-	let g:pear_tree_smart_closers = 1
-	let g:pear_tree_smart_backspace = 1
-	imap <CR> <Plug>(PearTreeExpand)<Plug>DiscretionaryEnd
 
 " CurtineIncSw
 	nnoremap <leader>m :call CurtineIncSw()<CR>
