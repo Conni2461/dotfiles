@@ -14,7 +14,7 @@
 	Plug 'kshenoy/vim-signature'
 
 	Plug 'yuttie/comfortable-motion.vim'
-	Plug 'jiangmiao/pear-tree'
+	Plug 'tmsvg/pear-tree'
 
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-rhubarb'
@@ -69,6 +69,8 @@
 	set updatetime=300
 	set shortmess+=c
 	set signcolumn=yes
+
+	set colorcolumn=80
 
 	filetype plugin on
 	syntax on
@@ -145,6 +147,7 @@
 		" Cursor Colors
 		hi CursorColumn cterm=none ctermfg=none ctermbg=237
 		hi CursorLine   cterm=none ctermfg=none ctermbg=237
+		hi ColorColumn  cterm=none ctermfg=none ctermbg=237
 
 		" Fix hlsearch coloring
 		hi Search ctermfg=234 cterm=bold
