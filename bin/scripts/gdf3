@@ -1,4 +1,4 @@
 #!/bin/sh
 
 gdf | sed 1q
-gdf | grep -Ew '\/|/home|/mnt/internal'
+gdf | grep -Ew '/|boot|home|internal'
