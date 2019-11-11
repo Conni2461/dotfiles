@@ -370,6 +370,11 @@
 	nnoremap <leader>ah :ALEHover<CR>
 	nnoremap <leader>as :ALESymbolSearch<CR>
 
+	augroup DISABLE
+		au!
+		au BufRead,BufNewFile *.md ALEDisableBuffer
+	augroup END
+
 " CurtineIncSw
 	nnoremap <leader>m :call CurtineIncSw()<CR>
 
