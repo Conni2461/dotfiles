@@ -40,7 +40,7 @@ alias ffmpeg='ffmpeg -hide_banner'
 alias ru="sudo docker run -ti --rm ubuntu:latest bash"
 alias :q='echo you are not in vim'
 alias :wq='echo you are not in vim'
-alias R='R --no-save'
+alias R='R --save'
 alias transen='trans en:de'
 alias transde='trans de:en'
 alias ssh='TERM=xterm ssh'
