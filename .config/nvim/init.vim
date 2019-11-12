@@ -343,7 +343,12 @@
 	let g:ale_fixers = {
 	\   '*': ['remove_trailing_lines', 'trim_whitespace'],
 	\}
-"	\   'cpp': ['clang-format']
+
+	function FixBuffer()
+		let b:ale_fixers = { 'c': ['clang-format'], 'cpp': ['clang-format'] }
+		ALEFix
+		let b:ale_fixers = {}
+	endfunction
 
 	let g:ale_lint_on_text_changed = 'never'
 	let g:ale_lint_on_insert_leave = 1
@@ -369,6 +374,7 @@
 	nnoremap <leader>ar :ALEFindReferences<CR>
 	nnoremap <leader>ah :ALEHover<CR>
 	nnoremap <leader>as :ALESymbolSearch<CR>
+	nnoremap <leader>af :call FixBuffer()<CR>
 
 	augroup DISABLE
 		au!
