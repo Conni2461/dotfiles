@@ -1,81 +1,111 @@
 #!/bin/python
+'''
+Script to send notification of new livestreams
+'''
 
 import sys
 from pathlib import Path
+import configparser
 import requests
 import notify2
-
+import dbus
 
 def sendmessage(message):
-    notify2.Notification("Twitch", message).show()
+    '''
+    Send notification with notify-send
+    Uses notify2 package
+    '''
+    if not NOTIFY_OFF:
+        notify2.Notification("Twitch", message).show()
 
 # Settings
-user_id = "53590600"
-headers = { 'Client-ID': "tka77qrif09sy7zagfjs9jrbkh494k", }
-home = str(Path.home())
-savefile = home +"/.local/share/twitch-streams.txt"
+# Read in config file
+# Location: ~/.config/twitch-notify.conf
+# Config file structure
+#
+# [DEFAULT]
+# User-ID = <user-id>
+# Client-ID = <Client-ID>
+#
 
-if user_id == "your-user-id" or headers["Client-ID"] == "your-client-id":
-    sys.exit("ERROR: Set user_id and client_id")
+HOME = str(Path.home())
+
+CONFIG = configparser.ConfigParser()
+CONFIG.read(HOME + "/.config/twitch-notify.conf")
+
+try:
+    USER_ID = CONFIG['DEFAULT']['User-ID']
+    TOKEN = CONFIG['DEFAULT']['Client-ID']
+    HEADERS = {'Client-ID': '%s' % TOKEN}
+except KeyError:
+    print("Config file not found")
+    sys.exit()
+
+SAVEFILE = HOME +"/.local/share/twitch-streams.txt"
+NOTIFY_OFF = False
 
 # Init notify2
 try:
     notify2.init("Twitch-notify")
-except:
+except dbus.exceptions.DBusException:
     print("Notification do not work")
+    NOTIFY_OFF = True
+
 
 # Let's fetch and parse data from twitch
-raw_data = requests.get("https://api.twitch.tv/helix/users/follows?from_id=%s" % user_id, headers=headers).json()
+DATA = requests.get("https://api.twitch.tv/helix/users/follows?from_id=%s" % \
+        USER_ID, headers=HEADERS).json()
 
 # Get followed channels
-followed_channels = []
-for channel in raw_data["data"]:
-    followed_channels.append(channel["to_name"])
+FOLLOWED = []
+for channel in DATA["data"]:
+    FOLLOWED.append(channel["to_name"])
 
 # Get Stream info
-live_streams = requests.get('https://api.twitch.tv/helix/streams?user_login=%s&user_login=%s' % (followed_channels[0], '&user_login='.join(followed_channels[1:])), headers=headers).json()
+STREAMS = requests.get('https://api.twitch.tv/helix/streams?user_login=%s&user_login=%s' % \
+        (FOLLOWED[0], '&user_login='.join(FOLLOWED[1:])), headers=HEADERS).json()
 
-game_cache = {}
-output = set()
-for stream in live_streams["data"]:
+GAME_CACHE = {}
+OUTPUT = set()
+for stream in STREAMS["data"]:
     channel_name = stream["user_name"]
     game_id = int(stream["game_id"])
 
     # Receiving gamename with hashmap as cache
     channel_game = ""
-    if game_id in game_cache:
-        channel_game = game_cache.get(game_id)
+    if game_id in GAME_CACHE:
+        channel_game = GAME_CACHE.get(game_id)
     else:
-        rg = requests.get('https://api.twitch.tv/helix/games?id=%d' % game_id, headers=headers)
+        rg = requests.get('https://api.twitch.tv/helix/games?id=%d' % game_id, headers=HEADERS)
         game_json = rg.json()
         channel_game = game_json["data"][0]["name"]
-        game_cache[game_id] = channel_game
+        GAME_CACHE[game_id] = channel_game
 
     # Build output string
-    output.add("<b>" + channel_name + "</b> is <b>LIVE</b> playing <b>" + channel_game + "</b>")
+    OUTPUT.add("<b>" + channel_name + "</b> is <b>LIVE</b> playing <b>" + channel_game + "</b>")
 
 # Load oldData
-old_data = set()
+OLD_OUTPUT = set()
 try:
-    with open(savefile, "r") as f:
+    with open(SAVEFILE, "r") as f:
         for line in f:
             if line != '\n' or line != '':
-                old_data.add(line.replace('\n', ''))
+                OLD_OUTPUT.add(line.replace('\n', ''))
 except FileNotFoundError:
     print('File not created yet')
 
 # Return new livestreams
-went_live = output - old_data
-went_offline = old_data - output
+WENT_LIVE = OUTPUT - OLD_OUTPUT
+WENT_OFFLINE = OLD_OUTPUT - OUTPUT
 
-if len(went_live) != 0 or len(went_offline) != 0:
+if not WENT_LIVE or not WENT_OFFLINE:
     # Send notifications
-    for line in iter(went_live):
+    for line in iter(WENT_LIVE):
         sendmessage(line)
-    for line in iter(went_offline):
+    for line in iter(WENT_OFFLINE):
         sendmessage(line.split("LIVE", 1)[0] + "NO LONGER LIVE")
 
     # Update file
-    with open(savefile, "w") as f:
-        for item in output:
+    with open(SAVEFILE, "w") as f:
+        for item in OUTPUT:
             f.write("%s\n" % item)
