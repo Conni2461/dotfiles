@@ -41,8 +41,6 @@
 	Plug 'dense-analysis/ale'
 	Plug 'SevereOverfl0w/deoplete-github'
 
-	Plug 'rhysd/vim-grammarous'
-
 	Plug 'itchyny/lightline.vim'
 	Plug 'mengelbrecht/lightline-bufferline'
 	Plug 'maximbaz/lightline-ale'
@@ -397,16 +395,6 @@
 	let g:deoplete#keyword_patterns = {}
 	let g:deoplete#keyword_patterns.gitcommit = '[^ \t]+'
 	call deoplete#custom#var('omni', 'input_patterns', {'github': '[^ \t]+'})
-
-" LanguageTool
-	let g:grammarous#use_vim_spelllang = 1
-	let g:grammarous#languagetool_cmd = 'languagetool'
-
-	nnoremap <leader>ls :GrammarousCheck<CR>
-	nnoremap <leader>lo <Plug>(grammarous-open-info-window)<CR>
-	nnoremap <leader>lc <Plug>(grammarous-close-info-window)<CR>
-	nnoremap <leader>ll <Plug>(grammarous-move-to-next-error)<CR>
-	nnoremap <leader>lh <Plug>(grammarous-move-to-previous-error)<CR>
 
 " Vista
 	nnoremap <leader>o :Vista!!<CR>
