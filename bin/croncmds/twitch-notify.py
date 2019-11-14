@@ -98,7 +98,7 @@ except FileNotFoundError:
 WENT_LIVE = OUTPUT - OLD_OUTPUT
 WENT_OFFLINE = OLD_OUTPUT - OUTPUT
 
-if not WENT_LIVE or not WENT_OFFLINE:
+if WENT_LIVE or WENT_OFFLINE:
     # Send notifications
     for line in iter(WENT_LIVE):
         sendmessage(line)
