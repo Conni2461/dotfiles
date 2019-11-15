@@ -11,6 +11,8 @@ export READER='zathura'
 export SUDO_ASKPASS="$HOME/bin/scripts/askpass"
 export PAGER='less'
 
+export HISTCONTROL=ignoreboth:erasedups
+
 # less/man colors
 export LESS=-R
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"; a="${a%_}"
