@@ -28,6 +28,8 @@ case $1 in
 	*  ) exit 1;;
 esac
 
+[ "${files}" = "" ] && exit
+
 export FZF_DEFAULT_OPTS="-m --reverse --bind ctrl-k:preview-up,shift-up:preview-up,ctrl-j:preview-down,shift-down:preview-down"
 
 echo "$files" | fzf --preview "${script}" | while read -r item; do
