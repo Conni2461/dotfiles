@@ -1,27 +1,27 @@
-	     _       _    __ _ _
-	  __| | ___ | |_ / _(_) | ___  ___
-	 / _` |/ _ \| __| |_| | |/ _ \/ __|
-	| (_| | (_) | |_|  _| | |  __/\__ \
-	 \__,_|\___/ \__|_| |_|_|\___||___/
+         _       _    __ _ _
+      __| | ___ | |_ / _(_) | ___  ___
+     / _` |/ _ \| __| |_| | |/ _ \/ __|
+    | (_| | (_) | |_|  _| | |  __/\__ \
+     \__,_|\___/ \__|_| |_|_|\___||___/
+    
+       ____                        _ ____  _  _    __   _
+      / __ \  ___ ___  _ __  _ __ (_)___ \| || |  / /_ / |
+     / / _` |/ __/ _ \| '_ \| '_ \| | __) | || |_| '_ \| |
+    | | (_| | (_| (_) | | | | | | | |/ __/|__   _| (_) | |
+     \ \__,_|\___\___/|_| |_|_| |_|_|_____|  |_|  \___/|_|
+      \____/
 
-	   ____                        _ ____  _  _    __   _
-	  / __ \  ___ ___  _ __  _ __ (_)___ \| || |  / /_ / |
-	 / / _` |/ __/ _ \| '_ \| '_ \| | __) | || |_| '_ \| |
-	| | (_| | (_| (_) | | | | | | | |/ __/|__   _| (_) | |
-	 \ \__,_|\___\___/|_| |_|_| |_|_|_____|  |_|  \___/|_|
-	  \____/
-
-[![license](https://img.shields.io/github/license/conni2461/dotfiles.svg?style=flat-square)]()
+[![license](https://img.shields.io/github/license/conni2461/dotfiles.svg?style=flat-square)](https://github.com/conni2461/dotfiles/blob/master/LICENSE)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ef9d3503d02343ac8f6d1c0a7eb25d66)](https://app.codacy.com/app/Conni2461/dotfiles?utm_source=github.com&utm_medium=referral&utm_content=Conni2461/dotfiles&utm_campaign=Badge_Grade_Dashboard)
 
 ## Introduction
 
 ## Table of Contents
 
--   [Install](#Install)
--   [Use](#Use)
--   [Bash](#Bash)
--   [Vim](#Vim)
+- [Install](#Install)
+- [Use](#Use)
+- [Bash](#Bash)
+- [Vim](#Vim)
 
 ## Install
 
@@ -65,7 +65,12 @@ Also you should change the email and name in the `.gitconfig` as well as the rem
 
 ## Bash
 
-Dotfiles also provide [clipmenu](https://github.com/cdown/clipmenu) which requires dmenu, xsel and clipnotify.
+Dotfiles provide [clipmenu](https://github.com/cdown/clipmenu) which requires dmenu, xsel and clipnotify.
+Also a spotify commandline handler script [sp](https://gist.github.com/wandernauta/6800547).
+All credits goes to the creator of those scripts.
+
+Some scripts in the bin folder require `dmenu`, `fzf`, `fd` and `ripgrep`.
+Also twitch-notify requires `python-notify2`.
 
 ## Vim
 
@@ -74,26 +79,43 @@ All further commands can be found on [vim-plugs github page](https://github.com/
 
 A full list of used plugins:
 
--   [signature](https://github.com/kshenoy/vim-signature)
--   [motion](https://github.com/yuttie/comfortable-motion.vim)
--   [fugitive](https://github.com/tpope/vim-fugitive)
--   [rhubarb](https://github.com/tpope/vim-rhubarb)
--   [gitgutter](https://github.com/airblade/vim-gitgutter)
--   [git-messenger](https://github.com/rhysd/git-messenger.vim)
--   [Gitignore highlight](https://github.com/gisphm/vim-gitignore)
--   [i3 highlight](https://github.com/PotatoesMaster/i3-vim-syntax)
--   [fzf](https://github.com/junegunn/fzf.vim)
--   [goyo](https://github.com/junegunn/goyo.vim)
--   [limelight](https://github.com/junegunn/limelight.vim)
--   [vimwiki](https://github.com/vimwiki/vimwiki)
--   [commentary](https://github.com/tpope/vim-commentary)
--   [surround](https://github.com/tpope/vim-surround)
--   [illuminate](https://github.com/RRethy/vim-illuminate)
--   [deoplete](https://github.com/Shougo/deoplete.nvim)
--   [ale](https://github.com/dense-analysis/ale)
--   [deoplete github plugin](https://github.com/SevereOverfl0w/deoplete-github)
--   [lightline](https://github.com/itchyny/lightline.vim)
--   [lightline bufferline](https://github.com/mengelbrecht/lightline-bufferline)
--   [lightline ale](https://github.com/maximbaz/lightline-ale)
--   [tagbar](https://github.com/majutsushi/tagbar)
--   [undotree](https://github.com/mbbill/undotree)
+| Plugin                                                                       | Description                                                                                                                                                                                                                          |
+| ---------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [signature](https://github.com/kshenoy/vim-signature)                        | Plugin to toggle, display and navigate marks                                                                                                                                                                                         |
+| [motion](https://github.com/yuttie/comfortable-motion.vim)                   | Smoth scrolling with `Ctrl-d` / `Ctrl-u` / `Ctrl-f` / `Ctrl-b`                                                                                                                                                                       |
+| [fugitive](https://github.com/tpope/vim-fugitive)                            | Git Wrapper                                                                                                                                                                                                                          |
+| [rhubarb](https://github.com/tpope/vim-rhubarb)                              | GitHub extension for fugitive                                                                                                                                                                                                        |
+| [gitgutter](https://github.com/airblade/vim-gitgutter)                       | A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks and partial hunks.                                                                                                                           |
+| [git-messenger](https://github.com/rhysd/git-messenger.vim)                  | Show git messages with `<leader>gm`. Using nvim-floating-window                                                                                                                                                                      |
+| [gv](https://github.com/junegunn/gv.vim)                                     | A git commit browser in Vim                                                                                                                                                                                                          |
+| [gitignore highlight](https://github.com/gisphm/vim-gitignore)               | gitignore highlighting support                                                                                                                                                                                                       |
+| [i3 highlight](https://github.com/PotatoesMaster/i3-vim-syntax)              | i3 highlighting support                                                                                                                                                                                                              |
+| [cpp highlight](https://github.com/octol/vim-cpp-enhanced-highlight)         | Additional Vim syntax highlighting for C++ (including C++11/14/17)                                                                                                                                                                   |
+| [CurtineIncSw](https://github.com/ericcurtin/CurtineIncSw.vim)               | Toggle between header and sorce files with `<leader>m`                                                                                                                                                                               |
+| [Clap](https://github.com/liuchengxu/vim-clap)                               | Modern generic interactive finder and dispatcher for Vim and NeoVim. Using nvim-floating-window. Shortcuts for files, buffer, grep, tags and marks. See https://github.com/Conni2461/dotfiles/blob/master/.config/nvim/init.vim#L410 |
+| [goyo](https://github.com/junegunn/goyo.vim)                                 | Distraction-free writing in Vim                                                                                                                                                                                                      |
+| [limelight](https://github.com/junegunn/limelight.vim)                       | All the world's indeed a stage and we are merely players                                                                                                                                                                             |
+| [vimwiki](https://github.com/vimwiki/vimwiki)                                | Personal Wiki for Vim                                                                                                                                                                                                                |
+| [commentary](https://github.com/tpope/vim-commentary)                        | comment stuff out with `gcc` to comment out line and `gc` in visual mode                                                                                                                                                             |
+| [surround](https://github.com/tpope/vim-surround)                            | quoting/parenthesizing made simple                                                                                                                                                                                                   |
+| [illuminate](https://github.com/RRethy/vim-illuminate)                       | automatically highlighting other uses of the word under the cursor                                                                                                                                                                   |
+| [deoplete](https://github.com/Shougo/deoplete.nvim)                          | Dark powered asynchronous completion framework uses `ale` in my configuration                                                                                                                                                        |
+| [ale](https://github.com/dense-analysis/ale)                                 | Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support                                                                                                                                        |
+| [deoplete github plugin](https://github.com/SevereOverfl0w/deoplete-github)  | Deopletions for Github issues when using `git commit` on commandline and writing message in vim. Requires `deoplete`, `fugitive` and `rhubarb`. Also setup is required, take a look at their `README.md`                             |
+| [lightline](https://github.com/itchyny/lightline.vim)                        | A light and configurable statusline/tabline plugin                                                                                                                                                                                   |
+| [lightline bufferline](https://github.com/mengelbrecht/lightline-bufferline) | A lightweight plugin to display the list of buffers in the lightline vim plugin                                                                                                                                                      |
+| [lightline ale](https://github.com/maximbaz/lightline-ale)                   | ALE indicator for the lightline vim plugin                                                                                                                                                                                           |
+| [vista](https://github.com/liuchengxu/vista.vim)                             | Viewer & Finder for LSP symbols and tags. Also this plugin is used in `Clap` for Tag finding.                                                                                                                                        |
+| [undotree](https://github.com/mbbill/undotree)                               | The undo history visualizer for VIM                                                                                                                                                                                                  |
+
+Some plugins require additional packages installed:
+
+- Vim-Clap requires [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd) to work best
+- Configured LSP Server for ALE are:
+  - `cquery` for c/c++
+  - `python-language-server` for python with `pylint`
+  - `shellcheck` for bash and posix compliant shells
+  - `lacheck` for latex
+  - `vint` for vim
+  - additional linters can be configured [here](https://github.com/Conni2461/dotfiles/blob/master/.config/nvim/init.vim#L330)
+- Vista requires `ctags`
