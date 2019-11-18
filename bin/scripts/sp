@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 #
 # This is sp, the command-line Spotify controller. It talks to a running
@@ -53,16 +53,9 @@ SP_DEST="org.mpris.MediaPlayer2.spotifyd"
 SP_PATH="/org/mpris/MediaPlayer2"
 SP_MEMB="org.mpris.MediaPlayer2.Player"
 
-# To get SP_ID and SP_SECRET register at
-# https://beta.developer.spotify.com/documentation/general/guides/app-settings/
-SP_ID="<yout id>"
-SP_SECRET="<your secret>"
-
 # SHELL OPTIONS
 
 shopt -s expand_aliases
-SP_B64ID=$(echo -n "$SP_ID:$SP_SECRET"|base64)
-SP_B64ID=$(echo $SP_B64ID | sed 's/ //g')
 
 # UTILITY FUNCTIONS
 
@@ -124,21 +117,6 @@ function sp-current {
   | grep --color=never -E "(title)|(album)|(artist)" \
   | sed 's/^\(.\)/\U\1/' \
   | column -t -s'|'
-}
-
-function sp-current-oneline {
-  sp-metadata | grep -E "(title|artist)" | sed 's/^\(.\)*|//' | sed ':a;N;$!ba;s/\n/ | /g'
-}
-
-function sp-status {
-  dbus-send \
-  --print-reply \
-  --dest=$SP_DEST \
-  $SP_PATH \
-  org.freedesktop.DBus.Properties.Get \
-  string:"$SP_MEMB" string:'PlaybackStatus' \
-  | tail -1 \
-  | cut -d "\"" -f2
 }
 
 function sp-eval {
@@ -231,38 +209,15 @@ function sp-search {
   # Searches for tracks, plays the first result.
 
   require curl
-    #send request for token with ID and SecretID encoded to base64->grep take only  token from reply->trim reply down to token-> modified request to include token in header
+
   Q="$@"
-    ST=$(curl -H "Authorization: Basic $SP_B64ID" -d grant_type=client_credentials https://accounts.spotify.com/api/token --silent \
-    | grep -E -o "access_token\":\"[a-zA-Z0-9_-]+\"" -m 1 )
-
-   echo $Q
-
-    ST2=${ST:15:86}}
   SPTFY_URI=$( \
-    curl -H "Authorization: Bearer $ST2" -s -G --data-urlencode "q=$Q" --data type=artist,track https://api.spotify.com/v1/search/ \
+    curl -s -G --data-urlencode "q=$Q" https://api.spotify.com/v1/search\?type=track \
     | grep -E -o "spotify:track:[a-zA-Z0-9]+" -m 1 \
   )
 
   sp-open $SPTFY_URI
 }
-
-
-#function sp-search {
-#  # Searches for tracks, plays the first result.
-#
-#  require curl
-
-#curl -s -G  --data-urlencode "q=enjoy the silence" --data type=track "https://api.spotify.com/v1/search/" -H "Accept: application/json" -H "Authorization: Bearer BQCk-QAOp4r2hHf6bMY1B4WSfWnBnLXbYlLn7OJi0iGzR5JNg6uaMtNzokhCLTr3ETljtLb1KqhHGokfyLj9Fq3JkDz6yqwqM9NCa9RbGa7_ovJ0n9XZgev0bJ8r-N7hrF3TNN-PKY6YIKpOoWM"
-#
- # Q="$@"
-  #SPTFY_URI=$( \
-#    curl -s -G  --data-urlencode "q=$Q" --data type=artist,track https://api.spotify.com/v1/search/ -H "Accept: application/json" -H "Authorization: Bearer $USER_TOKEN" \
-#    | grep -E -o "spotify:track:[a-zA-Z0-9]+" -m 1 \
-#  )
-#
-#  sp-open $SPTFY_URI
-#}
 
 function sp-version {
   # Prints version information.
