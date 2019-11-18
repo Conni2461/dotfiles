@@ -14,8 +14,6 @@
 	Plug 'kshenoy/vim-signature'
 
 	Plug 'yuttie/comfortable-motion.vim'
-	Plug 'jiangmiao/auto-pairs'
-	Plug 'tpope/vim-endwise'
 
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-rhubarb'
@@ -366,13 +364,13 @@
 		endif
 	endfunction
 	nnoremap <leader>ae :call ToggleErrors()<CR>
+	nnoremap <leader>af :call FixBuffer()<CR>
 
 	nnoremap <leader>ad :ALEGoToDefinition<CR>
 	nnoremap <leader>at :ALEGoToTypeDefinition<CR>
 	nnoremap <leader>ar :ALEFindReferences<CR>
 	nnoremap <leader>ah :ALEHover<CR>
 	nnoremap <leader>as :ALESymbolSearch<CR>
-	nnoremap <leader>af :call FixBuffer()<CR>
 
 	augroup DISABLE
 		au!
