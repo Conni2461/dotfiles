@@ -3,7 +3,7 @@
      / _` |/ _ \| __| |_| | |/ _ \/ __|
     | (_| | (_) | |_|  _| | |  __/\__ \
      \__,_|\___/ \__|_| |_|_|\___||___/
-    
+
        ____                        _ ____  _  _    __   _
       / __ \  ___ ___  _ __  _ __ (_)___ \| || |  / /_ / |
      / / _` |/ __/ _ \| '_ \| '_ \| | __) | || |_| '_ \| |
@@ -112,10 +112,10 @@ Some plugins require additional packages installed:
 
 - Vim-Clap requires [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd) to work best
 - Configured LSP Server for ALE are:
-  - `cquery` for c/c++
-  - `python-language-server` for python with `pylint`
-  - `shellcheck` for bash and posix compliant shells
-  - `lacheck` for latex
-  - `vint` for vim
+  - [cquery](https://github.com/cquery-project/cquery/) for c/c++
+  - [python-language-server](https://github.com/palantir/python-language-server) for python with [flake8](http://flake8.pycqa.org/en/latest/)
+  - [shellcheck](https://www.shellcheck.net/) for bash and posix compliant shells
+  - [lacheck](https://ctan.org/pkg/lacheck?lang=de)(Part of texlive)  for latex
+  - [vint](https://github.com/Kuniwak/vint) for vim
   - additional linters can be configured [here](https://github.com/Conni2461/dotfiles/blob/master/.config/nvim/init.vim#L330)
-- Vista requires `ctags`
+- Vista requires [ctags](https://ctags.io/)
