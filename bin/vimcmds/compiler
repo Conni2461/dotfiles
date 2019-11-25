@@ -1,22 +1,44 @@
 #!/bin/sh
-# This script will compile or run another finishing operation on a document. I
-# have this script run via vim.
+# This script will compile or run another finishing operation on a document or project.
 #
-# Compiles .tex. groff (.mom, .ms), .rmd, .md.
+# Compiles .tex. groff (.mom, .ms), .rmd, .md, make and cmake projects(with build directory).
 # Opens .sent files as sent presentations.
 # Runs scripts based on extention or shebang
+
+make_build()
+{
+	if [ -f Makefile ] || [ -f makefile ]; then
+		make && exit 0
+		read
+		exit 1
+	fi
+}
+
+cmake_build()
+{
+	if [ -d build ]; then
+		cd build || exit
+		if [ -f Makefile ] || [ -f makefile ]; then
+			make && exit 0
+		elif [ -f build.ninja ]; then
+			ninja && exit 0
+		fi
+		read
+		exit 1
+	fi
+}
 
 file=$(readlink -f "$1")
 dir=$(dirname "$file")
 base="${file%.*}"
 
+make_build
+cmake_build
+
 cd "$dir" || exit
 
-if [ -f Makefile ] || [ -f makefile ]; then
-	make && exit 0
-	read
-	exit 1
-fi
+make_build
+cmake_build
 
 textype() { \
 	command="pdflatex"
