@@ -69,6 +69,8 @@
 
 	set colorcolumn=80
 
+	set conceallevel=0
+
 	filetype plugin on
 	syntax on
 	set encoding=utf-8
@@ -262,7 +264,6 @@
 	nnoremap <leader>p :!opout <c-r>%<CR><CR>
 
 " Ensure files are read as what I want:
-	let g:vimwiki_list = [{'path': '~/docs/shared/vimwiki/'}]
 	augroup files
 		au!
 		au BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
@@ -469,6 +470,10 @@
 	au! User GoyoLeave nested call <SID>goyo_leave()
 
 	nnoremap <leader>f :call ToggleGoyo()<CR>
+
+" Vimwiki setup
+	let g:vimwiki_list = [{'path': '~/docs/shared/vimwiki/'}]
+	let g:vimwiki_conceallevel=0
 
 " Undotree shortcut
 	nnoremap <leader>u :UndotreeToggle<CR>
