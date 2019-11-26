@@ -8,7 +8,7 @@
 make_build()
 {
 	if [ -f Makefile ] || [ -f makefile ]; then
-		make && exit 0
+		make -j && exit 0
 		read
 		exit 1
 	fi
@@ -19,7 +19,7 @@ cmake_build()
 	if [ -d build ]; then
 		cd build || exit
 		if [ -f Makefile ] || [ -f makefile ]; then
-			make && exit 0
+			make -j && exit 0
 		elif [ -f build.ninja ]; then
 			ninja && exit 0
 		fi
