@@ -208,6 +208,9 @@
 " Exit insert, dd line, enter insert
 	inoremap <C-d> <esc>ddi
 
+" Split Lines (Merge line by default with J)
+	nnoremap S :keeppatterns substitute/\s*\%#\s*/\r/e <bar> normal! ==<CR>
+
 " Navigate Display Lines
 	nnoremap <silent><expr> k       v:count == 0 ? 'gk' : 'k'
 	nnoremap <silent><expr> j       v:count == 0 ? 'gj' : 'j'
