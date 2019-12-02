@@ -9,4 +9,4 @@ shift
 com="$1"
 shift
 
-[ $(echo -e "No\nYes" | dmenu -i -p "$prompt" $* ) = "Yes" ] && $com
+[ $(echo -e "No\nYes" | dmenu -i -p "$prompt" "$@" ) = "Yes" ] && $com

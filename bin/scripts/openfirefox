@@ -1,0 +1,12 @@
+#!/bin/sh
+
+cp "$HOME"/.mozilla/firefox/*.default*/places.sqlite "$HOME"/.local/share/firefox-backup.sqlite
+
+urls=$(sqlite3 "$HOME"/.local/share/firefox-backup.sqlite "SELECT p.url FROM moz_places p, moz_bookmarks b WHERE p.id == b.fk;" | grep http)
+selection=$(echo "$urls" | dmenu -i -l 20 -p 'Open Page' "$@")
+
+if [ "$selection" != "" ]; then
+	firefox --new-window "$selection"
+fi
+
+rm "$HOME"/.local/share/firefox-backup.sqlite
