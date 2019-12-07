@@ -41,7 +41,7 @@ except KeyError:
     print("Config file not found")
     sys.exit()
 
-SAVEFILE = HOME +"/.local/share/twitch-streams.txt"
+SAVEFILE = HOME + "/.local/share/twitch-streams.txt"
 NOTIFY_OFF = False
 
 # Init notify2
@@ -59,11 +59,11 @@ DATA = requests.get("https://api.twitch.tv/helix/users/follows?from_id=%s" % \
 # Get followed channels
 FOLLOWED = []
 for channel in DATA["data"]:
-    FOLLOWED.append(channel["to_name"])
+    FOLLOWED.append(channel["to_id"])
 
 # Get Stream info
-STREAMS = requests.get('https://api.twitch.tv/helix/streams?user_login=%s&user_login=%s' % \
-        (FOLLOWED[0], '&user_login='.join(FOLLOWED[1:])), headers=HEADERS).json()
+STREAMS = requests.get('https://api.twitch.tv/helix/streams?user_id=%s&user_login=%s' % \
+        (FOLLOWED[0], '&user_id='.join(FOLLOWED[1:])), headers=HEADERS).json()
 
 GAME_CACHE = {}
 OUTPUT = set()
