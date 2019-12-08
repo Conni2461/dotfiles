@@ -67,8 +67,8 @@ while len(data["data"]) != 0:
     for channel in data["data"]:
         followed.append(channel["to_id"])
 
-    next = data["pagination"]["cursor"]
-    followr = apipage + "users/follows?from_id=%s&after=%s" % (user_id, next)
+    nextV = data["pagination"]["cursor"]
+    followr = apipage + "users/follows?from_id=%s&after=%s" % (user_id, nextV)
     data = requests.get(followr, headers=headers).json()
 
 game_cache = {}
