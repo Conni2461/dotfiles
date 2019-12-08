@@ -100,7 +100,7 @@ for j in range(math.ceil(len(followed) / 100)):
             game_cache[game_id] = channel_game
 
         # Build output string
-        result = "<b>" + channel_game + "</b>"
+        result = "<b>" + channel_name + "</b>"
         result += " is <b>LIVE</b> playing <b>" + channel_game + "</b>"
         output.add(result)
 
