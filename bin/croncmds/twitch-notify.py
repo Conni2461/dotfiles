@@ -54,15 +54,21 @@ except dbus.exceptions.DBusException:
     print("Notification do not work")
     notify_off = True
 
-
-# Let's fetch and parse data from twitch
-followrequest = apipage + "users/follows?from_id=%s&first=100" % user_id
+# First follow fetch. Will fetch 20
+followed = []
+followrequest = apipage + "users/follows?from_id=%s" % user_id
 data = requests.get(followrequest, headers=headers).json()
 
-# Get followed channels
-followed = []
-for channel in data["data"]:
-    followed.append(channel["to_id"])
+# Collect all follows.
+# So this will send requests until there are all followers fetched
+while len(data["data"]) != 0:
+    # Get followed channels
+    for channel in data["data"]:
+        followed.append(channel["to_id"])
+
+    next = data["pagination"]["cursor"]
+    followr = apipage + "users/follows?from_id=%s&after=%s" % (user_id, next)
+    data = requests.get(followr, headers=headers).json()
 
 # Get Stream info
 streamrequest = apipage + "streams?user_id=" + followed[0]
