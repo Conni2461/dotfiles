@@ -4,6 +4,7 @@ Script to send notification of new livestreams
 '''
 
 import sys
+import math
 from pathlib import Path
 import configparser
 import requests
@@ -70,31 +71,38 @@ while len(data["data"]) != 0:
     followr = apipage + "users/follows?from_id=%s&after=%s" % (user_id, next)
     data = requests.get(followr, headers=headers).json()
 
-# Get Stream info
-streamrequest = apipage + "streams?user_id=" + followed[0]
-for i in range(1, len(followed)):
-    streamrequest += '&user_id=%s' % followed[i]
-
-streams = requests.get(streamrequest, headers=headers).json()
-
 game_cache = {}
 output = set()
-for stream in streams["data"]:
-    channel_name = stream["user_name"]
-    game_id = int(stream["game_id"])
 
-    # Receiving gamename with hashmap as cache
-    channel_game = ""
-    if game_id in game_cache:
-        channel_game = game_cache.get(game_id)
-    else:
-        rg = requests.get(apipage + "games?id=%d" % game_id, headers=headers)
-        game_json = rg.json()
-        channel_game = game_json["data"][0]["name"]
-        game_cache[game_id] = channel_game
+for j in range(math.ceil(len(followed) / 100)):
+    # Get Stream info
+    streamrequest = apipage + "streams?user_id=" + followed[100 * j]
+    for i in range((100 * j) + 1, (j + 1) * 100):
+        if i >= len(followed):
+            break
+        streamrequest += '&user_id=%s' % followed[i]
 
-    # Build output string
-    output.add("<b>" + channel_name + "</b> is <b>LIVE</b> playing <b>" + channel_game + "</b>")
+    streams = requests.get(streamrequest, headers=headers).json()
+
+    for stream in streams["data"]:
+        channel_name = stream["user_name"]
+        game_id = int(stream["game_id"])
+
+        # Receiving gamename with hashmap as cache
+        channel_game = ""
+        if game_id in game_cache:
+            channel_game = game_cache.get(game_id)
+        else:
+            gamerequest = apipage + "games?id=%d" % game_id
+            rg = requests.get(gamerequest, headers=headers)
+            game_json = rg.json()
+            channel_game = game_json["data"][0]["name"]
+            game_cache[game_id] = channel_game
+
+        # Build output string
+        result = "<b>" + channel_game + "</b>"
+        result += " is <b>LIVE</b> playing <b>" + channel_game + "</b>"
+        output.add(result)
 
 # Load oldData
 prev_output = set()
