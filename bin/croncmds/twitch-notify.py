@@ -45,6 +45,7 @@ except KeyError:
 
 filelocation = HOME + "/.local/share/twitch-streams.txt"
 notify_off = False
+apipage = "https://api.twitch.tv/helix/"
 
 # Init notify2
 try:
@@ -55,8 +56,8 @@ except dbus.exceptions.DBusException:
 
 
 # Let's fetch and parse data from twitch
-data = requests.get("https://api.twitch.tv/helix/users/follows?from_id=%s" % \
-        user_id, headers=headers).json()
+followrequest = apipage + "users/follows?from_id=%s&first=100" % user_id
+data = requests.get(followrequest, headers=headers).json()
 
 # Get followed channels
 followed = []
@@ -64,8 +65,11 @@ for channel in data["data"]:
     followed.append(channel["to_id"])
 
 # Get Stream info
-streams = requests.get('https://api.twitch.tv/helix/streams?user_id=%s&user_login=%s' % \
-        (followed[0], '&user_id='.join(followed[1:])), headers=headers).json()
+streamrequest = apipage + "streams?user_id=" + followed[0]
+for i in range(1, len(followed)):
+    streamrequest += '&user_id=%s' % followed[i]
+
+streams = requests.get(streamrequest, headers=headers).json()
 
 game_cache = {}
 output = set()
@@ -78,7 +82,7 @@ for stream in streams["data"]:
     if game_id in game_cache:
         channel_game = game_cache.get(game_id)
     else:
-        rg = requests.get('https://api.twitch.tv/helix/games?id=%d' % game_id, headers=headers)
+        rg = requests.get(apipage + "games?id=%d" % game_id, headers=headers)
         game_json = rg.json()
         channel_game = game_json["data"][0]["name"]
         game_cache[game_id] = channel_game
