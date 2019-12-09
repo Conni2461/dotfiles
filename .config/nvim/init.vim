@@ -54,7 +54,7 @@
 
 	set background=light
 	set mouse=a
-	set nohlsearch
+	set hlsearch
 	set smartcase
 	set clipboard=unnamedplus
 	set noshowmode
