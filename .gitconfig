@@ -12,7 +12,7 @@
 	bv = branch -vv
 	ba = branch -ra
 	bd = branch -d
-	ca = commit --amend
+	ca = commit --amend -v -S
 	cb = checkout -b
 	st = status --short --branch
 	ci = commit -v -S
@@ -33,10 +33,11 @@
 	reviewone = !nvim -p +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
 
 	# External commands
-	af  = "!files=$(fgst -a); [ \"$files\" = \"\" ] && exit; git add $files && echo \"Files added:\" && echo \"$files\""
-	apf = "!files=$(fgst -a); [ \"$files\" = \"\" ] && exit; git add --patch $files && echo \"Files added:\" && echo \"$files\""
-	cf  = "!files=$(fgst -c); [ \"$files\" = \"\" ] && exit; git checkout -- $files >/dev/null && echo \"Files checkouted:\" && echo \"$files\""
-	uf  = "!files=$(fgst -u); [ \"$files\" = \"\" ] && exit; git reset HEAD -- $files >/dev/null && echo \"Files reseted:\" && echo \"$files\""
+	af = "!files=$(fgst -a); [ \"$files\" = \"\" ] && exit; git add $files && echo \"Files added:\" && echo \"$files\""
+	ah = "!files=$(fgst -a); [ \"$files\" = \"\" ] && exit; git add --patch $files && echo \"Files added:\" && echo \"$files\""
+	cf = "!files=$(fgst -c); [ \"$files\" = \"\" ] && exit; git checkout -- $files >/dev/null && echo \"Files checkouted:\" && echo \"$files\""
+	ch = "!files=$(fgst -c); [ \"$files\" = \"\" ] && exit; git checkout -p -- $files && echo \"Files checkouted:\" && echo \"$files\""
+	uf = "!files=$(fgst -u); [ \"$files\" = \"\" ] && exit; git reset HEAD -- $files >/dev/null && echo \"Files reseted:\" && echo \"$files\""
 
 	pr = "!pull-request"
 
