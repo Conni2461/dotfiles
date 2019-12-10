@@ -33,11 +33,11 @@
 	reviewone = !nvim -p +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
 
 	# External commands
-	af = "!files=$(fgst -a); [ \"$files\" = \"\" ] && exit; git add $files && echo \"Files added:\" && echo \"$files\""
-	ah = "!files=$(fgst -a); [ \"$files\" = \"\" ] && exit; git add --patch $files && echo \"Files added:\" && echo \"$files\""
-	cf = "!files=$(fgst -c); [ \"$files\" = \"\" ] && exit; git checkout -- $files >/dev/null && echo \"Files checkouted:\" && echo \"$files\""
-	ch = "!files=$(fgst -c); [ \"$files\" = \"\" ] && exit; git checkout -p -- $files && echo \"Files checkouted:\" && echo \"$files\""
-	uf = "!files=$(fgst -u); [ \"$files\" = \"\" ] && exit; git reset HEAD -- $files >/dev/null && echo \"Files reseted:\" && echo \"$files\""
+	af = "!files=$(fgst -a '[Add Files] >'); [ \"$files\" = \"\" ] && exit; git add $files && echo \"Files added:\" && echo \"$files\""
+	ah = "!files=$(fgst -a '[Add Hunks] >'); [ \"$files\" = \"\" ] && exit; git add --patch $files && echo \"Hunks added:\" && echo \"$files\""
+	cf = "!files=$(fgst -c '[Checkout Files] >'); [ \"$files\" = \"\" ] && exit; git checkout -- $files >/dev/null && echo \"Files checkouted:\" && echo \"$files\""
+	ch = "!files=$(fgst -c '[Checkout Hunks] >'); [ \"$files\" = \"\" ] && exit; git checkout -p -- $files && echo \"Hunks checkouted:\" && echo \"$files\""
+	uf = "!files=$(fgst -u '[Unstage Files] >'); [ \"$files\" = \"\" ] && exit; git reset HEAD -- $files >/dev/null && echo \"Files reseted:\" && echo \"$files\""
 
 	pr = "!pull-request"
 

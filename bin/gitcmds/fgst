@@ -30,8 +30,6 @@ esac
 
 [ "${files}" = "" ] && exit
 
-export FZF_DEFAULT_OPTS="-m --reverse --bind ctrl-k:preview-up,shift-up:preview-up,ctrl-j:preview-down,shift-down:preview-down"
-
-echo "$files" | fzf --preview "${script}" | while read -r item; do
+echo "$files" | fzf --prompt="$2" -m --reverse --preview "${script}" --bind ctrl-d:preview-page-down,ctrl-u:preview-page-up | while read -r item; do
 	echo "$item" | awk '{print $2}'
 done
