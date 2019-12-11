@@ -12,6 +12,6 @@ newsup >/dev/null &
 mailsync >/dev/null &
 
 dwmbar &
-conky &
+pgrep conky >/dev/null || conky &
 
-calnotify 30 &
+pgrep calnotify >/dev/null || calnotify 30 &
