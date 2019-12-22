@@ -6,6 +6,6 @@ branches=$(git branch --all | grep -v HEAD |
 	sort -u | awk '{print "\x1b[34;1mbranch\x1b[m\t" $1}') ||  exit
 target=$(
 (echo "$tags"; echo "$branches") |
-	fzf --no-hscroll --no-multi --delimiter="\t" -n 2 \
+	sk --no-hscroll --no-multi --delimiter="\t" -n 2 \
 	--ansi --preview="git log -200 --pretty=format:%s $(echo {+2..} |  sed 's/$/../' )" ) || exit
 git checkout "$(echo "$target" | awk '{print $2}')"

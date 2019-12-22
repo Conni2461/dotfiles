@@ -7,7 +7,7 @@
 # ctrl-b checks the stash out as a branch, for easier merging
 while out=$(
 	git stash list --pretty="%C(yellow)%h %>(14)%Cgreen%cr %C(blue)%gs" |
-	fzf --ansi --no-sort --query="$q" --print-query \
+	sk --ansi --no-sort --query="$q" --print-query \
 	--expect=ctrl-d,ctrl-b);
 do
 	mapfile -t out <<< "$out"

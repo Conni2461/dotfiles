@@ -69,7 +69,7 @@ Dotfiles provide [clipmenu](https://github.com/cdown/clipmenu) which requires dm
 Also a spotify commandline handler script [sp](https://gist.github.com/wandernauta/6800547).
 All credits goes to the creator of those scripts.
 
-Some scripts in the bin folder require `dmenu`, `fzf`, `fd` and `ripgrep`.
+Some scripts in the bin folder require `dmenu`, `skim`, `the_silver_searcher`, `fd` and `ripgrep`.
 Also twitch-notify requires `python-notify2`.
 
 ## Vim

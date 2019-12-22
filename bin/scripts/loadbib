@@ -35,13 +35,11 @@ authors=$(grep '@' "${HOME}/bin/shared/bibliography.bib" | cut -d'{' -f 2 | sed 
 titles=$(grep -w 'title' "${HOME}/bin/shared/bibliography.bib" | cut -d'=' -f 2 | awk '{sub(/\{\\.+\}/," ",$1)}1' | sed -E 's/\{|\}//g;s/,//g;s/^[ \t]*//')
 papers=$(paste -d';' <(echo "${authors}") <(echo "${titles}") | sed -e 's/;/: /')
 
-export FZF_DEFAULT_OPTS="-m --reverse --bind ctrl-k:preview-up,shift-up:preview-up,ctrl-j:preview-down,shift-down:preview-down"
-
 if [ "$1" == "-l" ]; then
 	echo "${papers}"
 	exit
 else
-	selected=$(echo "${papers}" | fzf --preview 'accessbib $(echo {} | cut -d':' -f 1) | fold -s -w 100')
+	selected=$(echo "${papers}" | sk -m --reverse --preview 'accessbib $(echo {} | cut -d':' -f 1) | fold -s -w 100')
 fi
 
 if [ "${selected}" == "" ]; then

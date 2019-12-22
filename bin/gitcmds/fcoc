@@ -1,5 +1,5 @@
 #!/bin/sh
 
 commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
-commit=$(echo "$commits" | fzf --tac +s +m -e) &&
+commit=$(echo "$commits" | sk --tac -e) &&
 git checkout "$(echo "$commit" | sed "s/ .*//")"

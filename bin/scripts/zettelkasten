@@ -13,8 +13,6 @@ Create, Open, Delete notes and search for tags in all notes
   -h, --help                shows help page
   -v, --version             prints script version"
 
-export FZF_DEFAULT_OPTS="-m --reverse --bind ctrl-k:preview-up,shift-up:preview-up,ctrl-j:preview-down,shift-down:preview-down"
-
 option="$1"
 dir="$2"
 
@@ -44,7 +42,7 @@ open()
 {
 	pushd "$dir" >/dev/null || exit 1
 	script='highlight --out-format=ansi --force $(echo {} | cut -d" " -f 1 | sed -e "s/$/.md/g")'
-	sel=$(head -n1 -q * | sed -e 's/# //g' | fzf --preview "$script" | cut -d' ' -f 1)
+	sel=$(head -n1 -q * | sed -e 's/# //g' | sk -m --reverse --preview "$script" | cut -d' ' -f 1)
 
 	[ "$sel" == "" ] && exit 0
 	$EDITOR "$sel.md"
