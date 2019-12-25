@@ -15,12 +15,14 @@ if [ "$2" = "-t" ]; then
 	exit
 fi
 
-CountMovie=$(sed -e '/-----/,$d' "$HOME/docs/shared/lists/$1" | awk NF | cut -d- -f2 | grep -c Movie)
-CountShow=$(sed -e '/-----/,$d' "$HOME/docs/shared/lists/$1" | awk NF | cut -d- -f2 | grep -c Show)
-CountDocu=$(sed -e '/-----/,$d' "$HOME/docs/shared/lists/$1" | awk NF | cut -d- -f2 | grep -c Documentation)
+TOPLIST=$(sed -e '/-----/,$d' "$HOME/docs/shared/lists/$1" | awk NF | cut -d- -f2)
+CountMovie=$(echo "${TOPLIST}" | grep -c Movie)
+CountShow=$(echo "${TOPLIST}" | grep -c Show)
+CountDocu=$(echo "${TOPLIST}" | grep -c Documentation)
 
 echo "Movies to watch:          ${CountMovie}"
 echo "Shows to watch:           ${CountShow}"
 echo "Documentation to watch:   ${CountDocu}"
+echo "Sum:                      $((CountMovie + CountShow + CountDocu))"
 echo "Upcoming:"
 sed -e '1,/-----/d' "$HOME/docs/shared/lists/$1" | awk NF
