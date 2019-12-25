@@ -288,7 +288,6 @@
 	augroup post
 		au!
 		au BufWritePost * silent! execute "!notify-send 'File <afile> saved'" | redraw!
-		au BufWritePost * silent! execute "!syncfile %:p" | redraw!
 	augroup END
 
 
