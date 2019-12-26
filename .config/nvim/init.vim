@@ -468,7 +468,7 @@
 	nnoremap <leader>f :call ToggleGoyo()<CR>
 
 " Vimwiki setup
-	let g:vimwiki_list = [{'path': '~/docs/shared/vimwiki/'}]
+	let g:vimwiki_list = [{'path': '~/Nextcloud/docs/vimwiki/'}]
 	let g:vimwiki_conceallevel=0
 
 " Undotree shortcut
