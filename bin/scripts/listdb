@@ -3,7 +3,7 @@
 if [ "$1" = "" ]; then exit 1; fi
 
 if [ "$2" = "-t" ]; then
-	upcoming=$(sed -e '1,/-----/d' "$HOME/docs/shared/lists/$1" | awk NF)
+	upcoming=$(sed -e '1,/-----/d' "$HOME/Nextcloud/docs/lists/$1" | awk NF)
 	dates=$(echo "$upcoming" | cut -d- -f 1 | awk NF | sed '/^$/d')
 	while read -r line; do
 		if [ "$line" = "$(date '+%d.%m')" ]; then
@@ -15,7 +15,7 @@ if [ "$2" = "-t" ]; then
 	exit
 fi
 
-TOPLIST=$(sed -e '/-----/,$d' "$HOME/docs/shared/lists/$1" | awk NF | cut -d- -f2)
+TOPLIST=$(sed -e '/-----/,$d' "$HOME/Nextcloud/docs/lists/$1" | awk NF | cut -d- -f2)
 CountMovie=$(echo "${TOPLIST}" | grep -c Movie)
 CountShow=$(echo "${TOPLIST}" | grep -c Show)
 CountDocu=$(echo "${TOPLIST}" | grep -c Documentation)
@@ -25,4 +25,4 @@ echo "Shows to watch:           ${CountShow}"
 echo "Documentation to watch:   ${CountDocu}"
 echo "Sum:                      $((CountMovie + CountShow + CountDocu))"
 echo "Upcoming:"
-sed -e '1,/-----/d' "$HOME/docs/shared/lists/$1" | awk NF
+sed -e '1,/-----/d' "$HOME/Nextcloud/docs/lists/$1" | awk NF
