@@ -284,12 +284,6 @@
 		au BufRead,BufNewFile /tmp/neomutt* Goyo
 	augroup END
 
-" Post Save Commands
-	augroup post
-		au!
-		au BufWritePost * silent! execute "!notify-send 'File <afile> saved'" | redraw!
-	augroup END
-
 
 " lightline configuration
 	set laststatus=2

@@ -45,6 +45,7 @@ alias transen='trans en:de'
 alias transde='trans de:en'
 alias ssh='TERM=xterm ssh'
 alias tty-clock='tty-clock -sct'
+alias khal='khal -v ERROR'
 
 # Shortcuts
 ## Files
