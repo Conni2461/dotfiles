@@ -1,0 +1,16 @@
+#!/bin/sh
+
+failed()
+{
+	notify-send "Failed to sync Calendar and Contacts!"
+	exit 1
+}
+
+ping -q -t 1 -c 1 `ip r | grep -m 1 default | cut -d ' ' -f 3` >/dev/null || exit
+
+notify-send "Syncing Calendar and Contacts..."
+
+vdirsyncer discover || failed
+vdirsyncer metasync || failed
+vdirsyncer sync || failed
+notify-send "Calendar and Contacts synced."
