@@ -5,6 +5,7 @@ from pathlib import Path
 import requests
 import configparser
 
+
 def sendmail(header, content, sha):
     with open("/tmp/%s.txt" % sha, "w") as f:
         f.write(content)
@@ -12,14 +13,23 @@ def sendmail(header, content, sha):
     os.system("cat /tmp/%s.txt | mail -s '%s' %s" % (sha, header, receiver))
     os.remove("/tmp/%s.txt" % sha)
 
+
 def getCommitMessage(sha):
     return data["commit"]["message"]
+
 
 def getCommitDiff(sha):
     output = ""
     for file in data["files"]:
-        output = "%s\n" % file["patch"]
+        output += file["filename"] + "\n"
+
+        output += "Additions: " + str(file["additions"])
+        output += " Delections: " + str(file["deletions"]) + "\n"
+
+        output += file["blob_url"] + "\n"
+        output += file["patch"] + "\n\n----------\n\n"
     return output
+
 
 home = str(Path.home())
 
@@ -30,7 +40,7 @@ home = str(Path.home())
 #
 # [DEFAULT]
 # Token = <token>
-# Mantainer = <github user>
+# Mantainer = <github mantainer>
 # Repository = <github repo>
 # Branch = <branch to track>
 # Receiver = <email which is selected to receive mails>
@@ -47,9 +57,10 @@ branch = config['DEFAULT']['Branch']
 
 receiver = config['DEFAULT']['Receiver']
 
-savefile = home + "/.local/share/%s-%s-commits-%s.txt" % (mantainer, repo, branch)
-headers = { 'Authorization': 'token %s' % token }
-data = requests.get("https://api.github.com/repos/%s/%s/commits" % (mantainer, repo), headers=headers).json()
+sf = home + "/.local/share/%s-%s-commits-%s.txt" % (mantainer, repo, branch)
+headers = {"Authorization": "token " + token}
+url = "https://api.github.com/repos/%s/%s/" % (mantainer, repo)
+data = requests.get(url + "commits", headers=headers).json()
 
 output = set()
 for commit in data:
@@ -57,7 +68,7 @@ for commit in data:
 
 old_data = set()
 try:
-    with open(savefile, "r") as f:
+    with open(sf, "r") as f:
         for line in f:
             if line != '\n' or line != '':
                 old_data.add(line.replace('\n', ''))
@@ -69,7 +80,7 @@ new_commits = output - old_data
 if len(new_commits) != 0 or len(new_commits) != 0:
     # Send mail
     for sha in iter(new_commits):
-        data = requests.get("https://api.github.com/repos/%s/%s/commits/%s" % (mantainer, repo, sha), headers=headers).json()
+        data = requests.get(url + "commits/" + sha, headers=headers).json()
         message = getCommitMessage(data)
         diff = getCommitDiff(data)
 
@@ -77,6 +88,6 @@ if len(new_commits) != 0 or len(new_commits) != 0:
         sendmail("New commit to %s/%s" %(mantainer, repo), content, sha)
 
     # Update file
-    with open(savefile, "w") as f:
+    with open(sf, "w") as f:
         for item in output:
             f.write("%s\n" % item)
