@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # Profile file. Runs on login
 
 export PATH=$PATH:$(find $HOME/bin -mindepth 1 -maxdepth 1 -type d | grep -Ev 'external|shared' | tr '\n' ':' | sed 's/:*$//')
@@ -10,8 +10,6 @@ export BROWSER='firefox'
 export READER='zathura'
 export SUDO_ASKPASS="$HOME/bin/scripts/askpass"
 export PAGER='less'
-
-export HISTCONTROL=ignoreboth:erasedups
 
 # less/man colors
 export LESS=-R
@@ -29,4 +27,13 @@ export REVIEW_BASE=master
 # Fixing misbehaving Java applications
 export _JAVA_AWT_WM_NONREPARENTING=1
 
-if [[ -f ~/.bashrc ]]; then . ~/.bashrc; fi
+# Bash specific stuff
+if echo $SHELL | grep 'bash' >/dev/null; then
+	export HISTCONTROL=ignoreboth:erasedups
+	if [ -f ~/.bashrc ]; then . ~/.bashrc; fi
+fi
+
+# ZSH specific stuff
+if echo "$SHELL" | grep 'zsh' >/dev/null; then
+	if [ -f ~/.zshrc ]; then . ~/.zshrc; fi
+fi
