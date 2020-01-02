@@ -15,5 +15,3 @@ export HISTFILE=$HOME/.sh_history
 
 source "$HOME/.aliasrc"
 source "$HOME/.functionrc"
-
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'

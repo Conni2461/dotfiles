@@ -19,6 +19,9 @@ yay() { if [ "$1" = "" ]; then command yay; else command yay --editmenu $*; fi }
 alias SS='sudo systemctl'
 alias startx='startx ~/.xinitrc'
 
+# Dotfiles setup
+alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
 # Other
 alias type='type -a'
 alias wiki='nvim -c "VimwikiIndex"'

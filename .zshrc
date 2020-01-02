@@ -12,15 +12,23 @@ setopt INC_APPEND_HISTORY
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_DUPS
 
+# Completions
+zmodload zsh/complist
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+compinit
+
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
 [ -f "$HOME/.functionrc" ] && source "$HOME/.functionrc"
 
-autoload -Uz compinit
-zstyle ':completion:*' menu select
-zmodload zsh/complist
-setopt COMPLETE_ALIASES
-compinit
+# Window title
+autoload -Uz vcs_info
+precmd () {
+	vcs_info
+	print -Pn "\e]0;%~\a"
+}
+preexec () { print -Pn "\e]0;%~\a" }
 
 # Include hidden files in autocomplete:
 _comp_options+=(globdots)
