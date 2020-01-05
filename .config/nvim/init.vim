@@ -474,7 +474,14 @@
 " Undotree shortcut
 	nnoremap <leader>u :UndotreeToggle<CR>
 
+
 " Snippets
+" Snippet navigation
+	inoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
+	vnoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
+	nnoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
+
+" Load Snippets
 	runtime snippets/latex.vim
 	runtime snippets/bib.vim
 	runtime snippets/markdown.vim
