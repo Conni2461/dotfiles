@@ -48,7 +48,7 @@
 	call plug#end()
 
 " Some Basics
-	let mapleader = ' '
+	let mapleader = ','
 
 	imap jk <Esc>
 
@@ -477,9 +477,9 @@
 
 " Snippets
 " Snippet navigation
-	inoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
-	vnoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
-	nnoremap <Space><Tab> <Esc>/<++><Enter>"_c4l
+	inoremap <Leader><Leader> <Esc>/<++><Enter>"_c4l
+	vnoremap <Leader><Leader> <Esc>/<++><Enter>"_c4l
+	nnoremap <Leader><Leader> <Esc>/<++><Enter>"_c4l
 
 " Load Snippets
 	runtime snippets/latex.vim
