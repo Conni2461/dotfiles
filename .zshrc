@@ -71,6 +71,7 @@ key[ShiftTab]="${terminfo[kcbt]}"
 [[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"  end-of-buffer-or-history
 [[ -n "${key[ShiftTab]}"  ]] && bindkey -- "${key[ShiftTab]}"  reverse-menu-complete
 
+bindkey "^H"      backward-delete-word
 bindkey "^u"      backward-kill-line
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
