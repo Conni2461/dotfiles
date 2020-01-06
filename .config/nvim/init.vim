@@ -19,7 +19,6 @@
 	Plug 'tpope/vim-rhubarb'
 	Plug 'airblade/vim-gitgutter'
 	Plug 'rhysd/git-messenger.vim'
-	Plug 'junegunn/gv.vim'
 
 	Plug 'gisphm/vim-gitignore'
 	Plug 'PotatoesMaster/i3-vim-syntax'

@@ -25,7 +25,6 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 # Other
 alias type='type -a'
 alias wiki='nvim -c "VimwikiIndex"'
-alias tig='nvim -c "GV"'
 alias ka='killall'
 alias df='df -kHT'
 alias del='trash'
