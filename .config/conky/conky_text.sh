@@ -8,10 +8,10 @@ echo "\${color1}\${font}NEW YORK      \${color}\${tztime America/New_York %m/%d/
 echo "\${color1}\${font}LOS ANGELES   \${color}\${tztime America/Los_Angeles %m/%d/%Y %I:%M%p}"
 echo "\${color1}\${font}TOKYO         \${color}\${tztime Asia/Tokyo %m/%d/%Y %I:%M%p}"
 
-if [ "$(calcurse -a)" != "" ]; then
+if [ "$(caltoday)" != "" ]; then
 	echo
 	echo "\${color1}\${font}APPOINTMENTS"
-	echo "\${color}\${exec lsappointments}"
+	echo "\${color}\${exec caltoday}"
 fi
 
 if [ "$(listnews)" != "" ]; then

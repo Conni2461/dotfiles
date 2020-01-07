@@ -1,0 +1,12 @@
+[calendars]
+  [[home]]
+    path = ~/.calendars/home/
+
+  [[uni]]
+    path = ~/.calendars/uni/
+
+  [[work]]
+    path = ~/.calendars/work/
+
+  [locale]
+    timeformat = %I:%M %p
