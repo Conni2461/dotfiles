@@ -1,3 +1,0 @@
-#!/bin/sh
-
-calcurse -t | sed -n '1!p' | wc -l | sed 's/^0$//g'

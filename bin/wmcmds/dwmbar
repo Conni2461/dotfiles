@@ -2,7 +2,7 @@
 
 ftodo()
 {
-	rtodo=$(todo)
+	rtodo=$(todo | wc -l)
 	[ "${rtodo}" != "" ] && echo "📝 ${rtodo} | "
 }
 

@@ -7,7 +7,7 @@ fixdisplay &
 nitrogen --restore &
 pgrep clipmenud >/dev/null|| clipmenud &
 
-syncshared >/dev/null &
+calsync >/dev/null &
 newsup >/dev/null &
 mailsync >/dev/null &
 
@@ -16,4 +16,4 @@ pgrep conky >/dev/null || conky &
 
 pgrep calnotify >/dev/null || calnotify 30 &
 
-pgrep nextcloud >/dev/null || nextcloud &
+pgrep nextcloud >/dev/null || nextcloud --background &

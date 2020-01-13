@@ -1,3 +1,3 @@
 #!/bin/sh
 
-fd -e pdf | dmenu -i -l 20 -p 'open' "$@" | xargs -r "$READER"
+fd -e pdf --full-path $HOME $HOME/Nextcloud | dmenu -i -l 20 -p 'open' "$@" | xargs -r "$READER"
