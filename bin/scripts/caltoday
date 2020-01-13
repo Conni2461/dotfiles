@@ -1,4 +1,5 @@
 #!/bin/sh
 
 format='{cancelled}{start-time} - {end-time}{nl}  {cancelled}- {title}'
-khal list Today Today --format "$format" | grep -vi cancelled | sed -n '1!p'
+output=$(khal list Today Today --format "$format" | sed -n '1!p') 
+echo "$output" | sed '/CANCELLED/d; /^ - $/d'
