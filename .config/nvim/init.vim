@@ -25,7 +25,7 @@
 	Plug 'octol/vim-cpp-enhanced-highlight'
 	Plug 'ericcurtin/CurtineIncSw.vim'
 
-	Plug 'liuchengxu/vim-clap', { 'do': function('clap#helper#build_all') }
+	Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary' }
 
 	Plug 'junegunn/goyo.vim'
 	Plug 'junegunn/limelight.vim'
