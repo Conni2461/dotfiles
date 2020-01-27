@@ -409,6 +409,7 @@
 	nnoremap <leader>g  :Clap grep<CR>
 	nnoremap <leader>t  :Clap tags<CR>
 	nnoremap <leader>'  :Clap marks<CR>
+	let g:clap_theme = 'material_design_dark'
 
 	function! s:ReadBib(...)
 		let l:input = join(a:000)

@@ -8,7 +8,7 @@ adapter="HDMI\nDP"
 # Functions
 selectScreen()
 {
-	chosenS=$(echo "$screens" | dmenu -i)
+	chosenS=$(echo -e "$screens" | dmenu -i)
 	case "$chosenS" in
 		laptop ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --off ;;
 		HDMI ) sudo -A xrandr --output eDP1 --off --output HDMI1 --auto --output DP1 --off ;;
@@ -20,7 +20,7 @@ selectScreen()
 
 selectAdapterD()
 {
-	chosenD=$(echo "$adapter" | dmenu -i)
+	chosenD=$(echo -e "$adapter" | dmenu -i)
 	case "$chosenD" in
 		HDMI ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --auto --output DP1 --off ;;
 		DP ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --auto ;;
@@ -31,7 +31,7 @@ selectAdapterD()
 
 selectAdapterE()
 {
-	chosenE=$(echo "$adapter" | dmenu -i)
+	chosenE=$(echo -e "$adapter" | dmenu -i)
 	case "$chosenE" in
 		HDMI ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --auto --right-of eDP1 --output DP1 --off ;;
 		DP ) sudo -A xrandr --output eDP1 --auto --output HDMI1 --off --output DP1 --auto --right-of eDP1 ;;
@@ -41,7 +41,7 @@ selectAdapterE()
 }
 
 # Main
-chosenM=$(echo "$first" | dmenu -i)
+chosenM=$(echo -e "$first" | dmenu -i)
 
 case "$chosenM" in
 	single ) selectScreen && polybar_launch ;;
