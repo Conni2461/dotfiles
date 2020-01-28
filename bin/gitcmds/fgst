@@ -1,21 +1,26 @@
 #!/bin/sh
 
 # scripts
-script='tmp=$(echo {} | grep -E "^AM|^\ M|^MM|UU" | sed -e "s/^[[:space:]]*//" | cut -d" " -f2)
-				if [ "${tmp}" != "" ]; then
-					git diff --color $tmp
-					exit
-				fi
-				tmp=$(echo {} | grep -E "^A|^M" | cut -d" " -f3)
-				if [ "${tmp}" != "" ]; then
-					git diff --color --cached $tmp
-					exit
-				fi
+script='tmp=$(echo {} | grep -E "^AM|^\ M|^MM|UU|^R" | sed -e "s/^[[:space:]]*//" | cut -d" " -f2)
+        if [ "${tmp}" != "" ]; then
+            git diff --color $tmp
+            exit
+        fi
+        tmp=$(echo {} | grep -E "^A|^M" | cut -d" " -f3)
+        if [ "${tmp}" != "" ]; then
+            git diff --color --cached $tmp
+            exit
+        fi
+        tmp=$(echo {} | grep -E "^R" | cut -d" " -f5)
+        if [ "${tmp}" != "" ]; then
+            git diff --color --cached $tmp
+            exit
+        fi
 
-				echo {} | grep -E "^AD|^\ D" >/dev/null && git diff --color -- $(echo {} | tr -d "AD" | sed -e "s/^[[:space:]]*//") && exit;
+        echo {} | grep -E "^AD|^\ D" >/dev/null && git diff --color -- $(echo {} | tr -d "AD" | sed -e "s/^[[:space:]]*//") && exit;
 
-				echo {} | grep "^??" >/dev/null && file=$(echo {} | cut -d" " -f2);
-				[ -d ${file} ] && exa -la --color always --tree ${file} || highlight --out-format=ansi --force ${file} | nl -ba;'
+        echo {} | grep "^??" >/dev/null && file=$(echo {} | cut -d" " -f2);
+        [ -d ${file} ] && exa -la --color always --tree ${file} || highlight --out-format=ansi --force ${file} | nl -ba;'
 
 git rev-parse HEAD > /dev/null 2>&1 || exit
 allFiles=$(git status -s)
@@ -24,12 +29,16 @@ allFiles=$(git status -s)
 case $1 in
 	-a ) files=$(echo "$allFiles" | grep -vE '^A\ |^M\ |^R\ |^D\ ') ;;
 	-c ) files=$(echo "$allFiles" | grep -vE '^A\ |^M\ |\?\?|^D\ ') ;;
-	-u ) files=$(echo "$allFiles" | grep -E '^A|^M') ;;
+	-u ) files=$(echo "$allFiles" | grep -E '^A|^M|^R') ;;
 	*  ) exit 1;;
 esac
 
 [ "${files}" = "" ] && exit
 
 echo "$files" | sk --prompt="$2" -m --reverse --preview "${script}" | while read -r item; do
-	echo "$item" | awk '{print $2}'
+	if echo "$item" | grep -e '->' >/dev/null 2>&1; then
+		echo "$item" | awk '{print $2, $4}'
+	else
+		echo "$item" | awk '{print $2}'
+	fi
 done
