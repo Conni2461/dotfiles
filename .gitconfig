@@ -40,6 +40,7 @@
 	uf = "!files=$(fgst -u '[Unstage Files] >'); [ \"$files\" = \"\" ] && exit; git reset HEAD -- $files >/dev/null && echo \"Files reseted:\" && echo \"$files\""
 
 	pr = "!pull-request"
+	tig = "!tig"
 
 [color]
 	ui = true
