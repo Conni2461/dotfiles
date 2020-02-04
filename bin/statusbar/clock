@@ -1,6 +1,30 @@
 #!/bin/sh
 
-date '+%m/%d/%Y %I:%M %p'
+hour=$(date +%I)
+minutes=$(date +%M)
+case $hour in
+	01) word="one" ;;
+	02) word="two" ;;
+	03) word="three" ;;
+	04) word="four" ;;
+	05) word="five" ;;
+	06) word="six" ;;
+	07) word="seven" ;;
+	08) word="eight" ;;
+	09) word="nine" ;;
+	10) word="ten" ;;
+	11) word="eleven" ;;
+	12) word="twelve" ;;
+esac
+
+if [ "$minutes" -lt 30 ]; then
+	addition="o’clock"
+else
+	addition="thirty"
+fi
+
+icon=$(grep -w "$word" ~/bin/shared/unicode | grep -w "$addition" | awk '{print $1}')
+printf "%s %s" "$icon" "$(date '+%m/%d/%Y %I:%M %p')"
 
 case $BLOCK_BUTTON in
 	1) pgrep -x dunst >/dev/null && notify-send "This Month" "$(cal --color=always | sed "s/..7m/<b><span color=\"red\">/;s/..27m/<\/span><\/b>/")" ;;
