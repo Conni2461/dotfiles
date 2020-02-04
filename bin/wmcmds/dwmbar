@@ -46,7 +46,7 @@ fbattery()
 }
 
 while true; do
-	xsetroot -name "$(fappointments)$(ftodo)$(fnews)$(fmailbox)$(fpacpackages)$(fweather)$(volume) | $(internet) | $(fbattery BAT1) | $(fbattery BAT2) | $(clock)"
+	xsetroot -name "$(fmailbox)$(fpacpackages)$(fweather)$(volume) | $(internet) | $(fbattery BAT1) | $(fbattery BAT2) | $(clock)"
 
 	sleep 15
 done
