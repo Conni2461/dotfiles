@@ -1,5 +1,5 @@
 [global]
-font = Monospace 10
+font = DejaVuSansMono 10
 
 # Allow a small subset of html markup:
 #   <b>bold</b>
