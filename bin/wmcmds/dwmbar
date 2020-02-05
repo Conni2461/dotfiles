@@ -2,7 +2,7 @@
 
 ftodo()
 {
-	rtodo=$(todo | sed '/^[[:space:]]*$/d' | wc -l | sed 's/0//g')
+	rtodo=$(todo | sed '/^[[:space:]]*$/d' | wc -l | sed 's/^0$//g')
 	[ "${rtodo}" != "" ] && echo "📝 ${rtodo} | "
 }
 
