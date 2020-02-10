@@ -14,6 +14,7 @@
 	Plug 'kshenoy/vim-signature'
 
 	Plug 'yuttie/comfortable-motion.vim'
+	Plug 'camspiers/animate.vim'
 
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-rhubarb'
@@ -284,6 +285,7 @@
 	augroup END
 
 
+"" PLUGIN SETTINGS
 " lightline configuration
 	set laststatus=2
 
@@ -320,7 +322,6 @@
 			\'method': 'NearestMethodOrFunction',
 		\}
 	\}
-
 
 " ALE
 	let g:ale_linters = {
@@ -372,6 +373,27 @@
 		au!
 		au BufRead,BufNewFile *.md ALEDisableBuffer
 	augroup END
+
+" Animate.vim
+	function! OpenAnimatedHtop() abort
+		" Open a htop in terminal
+		new term://htop
+		" Send window to bottom and start with small height
+		wincmd J | resize 1
+		" Animate height to 66%
+		call animate#window_percent_height(0.66)
+	endfunction
+	command! Htop :call OpenAnimatedHtop()
+
+	function! OpenAnimatedLazygit() abort
+		" Open a lazygit in terminal
+		new term://lazygit
+		" Send window to bottom and start with small height
+		wincmd J | resize 1
+		" Animate height to 66%
+		call animate#window_percent_height(0.66)
+	endfunction
+	command! Lazygit :call OpenAnimatedLazygit()
 
 " CurtineIncSw
 	nnoremap <leader>m :call CurtineIncSw()<CR>
