@@ -1,8 +1,3 @@
 #!/bin/sh
 
-while true; do
-	nvidia-smi >/tmp/nvidia-stats
-	clear
-	cat /tmp/nvidia-stats
-	sleep 1
-done
+watch -n 1 nvidia-smi
