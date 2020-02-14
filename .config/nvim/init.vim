@@ -45,6 +45,9 @@
 
 	Plug 'liuchengxu/vista.vim'
 	Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+
+	Plug 'preservim/nerdtree'
+	Plug 'ryanoasis/vim-devicons'
 	call plug#end()
 
 " Some Basics
@@ -293,10 +296,10 @@
 	let g:lightline#bufferline#read_only=''
 	let g:lightline#bufferline#show_number=1
 
-	let g:lightline#ale#indicator_checking = "\uf110"
-	let g:lightline#ale#indicator_warnings = "\uf071"
-	let g:lightline#ale#indicator_errors = "\uf05e"
-	let g:lightline#ale#indicator_ok = "\uf00c"
+	let g:lightline#ale#indicator_checking = "\uf110 "
+	let g:lightline#ale#indicator_warnings = "\uf071 "
+	let g:lightline#ale#indicator_errors = "\uf05e "
+	let g:lightline#ale#indicator_ok = "\uf00c "
 
 	let g:lightline = {
 		\'active': {
@@ -311,17 +314,28 @@
 			\'buffers': 'lightline#bufferline#buffers',
 		\},
 		\'component_type': {
-			\'linter_checking': 'left',
+			\'linter_checking': 'right',
 			\'linter_warnings': 'warning',
 			\'linter_errors': 'error',
-			\'linter_ok': 'left',
+			\'linter_ok': 'right',
 			\'buffers': 'tabsel',
 		\},
 		\'component_function': {
 			\'gitbranch': 'fugitive#head',
 			\'method': 'NearestMethodOrFunction',
+			\'filetype': 'MyFiletype',
+			\'fileformat': 'MyFileformat',
 		\}
 	\}
+
+	function! MyFiletype()
+		return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+	endfunction
+
+	function! MyFileformat()
+		return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+	endfunction
+
 
 " ALE
 	let g:ale_linters = {
