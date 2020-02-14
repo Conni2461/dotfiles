@@ -24,7 +24,7 @@ else
 fi
 
 icon=$(grep -w "$word" ~/bin/shared/unicode | grep -w "$addition" | awk '{print $1}')
-printf "%s %s" "$icon" "$(date '+%m/%d/%Y %I:%M %p')"
+echo "$icon" "$(date '+%m/%d/%Y %I:%M %p')"
 
 case $BLOCK_BUTTON in
 	1) pgrep -x dunst >/dev/null && notify-send "This Month" "$(cal --color=always | sed "s/..7m/<b><span color=\"red\">/;s/..27m/<\/span><\/b>/")" ;;
