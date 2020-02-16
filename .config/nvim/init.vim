@@ -33,6 +33,7 @@
 	Plug 'vimwiki/vimwiki'
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
+	Plug 'cometsong/CommentFrame.vim'
 	Plug 'RRethy/vim-illuminate'
 
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -335,7 +336,6 @@
 	function! MyFileformat()
 		return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 	endfunction
-
 
 " ALE
 	let g:ale_linters = {
