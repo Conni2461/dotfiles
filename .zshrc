@@ -18,6 +18,9 @@ autoload -Uz compinit
 zstyle ':completion:*' menu select
 compinit
 
+# Enable gpg signing over ssh
+export GPG_TTY=$(tty)
+
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
 [ -f "$HOME/.functionrc" ] && source "$HOME/.functionrc"

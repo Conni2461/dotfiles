@@ -13,5 +13,8 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput se
 # Use same history file for zsh and bash
 export HISTFILE=$HOME/.sh_history
 
+# Enable gpg signing over ssh
+export GPG_TTY=$(tty)
+
 source "$HOME/.aliasrc"
 source "$HOME/.functionrc"
