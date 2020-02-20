@@ -12,6 +12,8 @@
 " Plugin
 	call plug#begin('~/.config/nvim/plugged')
 	Plug 'kshenoy/vim-signature'
+	Plug 'xolox/vim-misc'
+	Plug 'xolox/vim-session'
 
 	Plug 'yuttie/comfortable-motion.vim'
 	Plug 'camspiers/animate.vim'
@@ -225,6 +227,10 @@
 	nnoremap H 0
 	nnoremap L $
 
+"" Vmap for maintain Visual Mode after shifting > and <
+	vmap < <gv
+	vmap > >gv
+
 " Bubble single lines
 	nnoremap <C-Up> :m .-2<CR>
 	nnoremap <C-Down> :m  .+1<CR>
@@ -251,9 +257,9 @@
 	augroup END
 
 " Spellcheck
-	nnoremap <leader>se :setlocal spell! spelllang=en_us<CR>
-	nnoremap <leader>sd :setlocal spell! spelllang=de_de<CR>
-	nnoremap <leader>sf :setlocal spell! spelllang=en_us,de_de<CR>
+	nnoremap <leader>le :setlocal spell! spelllang=en_us<CR>
+	nnoremap <leader>ld :setlocal spell! spelllang=de_de<CR>
+	nnoremap <leader>lf :setlocal spell! spelllang=en_us,de_de<CR>
 
 " Splits open at the bottom and right
 	set splitbelow splitright
@@ -290,6 +296,16 @@
 
 
 "" PLUGIN SETTINGS
+" Vim session
+	let g:session_directory = '~/.config/nvim/session'
+	let g:session_autoload = 'no'
+	let g:session_autosave = 'no'
+
+	nnoremap <leader>so :OpenSession<Space>
+	nnoremap <leader>ss :SaveSession<Space>
+	nnoremap <leader>sd :DeleteSession<CR>
+	nnoremap <leader>sc :CloseSession<CR>
+
 " lightline configuration
 	set laststatus=2
 
