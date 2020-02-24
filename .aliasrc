@@ -15,6 +15,7 @@ alias mkd='mkdir -pv'
 
 # System
 alias p='sudo pacman'
+alias pacaudit='pacaudit -v -c'
 yay() { if [ "$1" = "" ]; then command yay; else command yay --editmenu $*; fi }
 alias SS='sudo systemctl'
 alias startx='startx ~/.xinitrc'
@@ -46,7 +47,6 @@ alias R='R --save'
 alias wget="wget --hsts-file ~/.cache/wget-hsts"
 alias transen='trans en:de'
 alias transde='trans de:en'
-alias ssh='TERM=xterm ssh'
 alias tty-clock='tty-clock -sct'
 alias khal='khal -v ERROR'
 

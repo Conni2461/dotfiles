@@ -11,6 +11,9 @@ export READER='zathura'
 export SUDO_ASKPASS="$HOME/bin/scripts/askpass"
 export PAGER='less'
 
+# Fix ssh for some terminals
+export TERM=xterm-256color
+
 # less/man colors
 export LESS=-R
 export LESS_TERMCAP_mb="$(printf '%b' '[1;31m')"; a="${a%_}"
