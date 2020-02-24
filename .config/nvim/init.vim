@@ -77,7 +77,7 @@
 
 	set conceallevel=0
 
-	filetype plugin on
+	filetype plugin indent on
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
@@ -300,6 +300,7 @@
 	let g:session_directory = '~/.config/nvim/session'
 	let g:session_autoload = 'no'
 	let g:session_autosave = 'no'
+	let g:session_command_aliases = 1
 
 	nnoremap <leader>so :OpenSession<Space>
 	nnoremap <leader>ss :SaveSession<Space>
@@ -423,6 +424,24 @@
 		" Animate height to 66%
 		call animate#window_percent_height(0.66)
 	endfunction
+
+	function! HorizontalSplit() abort
+		sp
+		resize 1
+		call animate#window_percent_height(0.5)
+	endfunction
+
+	function! VerticalSplit() abort
+		vsp
+		vertical resize 1
+		call animate#window_percent_width(0.5)
+	endfunction
+
+	command! HorizontalSplit :call HorizontalSplit()
+	command! VerticalSplit :call VerticalSplit()
+	cnoreabbrev <expr> sp getcmdtype() == ":" && getcmdline() == 'sp' ? 'HorizontalSplit' : 'sp'
+	cnoreabbrev <expr> vsp getcmdtype() == ":" && getcmdline() == 'vsp' ? 'VerticalSplit' : 'vsp'
+
 	command! Lazygit :call OpenAnimatedLazygit()
 
 " CurtineIncSw
