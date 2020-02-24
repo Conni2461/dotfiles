@@ -427,14 +427,18 @@
 
 	function! HorizontalSplit() abort
 		sp
+		let width = winwidth(0)
+		let height = winheight(0)
 		resize 1
-		call animate#window_percent_height(0.5)
+		call animate#window_absolute(width, height)
 	endfunction
 
 	function! VerticalSplit() abort
 		vsp
+		let width = winwidth(0)
+		let height = winheight(0)
 		vertical resize 1
-		call animate#window_percent_width(0.5)
+		call animate#window_absolute(width, height)
 	endfunction
 
 	command! HorizontalSplit :call HorizontalSplit()
@@ -475,6 +479,9 @@
 	augroup END
 
 " Clap search
+	" Exit clap with esc rather than going to normal mode
+	au FileType clap_input inoremap <silent> <buffer> <Esc> <Esc>:call clap#handler#exit()<CR>
+
 	nnoremap <leader>q  :Clap files<CR>
 	nnoremap <leader>z  :Clap filer<CR>
 	nnoremap <leader>bg :Clap buffers<CR>
