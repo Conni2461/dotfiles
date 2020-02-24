@@ -6,4 +6,4 @@ if [ $# -eq 0 ]; then
 	err "Error provice a docker image" || exit 1
 fi
 
-sudo docker -run -v 'pwd':'pwd' -w 'pwd' -i -t "${1}" /bin/bash
+docker run -ti --rm -v $(pwd):/tmp "${1}" /bin/bash

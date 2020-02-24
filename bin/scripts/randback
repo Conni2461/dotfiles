@@ -1,7 +1,12 @@
 #!/bin/sh
 
-currResolution=$(xrandr | grep '*' | awk '{print $1}')
+res=($(xrandr | grep '*' | awk '{print $1}'))
+rm ~/img/random_image_*.jpeg
 
-rm ~/img/random_image.jpeg
-wget -O ~/img/random_image.jpeg https://source.unsplash.com/random/"${currResolution}" >/dev/null 2>&1
-feh --bg-fill ~/img/random_image.jpeg
+files=
+for i in "${res[@]}"; do
+	wget -O ~/img/random_image_"${i}".jpeg https://source.unsplash.com/random/"${i}" >/dev/null 2>&1
+	files="$files --bg-fill $HOME/img/random_image_${i}.jpeg"
+done
+
+echo "$files" | xargs -r feh
