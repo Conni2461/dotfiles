@@ -16,5 +16,8 @@ export HISTFILE=$HOME/.sh_history
 # Enable gpg signing over ssh
 export GPG_TTY=$(tty)
 
+# Fix ssh for some terminals
+export TERM=xterm-256color
+
 source "$HOME/.aliasrc"
 source "$HOME/.functionrc"

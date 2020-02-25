@@ -21,6 +21,9 @@ compinit
 # Enable gpg signing over ssh
 export GPG_TTY=$(tty)
 
+# Fix ssh for some terminals
+export TERM=xterm-256color
+
 # Load aliases and shortcuts if existent.
 [ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
 [ -f "$HOME/.functionrc" ] && source "$HOME/.functionrc"
