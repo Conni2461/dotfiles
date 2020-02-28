@@ -72,7 +72,7 @@ try:
         for line in f:
             if line != '\n' or line != '':
                 old_data.add(line.replace('\n', ''))
-except FileNotFoundError:
+except Exception:
     print('File not created yet')
 
 new_commits = output - old_data

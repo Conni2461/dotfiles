@@ -9,8 +9,6 @@ from pathlib import Path
 import configparser
 import requests
 import notify2
-import dbus
-
 
 def sendmessage(message):
     '''
@@ -40,7 +38,7 @@ try:
     user_id = config['DEFAULT']['User-ID']
     token = config['DEFAULT']['Client-ID']
     headers = {'Client-ID': '%s' % token}
-except KeyError:
+except Exception:
     print("Config file not found")
     sys.exit()
 
@@ -51,7 +49,7 @@ apipage = "https://api.twitch.tv/helix/"
 # Init notify2
 try:
     notify2.init("Twitch-notify")
-except dbus.exceptions.DBusException:
+except Exception:
     print("Notification do not work")
     notify_off = True
 
@@ -86,18 +84,24 @@ for j in range(math.ceil(len(followed) / 100)):
 
     for stream in streams["data"]:
         channel_name = stream["user_name"]
-        game_id = int(stream["game_id"])
+        game_id = -1
+        if stream["game_id"] != "":
+            game_id = int(stream["game_id"])
 
         # Receiving gamename with hashmap as cache
         channel_game = ""
         if game_id in game_cache:
             channel_game = game_cache.get(game_id)
         else:
-            gamerequest = apipage + "games?id=%d" % game_id
-            rg = requests.get(gamerequest, headers=headers)
-            game_json = rg.json()
-            channel_game = game_json["data"][0]["name"]
-            game_cache[game_id] = channel_game
+            if game_id == -1:
+                channel_game = "\"unknown game\""
+                game_cache[game_id] = channel_game
+            else:
+                gamerequest = apipage + "games?id=%d" % game_id
+                rg = requests.get(gamerequest, headers=headers)
+                game_json = rg.json()
+                channel_game = game_json["data"][0]["name"]
+                game_cache[game_id] = channel_game
 
         # Build output string
         result = "<b>" + channel_name + "</b>"
@@ -111,7 +115,7 @@ try:
         for line in f:
             if line != '\n' or line != '':
                 prev_output.add(line.replace('\n', ''))
-except FileNotFoundError:
+except Exception:
     print('File not created yet')
 
 # Return new livestreams
