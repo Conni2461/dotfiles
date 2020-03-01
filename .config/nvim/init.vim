@@ -458,6 +458,8 @@
 	call deoplete#custom#option('sources', {
 	\ '_': ['ale'],
 	\})
+	" Stop deoplete from opening a split
+	set completeopt-=preview
 
 " Deoplete setup for github extension
 	let g:deoplete#sources.gitcommit=['github']
