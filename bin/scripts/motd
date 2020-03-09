@@ -36,7 +36,8 @@ $W  CPU.........: $W$(grep 'model name' /proc/cpuinfo | cut -d ' ' -f3- | awk '{
 $W  Memory......: $G$USED$W used, $G$FREE$W free, $G$TOTAL$W in total$W
 
 $W  Packages....: $G$(pacman -Q  | wc -l)$W packages are installed
-$W  Updates.....: $G$(pacman -Qu | grep -vc '\[ignored\]')$W packages can be updated$W" >> $motd
+$W  Updates.....: $G$(pacman -Qu | grep -vc '\[ignored\]')$W packages can be updated
+$W  Orphans.....: $G$(pacman -Qdtq | wc -l)$W packages are unused and can be removed$W" >> $motd
 
 # 30-hdd-free
 mountpoints=('/')
