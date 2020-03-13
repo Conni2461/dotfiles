@@ -74,6 +74,8 @@ Also twitch-notify requires `python-notify2`.
 
 ## Vim
 
+Neovim >= 0.5 required. (Probobly nightly build)
+
 To install all VimPlugins open nvim and run: `:PlugInstall`
 All further commands can be found on [vim-plugs github page](https://github.com/junegunn/vim-plug).
 
@@ -94,7 +96,7 @@ A full list of used plugins:
 | [i3 highlight](https://github.com/PotatoesMaster/i3-vim-syntax)              | i3 highlighting support                                                                                                                                                                                                              |
 | [cpp highlight](https://github.com/octol/vim-cpp-enhanced-highlight)         | Additional Vim syntax highlighting for C++ (including C++11/14/17)                                                                                                                                                                   |
 | [CurtineIncSw](https://github.com/ericcurtin/CurtineIncSw.vim)               | Toggle between header and sorce files with `<leader>m`                                                                                                                                                                               |
-| [Clap](https://github.com/liuchengxu/vim-clap)                               | Modern generic interactive finder and dispatcher for Vim and NeoVim. Using nvim-floating-window. Shortcuts for files, buffer, grep, tags and marks. See https://github.com/Conni2461/dotfiles/blob/master/.config/nvim/init.vim#L410 |
+| [Clap](https://github.com/liuchengxu/vim-clap)                               | Modern generic interactive finder and dispatcher for Vim and NeoVim. Using nvim-floating-window. Shortcuts for files, buffer, grep, tags and marks. See https://github.com/Conni2461/dotfiles/blob/master/.config/nvim/init.vim#L497 |
 | [goyo](https://github.com/junegunn/goyo.vim)                                 | Distraction-free writing in Vim                                                                                                                                                                                                      |
 | [limelight](https://github.com/junegunn/limelight.vim)                       | All the world's indeed a stage and we are merely players                                                                                                                                                                             |
 | [vimwiki](https://github.com/vimwiki/vimwiki)                                | Personal Wiki for Vim                                                                                                                                                                                                                |
@@ -102,12 +104,12 @@ A full list of used plugins:
 | [surround](https://github.com/tpope/vim-surround)                            | quoting/parenthesizing made simple                                                                                                                                                                                                   |
 | [CommentFrame](https://github.com/cometsong/CommentFrame.vim)                | Add comment frames. Use <leader>fcS for c/c++ and <leader>fch or <leader>fcH for bash                                                                                                                                                |
 | [illuminate](https://github.com/RRethy/vim-illuminate)                       | automatically highlighting other uses of the word under the cursor                                                                                                                                                                   |
-| [deoplete](https://github.com/Shougo/deoplete.nvim)                          | Dark powered asynchronous completion framework uses `ale` in my configuration                                                                                                                                                        |
-| [ale](https://github.com/dense-analysis/ale)                                 | Check syntax in Vim asynchronously and fix files, with Language Server Protocol (LSP) support                                                                                                                                        |
+| [nvim-lsp](https://github.com/neovim/nvim-lsp)                               | Providing config for built-in lsp                                                                                                                                                                                                    |
+| [deoplete](https://github.com/Shougo/deoplete.nvim)                          | Dark powered asynchronous completion framework                                                                                                                                                                                       |
+| [deoplete-lsp](https://github.com/Shougo/deoplete-lsp)                       | Autocomplete for built-in lsp                                                                                                                                                                                                        |
 | [deoplete github plugin](https://github.com/SevereOverfl0w/deoplete-github)  | Deopletions for Github issues when using `git commit` on commandline and writing message in vim. Requires `deoplete`, `fugitive` and `rhubarb`. Also setup is required, take a look at their `README.md`                             |
 | [lightline](https://github.com/itchyny/lightline.vim)                        | A light and configurable statusline/tabline plugin                                                                                                                                                                                   |
 | [lightline bufferline](https://github.com/mengelbrecht/lightline-bufferline) | A lightweight plugin to display the list of buffers in the lightline vim plugin                                                                                                                                                      |
-| [lightline ale](https://github.com/maximbaz/lightline-ale)                   | ALE indicator for the lightline vim plugin                                                                                                                                                                                           |
 | [vista](https://github.com/liuchengxu/vista.vim)                             | Viewer & Finder for LSP symbols and tags. Also this plugin is used in `Clap` for Tag finding.                                                                                                                                        |
 | [undotree](https://github.com/mbbill/undotree)                               | The undo history visualizer for VIM                                                                                                                                                                                                  |
 | [nerdtree](https://github.com/preservim/nerdtree)                            | A tree explorer plugin for vim.                                                                                                                                                                                                      |
@@ -117,10 +119,9 @@ Some plugins require additional packages installed:
 
 - Vim-Clap requires [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd) to work best
 - Configured LSP Server for ALE are:
-  - [cquery](https://github.com/cquery-project/cquery/) for c/c++
+  - [clangd](https://clangd.llvm.org/) for c/c++
   - [python-language-server](https://github.com/palantir/python-language-server) for python with [flake8](http://flake8.pycqa.org/en/latest/)
-  - [shellcheck](https://www.shellcheck.net/) for bash and posix compliant shells
-  - [lacheck](https://ctan.org/pkg/lacheck?lang=de)(Part of texlive)  for latex
-  - [vint](https://github.com/Kuniwak/vint) for vim
-  - additional linters can be configured [here](https://github.com/Conni2461/dotfiles/blob/master/.config/nvim/init.vim#L330)
+  - [bash-language-server](https://github.com/bash-lsp/bash-language-server) for bash and posix compliant shells
+  - [texlab](https://github.com/latex-lsp/texlab) for latex
+  - additional linters can be configured [here](https://github.com/Conni2461/dotfiles/blob/master/.config/nvim/init.vim#L393). Take a look at [nvim-lsp](https://github.com/neovim/nvim-lsp).
 - Vista requires [ctags](https://ctags.io/)

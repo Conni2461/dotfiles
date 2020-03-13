@@ -38,13 +38,13 @@
 	Plug 'cometsong/CommentFrame.vim'
 	Plug 'RRethy/vim-illuminate'
 
+	Plug 'neovim/nvim-lsp'
 	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-	Plug 'dense-analysis/ale'
+	Plug 'Shougo/deoplete-lsp'
 	Plug 'SevereOverfl0w/deoplete-github'
 
 	Plug 'itchyny/lightline.vim'
 	Plug 'mengelbrecht/lightline-bufferline'
-	Plug 'maximbaz/lightline-ale'
 
 	Plug 'liuchengxu/vista.vim'
 	Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
@@ -90,6 +90,20 @@
 	augroup END
 
 	nnoremap <leader>r :source $MYVIMRC<CR> \| normal zR
+
+" Remove Trailing Whitespaces
+	function! TrimTrailingLines()
+		let lastLine = line('$')
+		let lastNonblankLine = prevnonblank(lastLine)
+		if lastLine > 0 && lastNonblankLine != lastLine
+			silent! execute lastNonblankLine + 1 . ',$delete _'
+		endif
+	endfunction
+	augroup remove
+		au!
+		au BufWritePre * %s/\s\+$//e
+		au BufWritePre * call TrimTrailingLines()
+	augroup END
 
 " Nvim specifics
 	" Shows realtime changes with :s/
@@ -182,6 +196,11 @@
 		hi GitGutterAdd    ctermfg=2
 		hi GitGutterChange ctermfg=3
 		hi GitGutterDelete ctermfg=1
+
+		" Set LSP COLORS
+		hi LspDiagnosticsError       ctermfg=1
+		hi LspDiagnosticsWarning     ctermfg=2
+		hi LspDiagnosticsInformation ctermfg=3
 	endfunction
 	call ApplyColors()
 
@@ -314,28 +333,25 @@
 	let g:lightline#bufferline#read_only=''
 	let g:lightline#bufferline#show_number=1
 
-	let g:lightline#ale#indicator_checking = "\uf110 "
-	let g:lightline#ale#indicator_warnings = "\uf071 "
-	let g:lightline#ale#indicator_errors = "\uf05e "
-	let g:lightline#ale#indicator_ok = "\uf00c "
+	let g:indicator_errors = "\uf05e "
+	let g:indicator_warnings = "\uf071 "
+	let g:indicator_infos = "\uf129 "
 
 	let g:lightline = {
 		\'active': {
 			\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'buffers'], ['method']],
-			\'right': [['linter_checking', 'linter_errors', 'linter_warnings', 'linter_ok', 'lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']]
+			\'right': [['linter_errors', 'linter_warnings', 'linter_infos'], ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype']]
 		\},
 		\'component_expand': {
-			\'linter_checking': 'lightline#ale#checking',
-			\'linter_warnings': 'lightline#ale#warnings',
-			\'linter_errors': 'lightline#ale#errors',
-			\'linter_ok': 'lightline#ale#ok',
+			\'linter_errors': 'GetErrors',
+			\'linter_warnings': 'GetWarnings',
+			\'linter_infos': 'GetInformations',
 			\'buffers': 'lightline#bufferline#buffers',
 		\},
 		\'component_type': {
-			\'linter_checking': 'right',
-			\'linter_warnings': 'warning',
 			\'linter_errors': 'error',
-			\'linter_ok': 'right',
+			\'linter_warnings': 'warning',
+			\'linter_infos': 'right',
 			\'buffers': 'tabsel',
 		\},
 		\'component_function': {
@@ -346,6 +362,8 @@
 		\}
 	\}
 
+	au User LspDiagnosticsChanged call lightline#update()
+
 	function! MyFiletype()
 		return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 	endfunction
@@ -354,57 +372,69 @@
 		return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
 	endfunction
 
-" ALE
-	let g:ale_linters = {
-	\   'c': ['cquery'],
-	\   'cpp': ['cquery'],
-	\   'python': ['pyls'],
-	\   'sh': ['shellcheck'],
-	\   'tex': ['lacheck'],
-	\   'vim': ['vint'],
-	\}
-
-	let g:ale_fixers = {
-	\   '*': ['remove_trailing_lines', 'trim_whitespace'],
-	\}
-
-	function FixBuffer()
-		let b:ale_fixers = { 'c': ['clang-format'], 'cpp': ['clang-format'] }
-		ALEFix
-		let b:ale_fixers = {}
+	function! GetErrors()
+		let l:all_errors = luaeval("vim.lsp.util.buf_diagnostics_count(\"Error\")")
+		return l:all_errors == 0 ? '' : printf(g:indicator_errors . '%d', all_errors)
 	endfunction
 
-	let g:ale_lint_on_text_changed = 'never'
-	let g:ale_lint_on_insert_leave = 1
-	let g:ale_lint_on_enter = 1
-	let g:ale_fix_on_save = 1
-
-	let g:ale_open_list = 0
-
-	function ToggleErrors()
-		if g:ale_open_list
-			let g:ale_open_list = 0
-			lclose
-		else
-			let g:ale_open_list = 1
-			ALELint
-			wincmd j
-		endif
+	function! GetWarnings()
+		let l:all_warn = luaeval("vim.lsp.util.buf_diagnostics_count(\"Warning\")")
+		return l:all_warn == 0 ? '' : printf(g:indicator_warnings . '%d', all_warn)
 	endfunction
-	nnoremap <leader>ae :call ToggleErrors()<CR>
-	nnoremap <leader>af :call FixBuffer()<CR>
 
-	nnoremap <leader>ad :ALEGoToDefinition<CR>
-	nnoremap <leader>at :ALEGoToTypeDefinition<CR>
-	nnoremap <leader>ar :ALEFindReferences<CR>
-	nnoremap <leader>ah :ALEHover<CR>
-	nnoremap <leader>as :ALESymbolSearch<CR>
+	function! GetInformations()
+		let l:all_info = luaeval("vim.lsp.util.buf_diagnostics_count(\"Information\")")
+		return l:all_info == 0 ? '' : printf(g:indicator_infos . '%d', all_info)
+	endfunction
 
-	augroup DISABLE
-		au!
-		au BufRead,BufNewFile *.md ALEDisableBuffer
-	augroup END
+" NVIM LSP
+:lua << EOF
+	local nvim_lsp = require'nvim_lsp'
+	nvim_lsp.bashls.setup{
+		log_level = vim.lsp.protocol.MessageType.Log;
+		message_level = vim.lsp.protocol.MessageType.Log;
+	}
+	nvim_lsp.clangd.setup{
+		log_level = vim.lsp.protocol.MessageType.Log;
+		message_level = vim.lsp.protocol.MessageType.Log;
+	}
+	nvim_lsp.pyls.setup{
+		log_level = vim.lsp.protocol.MessageType.Log;
+		message_level = vim.lsp.protocol.MessageType.Log;
+	}
+	nvim_lsp.texlab.setup{
+		log_level = vim.lsp.protocol.MessageType.Log;
+		message_level = vim.lsp.protocol.MessageType.Log;
+	}
+EOF
 
+	let g:LspDiagnosticsErrorSign = '>>'
+	let g:LspDiagnosticsWarningSign = '--'
+	let g:LspDiagnosticsInformationSign = '##'
+	let g:LspDiagnosticsHintSign = 'H'
+
+	nnoremap <leader>af :execute 'silent !clang-format -i %'<CR>
+
+	nnoremap <leader>ad <cmd>lua vim.lsp.buf.definition()<CR>
+	nnoremap <leader>at <cmd>lua vim.lsp.buf.type_definition()<CR>
+	nnoremap <leader>ai <cmd>lua vim.lsp.buf.declaration()<CR>
+	nnoremap <leader>ah <cmd>lua vim.lsp.buf.hover()<CR>
+	nnoremap <leader>as <cmd>lua vim.lsp.buf.signature_help()<CR>
+	nnoremap <leader>ar <cmd>lua vim.lsp.buf.references()<CR>
+	nnoremap <leader>ac <cmd>lua vim.lsp.buf.document_symbol()<CR>
+
+" Enable deoplete by default
+	let g:deoplete#enable_at_startup = 1
+	let g:deoplete#enable_refresh_always = 1
+	let g:deoplete#sources = {}
+	" Stop deoplete from opening a split
+	set completeopt-=preview
+
+" Deoplete setup for github extension
+	let g:deoplete#sources.gitcommit=['github']
+	let g:deoplete#keyword_patterns = {}
+	let g:deoplete#keyword_patterns.gitcommit = '[^ \t]+'
+	call deoplete#custom#var('omni', 'input_patterns', {'github': '[^ \t]+'})
 " Animate.vim
 	function! OpenAnimatedHtop() abort
 		" Open a htop in terminal
@@ -450,22 +480,6 @@
 
 " CurtineIncSw
 	nnoremap <leader>m :call CurtineIncSw()<CR>
-
-" Enable deoplete by default
-	let g:deoplete#enable_at_startup = 1
-	let g:deoplete#enable_refresh_always = 1
-	let g:deoplete#sources = {}
-	call deoplete#custom#option('sources', {
-	\ '_': ['ale'],
-	\})
-	" Stop deoplete from opening a split
-	set completeopt-=preview
-
-" Deoplete setup for github extension
-	let g:deoplete#sources.gitcommit=['github']
-	let g:deoplete#keyword_patterns = {}
-	let g:deoplete#keyword_patterns.gitcommit = '[^ \t]+'
-	call deoplete#custom#var('omni', 'input_patterns', {'github': '[^ \t]+'})
 
 " Vista
 	nnoremap <leader>o :Vista!!<CR>
