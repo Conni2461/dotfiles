@@ -88,9 +88,9 @@ done
 for i in ${!services[@]}; do
     # color green if service is active, else red
     if [[ "${service_status[$i]}" == "active" ]]; then
-        out+="\e[32m●\e[0m ${services[$i]},"
+        out+="\e[32mup\e[0m ${services[$i]},"
     else
-        out+="\e[31m▲\e[0m ${services[$i]},"
+        out+="\e[31mdown\e[0m ${services[$i]},"
     fi
     # insert \n every $COLUMNS column
     if [ $((($i+1) % $COLUMNS)) -eq 0 ]; then
@@ -100,7 +100,7 @@ done
 out+="\n"
 
 printf "\nServices:\n" >> $motd
-printf "$out" | column -ts $',' | sed -e 's/^/  /' >> $motd
+printf "$out" | column -ts $',' | sed -e 's/^/  /;s/up/●/g;s/down/▲/g' >> $motd
 
 # 41-overdue-services
 pids="$(lsof -d DEL 2>/dev/null | awk '$8~/\/usr\/lib/ {printf $2" "}')"
@@ -109,7 +109,7 @@ if [[ ! -z "$pids" ]]; then
 	if [[ ! -z "$services" ]]; then
 		printf "\nOverdue Services:\n" >> $motd
 		for i in $services; do
-			printf " \e[32m●\e[0m $i\n" >> $motd
+			printf "  \e[32m●\e[0m $i\n" >> $motd
 		done
 	fi
 fi
@@ -136,7 +136,7 @@ for domain in $ssl_domains; do
         delimiter="\t\t"
     fi
 
-    printf " ${sign} ${domain} ${delimiter} valid until ${certLineTime}\n" >> $motd
+    printf "  ${sign} ${domain} ${delimiter} valid until ${certLineTime}\n" >> $motd
 done
 
 printf "\n" >> $motd
