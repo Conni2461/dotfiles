@@ -394,7 +394,7 @@
 		log_level = vim.lsp.protocol.MessageType.Log;
 		message_level = vim.lsp.protocol.MessageType.Log;
 	}
-	nvim_lsp.clangd.setup{
+	nvim_lsp.ccls.setup{
 		log_level = vim.lsp.protocol.MessageType.Log;
 		message_level = vim.lsp.protocol.MessageType.Log;
 	}

@@ -119,7 +119,7 @@ Some plugins require additional packages installed:
 
 - Vim-Clap requires [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd) to work best
 - Configured LSP Server for ALE are:
-  - [clangd](https://clangd.llvm.org/) for c/c++
+  - [ccls](https://github.com/MaskRay/ccls) for c/c++
   - [python-language-server](https://github.com/palantir/python-language-server) for python with [flake8](http://flake8.pycqa.org/en/latest/)
   - [bash-language-server](https://github.com/bash-lsp/bash-language-server) for bash and posix compliant shells
   - [texlab](https://github.com/latex-lsp/texlab) for latex
