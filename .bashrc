@@ -19,5 +19,5 @@ export GPG_TTY=$(tty)
 # Fix ssh for some terminals
 export TERM=xterm-256color
 
-source "$HOME/.aliasrc"
-source "$HOME/.functionrc"
+source "$HOME/.config/aliasrc"
+source "$HOME/.config/functionrc"

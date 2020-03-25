@@ -9,4 +9,4 @@ for i in "${res[@]}"; do
 	files="$files --bg-fill $HOME/img/random_image_${i}.jpeg"
 done
 
-echo "$files" | xargs -r feh
+echo "$files --no-fehbg" | xargs -r feh

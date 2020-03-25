@@ -25,8 +25,8 @@ export GPG_TTY=$(tty)
 export TERM=xterm-256color
 
 # Load aliases and shortcuts if existent.
-[ -f "$HOME/.aliasrc" ] && source "$HOME/.aliasrc"
-[ -f "$HOME/.functionrc" ] && source "$HOME/.functionrc"
+[ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
+[ -f "$HOME/.config/functionrc" ] && source "$HOME/.config/functionrc"
 
 # History repeat edit
 fh() { print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | sk | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g') ; }
