@@ -1,6 +1,8 @@
 #!/bin/sh
 
-[ "$(stat -c %y ~/.cache/corona 2>/dev/null | cut -d' ' -f2 | cut -d':' -f1)" != "$(date '+%H')" ] && curl -s https://corona-stats.online/de\?source=2 > ~/.cache/corona
+if [ "$(stat -c %y ~/.cache/corona 2>/dev/null | cut -d' ' -f2 | cut -d':' -f1)" != "$(date '+%H')" ] || [ "$1" = "-r" ]; then
+	curl -s https://corona-stats.online/de > ~/.cache/corona
+fi
 
 grep "Germany" ~/.cache/corona \
 	| sed "s/\s*//g; s/▲/ ⬆/g; s/▼/ ⬇/g; s/║//g; s/│/;/g; s/,//g; s/\x1b\[[0-9;]*m//g" \

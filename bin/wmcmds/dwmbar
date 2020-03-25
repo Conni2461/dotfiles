@@ -1,5 +1,11 @@
 #!/bin/sh
 
+fcorona()
+{
+	rcorona=$(corona)
+	[ "${rcorona}" != "" ] && echo "${rcorona} | "
+}
+
 ftodo()
 {
 	rtodo=$(todo | sed '/^[[:space:]]*$/d' | wc -l | sed 's/^0$//g')
