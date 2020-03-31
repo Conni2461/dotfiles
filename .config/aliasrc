@@ -52,8 +52,8 @@ alias khal='khal -v ERROR'
 
 # Shortcuts
 ## Files
-alias eA='vim ~/.aliasrc'
-alias eF='vim ~/.functionrc'
+alias eA='vim ~/.config/aliasrc'
+alias eF='vim ~/.config/functionrc'
 alias eB='vim ~/.bashrc'
 alias eZ='vim ~/.zshrc'
 alias eP='vim ~/.profile'
