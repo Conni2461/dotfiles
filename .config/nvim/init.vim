@@ -51,6 +51,7 @@
 
 	Plug 'preservim/nerdtree'
 	Plug 'ryanoasis/vim-devicons'
+	Plug 'ap/vim-css-color'
 	call plug#end()
 
 " Some Basics
