@@ -5,4 +5,4 @@
 #composite -gravity Center /home/conni/img/lock.png /tmp/lockscreensave_blur.png /tmp/lockscreensave_final.png
 #i3lock -i /tmp/lockscreensave_final.png
 
-i3lock-fancy-dualmonitor
+multilockscreen --lock blur >/dev/null 2>&1
