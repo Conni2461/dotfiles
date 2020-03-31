@@ -52,11 +52,6 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 
-# Tmux alias for different config dir
-alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf'
-# Irssi alias for different config dir
-alias irssi='irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi'
-
 # Git Review
 export REVIEW_BASE=master
 

@@ -23,6 +23,11 @@ alias startx='startx ~/.xinitrc'
 # Dotfiles setup
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
+# Tmux alias for different config dir
+alias tmux='tmux -f "$XDG_CONFIG_HOME"/tmux/tmux.conf'
+# Irssi alias for different config dir
+alias irssi='irssi --config="$XDG_CONFIG_HOME"/irssi/config --home="$XDG_DATA_HOME"/irssi'
+
 # Other
 alias type='type -a'
 alias wiki='nvim -c "VimwikiIndex"'
