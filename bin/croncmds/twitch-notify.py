@@ -36,8 +36,9 @@ config.read(HOME + "/.config/twitch-notify.conf")
 
 try:
     user_id = config['DEFAULT']['User-ID']
-    token = config['DEFAULT']['Client-ID']
-    headers = {'Client-ID': '%s' % token}
+    client = config['DEFAULT']['Client-ID']
+    token = config['DEFAULT']['Access-token']
+    headers = { 'Client-ID': '{}'.format(client), 'Authorization': 'OAuth {}'.format(token) }
 except Exception:
     print("Config file not found")
     sys.exit()
@@ -57,6 +58,7 @@ except Exception:
 followed = []
 followrequest = apipage + "users/follows?from_id=%s" % user_id
 data = requests.get(followrequest, headers=headers).json()
+print(requests.get('https://id.twitch.tv/oauth2/validate', headers=headers).json())
 
 # Collect all follows.
 # So this will send requests until there are all followers fetched
