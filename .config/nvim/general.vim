@@ -1,5 +1,4 @@
 " Some Basics
-	let mapleader = ','
 	imap jk <Esc>
 
 	set background=light
