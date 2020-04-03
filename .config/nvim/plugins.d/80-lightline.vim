@@ -37,6 +37,7 @@ let g:lightline = {
 \}
 
 au User LspDiagnosticsChanged call lightline#update()
+au User ClapOnExit call lightline#update()
 
 function! MyFiletype()
 	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
