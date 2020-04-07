@@ -45,7 +45,7 @@ alias yt="youtube-dl --add-metadata -i -o '%(upload_date)s-%(title)s.%(ext)s'"
 alias yta="yt -x -f bestaudio/best"
 alias lsp='pacman -Qett --color=always | less'
 alias ffmpeg='ffmpeg -hide_banner'
-alias ru="sudo docker run -ti --rm ubuntu:latest bash"
+alias ru="docker run -ti --rm ubuntu:latest /bin/bash"
 alias :q='echo you are not in vim'
 alias :wq='echo you are not in vim'
 alias R='R --save'
@@ -67,7 +67,7 @@ alias eI='vim ~/.config/i3/config'
 alias eM='vim ~/.config/mutt/muttrc'
 alias eN='vim ~/.config/newsboat/config'
 alias eU='vim ~/.config/newsboat/urls'
-alias eV='vim ~/.config/nvim/init.vim'
+alias eV='vim ~/.config/nvim/'
 
 ## Directories
 alias ..='cd ..'
