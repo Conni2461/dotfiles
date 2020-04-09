@@ -26,5 +26,7 @@ nnoremap <leader>dl <cmd>lua require'diagnostic.util'.show_line_diagnostics()<CR
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+let g:completion_enable_auto_paren = 1
+
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect

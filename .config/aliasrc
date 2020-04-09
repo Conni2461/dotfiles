@@ -5,7 +5,7 @@ command -v nvim >/dev/null && vim() { if jobs | grep -q nvim; then fg; elif [ "$
 command -v neomutt >/dev/null && alias mutt='neomutt'
 
 # ls and other file stuff
-alias ls='ls -hN --color=auto --group-directories-first'
+alias ls='ls -hNF --color=auto --group-directories-first'
 alias l='exa -bghl -sname --group-directories-first'
 alias ll='exa -bghla -sname --group-directories-first'
 alias tree='exa -sname --tree'
