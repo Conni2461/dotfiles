@@ -1,4 +1,5 @@
 Plug 'neovim/nvim-lsp'
+Plug 'haorenW1025/completion-nvim'
 Plug 'haorenW1025/diagnostic-nvim'
 
 let g:LspDiagnosticsErrorSign = '>>'
@@ -20,3 +21,10 @@ nnoremap <silent> ]d :NextDiagnostic<CR>
 nnoremap <silent> [d :PrevDiagnostic<CR>
 nnoremap <silent> <leader>do :OpenDiagnostic<CR>
 nnoremap <leader>dl <cmd>lua require'diagnostic.util'.show_line_diagnostics()<CR>
+
+" Use <Tab> and <S-Tab> to navigate through popup menu
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Set completeopt to have a better completion experience
+set completeopt=menuone,noinsert,noselect

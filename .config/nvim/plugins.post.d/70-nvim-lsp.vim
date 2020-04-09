@@ -1,23 +1,22 @@
 :lua << EOF
 	local nvim_lsp = require'nvim_lsp'
+	local M = {}
+
+	M.on_attach = function()
+	  require'diagnostic'.on_attach()
+	  require'completion'.on_attach()
+	end
+
 	nvim_lsp.bashls.setup{
-		log_level = vim.lsp.protocol.MessageType.Log;
-		message_level = vim.lsp.protocol.MessageType.Log;
-		on_attach=require'diagnostic'.on_attach;
+		on_attach=M.on_attach;
 	}
-	nvim_lsp.ccls.setup{
-		log_level = vim.lsp.protocol.MessageType.Log;
-		message_level = vim.lsp.protocol.MessageType.Log;
-		on_attach=require'diagnostic'.on_attach;
+	nvim_lsp.clangd.setup{
+		on_attach=M.on_attach;
 	}
 	nvim_lsp.pyls.setup{
-		log_level = vim.lsp.protocol.MessageType.Log;
-		message_level = vim.lsp.protocol.MessageType.Log;
-		on_attach=require'diagnostic'.on_attach;
+		on_attach=M.on_attach;
 	}
 	nvim_lsp.texlab.setup{
-		log_level = vim.lsp.protocol.MessageType.Log;
-		message_level = vim.lsp.protocol.MessageType.Log;
-		on_attach=require'diagnostic'.on_attach;
+		on_attach=M.on_attach;
 	}
 EOF
