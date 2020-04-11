@@ -24,6 +24,7 @@
 	Plug 'PotatoesMaster/i3-vim-syntax'
 	Plug 'octol/vim-cpp-enhanced-highlight'
 
+	Plug 'rhysd/clever-f.vim'
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
 	Plug 'cometsong/CommentFrame.vim'
