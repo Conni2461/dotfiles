@@ -21,6 +21,7 @@
 - [Install](#Install)
 - [Use](#Use)
 - [Bash](#Bash)
+- [Zsh](#Zsh)
 - [Vim](#Vim)
 
 ## Install
@@ -72,11 +73,19 @@ All credits goes to the creator of those scripts.
 Some scripts in the bin folder require `dmenu`, `skim`, `the_silver_searcher`, `fd` and `ripgrep`.
 Also twitch-notify requires `python-notify2`.
 
+## Zsh
+
+If you wanna use zsh, [zsh-syntax-highlighting]() and [zsh-autosuggestions]() is required to be installed.
+If you don't want to use this features remove the last two lines of the [zshrc](.zshrc).
+If you ran into problems check the path of both extensions. It is possible that it has to be changed for your system.
+
 ## Vim
 
-Neovim >= 0.5 required. (Probobly nightly build)
+- Neovim >= 0.5 required. (Probobly nightly build)
+- pyneovim (Python client for Neovim)
 
-To install all VimPlugins open nvim and run: `:PlugInstall`
+When neovim is started for the first time, vim-plug is downloaded and `:PlugInstall` is executed.
+To update plugins use `:PlugUpdate` and to upgrade vim-plug run `:PlugUpgrade`.
 All further commands can be found on [vim-plugs github page](https://github.com/junegunn/vim-plug).
 
 A full list of used plugins:
@@ -100,14 +109,14 @@ A full list of used plugins:
 | [goyo](https://github.com/junegunn/goyo.vim)                                 | Distraction-free writing in Vim                                                                                                                                                                           |
 | [limelight](https://github.com/junegunn/limelight.vim)                       | All the world's indeed a stage and we are merely players                                                                                                                                                  |
 | [vimwiki](https://github.com/vimwiki/vimwiki)                                | Personal Wiki for Vim                                                                                                                                                                                     |
+| [clever-f](https://github.com/rhysd/clever-f.vim)                            | Changes behavior of f/F and t/T                                                                                                                                                                           |
 | [commentary](https://github.com/tpope/vim-commentary)                        | comment stuff out with `gcc` to comment out line and `gc` in visual mode                                                                                                                                  |
 | [surround](https://github.com/tpope/vim-surround)                            | quoting/parenthesizing made simple                                                                                                                                                                        |
 | [CommentFrame](https://github.com/cometsong/CommentFrame.vim)                | Add comment frames. Use <leader>fcS for c/c++ and <leader>fch or <leader>fcH for bash                                                                                                                     |
 | [illuminate](https://github.com/RRethy/vim-illuminate)                       | automatically highlighting other uses of the word under the cursor                                                                                                                                        |
 | [nvim-lsp](https://github.com/neovim/nvim-lsp)                               | Providing config for built-in lsp                                                                                                                                                                         |
-| [deoplete](https://github.com/Shougo/deoplete.nvim)                          | Dark powered asynchronous completion framework                                                                                                                                                            |
-| [deoplete-lsp](https://github.com/Shougo/deoplete-lsp)                       | Autocomplete for built-in lsp                                                                                                                                                                             |
-| [deoplete github plugin](https://github.com/SevereOverfl0w/deoplete-github)  | Deopletions for Github issues when using `git commit` on commandline and writing message in vim. Requires `deoplete`, `fugitive` and `rhubarb`. Also setup is required, take a look at their `README.md`  |
+| [completion](https://github.com/haorenW1025/completion-nvim)                 | Adds completion for nvim-lsp                                                                                                                                                                              |
+| [diagnostic](https://github.com/haorenW1025/diagnostic-nvim)                 | Changes default nvim-lsp diagnostics behavior                                                                                                                                                             |
 | [lightline](https://github.com/itchyny/lightline.vim)                        | A light and configurable statusline/tabline plugin                                                                                                                                                        |
 | [lightline bufferline](https://github.com/mengelbrecht/lightline-bufferline) | A lightweight plugin to display the list of buffers in the lightline vim plugin                                                                                                                           |
 | [vista](https://github.com/liuchengxu/vista.vim)                             | Viewer & Finder for LSP symbols and tags. Also this plugin is used in `Clap` for Tag finding.                                                                                                             |
@@ -118,11 +127,15 @@ A full list of used plugins:
 
 Some plugins require additional packages installed:
 
-- Vim-Clap requires [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd) to work best
-- Configured LSP Server for ALE are:
-  - [ccls](https://github.com/MaskRay/ccls) for c/c++
-  - [python-language-server](https://github.com/palantir/python-language-server) for python with [flake8](http://flake8.pycqa.org/en/latest/)
-  - [bash-language-server](https://github.com/bash-lsp/bash-language-server) for bash and posix compliant shells
-  - [texlab](https://github.com/latex-lsp/texlab) for latex
-  - additional linters can be configured [here](.config/nvim/plugins.post.d/70-nvim-lsp.vim). Take a look at [nvim-lsp](https://github.com/neovim/nvim-lsp).
+- Vim-Clap requires [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd) to work best. It is also required to have a nightly [rust-lang](https://github.com/rust-lang/rust) toolchain configured (use rustup and run `rustup default nightly`). If you don't want to use rust, you can checkout an early vim-clap version.
 - Vista requires [ctags](https://ctags.io/)
+- Already preonfigured LSP Server. Install one or more of the listed Servers and you are good to go for the specific language (setup can be verified with `:checkhealth`):
+  - [bash-language-server](https://github.com/bash-lsp/bash-language-server) for bash and posix compliant shells
+  - [clangd](https://clangd.llvm.org/) for c/c++
+  - [python-language-server](https://github.com/palantir/python-language-server) for python
+  - [gopls](https://github.com/golang/tools/tree/master/gopls) for golang
+  - [rls](https://github.com/rust-lang/rls) for rust
+  - [sumneko lua](https://github.com/sumneko/lua-language-server) for lua
+  - [texlab](https://github.com/latex-lsp/texlab) for latex
+  - [vimls](https://github.com/iamcco/vim-language-server) for vimlang
+  - additional linters can be configured [here](.config/nvim/plugins.post.d/70-nvim-lsp.vim). Take a look at [nvim-lsp](https://github.com/neovim/nvim-lsp).
