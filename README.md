@@ -75,7 +75,7 @@ Also twitch-notify requires `python-notify2`.
 
 ## Zsh
 
-If you wanna use zsh, [zsh-syntax-highlighting]() and [zsh-autosuggestions]() is required to be installed.
+If you wanna use zsh, [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) and [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) is required to be installed.
 If you don't want to use this features remove the last two lines of the [zshrc](.zshrc).
 If you ran into problems check the path of both extensions. It is possible that it has to be changed for your system.
 
