@@ -7,7 +7,7 @@ let g:LspDiagnosticsWarningSign = '--'
 let g:LspDiagnosticsInformationSign = 'I'
 let g:LspDiagnosticsHintSign = 'H'
 
-nnoremap <leader>af :execute 'silent !clang-format -i %'<CR>
+nnoremap <leader>af :execute '!clang-format --style=file -i %'<CR>
 
 nnoremap <leader>ad <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>at <cmd>lua vim.lsp.buf.type_definition()<CR>
@@ -30,3 +30,14 @@ let g:completion_enable_auto_paren = 1
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
+
+let g:completion_chain_complete_list = {
+            \ 'default' : {
+            \   'default': [
+            \       {'complete_items': ['lsp', 'snippet']},
+            \       {'mode': '<c-p>'},
+            \       {'mode': '<c-n>'}],
+            \   'comment': [],
+            \   'string' : [
+            \       {'complete_items': ['path']}]
+            \   }}
