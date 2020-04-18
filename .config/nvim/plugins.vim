@@ -30,7 +30,6 @@
 	Plug 'cometsong/CommentFrame.vim'
 	Plug 'RRethy/vim-illuminate'
 
-	Plug 'preservim/nerdtree'
 	Plug 'ryanoasis/vim-devicons'
 	Plug 'ap/vim-css-color'
 
