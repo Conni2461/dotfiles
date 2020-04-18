@@ -7,7 +7,7 @@ ping -q -w 1 -c 1 `ip r | grep -m 1 default | cut -d ' ' -f 3` >/dev/null || exi
 
 notify "Checking for package updates..."
 
-sudo pacman -Syyuw --noconfirm || notify "Error downloading updates.
+sudo pacman -Syuw --noconfirm || notify "Error downloading updates.
 
 Check your internet connection, if pacman is already running, or run update manually to see errors."
 /home/conni/bin/wmcmds/refbar
