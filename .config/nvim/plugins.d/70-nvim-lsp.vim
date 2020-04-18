@@ -7,6 +7,8 @@ let g:LspDiagnosticsWarningSign = '--'
 let g:LspDiagnosticsInformationSign = 'I'
 let g:LspDiagnosticsHintSign = 'H'
 
+let g:diagnostic_insert_delay = 1
+
 nnoremap <leader>af :execute '!clang-format --style=file -i %'<CR>
 
 nnoremap <leader>ad <cmd>lua vim.lsp.buf.definition()<CR>
@@ -19,6 +21,7 @@ nnoremap <leader>ac <cmd>lua vim.lsp.buf.document_symbol()<CR>
 
 nnoremap <silent> ]d :NextDiagnostic<CR>
 nnoremap <silent> [d :PrevDiagnostic<CR>
+" Clap loclist
 nnoremap <silent> <leader>do :OpenDiagnostic<CR>
 nnoremap <leader>dl <cmd>lua require'diagnostic.util'.show_line_diagnostics()<CR>
 
