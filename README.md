@@ -132,10 +132,19 @@ Some plugins require additional packages installed:
 - Already preonfigured LSP Server. Install one or more of the listed Servers and you are good to go for the specific language (setup can be verified with `:checkhealth`):
   - [bash-language-server](https://github.com/bash-lsp/bash-language-server) for bash and posix compliant shells
   - [clangd](https://clangd.llvm.org/) for c/c++
-  - [python-language-server](https://github.com/palantir/python-language-server) for python
+  - [cssls](https://github.com/vscode-langservers/vscode-css-languageserver-bin) for css files
+  - [dockerls](https://github.com/rcjsuen/dockerfile-language-server-nodejs) for dockerfiles
+  - [flow](https://github.com/facebook/flow) for JavaScript
+  - [fortls](https://github.com/hansec/fortran-language-server) for Fortran
   - [gopls](https://github.com/golang/tools/tree/master/gopls) for golang
-  - [rls](https://github.com/rust-lang/rls) for rust
+  - [html](https://github.com/vscode-langservers/vscode-html-languageserver-bin) for html
+  - [jsonls](https://github.com/vscode-langservers/vscode-json-languageserver) for json
+  - [metals](https://scalameta.org/metals/) for scala
+  - Either [python-language-server](https://github.com/palantir/python-language-server) or [microsoft-python-language-server](https://github.com/Microsoft/python-language-server) for python support
+  - Either [rls](https://github.com/rust-lang/rls) or [rust-analyzer](https://github.com/rust-analyzer/rust-analyzer) for rust
+  - [solargraph](https://solargraph.org/) for ruby
   - [sumneko lua](https://github.com/sumneko/lua-language-server) for lua
   - [texlab](https://github.com/latex-lsp/texlab) for latex
+  - [tsserver](https://github.com/theia-ide/typescript-language-server) for TypeScript
   - [vimls](https://github.com/iamcco/vim-language-server) for vimlang
   - additional linters can be configured [here](.config/nvim/plugins.post.d/70-nvim-lsp.vim). Take a look at [nvim-lsp](https://github.com/neovim/nvim-lsp).
