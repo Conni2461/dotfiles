@@ -131,7 +131,7 @@ Some plugins require additional packages installed:
 - Vista requires [ctags](https://ctags.io/)
 - Already preonfigured LSP Server. Install one or more of the listed Servers and you are good to go for the specific language (setup can be verified with `:checkhealth`):
   - [bash-language-server](https://github.com/bash-lsp/bash-language-server) for bash and posix compliant shells
-  - Using [ccls](https://github.com/MaskRay/ccls) if installed and [clangd](https://clangd.llvm.org/) as default for c/c++. Currently there is a bug with neovim lsp and ccls, so i suggest not using ccls.
+  - Using [ccls](https://github.com/MaskRay/ccls) if installed and [clangd](https://clangd.llvm.org/) as fallback for c/c++. Currently there is a bug with neovim lsp and ccls, so i suggest not using ccls.
   - [cssls](https://github.com/vscode-langservers/vscode-css-languageserver-bin) for css files
   - [dockerls](https://github.com/rcjsuen/dockerfile-language-server-nodejs) for dockerfiles
   - [flow](https://github.com/facebook/flow) for JavaScript
