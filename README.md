@@ -131,7 +131,7 @@ Some plugins require additional packages installed:
 - Vista requires [ctags](https://ctags.io/)
 - Already preonfigured LSP Server. Install one or more of the listed Servers and you are good to go for the specific language (setup can be verified with `:checkhealth`):
   - [bash-language-server](https://github.com/bash-lsp/bash-language-server) for bash and posix compliant shells
-  - [clangd](https://clangd.llvm.org/) for c/c++
+  - Using [ccls](https://github.com/MaskRay/ccls) if installed and [clangd](https://clangd.llvm.org/) as default for c/c++. Currently there is a bug with neovim lsp and ccls, so i suggest not using ccls.
   - [cssls](https://github.com/vscode-langservers/vscode-css-languageserver-bin) for css files
   - [dockerls](https://github.com/rcjsuen/dockerfile-language-server-nodejs) for dockerfiles
   - [flow](https://github.com/facebook/flow) for JavaScript
@@ -140,8 +140,8 @@ Some plugins require additional packages installed:
   - [html](https://github.com/vscode-langservers/vscode-html-languageserver-bin) for html
   - [jsonls](https://github.com/vscode-langservers/vscode-json-languageserver) for json
   - [metals](https://scalameta.org/metals/) for scala
-  - Either [python-language-server](https://github.com/palantir/python-language-server) or [microsoft-python-language-server](https://github.com/Microsoft/python-language-server) for python support
-  - Either [rls](https://github.com/rust-lang/rls) or [rust-analyzer](https://github.com/rust-analyzer/rust-analyzer) for rust
+  - Using [microsoft-python-language-server](https://github.com/Microsoft/python-language-server) if installed and [python-language-server](https://github.com/palantir/python-language-server) as fallback for python
+  - Using [rust-analyzer](https://github.com/rust-analyzer/rust-analyzer) if installed and [rls](https://github.com/rust-lang/rls) as fallback for rust
   - [solargraph](https://solargraph.org/) for ruby
   - [sumneko lua](https://github.com/sumneko/lua-language-server) for lua
   - [texlab](https://github.com/latex-lsp/texlab) for latex
