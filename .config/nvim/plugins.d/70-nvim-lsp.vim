@@ -19,8 +19,8 @@ nnoremap <leader>as <cmd>lua vim.lsp.buf.signature_help()<CR>
 nnoremap <leader>ar <cmd>lua vim.lsp.buf.references()<CR>
 nnoremap <leader>ac <cmd>lua vim.lsp.buf.document_symbol()<CR>
 
-nnoremap <silent> ]d :NextDiagnostic<CR>
-nnoremap <silent> [d :PrevDiagnostic<CR>
+nnoremap <silent> ]d :NextDiagnosticCycle<CR>
+nnoremap <silent> [d :PrevDiagnosticCycle<CR>
 " Clap loclist
 nnoremap <silent> <leader>do :OpenDiagnostic<CR>
 nnoremap <leader>dl <cmd>lua require'diagnostic.util'.show_line_diagnostics()<CR>

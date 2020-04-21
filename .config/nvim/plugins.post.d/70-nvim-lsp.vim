@@ -12,6 +12,7 @@
 	  require'completion'.on_attach()
 	end
 
+	nvim_lsp.als.setup{ on_attach = M.on_attach; }
 	nvim_lsp.bashls.setup{ on_attach = M.on_attach; }
 
 	-- C/C++ setup. Use ccls if installed otherwise clangd
