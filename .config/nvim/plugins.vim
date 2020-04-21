@@ -13,7 +13,7 @@
 	call plug#begin('~/.config/nvim/plugged')
 	Plug 'kshenoy/vim-signature'
 
-	Plug 'yuttie/comfortable-motion.vim'
+	Plug 'psliwka/vim-smoothie'
 
 	Plug 'tpope/vim-fugitive'
 	Plug 'tpope/vim-rhubarb'
@@ -21,8 +21,7 @@
 	Plug 'rhysd/git-messenger.vim'
 
 	Plug 'gisphm/vim-gitignore'
-	Plug 'PotatoesMaster/i3-vim-syntax'
-	Plug 'octol/vim-cpp-enhanced-highlight'
+	Plug 'sheerun/vim-polyglot'
 
 	Plug 'rhysd/clever-f.vim'
 	Plug 'tpope/vim-commentary'

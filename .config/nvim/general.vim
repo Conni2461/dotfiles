@@ -2,6 +2,7 @@
 	imap jk <Esc>
 
 	set background=light
+	set syntax=on
 	set mouse=a
 	set hlsearch
 	set smartcase
