@@ -3,5 +3,5 @@
 selection=$(ls -A /usr/share/doc/arch-wiki/html/en | dmenu -i -l 20 -p 'Wiki page:' "$@")
 if [ "$selection" != "" ]; then
 	surf "/usr/share/doc/arch-wiki/html/en/${selection}" >/dev/null 2>&1 &
+	disown
 fi
-disown
