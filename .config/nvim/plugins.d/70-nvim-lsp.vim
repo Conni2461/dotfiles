@@ -9,7 +9,7 @@ let g:LspDiagnosticsHintSign = 'H'
 
 let g:diagnostic_insert_delay = 1
 
-nnoremap <leader>af :execute '!clang-format --style=file -i %'<CR>
+nnoremap <leader>af :silent exec '!clang-format --style=file -i %' \| e<CR>
 
 nnoremap <leader>ad <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>at <cmd>lua vim.lsp.buf.type_definition()<CR>
@@ -37,10 +37,12 @@ set completeopt=menuone,noinsert,noselect
 let g:completion_chain_complete_list = {
             \ 'default' : {
             \   'default': [
-            \       {'complete_items': ['lsp', 'snippet']},
+            \       {'complete_items': ['lsp']},
             \       {'mode': '<c-p>'},
             \       {'mode': '<c-n>'}],
             \   'comment': [],
             \   'string' : [
             \       {'complete_items': ['path']}]
             \   }}
+
+let g:completion_auto_change_source = 1
