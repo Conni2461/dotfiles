@@ -37,9 +37,10 @@
 		hi Pmenu ctermfg=255 ctermbg=238
 
 		" Fix Git Gutter
-		hi GitGutterAdd    ctermfg=2
-		hi GitGutterChange ctermfg=3
-		hi GitGutterDelete ctermfg=1
+		hi! link SignColumn LineNr
+		hi  GitGutterAdd    ctermfg=2
+		hi  GitGutterChange ctermfg=3
+		hi  GitGutterDelete ctermfg=1
 
 		" Set LSP COLORS
 		hi LspDiagnosticsError       ctermfg=1
