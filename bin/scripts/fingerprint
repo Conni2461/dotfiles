@@ -1,0 +1,12 @@
+#!/bin/sh
+
+if [ "$(id -u)" -ne 0 ]; then
+	echo >&2 "$(tput bold; tput setaf 1)[-] ERROR: You must be root$(tput sgr0)"
+	exit 1
+fi
+
+cd /etc/letsencrypt/live || exit
+for f in */; do
+	output=$(openssl x509 -fingerprint -noout -in ${f}/fullchain.pem)
+	echo "${f}: ${output}"
+done
