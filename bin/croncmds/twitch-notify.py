@@ -4,13 +4,11 @@ Script to send notification of new livestreams
 '''
 
 import sys
-import os.path
 import math
 from pathlib import Path
 import configparser
 import requests
 import notify2
-
 
 def sendmessage(message):
     '''
@@ -20,14 +18,12 @@ def sendmessage(message):
     if not notify_off:
         notify2.Notification("Twitch", message).show()
 
-
 def log(message):
     '''
     Log message to stderr and exits script
     '''
     print(message, file=sys.stderr)
     sys.exit()
-
 
 def getNewOAuthToken(client):
     '''
