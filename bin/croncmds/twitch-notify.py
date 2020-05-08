@@ -4,11 +4,13 @@ Script to send notification of new livestreams
 '''
 
 import sys
+import os.path
 import math
 from pathlib import Path
 import configparser
 import requests
 import notify2
+
 
 def sendmessage(message):
     '''
@@ -18,29 +20,76 @@ def sendmessage(message):
     if not notify_off:
         notify2.Notification("Twitch", message).show()
 
-# Settings
-# Read in config file
+
+def log(message):
+    '''
+    Log message to stderr and exits script
+    '''
+    print(message, file=sys.stderr)
+    sys.exit()
+
+
+def getNewOAuthToken(client):
+    '''
+    Prints message on how to receive a new OAuth token.
+    '''
+    print()
+    print("To get a custom OAuth Token run:")
+    print("curl " + 'https://id.twitch.tv/oauth2/authorize?response_type=token&client_id={}&redirect_uri=http://localhost'.format(client) + " > output.html")
+    print("Open the html file with your browser and log into twitch. The next page that opens contains the token.")
+    print("Paste the new token in the config file.")
+
+
+HOME = str(Path.home())
+configFilePath = HOME + "/.config/twitch-notify.conf"
+
+try:
+    configFile = open(configFilePath)
+except Exception:
+    log("""
+Config file not found.
+
 # Location: ~/.config/twitch-notify.conf
 # Config file structure
 #
 # [DEFAULT]
 # User-ID = <user-id>
 # Client-ID = <Client-ID>
-#
-
-
-HOME = str(Path.home())
+# Client-Secret = <Client-Secret>
+# Access-token = <OAuth-token>
+        """)
 
 config = configparser.ConfigParser()
-config.read(HOME + "/.config/twitch-notify.conf")
+config.read_file(configFile)
 
 try:
-    user_id = config['DEFAULT']['User-ID']
-    client = config['DEFAULT']['Client-ID']
-    token = config['DEFAULT']['Access-token']
-    headers = { 'Client-ID': '{}'.format(client), 'Authorization': 'OAuth {}'.format(token) }
+    defaultConfig = config["DEFAULT"]
 except Exception:
-    print("Config file not found")
+    log("Could not find DEFAULT Field")
+
+user_id = defaultConfig.get("User-ID")
+client = defaultConfig.get("Client-ID")
+token = defaultConfig.get("Access-token")
+
+if user_id == None:
+    log("User id not found")
+
+if client == None:
+    log("Client id not found")
+
+if token == None:
+    print("No token found.")
+    getNewOAuthToken(client)
+    sys.exit()
+
+headers_val = { 'Authorization': 'OAuth {}'.format(token) }
+headers = { 'Authorization': 'Bearer {}'.format(token) }
+val = requests.get('https://id.twitch.tv/oauth2/validate', headers=headers_val).json()
+print(val)
+exp_in = int(val["expires_in"])
+if exp_in == 0:
+    print("Your token is expired.")
+    getNewOAuthToken(client)
     sys.exit()
 
 filelocation = HOME + "/.local/share/twitch-streams.txt"
@@ -58,7 +107,7 @@ except Exception:
 followed = []
 followrequest = apipage + "users/follows?from_id=%s" % user_id
 data = requests.get(followrequest, headers=headers).json()
-print(requests.get('https://id.twitch.tv/oauth2/validate', headers=headers).json())
+print(data)
 
 # Collect all follows.
 # So this will send requests until there are all followers fetched
