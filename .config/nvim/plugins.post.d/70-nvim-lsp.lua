@@ -1,11 +1,22 @@
 local nvim_lsp = require'nvim_lsp'
-local util = require 'nvim_lsp/util'
+local configs  = require'nvim_lsp/configs'
+local util     = require 'nvim_lsp/util'
 local M = {}
 
 M.on_attach = function()
   require'diagnostic'.on_attach()
   require'completion'.on_attach()
 end
+
+configs.cmake_lsp = {
+	default_config = {
+		cmd = {'cmake-language-server'};
+		filetypes = {'cmake'};
+		root_dir = util.root_pattern('CMakeLists.txt');
+		settings = {};
+	};
+}
+nvim_lsp.cmake_lsp.setup{ on_attach = M.on_attach; }
 
 if util.has_bins("ada_language_server") then
 	nvim_lsp.als.setup{ on_attach = M.on_attach; }

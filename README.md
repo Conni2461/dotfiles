@@ -133,6 +133,7 @@ Some plugins require additional packages installed:
   - [als](https://github.com/AdaCore/ada_language_server) for ada
   - [bash-language-server](https://github.com/bash-lsp/bash-language-server) for bash and posix compliant shells
   - Using [ccls](https://github.com/MaskRay/ccls) if installed and [clangd](https://clangd.llvm.org/) as fallback for c/c++
+  - [cmake_lsp](https://github.com/regen100/cmake-language-server) for cmake(requires current master)
   - [cssls](https://github.com/vscode-langservers/vscode-css-languageserver-bin) for css files
   - [dockerls](https://github.com/rcjsuen/dockerfile-language-server-nodejs) for dockerfiles
   - [flow](https://github.com/facebook/flow) for JavaScript
@@ -140,6 +141,7 @@ Some plugins require additional packages installed:
   - [gopls](https://github.com/golang/tools/tree/master/gopls) for golang
   - [html](https://github.com/vscode-langservers/vscode-html-languageserver-bin) for html
   - [jsonls](https://github.com/vscode-langservers/vscode-json-languageserver) for json
+  - [kotlin_language_server](https://github.com/fwcd/kotlin-language-server) for kotlin
   - [metals](https://scalameta.org/metals/) for scala
   - Using [microsoft-python-language-server](https://github.com/Microsoft/python-language-server) if installed and [python-language-server](https://github.com/palantir/python-language-server) as fallback for python
   - Using [rust-analyzer](https://github.com/rust-analyzer/rust-analyzer) if installed and [rls](https://github.com/rust-lang/rls) as fallback for rust
