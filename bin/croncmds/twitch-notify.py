@@ -79,7 +79,7 @@ if token == None:
     sys.exit()
 
 headers_val = { 'Authorization': 'OAuth {}'.format(token) }
-headers = { 'Authorization': 'Bearer {}'.format(token) }
+headers = { 'Client-ID': '{}'.format(client), 'Authorization': 'Bearer {}'.format(token) }
 val = requests.get('https://id.twitch.tv/oauth2/validate', headers=headers_val).json()
 print(val)
 exp_in = int(val["expires_in"])
