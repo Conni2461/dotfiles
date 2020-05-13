@@ -32,14 +32,13 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set completeopt=menuone,noinsert,noselect
 
 let g:completion_chain_complete_list = {
-            \ 'default' : {
-            \   'default': [
-            \       {'complete_items': ['lsp']},
-            \       {'mode': '<c-p>'},
-            \       {'mode': '<c-n>'}],
-            \   'comment': [],
-            \   'string' : [
-            \       {'complete_items': ['path']}]
-            \   }}
+	\'default' : {
+		\'default': [
+			\{'complete_items': ['lsp', 'path']},
+			\{'mode': '<c-p>'},
+			\{'mode': '<c-n>'}],
+		\'comment': []
+	\}
+\}
 
 let g:completion_auto_change_source = 1
