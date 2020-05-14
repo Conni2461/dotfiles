@@ -2,10 +2,10 @@ Plug 'neovim/nvim-lsp'
 Plug 'haorenW1025/completion-nvim'
 Plug 'haorenW1025/diagnostic-nvim'
 
-let g:LspDiagnosticsErrorSign = '>>'
-let g:LspDiagnosticsWarningSign = '--'
-let g:LspDiagnosticsInformationSign = 'I'
-let g:LspDiagnosticsHintSign = 'H'
+call sign_define("LspDiagnosticsErrorSign", {"text" : ">>", "texthl" : "LspDiagnosticsError"})
+call sign_define("LspDiagnosticsWarningSign", {"text" : "--", "texthl" : "LspDiagnosticsWarning"})
+call sign_define("LspDiagnosticInformationSign", {"text" : "I", "texthl" : "LspDiagnosticsInformation"})
+call sign_define("LspDiagnosticHintSign", {"text" : "H", "texthl" : "LspDiagnosticsHint"})
 
 let g:diagnostic_insert_delay = 1
 
