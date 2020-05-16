@@ -122,9 +122,6 @@
 	map q: <Nop>
 	nnoremap Q <Nop>
 
-" Disbale recording
-	map q <Nop>
-
 " Exit insert, dd line, enter insert
 	inoremap <C-d> <esc>ddi
 
