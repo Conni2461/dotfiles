@@ -11,10 +11,10 @@ pids="$(lsof -d DEL 2>/dev/null | awk '$8~/\/usr\/lib/ {printf $2" "}')"
 services="$(ps -o unit= $pids | sort -u)"
 [[ -z "$services" ]] && exit 0
 
-selection=$(echo "$services" | sk -m)
+selection=$(echo "$services" | sk -m --reverse)
 
 [[ -z "$selection" ]] && exit 0
 
-for i in "$selection"; do
+echo "$selection" | while read -r i; do
 	systemctl restart "$i"
 done
