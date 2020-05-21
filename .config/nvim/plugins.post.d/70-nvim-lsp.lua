@@ -8,7 +8,7 @@ M.on_attach = function()
   require'completion'.on_attach()
 end
 
-configs.cmake_lsp = {
+configs.cmake_ls = {
 	default_config = {
 		cmd = {'cmake-language-server'};
 		filetypes = {'cmake'};
@@ -16,7 +16,7 @@ configs.cmake_lsp = {
 		settings = {};
 	};
 }
-nvim_lsp.cmake_lsp.setup{ on_attach = M.on_attach; }
+nvim_lsp.cmake_ls.setup{ on_attach = M.on_attach; }
 
 if util.has_bins("ada_language_server") then
 	nvim_lsp.als.setup{ on_attach = M.on_attach; }
@@ -39,6 +39,13 @@ end
 
 if util.has_bins("docker-langserver") then
 	nvim_lsp.dockerls.setup{ on_attach = M.on_attach; }
+end
+
+if util.has_bins("elixir-ls") then
+	nvim_lsp.elixirls.setup{
+		on_attach = M.on_attach;
+		cmd = { "elixir-ls" };
+	}
 end
 
 if util.has_bins("npm") then
