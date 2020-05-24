@@ -62,6 +62,7 @@ case "$file" in
 	*\.py) python "$file" ;;
 	*\.r) Rscript "$file" ;;
 	*\.go) go run "$file" ;;
+	*\.lua) lua "$file" ;;
 	*\.sent) setsid sent "$file" 2>/dev/null & ;;
 	*) sed 1q "$file" | grep "^#!/" | sed "s/^#!//" | xargs -r -I % "$file" ;;
 esac
