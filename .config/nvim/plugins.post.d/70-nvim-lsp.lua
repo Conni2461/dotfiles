@@ -4,8 +4,47 @@ local util     = require 'nvim_lsp/util'
 local M = {}
 
 M.on_attach = function()
-  require'diagnostic'.on_attach()
-  require'completion'.on_attach()
+	require'diagnostic'.on_attach()
+	require'completion'.on_attach()
+end
+
+local function setup_ls(ls, ls_cmd, backup, backup_cmd)
+	local bin, arr
+	local backup_bin, backup_arr
+	if type(ls_cmd) == "string" then
+		bin = ls_cmd
+		arr = { ls_cmd }
+	else
+		bin = ls_cmd[1]
+		arr = ls_cmd
+	end
+
+
+	if not (backup_cmd == nil) then
+		if type(backup_cmd) == "string" then
+			backup_bin = backup_cmd
+			backup_arr = { backup_cmd }
+		else
+			backup_bin = backup_cmd[1]
+			backup_arr = backup_cmd
+		end
+	end
+
+	if util.has_bins(bin) then
+		ls.setup{
+			on_attach = M.on_attach;
+			cmd = arr;
+		}
+	else
+		if not (backup == nil) then
+			if not (backup_bin == nil) and util.has_bins(backup_bin) then
+				backup.setup{
+					on_attach = M.on_attach;
+					cmd = backup_arr;
+				}
+			end
+		end
+	end
 end
 
 configs.cmake_ls = {
@@ -16,105 +55,26 @@ configs.cmake_ls = {
 		settings = {};
 	};
 }
-nvim_lsp.cmake_ls.setup{ on_attach = M.on_attach; }
+setup_ls(nvim_lsp.cmake_ls, "cmake-language-server")
 
-if util.has_bins("ada_language_server") then
-	nvim_lsp.als.setup{ on_attach = M.on_attach; }
-end
-
-if util.has_bins("bash-language-server") then
-	nvim_lsp.bashls.setup{ on_attach = M.on_attach; }
-end
-
--- C/C++ setup. Use ccls if installed otherwise clangd
-if util.has_bins("ccls") then
-	nvim_lsp.ccls.setup{ on_attach = M.on_attach; }
-else
-	nvim_lsp.clangd.setup{ on_attach = M.on_attach; }
-end
-
-if util.has_bins("css-languageserver") then
-	nvim_lsp.cssls.setup{ on_attach = M.on_attach; }
-end
-
-if util.has_bins("docker-langserver") then
-	nvim_lsp.dockerls.setup{ on_attach = M.on_attach; }
-end
-
-if util.has_bins("elixir-ls") then
-	nvim_lsp.elixirls.setup{
-		on_attach = M.on_attach;
-		cmd = { "elixir-ls" };
-	}
-end
-
-if util.has_bins("npm") then
-	nvim_lsp.flow.setup{ on_attach = M.on_attach; }
-end
-
-if util.has_bins("fortls") then
-	nvim_lsp.fortls.setup{ on_attach = M.on_attach; }
-end
-
-if util.has_bins("gopls") then
-	nvim_lsp.gopls.setup{ on_attach = M.on_attach; }
-end
-
-if util.has_bins("html-languageserver") then
-	nvim_lsp.html.setup{ on_attach = M.on_attach; }
-end
-
-if util.has_bins("vscode-json-languageserver") then
-	nvim_lsp.jsonls.setup{ on_attach = M.on_attach; }
-end
-
-if util.has_bins("kotlin-language-server") then
-	nvim_lsp.kotlin_language_server.setup{
-		on_attach = M.on_attach;
-		cmd = {"kotlin-language-server"};
-	}
-end
-
-if util.has_bins("metals") then
-	nvim_lsp.metals.setup{ on_attach = M.on_attach; }
-end
-
--- Python setup. Use mspyls if installed otherwise pyls
-if util.has_bins("mspyls") then
-	nvim_lsp.pyls_ms.setup{
-		on_attach = M.on_attach;
-		cmd = { "/usr/bin/mspyls" };
-	}
-else
-	nvim_lsp.pyls.setup{ on_attach = M.on_attach; }
-end
-
--- Rust setup. Use rust_analyzer if installed otherwise rls
-if util.has_bins("rust-analyzer") then
-	nvim_lsp.rust_analyzer.setup{ on_attach = M.on_attach; }
-else
-	nvim_lsp.rls.setup{ on_attach = M.on_attach; }
-end
-
-if util.has_bins("solargraph") then
-	nvim_lsp.solargraph.setup{ on_attach = M.on_attach; }
-end
-
-if util.has_bins("lua-language-server") then
-	nvim_lsp.sumneko_lua.setup{
-		on_attach = M.on_attach;
-		cmd = { "lua-language-server" };
-	}
-end
-
-if util.has_bins("texlab") then
-	nvim_lsp.texlab.setup{ on_attach = M.on_attach; }
-end
-
-if util.has_bins("typescript-language-server") then
-	nvim_lsp.tsserver.setup{ on_attach = M.on_attach; }
-end
-
-if util.has_bins("vim-language-server") then
-	nvim_lsp.vimls.setup{ on_attach = M.on_attach; }
-end
+setup_ls(nvim_lsp.als, "ada_language_server")
+setup_ls(nvim_lsp.bashls, "bash-language-server")
+setup_ls(nvim_lsp.ccls, "ccls", nvim_lsp.clangd, "clangd")
+setup_ls(nvim_lsp.cssls, "css-languageserver")
+setup_ls(nvim_lsp.dockerls, "docker-languageserver")
+setup_ls(nvim_lsp.elixirls, "elixir-ls")
+setup_ls(nvim_lsp.flow, {"npm", "run", "flow", "lsp"})
+setup_ls(nvim_lsp.fortls, "fortls")
+setup_ls(nvim_lsp.gopls, "gopls")
+setup_ls(nvim_lsp.html, "html-languageserver")
+setup_ls(nvim_lsp.jsonls, "vscode-json-languageserver")
+setup_ls(nvim_lsp.kotlin_language_server, "kotlin-language-server")
+setup_ls(nvim_lsp.jsonls, "metals")
+setup_ls(nvim_lsp.pyls_ms, "mspyls")
+setup_ls(nvim_lsp.r_language_server, "R")
+setup_ls(nvim_lsp.rust_analyzer, "rust-analyzer", nvim_lsp.rls, "rls")
+setup_ls(nvim_lsp.solargraph, "solargraph")
+setup_ls(nvim_lsp.sumneko_lua, "lua-language-server")
+setup_ls(nvim_lsp.texlab, "texlab")
+setup_ls(nvim_lsp.tsserver, "typescript-language-server")
+setup_ls(nvim_lsp.vimls, "vim-language-server")
