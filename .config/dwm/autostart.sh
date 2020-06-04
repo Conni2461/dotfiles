@@ -17,3 +17,5 @@ pgrep conky >/dev/null || conky &
 pgrep calnotify >/dev/null || calnotify 30 &
 
 pgrep nextcloud >/dev/null || nextcloud --background &
+
+xset r rate 300 50
