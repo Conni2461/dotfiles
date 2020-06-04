@@ -1,11 +1,13 @@
 local nvim_lsp = require'nvim_lsp'
 local configs  = require'nvim_lsp/configs'
-local util     = require 'nvim_lsp/util'
+local util     = require'nvim_lsp/util'
+
 local M = {}
 
-M.on_attach = function()
+M.on_attach = function(_, _)
 	require'diagnostic'.on_attach()
 	require'completion'.on_attach()
+	vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.util.show_line_diagnostics()')
 end
 
 local function setup_ls(ls, ls_cmd, backup, backup_cmd)
@@ -70,7 +72,7 @@ setup_ls(nvim_lsp.html, "html-languageserver")
 setup_ls(nvim_lsp.jsonls, "vscode-json-languageserver")
 setup_ls(nvim_lsp.kotlin_language_server, "kotlin-language-server")
 setup_ls(nvim_lsp.jsonls, "metals")
-setup_ls(nvim_lsp.pyls_ms, "mspyls")
+setup_ls(nvim_lsp.pyls_ms, "mspyls", nvim_lsp.pyls, "pyls")
 setup_ls(nvim_lsp.r_language_server, "R")
 setup_ls(nvim_lsp.rust_analyzer, "rust-analyzer", nvim_lsp.rls, "rls")
 setup_ls(nvim_lsp.solargraph, "solargraph")
