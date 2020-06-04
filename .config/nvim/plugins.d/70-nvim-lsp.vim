@@ -1,6 +1,7 @@
 Plug 'neovim/nvim-lsp'
 Plug 'haorenW1025/completion-nvim'
 Plug 'haorenW1025/diagnostic-nvim'
+Plug 'steelsojka/completion-buffers'
 
 call sign_define("LspDiagnosticsErrorSign", {"text" : "\uf05e", "texthl" : "LspDiagnosticsError"})
 call sign_define("LspDiagnosticsWarningSign", {"text" : "\uf071", "texthl" : "LspDiagnosticsWarning"})
@@ -34,7 +35,8 @@ set completeopt=menuone,noinsert,noselect
 let g:completion_chain_complete_list = {
 	\'default' : {
 		\'default': [
-			\{'complete_items': ['lsp', 'path']},
+			\{'complete_items': ['lsp', 'buffers']},
+			\{'complete_items': ['path'], 'triggered_only': ['./', '/']},
 			\{'mode': '<c-p>'},
 			\{'mode': '<c-n>'}],
 		\'comment': []
@@ -42,3 +44,27 @@ let g:completion_chain_complete_list = {
 \}
 
 let g:completion_auto_change_source = 1
+inoremap <silent> <expr> <C-Space> completion#trigger_completion()
+
+let g:completion_customize_lsp_label = {
+	\ "Method": "\uf794",
+	\ "Function": "\uf794",
+	\ "Variable": "\uf6a6",
+	\ "Field": "\uf6a6",
+	\ "Class": "\ufb44",
+	\ "Struct": "\ufb44",
+	\ "Interface": "\uf836",
+	\ "Module": "\uf668",
+	\ "Property": "\uf0ad",
+	\ "Value": "\uf77a",
+	\ "Enum": "\uf77a",
+	\ "Operator": "\uf055",
+	\ "Reference": "\uf838",
+	\ "Keyword": "\uf80a",
+	\ "Color": "\ue22b",
+	\ "Unit": "\ue3ce",
+	\ "Snippet": "\uf68e",
+	\ "Text": "\uf52b",
+	\ "Buffers": "\uf64d",
+	\ "TypeParameter": "\uf635",
+\}
