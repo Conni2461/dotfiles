@@ -11,7 +11,7 @@ pids="$(lsof -d DEL 2>/dev/null | awk '$8~/\/usr\/lib/ {printf $2" "}')"
 services="$(ps -o unit= $pids | sort -u)"
 [[ -z "$services" ]] && exit 0
 
-selection=$(echo "$services" | sk -m --reverse)
+selection=$(echo "$services" | grep 'service' | sk -m --reverse)
 
 [[ -z "$selection" ]] && exit 0
 
