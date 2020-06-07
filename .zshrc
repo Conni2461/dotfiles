@@ -28,6 +28,9 @@ export TERM=xterm-256color
 [ -f "$HOME/.config/aliasrc" ] && source "$HOME/.config/aliasrc"
 [ -f "$HOME/.config/functionrc" ] && source "$HOME/.config/functionrc"
 
+# Load grc aliases
+[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+
 # History repeat edit
 fh() { print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | sk | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g') ; }
 

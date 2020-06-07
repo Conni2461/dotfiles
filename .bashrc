@@ -21,3 +21,6 @@ export TERM=xterm-256color
 
 source "$HOME/.config/aliasrc"
 source "$HOME/.config/functionrc"
+
+# Load grc aliases
+[[ -s "/etc/grc.bashrc" ]] && source /etc/grc.bashrc
