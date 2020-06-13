@@ -9,6 +9,7 @@ call sign_define("LspDiagnosticsInformationSign", {"text" : "\uf129", "texthl" :
 call sign_define("LspDiagnosticsHintSign", {"text" : "H", "texthl" : "LspDiagnosticsHint"})
 
 let g:diagnostic_insert_delay = 1
+let g:diagnostic_enable_underline = 0
 
 nnoremap <leader>af :silent exec '!clang-format --style=file -i %' \| e<CR>
 

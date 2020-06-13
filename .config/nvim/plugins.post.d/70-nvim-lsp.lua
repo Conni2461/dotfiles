@@ -5,8 +5,8 @@ local util     = require'nvim_lsp/util'
 local M = {}
 
 M.on_attach = function(_, _)
-	require'diagnostic'.on_attach()
 	require'completion'.on_attach()
+	require'diagnostic'.on_attach()
 	vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.util.show_line_diagnostics()')
 end
 

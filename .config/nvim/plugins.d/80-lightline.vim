@@ -38,6 +38,10 @@ let g:lightline = {
 
 au User LspDiagnosticsChanged call lightline#update()
 au User ClapOnExit call lightline#update()
+au BufEnter call lightline#update()
+au BufLeave call lightline#update()
+au BufDelete call lightline#update()
+au BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
 function! MyFiletype()
 	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
