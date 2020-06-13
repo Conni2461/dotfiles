@@ -12,6 +12,9 @@ alias tree='exa -sname --tree'
 alias grep='grep --color=auto'
 alias diff='diff --color=auto'
 alias mkd='mkdir -pv'
+alias cp='cp -v'
+alias mv='mv -v'
+alias rm='rm -v'
 
 # System
 alias p='sudo pacman'
