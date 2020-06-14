@@ -7,25 +7,23 @@ let g:lightline#bufferline#filename_modifier = ':t'
 let g:lightline#bufferline#read_only=''
 let g:lightline#bufferline#show_number=1
 
-let g:indicator_errors = "\uf05e "
-let g:indicator_warnings = "\uf071 "
-let g:indicator_infos = "\uf129 "
-
 let g:lightline = {
 	\'active': {
 		\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'buffers'], ['method']],
-		\'right': [['linter_errors', 'linter_warnings', 'linter_infos'], ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype']]
+		\'right': [['linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints'], ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype']]
 	\},
 	\'component_expand': {
 		\'linter_errors': 'GetErrors',
 		\'linter_warnings': 'GetWarnings',
 		\'linter_infos': 'GetInformations',
+		\'linter_hints': 'GetHints',
 		\'buffers': 'lightline#bufferline#buffers',
 	\},
 	\'component_type': {
 		\'linter_errors': 'error',
 		\'linter_warnings': 'warning',
 		\'linter_infos': 'right',
+		\'linter_hints': 'right',
 		\'buffers': 'tabsel',
 	\},
 	\'component_function': {
@@ -57,11 +55,16 @@ function! GetErrors()
 endfunction
 
 function! GetWarnings()
-	let l:all_warn = luaeval("vim.lsp.util.buf_diagnostics_count(\"Warning\")")
-	return l:all_warn == 0 ? '' : printf(g:indicator_warnings . '%d', all_warn)
+	let l:all_warns = luaeval("vim.lsp.util.buf_diagnostics_count(\"Warning\")")
+	return l:all_warns == 0 ? '' : printf(g:indicator_warnings . '%d', all_warns)
 endfunction
 
 function! GetInformations()
-	let l:all_info = luaeval("vim.lsp.util.buf_diagnostics_count(\"Information\")")
-	return l:all_info == 0 ? '' : printf(g:indicator_infos . '%d', all_info)
+	let l:all_infos = luaeval("vim.lsp.util.buf_diagnostics_count(\"Information\")")
+	return l:all_infos == 0 ? '' : printf(g:indicator_infos . '%d', all_infos)
+endfunction
+
+function! GetHints()
+	let l:all_hints = luaeval("vim.lsp.util.buf_diagnostics_count(\"Hint\")")
+	return l:all_hints == 0 ? '' : printf(g:indicator_hints . '%d', all_hints)
 endfunction

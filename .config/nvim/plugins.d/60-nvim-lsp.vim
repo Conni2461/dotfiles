@@ -3,10 +3,15 @@ Plug 'haorenW1025/completion-nvim'
 Plug 'haorenW1025/diagnostic-nvim'
 Plug 'steelsojka/completion-buffers'
 
-call sign_define("LspDiagnosticsErrorSign", {"text" : "\uf05e", "texthl" : "LspDiagnosticsError"})
-call sign_define("LspDiagnosticsWarningSign", {"text" : "\uf071", "texthl" : "LspDiagnosticsWarning"})
-call sign_define("LspDiagnosticsInformationSign", {"text" : "\uf129", "texthl" : "LspDiagnosticsInformation"})
-call sign_define("LspDiagnosticsHintSign", {"text" : "H", "texthl" : "LspDiagnosticsHint"})
+let g:indicator_errors = "\uf05e "
+let g:indicator_warnings = "\uf071 "
+let g:indicator_infos = "\uf7fc "
+let g:indicator_hints = "\ufbe7 "
+
+call sign_define("LspDiagnosticsErrorSign", {"text" : g:indicator_errors, "texthl" : "LspDiagnosticsError"})
+call sign_define("LspDiagnosticsWarningSign", {"text" : g:indicator_warnings, "texthl" : "LspDiagnosticsWarning"})
+call sign_define("LspDiagnosticsInformationSign", {"text" : g:indicator_infos, "texthl" : "LspDiagnosticsInformation"})
+call sign_define("LspDiagnosticsHintSign", {"text" : g:indicator_hints, "texthl" : "LspDiagnosticsHint"})
 
 let g:diagnostic_insert_delay = 1
 let g:diagnostic_enable_underline = 0
