@@ -1,5 +1,4 @@
 local nvim_lsp = require'nvim_lsp'
-local configs  = require'nvim_lsp/configs'
 local util     = require'nvim_lsp/util'
 
 local M = {}
@@ -49,20 +48,11 @@ local function setup_ls(ls, ls_cmd, backup, backup_cmd)
 	end
 end
 
-configs.cmake_ls = {
-	default_config = {
-		cmd = {'cmake-language-server'};
-		filetypes = {'cmake'};
-		root_dir = util.root_pattern('CMakeLists.txt');
-		settings = {};
-	};
-}
-setup_ls(nvim_lsp.cmake_ls, "cmake-language-server")
-
 setup_ls(nvim_lsp.als, "ada_language_server")
 setup_ls(nvim_lsp.bashls, "bash-language-server")
 -- setup_ls(nvim_lsp.ccls, "ccls", nvim_lsp.clangd, "clangd")
 setup_ls(nvim_lsp.clangd, "clangd", nil, nil)
+setup_ls(nvim_lsp.cmake, "cmake-language-server")
 setup_ls(nvim_lsp.cssls, "css-languageserver")
 setup_ls(nvim_lsp.dockerls, "docker-languageserver")
 setup_ls(nvim_lsp.elixirls, "elixir-ls")
