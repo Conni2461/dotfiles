@@ -6,6 +6,7 @@ pgrep compton >/dev/null || compton &
 fixdisplay &
 feh --bg-fill ~/img/2560x1440.jpg --bg-fill ~/img/1920x1080.jpg --no-fehbg
 pgrep clipmenud >/dev/null|| clipmenud &
+pgrep lxpolkit >/dev/null || lxpolkit &
 
 calsync >/dev/null &
 newsup >/dev/null &
