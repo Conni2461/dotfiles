@@ -6,7 +6,8 @@ au FileType clap_input inoremap <silent> <buffer> <Esc> <Esc>:call clap#handler#
 nnoremap <leader>q  :Clap files<CR>
 nnoremap <leader>z  :Clap filer<CR>
 nnoremap <leader>bg :Clap buffers<CR>
-nnoremap <leader>g  :Clap grep<CR>
+nnoremap <leader>gp :Clap grep<CR>
+nnoremap <leader>gw :Clap grep ++query=<cword><CR>
 nnoremap <leader>t  :Clap tags<CR>
 nnoremap <leader>'  :Clap marks<CR>
 let g:clap_theme = 'material_design_dark'
