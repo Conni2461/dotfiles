@@ -21,7 +21,6 @@
 	Plug 'rhysd/git-messenger.vim'
 
 	Plug 'gisphm/vim-gitignore'
-	Plug 'sheerun/vim-polyglot'
 
 	Plug 'rhysd/clever-f.vim'
 	Plug 'tpope/vim-commentary'

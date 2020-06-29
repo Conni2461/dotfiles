@@ -1,6 +1,6 @@
 Plug 'neovim/nvim-lsp'
-Plug 'haorenW1025/completion-nvim'
-Plug 'haorenW1025/diagnostic-nvim'
+Plug 'nvim-lua/completion-nvim'
+Plug 'nvim-lua/diagnostic-nvim'
 Plug 'steelsojka/completion-buffers'
 
 let g:indicator_errors = "\uf05e "
@@ -49,7 +49,8 @@ let g:completion_chain_complete_list = {
 			\{'complete_items': ['lsp', 'buffers']},
 			\{'complete_items': ['path'], 'triggered_only': ['./', '/']},
 			\{'mode': '<c-p>'},
-			\{'mode': '<c-n>'}],
+			\{'mode': '<c-n>'}
+		\],
 		\'comment': []
 	\}
 \}
