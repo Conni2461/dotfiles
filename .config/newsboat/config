@@ -2,7 +2,7 @@
 
 external-url-viewer "urlscan -dc -r 'linkhandler {}'"
 
-datetime-format %d.%m.%y
+datetime-format %m/%d/%y
 text-width 120
 history-limit 0
 
