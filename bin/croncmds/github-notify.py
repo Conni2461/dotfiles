@@ -1,9 +1,11 @@
 #!/bin/python
 
+import sys
 import requests
 import notify2
 from pathlib import Path
 import configparser
+
 
 def sendmessage(gh_type, repo, title):
     '''
@@ -24,6 +26,7 @@ def sendmessage(gh_type, repo, title):
 # [DEFAULT]
 # token = <token>
 #
+
 
 notify_off = False
 
