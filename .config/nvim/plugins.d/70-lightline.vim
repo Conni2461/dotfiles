@@ -9,7 +9,7 @@ let g:lightline#bufferline#show_number=1
 
 let g:lightline = {
 	\'active': {
-		\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'buffers'], ['method']],
+		\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'buffers']],
 		\'right': [['linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints'], ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype']]
 	\},
 	\'component_expand': {
@@ -28,7 +28,6 @@ let g:lightline = {
 	\},
 	\'component_function': {
 		\'gitbranch': 'fugitive#head',
-		\'method': 'NearestMethodOrFunction',
 		\'filetype': 'MyFiletype',
 		\'fileformat': 'MyFileformat',
 	\}
