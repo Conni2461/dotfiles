@@ -119,15 +119,14 @@ A full list of used plugins:
 | [buffer completion](https://github.com/steelsojka/completion-buffers)        | Adds word completion for all words in all open buffers. Additional source for completion-nvim                                                                                                             |
 | [lightline](https://github.com/itchyny/lightline.vim)                        | A light and configurable statusline/tabline plugin                                                                                                                                                        |
 | [lightline bufferline](https://github.com/mengelbrecht/lightline-bufferline) | A lightweight plugin to display the list of buffers in the lightline vim plugin                                                                                                                           |
-| [vista](https://github.com/liuchengxu/vista.vim)                             | Viewer & Finder for LSP symbols and tags. Also this plugin is used in `Clap` for Tag finding.                                                                                                             |
 | [undotree](https://github.com/mbbill/undotree)                               | The undo history visualizer for VIM                                                                                                                                                                       |
 | [devicons](https://github.com/ryanoasis/vim-devicons)                        | Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more                                                                           |
 | [css-color](https://github.com/ap/vim-css-color)                             | Adds color to hexcodes                                                                                                                                                                                    |
 
 Some plugins require additional packages installed:
 
-- Vim-Clap requires [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd) to work best. It is also required to have a nightly [rust-lang](https://github.com/rust-lang/rust) toolchain configured (use rustup and run `rustup default nightly`). If you don't want to use rust, you can checkout an early vim-clap version.
-- Vista requires [ctags](https://ctags.io/)
+- vim-clap requires [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd) to work best. It is also requires [rust-lang](https://github.com/rust-lang/rust) to compile necessary binaries for vim-clap. If you don't want to use rust, you can checkout an early vim-clap version.
+- vim-clap proj_tags requires [ctags](https://ctags.io/)
 - Already preonfigured LSP Server. Install one or more of the listed Servers and you are good to go for the specific language (setup can be verified with `:checkhealth`):
   - [als](https://github.com/AdaCore/ada_language_server) for ada
   - [bash-language-server](https://github.com/bash-lsp/bash-language-server) for bash and posix compliant shells
