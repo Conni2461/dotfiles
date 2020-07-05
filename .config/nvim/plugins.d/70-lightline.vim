@@ -49,21 +49,33 @@ function! MyFileformat()
 endfunction
 
 function! GetErrors()
-	let l:all_errors = luaeval("vim.lsp.util.buf_diagnostics_count(\"Error\")")
-	return l:all_errors == 0 ? '' : printf(g:indicator_errors . '%d', all_errors)
+	if luaeval('#vim.lsp.buf_get_clients() > 0')
+		let l:all_errors = luaeval("vim.lsp.util.buf_diagnostics_count([[Error]])")
+		return l:all_errors == 0 ? '' : printf(g:indicator_errors . '%d', all_errors)
+	endif
+	return ''
 endfunction
 
 function! GetWarnings()
-	let l:all_warns = luaeval("vim.lsp.util.buf_diagnostics_count(\"Warning\")")
-	return l:all_warns == 0 ? '' : printf(g:indicator_warnings . '%d', all_warns)
+	if luaeval('#vim.lsp.buf_get_clients() > 0')
+		let l:all_warns = luaeval("vim.lsp.util.buf_diagnostics_count([[Warning]])")
+		return l:all_warns == 0 ? '' : printf(g:indicator_warnings . '%d', all_warns)
+	endif
+	return ''
 endfunction
 
 function! GetInformations()
-	let l:all_infos = luaeval("vim.lsp.util.buf_diagnostics_count(\"Information\")")
-	return l:all_infos == 0 ? '' : printf(g:indicator_infos . '%d', all_infos)
+	if luaeval('#vim.lsp.buf_get_clients() > 0')
+		let l:all_infos = luaeval("vim.lsp.util.buf_diagnostics_count([[Information]])")
+		return l:all_infos == 0 ? '' : printf(g:indicator_infos . '%d', all_infos)
+	endif
+	return ''
 endfunction
 
 function! GetHints()
-	let l:all_hints = luaeval("vim.lsp.util.buf_diagnostics_count(\"Hint\")")
-	return l:all_hints == 0 ? '' : printf(g:indicator_hints . '%d', all_hints)
+	if luaeval('#vim.lsp.buf_get_clients() > 0')
+		let l:all_hints = luaeval("vim.lsp.util.buf_diagnostics_count([[Hint]])")
+		return l:all_hints == 0 ? '' : printf(g:indicator_hints . '%d', all_hints)
+	endif
+	return ''
 endfunction
