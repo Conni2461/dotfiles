@@ -168,32 +168,25 @@ try:
 except Exception:
     print('File not created yet')
 
-went_live = set(output.items()) - set(prev_output.items())
-went_offline = set(prev_output.items()) - set(output.items())
+live_channels = set([k for k in output])
+prev_live = set([k for k in prev_output])
 
-if went_live or went_offline:
-    # Search for game change
-    channels_l = [x[0] for x in went_live]
-    channels_o = [x[0] for x in went_offline]
-    changed_game = set(channels_l) & set(channels_o)
+went_live = live_channels - prev_live
+went_offline = prev_live - live_channels
 
-    # Remove all changed_game's from went_live and went_offline
-    for g in changed_game:
-        for x in went_live:
-            if x[0] == g:
-                went_live.remove(x)
-                break
-        for x in went_offline:
-            if x[0] == g:
-                went_offline.remove(x)
-                break
+# Search for game change
+changed_game = set()
+for k, v in output.items():
+    if prev_output.get(k, None) not in [v, None]:
+        changed_game.add(k)
 
+if went_live or went_offline or changed_game:
     # Send notifications
     for line in iter(went_live):
         sendmessage("<b>{}</b> is <b>LIVE</b> playing <b>{}</b>"
-                    .format(line[0], line[1]))
+                    .format(line, output[line]))
     for line in iter(went_offline):
-        sendmessage("<b>{}</b> is <b>NO LONGER LIVE</b>".format(line[0]))
+        sendmessage("<b>{}</b> is <b>NO LONGER LIVE</b>".format(line))
     for line in iter(changed_game):
         sendmessage("<b>{}</b> changed game and is now playing <b>{}</b>"
                     .format(line, output[line]))
