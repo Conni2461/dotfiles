@@ -49,7 +49,7 @@ local function setup_ls(ls, ls_cmd, backup, backup_cmd)
 end
 
 setup_ls(nvim_lsp.als, "ada_language_server")
-setup_ls(nvim_lsp.bashls, "bash-language-server")
+setup_ls(nvim_lsp.bashls, {"bash-language-server", "start"})
 -- setup_ls(nvim_lsp.ccls, "ccls", nvim_lsp.clangd, "clangd")
 setup_ls(nvim_lsp.clangd, "clangd", nil, nil)
 setup_ls(nvim_lsp.cmake, "cmake-language-server")
