@@ -3,10 +3,10 @@ Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'steelsojka/completion-buffers'
 
-let g:indicator_errors = "\uf05e "
-let g:indicator_warnings = "\uf071 "
-let g:indicator_infos = "\uf7fc "
-let g:indicator_hints = "\ufbe7 "
+let g:indicator_errors = " "
+let g:indicator_warnings = " "
+let g:indicator_infos = " "
+let g:indicator_hints = "ﯧ "
 
 call sign_define("LspDiagnosticsErrorSign", {"text" : g:indicator_errors, "texthl" : "LspDiagnosticsError"})
 call sign_define("LspDiagnosticsWarningSign", {"text" : g:indicator_warnings, "texthl" : "LspDiagnosticsWarning"})
@@ -43,40 +43,4 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
 
-let g:completion_chain_complete_list = {
-	\'default' : {
-		\'default': [
-			\{'complete_items': ['lsp', 'buffers']},
-			\{'complete_items': ['path'], 'triggered_only': ['./', '/']},
-			\{'mode': '<c-p>'},
-			\{'mode': '<c-n>'}
-		\],
-		\'comment': []
-	\}
-\}
-
-let g:completion_auto_change_source = 1
 inoremap <silent> <expr> <C-Space> completion#trigger_completion()
-
-let g:completion_customize_lsp_label = {
-	\ "Method": "\uf794 [method]",
-	\ "Function": "\uf794 [function]",
-	\ "Variable": "\uf6a6 [variable]",
-	\ "Field": "\uf6a6 [field]",
-	\ "Class": "\ufb44 [class]",
-	\ "Struct": "\ufb44 [struct]",
-	\ "Interface": "\uf836 [interface]",
-	\ "Module": "\uf668 [module]",
-	\ "Property": "\uf0ad [property]",
-	\ "Value": "\uf77a [value]",
-	\ "Enum": "\uf77a [enum]",
-	\ "Operator": "\uf055 [operator]",
-	\ "Reference": "\uf838 [reference]",
-	\ "Keyword": "\uf80a [keyword]",
-	\ "Color": "\ue22b [color]",
-	\ "Unit": "\ue3ce [unit]",
-	\ "Snippet": "\uf68e [snippet]",
-	\ "Text": "\uf52b [text]",
-	\ "Buffers": "\uf64d [buffers]",
-	\ "TypeParameter": "\uf635 [type]",
-\}

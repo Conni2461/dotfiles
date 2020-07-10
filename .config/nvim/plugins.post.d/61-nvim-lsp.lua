@@ -1,11 +1,49 @@
 local nvim_lsp = require'nvim_lsp'
 local util     = require'nvim_lsp/util'
 
-local M = {}
+local chain_complete_list = {
+	default = {
+		{complete_items = {'lsp'}},
+		{complete_items = {'path'}, triggered_only = {'./', '/'}},
+		{complete_items = {'buffers'}},
+	},
+	string = {
+		{complete_items = {'path'}, triggered_only = {'./', '/'}},
+		{complete_items = {'buffers'}},
+	},
+	comment = {},
+}
 
-M.on_attach = function(_, _)
-	require'completion'.on_attach()
+local customize_lsp_label = {
+	 Method = ' [method]',
+	 Function = ' [function]',
+	 Variable = ' [variable]',
+	 Field = ' [field]',
+	 Class = 'פּ [class]',
+	 Struct = 'פּ [struct]',
+	 Interface = ' [interface]',
+	 Module = ' [module]',
+	 Property = ' [property]',
+	 Value = ' [value]',
+	 Enum = ' [enum]',
+	 Operator = ' [operator]',
+	 Reference = ' [reference]',
+	 Keyword = ' [keyword]',
+	 Color = ' [color]',
+	 Unit = ' [unit]',
+	 Snippet = ' [snippet]',
+	 Text = ' [text]',
+	 Buffers = ' [buffers]',
+	 TypeParameter = ' [type]',
+}
+
+local on_attach = function(_, _)
 	require'diagnostic'.on_attach()
+	require'completion'.on_attach({
+		chain_complete_list = chain_complete_list,
+		customize_lsp_label = customize_lsp_label,
+		auto_change_source = 1,
+	})
 	vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.util.show_line_diagnostics()')
 end
 
@@ -33,14 +71,14 @@ local function setup_ls(ls, ls_cmd, backup, backup_cmd)
 
 	if util.has_bins(bin) then
 		ls.setup{
-			on_attach = M.on_attach;
+			on_attach = on_attach;
 			cmd = arr;
 		}
 	else
 		if not (backup == nil) then
 			if not (backup_bin == nil) and util.has_bins(backup_bin) then
 				backup.setup{
-					on_attach = M.on_attach;
+					on_attach = on_attach;
 					cmd = backup_arr;
 				}
 			end
