@@ -16,17 +16,21 @@ ts.setup {
 		}
 	},
 	refactor = {
-		highlight_defintions = {
+		highlight_definitions = {
 			enable = true
 		},
 		smart_rename = {
 			enable = true,
-			smart_rename = "grr"              -- mapping to rename reference under cursor
+			keymaps = {
+				smart_rename = "grr",     -- mapping to rename reference under cursor
+			}
 		},
 		navigation = {
 			enable = true,
-			goto_definition = "gnd",          -- mapping to go to definition of symbol under cursor
-			list_definitions = "gnD"          -- mapping to list all definitions in current file
+			keymaps = {
+				goto_definition = "gnd",  -- mapping to go to definition of symbol under cursor
+				list_definitions = "gnD", -- mapping to list all definitions in current file
+			}
 		}
 	},
 	ensure_installed = { -- one of 'all', 'language' or a list of languages
