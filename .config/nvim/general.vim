@@ -26,14 +26,6 @@
 	set number relativenumber
 	set cursorline
 
-	command! Vimrc :vs $MYVIMRC
-	augroup reload
-		au!
-		au BufWritePost $MYVIMRC source $MYVIMRC
-	augroup END
-
-	nnoremap <leader>r :source $MYVIMRC<CR> \| normal zR
-
 " Remove Trailing Whitespaces
 	function! TrimTrailingLines()
 		let lastLine = line('$')
@@ -72,7 +64,6 @@
 	nnoremap <leader>bh :bprevious<CR>
 	nnoremap <leader>bl :bnext<CR>
 	nnoremap <leader>bq :bd<CR>
-	" <leader>bg opens Clap buffers
 
 " Tabs and spaces
 	set tabstop=4

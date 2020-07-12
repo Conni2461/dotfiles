@@ -26,7 +26,6 @@
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
 	Plug 'cometsong/CommentFrame.vim'
-	Plug 'RRethy/vim-illuminate'
 
 	Plug 'ryanoasis/vim-devicons'
 	Plug 'ap/vim-css-color'
