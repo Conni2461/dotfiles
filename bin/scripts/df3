@@ -1,4 +1,9 @@
 #!/bin/sh
 
 df -kHT | sed 1q
-df -kHT | grep -Ew '/|boot|home|internal'
+
+if ! command -v grc &> /dev/null; then
+	df -kHT | grep -Ew '/|boot|home|internal'
+else
+	grc --colour=on df -kHT | grep -Ew '--color=never' '/|boot|home|internal'
+fi
