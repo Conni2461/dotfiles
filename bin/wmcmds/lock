@@ -1,8 +1,3 @@
 #!/bin/sh
 
-#scrot /tmp/lockscreensave.png
-#convert /tmp/lockscreensave.png -channel RGBA	-blur 0x6 /tmp/lockscreensave_blur.png
-#composite -gravity Center /home/conni/img/lock.png /tmp/lockscreensave_blur.png /tmp/lockscreensave_final.png
-#i3lock -i /tmp/lockscreensave_final.png
-
-multilockscreen --lock blur >/dev/null 2>&1
+slock -m "$(cowsay "$(fortune)")"
