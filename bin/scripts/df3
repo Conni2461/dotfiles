@@ -1,9 +1,14 @@
 #!/bin/sh
 
-df -kHT | sed 1q
+output=$(df -kHT)
+echo "${output}" | sed 1q
 
 if ! command -v grc &> /dev/null; then
-	df -kHT | grep -Ew '/|boot|home|internal'
+	echo "${output}" | grep -Ew '/|boot|home|internal'
 else
-	grc --colour=on df -kHT | grep -Ew '--color=never' '/|boot|home|internal'
+	coloredoutput=$(grc --colour=on df -kHT)
+	lines=$(echo "${output}" | grep -Ewn '/|boot|home|internal' | cut -d: -f1)
+	for i in $lines; do
+		echo "${coloredoutput}" | sed -n "${i}"p
+	done
 fi
