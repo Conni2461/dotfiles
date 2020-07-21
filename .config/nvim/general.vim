@@ -92,6 +92,7 @@
 
 " Folding setup
 	set foldenable
+	set foldmethod=indent
 	set foldlevelstart=99
 	" source: gist.github.com/sjl/3360978
 	function! MyFoldText()
