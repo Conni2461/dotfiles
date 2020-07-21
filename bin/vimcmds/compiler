@@ -56,7 +56,6 @@ case "$file" in
 	*\.rmd) echo "require(rmarkdown); render('$file')" | R -q --vanilla ;;
 	*\.tex) textype "$file" ;;
 	*\.md) pandoc "$file" --pdf-engine=xelatex -o "$base".pdf ;;
-	*config.h) sudo make install ;;
 	*\.c) cc "$file" -o "$base" && "$base" ;;
 	*\.cpp) c++ "$file" -o "$base" && "$base" ;;
 	*\.py) python "$file" ;;

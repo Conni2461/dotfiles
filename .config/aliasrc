@@ -72,7 +72,7 @@ alias eI='vim ~/.config/i3/config'
 alias eM='vim ~/.config/mutt/muttrc'
 alias eN='vim ~/.config/newsboat/config'
 alias eU='vim ~/.config/newsboat/urls'
-alias eV='vim ~/.config/nvim/'
+alias eV='vim -c "cd ~/.config/nvim/" ~/.config/nvim/'
 
 ## Directories
 alias ..='cd ..'
