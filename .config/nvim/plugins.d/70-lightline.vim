@@ -7,9 +7,13 @@ let g:lightline#bufferline#filename_modifier = ':t'
 let g:lightline#bufferline#read_only=''
 let g:lightline#bufferline#show_number=1
 
+let g:gitgutter_sign_added = '+'
+let g:gitgutter_sign_modified = '~'
+let g:gitgutter_sign_removed = '-'
+
 let g:lightline = {
 	\'active': {
-		\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'buffers']],
+		\'left': [['mode', 'paste' ], ['gitbranch', 'gitstatus', 'readonly', 'buffers']],
 		\'right': [['linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints'], ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype']]
 	\},
 	\'component_expand': {
@@ -27,6 +31,7 @@ let g:lightline = {
 		\'buffers': 'tabsel',
 	\},
 	\'component_function': {
+		\'gitstatus': 'GitStatus',
 		\'gitbranch': 'fugitive#head',
 		\'filetype': 'MyFiletype',
 		\'fileformat': 'MyFileformat',
@@ -40,6 +45,18 @@ au BufLeave call lightline#update()
 au BufDelete call lightline#update()
 au BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
+function! GitStatus() abort
+	let [a,m,r] = GitGutterGetHunkSummary()
+	let l:output = ""
+	let l:output .= a == 0 ? "" : printf("%s%d ", g:gitgutter_sign_added, a)
+	let l:output .= m == 0 ? "" : printf("%s%d ", g:gitgutter_sign_modified, m)
+	let l:output .= r == 0 ? "" : printf("%s%d ", g:gitgutter_sign_removed, r)
+
+	let l:output = trim(l:output)
+
+	return l:output
+endfunction
+
 function! MyFiletype()
 	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
 endfunction
@@ -51,7 +68,7 @@ endfunction
 function! GetErrors()
 	if luaeval('#vim.lsp.buf_get_clients() > 0')
 		let l:all_errors = luaeval("vim.lsp.util.buf_diagnostics_count([[Error]])")
-		return l:all_errors == 0 ? '' : printf(g:indicator_errors . '%d', all_errors)
+		return l:all_errors == 0 ? '' : printf('%s%d', g:indicator_errors, all_errors)
 	endif
 	return ''
 endfunction
@@ -59,7 +76,7 @@ endfunction
 function! GetWarnings()
 	if luaeval('#vim.lsp.buf_get_clients() > 0')
 		let l:all_warns = luaeval("vim.lsp.util.buf_diagnostics_count([[Warning]])")
-		return l:all_warns == 0 ? '' : printf(g:indicator_warnings . '%d', all_warns)
+		return l:all_warns == 0 ? '' : printf('%s%d', g:indicator_warnings, all_warns)
 	endif
 	return ''
 endfunction
@@ -67,7 +84,7 @@ endfunction
 function! GetInformations()
 	if luaeval('#vim.lsp.buf_get_clients() > 0')
 		let l:all_infos = luaeval("vim.lsp.util.buf_diagnostics_count([[Information]])")
-		return l:all_infos == 0 ? '' : printf(g:indicator_infos . '%d', all_infos)
+		return l:all_infos == 0 ? '' : printf('%s%d', g:indicator_infos, all_infos)
 	endif
 	return ''
 endfunction
@@ -75,7 +92,7 @@ endfunction
 function! GetHints()
 	if luaeval('#vim.lsp.buf_get_clients() > 0')
 		let l:all_hints = luaeval("vim.lsp.util.buf_diagnostics_count([[Hint]])")
-		return l:all_hints == 0 ? '' : printf(g:indicator_hints . '%d', all_hints)
+		return l:all_hints == 0 ? '' : printf('%d', g:indicator_hints, all_hints)
 	endif
 	return ''
 endfunction
