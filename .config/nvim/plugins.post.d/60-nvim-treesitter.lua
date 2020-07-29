@@ -72,6 +72,7 @@ ts.setup {
 		'markdown',
 		'python',
 		'regex',
+		'rst',
 		'ruby',
 		'rust',
 		'scala',
