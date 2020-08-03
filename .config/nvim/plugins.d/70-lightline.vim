@@ -1,5 +1,6 @@
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
+Plug 'kyazdani42/nvim-web-devicons'
 
 set laststatus=2
 
@@ -16,25 +17,28 @@ let g:lightline = {
 		\'left': [['mode', 'paste' ], ['gitbranch', 'gitstatus', 'readonly', 'buffers']],
 		\'right': [['linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints'], ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype']]
 	\},
+	\'inactive': {
+		\'left': [['filename']],
+		\'right': [[]]
+	\},
 	\'component_expand': {
 		\'linter_errors': 'GetErrors',
 		\'linter_warnings': 'GetWarnings',
 		\'linter_infos': 'GetInformations',
 		\'linter_hints': 'GetHints',
-		\'buffers': 'lightline#bufferline#buffers',
+		\'buffers': 'lightline#bufferline#buffers'
 	\},
 	\'component_type': {
 		\'linter_errors': 'error',
 		\'linter_warnings': 'warning',
 		\'linter_infos': 'right',
 		\'linter_hints': 'right',
-		\'buffers': 'tabsel',
+		\'buffers': 'tabsel'
 	\},
 	\'component_function': {
 		\'gitstatus': 'GitStatus',
 		\'gitbranch': 'fugitive#head',
-		\'filetype': 'MyFiletype',
-		\'fileformat': 'MyFileformat',
+		\'filetype': 'MyFiletype'
 	\}
 \}
 
@@ -58,11 +62,9 @@ function! GitStatus() abort
 endfunction
 
 function! MyFiletype()
-	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
-endfunction
-
-function! MyFileformat()
-	return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+	let l:tmp_icon = luaeval("require'nvim-web-devicons'.get_icon(_, vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), 'filetype'))")
+	let l:icon = l:tmp_icon == "null" ? "" : ' ' . l:tmp_icon
+	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . l:icon  : 'no ft') : ''
 endfunction
 
 function! GetErrors()

@@ -27,7 +27,6 @@
 	Plug 'tpope/vim-surround'
 	Plug 'cometsong/CommentFrame.vim'
 
-	Plug 'ryanoasis/vim-devicons'
 	Plug 'ap/vim-css-color'
 
 " Plugins that are neater in their own file
