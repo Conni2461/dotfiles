@@ -1,4 +1,4 @@
-Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " Workaround to fix highlighting when an internal nvim error occures. Currently
 " this can result into a red/red highlighting, usally when a parsing error
