@@ -2,6 +2,7 @@ Plug 'neovim/nvim-lsp'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'steelsojka/completion-buffers'
+Plug 'ncm2/float-preview.nvim'
 
 let g:indicator_errors = " "
 let g:indicator_warnings = " "
@@ -44,3 +45,12 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 set completeopt=menuone,noinsert,noselect
 
 inoremap <silent> <expr> <C-Space> completion#trigger_completion()
+
+let g:float_preview#docked = 0
+function! DisableExtras()
+  call nvim_win_set_option(g:float_preview#win, 'number', v:false)
+  call nvim_win_set_option(g:float_preview#win, 'relativenumber', v:false)
+  call nvim_win_set_option(g:float_preview#win, 'cursorline', v:false)
+endfunction
+
+autocmd User FloatPreviewWinOpen call DisableExtras()
