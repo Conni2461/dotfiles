@@ -17,7 +17,7 @@ call sign_define("LspDiagnosticsHintSign", {"text" : g:indicator_hints, "texthl"
 let g:diagnostic_insert_delay = 1
 let g:diagnostic_enable_underline = 0
 
-nnoremap <leader>af :silent exec '!clang-format --style=file -i %' \| e<CR>
+nnoremap <leader>af :w! \| !formatf <c-r>%<CR> \| :e <CR>
 
 nnoremap <leader>ad <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <leader>at <cmd>lua vim.lsp.buf.type_definition()<CR>
@@ -48,9 +48,9 @@ inoremap <silent> <expr> <C-Space> completion#trigger_completion()
 
 let g:float_preview#docked = 0
 function! DisableExtras()
-  call nvim_win_set_option(g:float_preview#win, 'number', v:false)
-  call nvim_win_set_option(g:float_preview#win, 'relativenumber', v:false)
-  call nvim_win_set_option(g:float_preview#win, 'cursorline', v:false)
+	call nvim_win_set_option(g:float_preview#win, 'number', v:false)
+	call nvim_win_set_option(g:float_preview#win, 'relativenumber', v:false)
+	call nvim_win_set_option(g:float_preview#win, 'cursorline', v:false)
 endfunction
 
 autocmd User FloatPreviewWinOpen call DisableExtras()
