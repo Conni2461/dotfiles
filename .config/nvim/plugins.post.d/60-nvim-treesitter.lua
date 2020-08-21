@@ -37,25 +37,54 @@ ts.setup {
 		}
 	},
 	textobjects = { -- syntax-aware textobjects
-		enable = true,
-		disable = {},
-		keymaps = {
-			["af"] = "@function.outer",
-			["if"] = "@function.inner",
-			["aC"] = "@class.outer",
-			["iC"] = "@class.inner",
-			["ac"] = "@conditional.outer",
-			["ic"] = "@conditional.inner",
-			["ae"] = "@block.outer",
-			["ie"] = "@block.inner",
-			["al"] = "@loop.outer",
-			["il"] = "@loop.inner",
-			["is"] = "@statement.inner",
-			["as"] = "@statement.outer",
-			["ad"] = "@comment.outer",
-			["am"] = "@call.outer",
-			["im"] = "@call.inner"
-		}
+		select = {
+			enable = true,
+			keymaps = {
+				["af"] = "@function.outer",
+				["if"] = "@function.inner",
+				["aC"] = "@class.outer",
+				["iC"] = "@class.inner",
+				["ac"] = "@conditional.outer",
+				["ic"] = "@conditional.inner",
+				["ae"] = "@block.outer",
+				["ie"] = "@block.inner",
+				["al"] = "@loop.outer",
+				["il"] = "@loop.inner",
+				["is"] = "@statement.inner",
+				["as"] = "@statement.outer",
+				["ad"] = "@comment.outer",
+				["am"] = "@call.outer",
+				["im"] = "@call.inner"
+			}
+		},
+		swap = {
+			enable = true,
+			swap_next = {
+				["<leader>a"] = "@parameter.inner",
+			},
+			swap_previous = {
+				["<leader>A"] = "@parameter.inner",
+			},
+		},
+		move = {
+			enable = true,
+			goto_next_start = {
+				["]m"] = "@function.outer",
+				["]]"] = "@class.outer",
+			},
+			goto_next_end = {
+				["]M"] = "@function.outer",
+				["]["] = "@class.outer",
+			},
+			goto_previous_start = {
+				["[m"] = "@function.outer",
+				["[["] = "@class.outer",
+			},
+			goto_previous_end = {
+				["[M"] = "@function.outer",
+				["[]"] = "@class.outer",
+			},
+		},
 	},
 	ensure_installed = { -- one of 'all', 'language' or a list of languages
 		'bash',
