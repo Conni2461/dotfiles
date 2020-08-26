@@ -1,4 +1,4 @@
-Plug 'kyazdani42/nvim-tree.lua'
+Plug 'kyazdani42/nvim-tree.lua', { 'on': 'LuaTreeToggle' }
 
 let g:lua_tree_side = 'left' "left by default
 let g:lua_tree_width = 40 "30 by default
