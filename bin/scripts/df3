@@ -3,7 +3,7 @@
 output=$(df -kHT)
 echo "${output}" | sed 1q
 
-if ! command -v grc &> /dev/null; then
+if ! command -v grc >/dev/null 2>&1; then
 	echo "${output}" | grep -Ew '/|boot|home|internal'
 else
 	coloredoutput=$(grc --colour=on df -kHT)

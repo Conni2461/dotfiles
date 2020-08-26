@@ -1,19 +1,19 @@
 #!/bin/sh
 
-if [[ "$EUID" != "0" ]] ; then
+if [ "$(id -u)" != "0" ] ; then
     echo 'You must be root to run this program.'
     exit 1
 fi
 
 pids="$(lsof -d DEL 2>/dev/null | awk '$8~/\/usr\/lib/ {printf $2" "}')"
-[[ -z "$pids" ]] && exit 0
+[ -z "$pids" ] && exit 0
 
 services="$(ps -o unit= $pids | sort -u)"
-[[ -z "$services" ]] && exit 0
+[ -z "$services" ] && exit 0
 
 selection=$(echo "$services" | grep 'service' | sk -m --reverse)
 
-[[ -z "$selection" ]] && exit 0
+[ -z "$selection" ] && exit 0
 
 echo "$selection" | while read -r i; do
 	systemctl restart "$i"

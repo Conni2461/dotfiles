@@ -66,12 +66,14 @@ Also you should change the email and name in the `.gitconfig` as well as the rem
 
 ## Bash
 
-Dotfiles provide [clipmenu](https://github.com/cdown/clipmenu) which requires dmenu, xsel and clipnotify.
+Dotfiles provide [clipmenu](https://github.com/cdown/clipmenu) which requires [dmenu](https://tools.suckless.org/dmenu/), [xsel](http://www.vergenet.net/~conrad/software/xsel/) and [clipnotify](https://github.com/cdown/clipnotify).
 Also a spotify commandline handler script [sp](https://gist.github.com/wandernauta/6800547).
-All credits goes to the creator of those scripts.
+All credits goes to the creators of those scripts.
 
-Some scripts in the bin folder require `dmenu`, `skim`, `the_silver_searcher`, `fd` and `ripgrep`.
-Also twitch-notify requires `python-notify2`.
+Most of the scripts are written for POSIX compliant shells. All scripts with `/bin/sh` are programmed and tested with [dash](http://gondor.apana.org.au/~herbert/dash/) and are not garanteed to run with [bash](https://www.gnu.org/software/bash/bash.html). How to configure and use dash, can be found [here](https://wiki.archlinux.org/index.php/Dash).
+
+Some scripts in the bin folder require [dmenu](https://tools.suckless.org/dmenu/), [skim](https://github.com/lotabout/skim), [the_silver_searcher](https://github.com/ggreer/the_silver_searcher), [fd](https://github.com/sharkdp/fd) and [ripgrep](https://github.com/BurntSushi/ripgrep).
+Also [twitch-notify](bin/croncmds/twitch-notify.py) and [github-notify](bin/croncmds/github-notify.py) require [python-notify2](https://pypi.org/project/notify2/).
 
 ## Zsh
 
@@ -81,8 +83,8 @@ If you ran into problems check the path of both extensions. It is possible that 
 
 ## Vim
 
-- Neovim >= 0.5 required. (Probobly nightly build)
-- pyneovim (Python client for Neovim)
+- [Neovim](https://github.com/neovim/neovim/) >= 0.5 required. (Probobly nightly build)
+- [pyneovim](https://github.com/neovim/pynvim) (Python client for Neovim)
 
 When neovim is started for the first time, vim-plug is downloaded and `:PlugInstall` is executed.
 To update plugins use `:PlugUpdate` and to upgrade vim-plug run `:PlugUpgrade`.
@@ -148,4 +150,4 @@ Some plugins require additional packages installed:
   - [texlab](https://github.com/latex-lsp/texlab) for latex
   - [tsserver](https://github.com/theia-ide/typescript-language-server) for TypeScript
   - [vimls](https://github.com/iamcco/vim-language-server) for vimlang
-  - additional linters can be configured [here](.config/nvim/plugins.post.d/70-nvim-lsp.vim). Take a look at [nvim-lsp](https://github.com/neovim/nvim-lsp).
+  - additional linters can be configured [here](.config/nvim/plugins.post.d/61-nvim-lsp.lua). Take a look at [nvim-lsp](https://github.com/neovim/nvim-lsp).

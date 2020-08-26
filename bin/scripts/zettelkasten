@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 export LC_ALL=C
 
@@ -25,28 +25,28 @@ err()
 create()
 {
 	fn=$(date +%Y%m%d%H%M)
-	pushd "$dir" >/dev/null || exit 1
+	cd "$dir" >/dev/null || exit 1
 
 	if [ -f "$fn.md" ]; then
 		err "File already exists"
 		exit 1
 	fi
 
-	echo -e "# $fn\nTags:\n\n\n\n" > "$fn.md"
+	printf "# $fn\nTags:\n\n\n\n" > "$fn.md"
 
 	$EDITOR "$fn.md"
-	popd >/dev/null || exit 1
+	cd - >/dev/null || exit 1
 }
 
 open()
 {
-	pushd "$dir" >/dev/null || exit 1
+	cd "$dir" >/dev/null || exit 1
 	script='highlight --out-format=ansi --force $(echo {} | cut -d" " -f 1 | sed -e "s/$/.md/g")'
 	sel=$(head -n1 -q * | sed -e 's/# //g' | sk -m --reverse --preview "$script" | cut -d' ' -f 1)
 
-	[ "$sel" == "" ] && exit 0
+	[ "$sel" = "" ] && exit 0
 	$EDITOR "$sel.md"
-	popd >/dev/null || exit 1
+	cd - >/dev/null || exit 1
 }
 
 grepn()
@@ -54,46 +54,32 @@ grepn()
 	echo -n "Input search string: "
 	read -r Search
 
-	pushd "$dir" >/dev/null || exit 1
+	cd "$dir" >/dev/null || exit 1
 	sel=$(grep -l "$Search" * | fzf --preview "highlight --out-format=ansi --force {} | grep --color=always -z '$Search'")
 
-	[ "$sel" == "" ] && exit 0
+	[ "$sel" = "" ] && exit 0
 	$EDITOR "$sel"
-	popd >/dev/null || exit 1
+	cd - >/dev/null || exit 1
 }
 
 delete()
 {
-	pushd "$dir" >/dev/null || exit 1
+	cd "$dir" >/dev/null || exit 1
 	script='highlight --out-format=ansi --force $(echo {} | cut -d" " -f 1 | sed -e "s/$/.md/g")'
 	sel=$(head -n1 -q * | sed -e 's/# //g' | fzf --preview "$script" | cut -d' ' -f 1)
 
-	[ "$sel" == "" ] && exit 0
+	[ "$sel" = "" ] && exit 0
 	rm "$sel.md"
-	popd >/dev/null || exit 1
+	cd - >/dev/null || exit 1
 }
 
-
 case "$option" in
-	-c|--create)
-		create
-		;;
-	-o|--open)
-		open
-		;;
-	-g|--grep)
-		grepn
-		;;
-	-d|--delete)
-		delete
-		;;
-	-h|--help)
-		echo "$usage"
-		;;
-	-v|--version)
-		echo -e "Zettelkasten Version 0.1\nLicense: MIT"
-		;;
-	*)
-		err "Not a valid option"
-		;;
+	-c|--create) create ;;
+	-o|--open) open ;;
+	-g|--grep) grepn ;;
+	-d|--delete) delete ;;
+	-h|--help) echo "$usage" ;;
+	-v|--version) echo "Zettelkasten Version 0.1\nLicense: MIT" ;;
+	"") echo "$usage" ;;
+	*) err "Not a valid option" ;;
 esac
