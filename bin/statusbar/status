@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 
 max_length=80
 
-window=$(xtitle)
+window="$(xdotool getactivewindow getwindowname)"
 
-if (( ${#window} > $max_length)); then
-	window="${window:0:$max_length} ..."
+if [ ${#window} -gt ${max_length} ]; then
+	window="$(echo ${window} | cut -c1-${max_length}) ..."
 fi
 
 echo $window

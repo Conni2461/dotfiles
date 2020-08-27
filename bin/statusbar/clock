@@ -25,8 +25,3 @@ fi
 
 icon=$(grep -w "$word" ~/bin/shared/unicode | grep -w "$addition" | awk '{print $1}')
 echo "$icon" "$(date '+%m/%d/%Y %I:%M %p')"
-
-case $BLOCK_BUTTON in
-	1) pgrep -x dunst >/dev/null && notify-send "This Month" "$(cal --color=always | sed "s/..7m/<b><span color=\"red\">/;s/..27m/<\/span><\/b>/")" ;;
-	3) pgrep -x dunst >/dev/null && notify-send "Time/date module:" "\- Left click to show the month via \`cal\`"
-esac
