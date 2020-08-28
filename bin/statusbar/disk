@@ -6,7 +6,4 @@
 
 [ -z "$1" ] && exit
 
-icon="$2"
-[ -z "$2" ] && icon="$1"
-
-printf "%s: %s" "$icon" "$(df -h "$1" | awk ' /[0-9]/ {print $3 "/" $2}')"
+printf "%s" "$(df -h "$1" | awk ' /[0-9]/ {print $3 "/" $2}')"

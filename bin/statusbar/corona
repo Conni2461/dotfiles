@@ -1,10 +1,39 @@
 #!/bin/sh
 
-if [ "$(stat -c %y ~/.cache/corona 2>/dev/null | cut -d' ' -f2 | cut -d':' -f1)" != "$(date '+%H')" ] || [ "$1" = "-r" ]; then
-	curl -s https://corona-stats.online/de > ~/.cache/corona
+# corona [-r] [country code]
+
+usage="Usage: $0 [Options] [country code]
+Outputs some basic corona information per country base.
+Can be used in a Statusbar.
+
+If no country code is given, the data of the country is shown which currently has the most cases.
+Options:
+  -r                    force a refresh of the cache.
+                        without -r a refresh is done every hour.
+                        changing country codes also results in an refresh.
+
+  -h                    shows help page"
+
+case $1 in
+	-r ) refresh="true"; shift ;;
+	-h ) echo "$usage"; exit 0 ;;
+	"" ) ;;
+	-* ) echo "$usage"; exit 0 ;;
+esac
+
+country_code=$1
+prev_code=$(cat ~/.cache/corona 2>/dev/null | tail -n 1)
+
+if [ "$(stat -c %y ~/.cache/corona 2>/dev/null | cut -d' ' -f2 | cut -d':' -f1)" != "$(date '+%H')" ] || [ "$refresh" = "true" ] || [ "$prev_code" != "$country_code" ]; then
+	curl -s "https://corona-stats.online/${country_code}" > ~/.cache/corona
+	printf "\n%s\n" ${country_code} >> ~/.cache/corona
 fi
 
-grep "Germany" ~/.cache/corona \
-	| sed "s/\s*//g; s/▲/ ⬆/g; s/▼/ ⬇/g; s/║//g; s/│/;/g; s/,//g; s/\x1b\[[0-9;]*m//g" \
-	| awk -F';' '{ printf "😷 %s (%s) 💀 %s (%.2f \%)\n", $3, $4, $5, 100*$5/$3 }' 2>/dev/null \
-	| sed ':a;s/\B[0-9]\{3\}\>/,&/;ta'
+print_data() {
+	echo $1 \
+		| sed "s/\s*//g; s/▲/ ⬆/g; s/▼/ ⬇/g; s/║//g; s/│/;/g; s/,//g; s/\x1b\[[0-9;]*m//g" \
+		| awk -F';' '{ printf "😷 %s (%s) 💀 %s (%.2f \%)\n", $3, $4, $5, 100*$5/$3 }' 2>/dev/null \
+		| sed ':a;s/\B[0-9]\{3\}\>/,&/;ta'
+}
+
+print_data "$(sed -n 4p ~/.cache/corona)"

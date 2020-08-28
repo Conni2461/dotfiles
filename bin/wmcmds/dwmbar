@@ -1,58 +1,53 @@
 #!/bin/sh
 
-fcorona()
-{
-	rcorona=$(corona)
-	[ "${rcorona}" != "" ] && echo "${rcorona} | "
+# To disable modules place a # in front of the module
+# module [module arg currently max 1] [prefix]
+
+modules="#todols 📝
+#appointments 📅
+#corona de
+#weather
+news 📰
+mailbox 📬
+#cpu 🌡️
+#memory 🧠
+#disk /dev/sda4 💽
+pacpackages 📦
+#internet
+#battery BAT0
+volume"
+
+mrun() {
+	if echo $2 | grep -Eq "^[A-Za-z0-9/]+$"; then
+		[ "$3" != "" ] && symbol="$3 " || symbol=""
+		arg="$2"
+	else
+		[ "$2" != "" ] && symbol="$2 " || symbol=""
+	fi
+	tmp=$($1 $arg)
+
+	[ "$tmp" != "" ] && echo "${symbol}${tmp} | "
 }
 
-ftodo()
-{
-	rtodo=$(todo | sed '/^[[:space:]]*$/d' | wc -l | sed 's/^0$//g')
-	[ "${rtodo}" != "" ] && echo "📝 ${rtodo} | "
-}
+fmodules() {
+	IFS='
+	'
+	for m in $modules; do
+		if [ "$m" != "${m#\#}" ]; then
+			continue
+		fi
+		arg1=$(echo $m | awk '{print $1;}')
+		arg2=$(echo $m | awk '{print $2;}')
+		arg3=$(echo $m | awk '{print $3;}')
 
-fappointments()
-{
-	rappointments=$(appointments)
-	[ "${rappointments}" != "" ] && echo "📅 ${rappointments} | "
-}
+		output="$output$(mrun $arg1 $arg2 $arg3)"
+	done
 
-fnews()
-{
-	rnews=$(news)
-	[ "${rnews}" != "" ] && echo "📰 ${rnews} | "
-}
-
-fpacpackages()
-{
-	rpac=$(pacpackages)
-	[ "${rpac}" != "" ] && echo "📦 ${rpac} | "
-}
-
-fweather()
-{
-	rweather=$(weather)
-	[ "${rweather}" != "" ] && echo "${rweather} | "
-}
-
-fmailbox()
-{
-	rbox=$(mailbox)
-	[ "${rbox}" != "" ] && echo "📬 ${rbox} | "
-}
-
-fbattery()
-{
-	capacity=$(cat /sys/class/power_supply/"$1"/capacity) || exit
-	status=$(cat /sys/class/power_supply/"$1"/status)
-
-	[ "${capacity}" -lt 25 ] && warn="❗" || warn=" "
-	printf "%s%s%s" "$(echo "$status" | sed -e "s/,//;s/Discharging/🔋/;s/Not Charging/🛑/;s/Charging/🔌/;s/Unknown/♻️/;s/Full/⚡/;s/ 0*/ /g;s/ :/ /g")" "$warn" "$(echo "$capacity" | sed -e 's/$/%/')"
+	echo $output
 }
 
 while true; do
-	xsetroot -name "$(fmailbox)$(fpacpackages)$(fweather)$(volume) | $(internet) | $(fbattery BAT1) | $(fbattery BAT2) | $(clock)"
+	xsetroot -name "$(fmodules)$(clock)"
 
 	sleep 15
 done
