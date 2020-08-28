@@ -173,7 +173,45 @@
 	map <C-l> <C-w>l
 
 " Compile document, be it groff/LaTeX/markdown/etc.
-	nnoremap <leader>c :w! \| !compiler <c-r>%<CR>
+	function! s:run_term(cmd, cwd) abort
+		belowright 10new
+		setlocal buftype=nofile winfixheight norelativenumber nonumber bufhidden=wipe
+
+		let bufnr = bufnr('')
+
+		function! s:OnExit(status) closure abort
+			if a:status == 0
+				execute 'silent! bd! '.bufnr
+				call lightline#update()
+			endif
+		endfunction
+
+		if has('nvim')
+			call termopen(a:cmd, {
+				\ 'cwd': a:cwd,
+				\ 'on_exit': {job, status -> s:OnExit(status)},
+			\})
+		else
+			let cmd = a:cmd
+			call term_start(cmd, {
+				\ 'curwin': 1,
+				\ 'cwd': a:cwd,
+				\ 'exit_cb': {job, status -> s:OnExit(status)},
+			\})
+		endif
+
+		normal! G
+		noautocmd wincmd p
+	endfunction
+
+	function! CompileCode() abort
+		w!
+		let cmd = printf('compiler %s', expand('%:p'))
+		let cwd = getcwd()
+		call s:run_term(cmd, cwd)
+	endfunction
+
+	nnoremap <leader>c :call CompileCode()<CR>
 
 " Open corresponding .pdf/.html or preview
 	nnoremap <leader>p :!opout <c-r>%<CR><CR>

@@ -5,26 +5,20 @@
 # Opens .sent files as sent presentations.
 # Runs scripts based on extention or shebang
 
-make_build()
-{
+make_build() {
 	if [ -f Makefile ] || [ -f makefile ]; then
-		make -j && exit 0
-		read
-		exit 1
+		make -j && exit 0 || exit 1
 	fi
 }
 
-cmake_build()
-{
+cmake_build() {
 	if [ -d build ]; then
 		cd build || exit
 		if [ -f Makefile ] || [ -f makefile ]; then
-			make -j && exit 0
+			make -j && exit 0 || exit 1
 		elif [ -f build.ninja ]; then
-			ninja && exit 0
+			ninja && exit 0 || exit 1
 		fi
-		read
-		exit 1
 	fi
 }
 
@@ -34,13 +28,7 @@ base="${file%.*}"
 
 make_build
 cmake_build
-[ -f Cargo.toml ] && cargo build && exit 0
-
-cd "$dir" || exit
-
-make_build
-cmake_build
-[ -f Cargo.toml ] && cargo build && exit 0
+[ -f Cargo.toml ] && { cargo build && exit 0 || exit 1 ; }
 
 textype() { \
 	command="pdflatex"
