@@ -1,4 +1,6 @@
-Plug 'neovim/nvim-lsp'
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
 Plug 'nvim-lua/completion-nvim'
 Plug 'nvim-lua/diagnostic-nvim'
 Plug 'steelsojka/completion-buffers'
@@ -43,6 +45,11 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
+
+" Enable Snippet Support
+let g:completion_enable_snippet = 'vim-vsnip'
+
+imap <expr> <C-f> vsnip#available(1) ? '<Plug>(vsnip-expand-or-jump)' : '<C-f>'
 
 inoremap <silent> <expr> <C-Space> completion#trigger_completion()
 

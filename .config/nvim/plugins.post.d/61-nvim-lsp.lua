@@ -3,7 +3,7 @@ local util     = require'nvim_lsp/util'
 
 local chain_complete_list = {
 	default = {
-		{complete_items = {'lsp'}},
+		{complete_items = {'lsp', 'snippet'}},
 		{complete_items = {'path'}, triggered_only = {'./', '/'}},
 		{complete_items = {'buffers'}},
 	},
@@ -14,27 +14,47 @@ local chain_complete_list = {
 	comment = {},
 }
 
+local bytemarkers = { {0x7FF, 192}, {0xFFFF, 224}, {0x1FFFFF, 240} }
+local function utf8(decimal)
+	if decimal < 128 then
+		return string.char(decimal)
+	end
+	local charbytes = {}
+	for bytes,vals in ipairs(bytemarkers) do
+		if decimal <= vals[1] then
+			for b = bytes + 1, 2, -1 do
+				local mod = decimal % 64
+				decimal = (decimal - mod) / 64
+				charbytes[b] = string.char(128 + mod)
+			end
+			charbytes[1] = string.char(vals[2] + decimal)
+			break
+		end
+	end
+	return table.concat(charbytes)
+end
+
 local customize_lsp_label = {
-	 Method = ' [method]',
-	 Function = ' [function]',
-	 Variable = ' [variable]',
-	 Field = ' [field]',
-	 Class = 'פּ [class]',
-	 Struct = 'פּ [struct]',
-	 Interface = ' [interface]',
-	 Module = ' [module]',
-	 Property = ' [property]',
-	 Value = ' [value]',
-	 Enum = ' [enum]',
-	 Operator = ' [operator]',
-	 Reference = ' [reference]',
-	 Keyword = ' [keyword]',
-	 Color = ' [color]',
-	 Unit = ' [unit]',
-	 Snippet = ' [snippet]',
-	 Text = ' [text]',
-	 Buffers = ' [buffers]',
-	 TypeParameter = ' [type]',
+	 Method = utf8(0xf794) .. ' [method]',
+	 Function = utf8(0xf794) .. ' [function]',
+	 Variable = utf8(0xf6a6) .. ' [variable]',
+	 Field = utf8(0xf6a6) .. ' [field]',
+	 Class = utf8(0xfb44) .. ' [class]',
+	 Struct = utf8(0xfb44) .. ' [struct]',
+	 Interface = utf8(0xf836) .. ' [interface]',
+	 Module = utf8(0xf668) .. ' [module]',
+	 Property = utf8(0xf0ad) .. ' [property]',
+	 Value = utf8(0xf77a) .. ' [value]',
+	 Enum = utf8(0xf77a) .. ' [enum]',
+	 Operator = utf8(0xf055) .. ' [operator]',
+	 Reference = utf8(0xf838) .. ' [reference]',
+	 Keyword = utf8(0xf80a) .. ' [keyword]',
+	 Color = utf8(0xe22b) .. ' [color]',
+	 Unit = utf8(0xe3ce) .. ' [unit]',
+	 Snippet = utf8(0xf68e) .. ' [snippet]',
+	 Text = utf8(0xf52b) .. ' [text]',
+	 Buffers = utf8(0xf64d) .. ' [buffers]',
+	 TypeParameter = utf8(0xf635) .. ' [type]',
 }
 
 local on_attach = function(_, _)
@@ -106,6 +126,7 @@ setup_ls(nvim_lsp.r_language_server, { "R", "--slave", "-e", "languageserver::ru
 setup_ls(nvim_lsp.rust_analyzer, "rust-analyzer", nvim_lsp.rls, "rls")
 setup_ls(nvim_lsp.solargraph, { "solargraph", "stdio" })
 setup_ls(nvim_lsp.sumneko_lua, "lua-language-server")
+setup_ls(nvim_lsp.sqlls, "sql-language-server")
 setup_ls(nvim_lsp.texlab, "texlab")
 setup_ls(nvim_lsp.tsserver, { "typescript-language-server", "--stdio" })
 setup_ls(nvim_lsp.vimls, { "vim-language-server", "--stdio" })
