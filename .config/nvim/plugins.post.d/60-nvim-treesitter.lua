@@ -2,17 +2,15 @@ local ts = require'nvim-treesitter.configs'
 
 ts.setup {
 	highlight = {
-		enable = true,                    -- false will disable the whole extension
-		-- disable = { 'c', 'rust' },     -- list of language that will be disabled
+		enable = true,
 	},
 	incremental_selection = {
 		enable = true,
-		-- disable = { 'cpp', 'lua' },    -- list of language that will be disabled
-		keymaps = {                       -- mappings for incremental selection (visual mappings)
-			init_selection = 'gnn',       -- maps in normal mode to init the node/scope selection
-			node_incremental = "grn",     -- increment to the upper named parent
-			scope_incremental = "grc",    -- increment to the upper scope (as defined in locals.scm)
-			node_decremental = "grm",     -- decrement to the previous node
+		keymaps = {
+			init_selection = 'gnn',
+			node_incremental = "grn",
+			scope_incremental = "grc",
+			node_decremental = "grm",
 		}
 	},
 	refactor = {
@@ -25,14 +23,16 @@ ts.setup {
 		smart_rename = {
 			enable = true,
 			keymaps = {
-				smart_rename = "grr",     -- mapping to rename reference under cursor
+				smart_rename = "grr",
 			}
 		},
 		navigation = {
 			enable = true,
 			keymaps = {
-				goto_definition = "gnd",  -- mapping to go to definition of symbol under cursor
-				list_definitions = "gnD", -- mapping to list all definitions in current file
+				goto_definition = "gnd",
+				list_definitions = "gnD",
+				goto_next_usage = "<a-*>",
+				goto_previous_usage = "<a-#>",
 			}
 		}
 	},
@@ -98,7 +98,6 @@ ts.setup {
 		'javascript',
 		'json',
 		'lua',
-		'markdown',
 		'python',
 		'regex',
 		'rst',
