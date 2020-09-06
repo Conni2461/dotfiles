@@ -5,6 +5,11 @@
 # Opens .sent files as sent presentations.
 # Runs scripts based on extention or shebang
 
+pause() {
+	echo
+	read -p "Press key to continue..." tmp
+}
+
 make_build() {
 	if [ -f Makefile ] || [ -f makefile ]; then
 		make -j && exit 0 || exit 1
@@ -46,12 +51,12 @@ case "$file" in
 	*\.rmd) echo "require(rmarkdown); render('$file')" | R -q --vanilla ;;
 	*\.tex) textype "$file" ;;
 	*\.md) pandoc "$file" --pdf-engine=xelatex -o "$base".pdf ;;
-	*\.c) cc "$file" -o "$base" && "$base" ;;
-	*\.cpp) c++ "$file" -o "$base" && "$base" ;;
-	*\.py) python "$file" ;;
-	*\.r) Rscript "$file" ;;
-	*\.go) go run "$file" ;;
-	*\.lua) lua "$file" ;;
+	*\.c) cc "$file" -o "$base" && "$base" && pause || exit 1 ;;
+	*\.cpp) c++ "$file" -o "$base" && "$base" && pause || exit 1 ;;
+	*\.py) python "$file" && pause || exit 1 ;;
+	*\.r) Rscript "$file" && pause || exit 1 ;;
+	*\.go) go run "$file" && pause || exit 1 ;;
+	*\.lua) lua "$file" && pause || exit 1 ;;
 	*\.sent) setsid sent "$file" 2>/dev/null & ;;
 	*) sed 1q "$file" | grep "^#!/" | sed "s/^#!//" | xargs -r -I % "$file" ;;
 esac

@@ -1,7 +1,7 @@
 " Snippets
 " Snippet navigation
 	inoremap <Leader><Leader> <Esc>/<++><Enter>"_c4l
-	vnoremap <Leader><Leader> <Esc>/<++><Enter>"_c4l
+	xnoremap <Leader><Leader> <Esc>/<++><Enter>"_c4l
 	nnoremap <Leader><Leader> <Esc>/<++><Enter>"_c4l
 
 " Load Snippets

@@ -2,7 +2,6 @@
 	imap jk <Esc>
 
 	set background=light
-	set syntax=on
 	set mouse=a
 	set hlsearch
 	set smartcase
@@ -50,6 +49,7 @@
 	ca w!! w !sudo tee >/dev/null "%"
 
 " History
+	" set noswapfile
 	set history=10000
 	set undofile
 	set undodir=~/.local/share/nvim/undo
@@ -122,27 +122,30 @@
 " Navigate Display Lines
 	nnoremap <silent><expr> k       v:count == 0 ? 'gk' : 'k'
 	nnoremap <silent><expr> j       v:count == 0 ? 'gj' : 'j'
-	vnoremap <silent><expr> k       v:count == 0 ? 'gk' : 'k'
-	vnoremap <silent><expr> j       v:count == 0 ? 'gj' : 'j'
+	xnoremap <silent><expr> k       v:count == 0 ? 'gk' : 'k'
+	xnoremap <silent><expr> j       v:count == 0 ? 'gj' : 'j'
 	nnoremap <silent><expr> <Up>    v:count == 0 ? 'gk' : 'k'
 	nnoremap <silent><expr> <Down>  v:count == 0 ? 'gj' : 'j'
 	nnoremap H 0
 	nnoremap L $
+	nnoremap <silent><expr> G &wrap ? "G$g0" : "G"
+	nnoremap <silent><expr> 0 &wrap ? "g0" : "0"
+	nnoremap <silent><expr> $ &wrap ? "g$" : "$"
 
 "" Vmap for maintain Visual Mode after shifting > and <
-	vmap < <gv
-	vmap > >gv
+	xnoremap < <gv
+	xnoremap > >gv
 
 " Bubble single lines
-	nnoremap <C-Up> :m .-2<CR>
+	nnoremap <C-Up>   :m .-2<CR>
 	nnoremap <C-Down> :m  .+1<CR>
 
 " Bubble multiple lines
-	vnoremap <silent> <C-Up>  @='"zxk"zP`[V`]'<CR>
-	vnoremap <silent> <C-Down>  @='"zx"zp`[V`]'<CR>
+	xnoremap <silent> <C-Up>   @='"zxk"zP`[V`]'<CR>
+	xnoremap <silent> <C-Down> @='"zx"zp`[V`]'<CR>
 
 " Copy paste with primary clipboard
-	vnoremap <C-c> "+y
+	xnoremap <C-c> "+y
 	map <C-p> "+p
 	nnoremap s "_d
 
@@ -201,17 +204,30 @@
 		endif
 
 		normal! G
-		noautocmd wincmd p
+		startinsert
 	endfunction
 
-	function! CompileCode() abort
-		w!
+	function! s:compile_code() abort
+		:silent! write
 		let cmd = printf('compiler %s', expand('%:p'))
 		let cwd = getcwd()
 		call s:run_term(cmd, cwd)
 	endfunction
 
-	nnoremap <leader>c :call CompileCode()<CR>
+	nnoremap <leader>c :call <SID>compile_code()<CR>
+
+" Execute this file
+	function! s:save_and_exec() abort
+		if &filetype == 'vim'
+			:silent! write
+			:source %
+		elseif &filetype == 'lua'
+			:silent! write
+			:luafile %
+		endif
+		return
+	endfunction
+	nnoremap <leader>x :call <SID>save_and_exec()<CR>
 
 " Open corresponding .pdf/.html or preview
 	nnoremap <leader>p :!opout <c-r>%<CR><CR>

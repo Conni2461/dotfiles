@@ -6,7 +6,7 @@ autocmd FileType tex inoremap ,fi \begin{fitch}<Enter><Enter>\end{fitch}<Enter><
 autocmd FileType tex inoremap ,exe \begin{exe}<Enter>\ex<Space><Enter>\end{exe}<Enter><Enter><++><Esc>3kA
 autocmd FileType tex inoremap ,em \emph{}<++><Esc>T{i
 autocmd FileType tex inoremap ,bf \textbf{}<++><Esc>T{i
-autocmd FileType tex vnoremap , <ESC>`<i\{<ESC>`>2la}<ESC>?\\{<Enter>a
+autocmd FileType tex xnoremap , <ESC>`<i\{<ESC>`>2la}<ESC>?\\{<Enter>a
 autocmd FileType tex inoremap ,it \textit{}<++><Esc>T{i
 autocmd FileType tex inoremap ,ct \textcite{}<++><Esc>T{i
 autocmd FileType tex inoremap ,cp \parencite{}<++><Esc>T{i
