@@ -33,7 +33,7 @@
 		" Fix folding color
 		hi Folded ctermfg=234 cterm=bold
 
-		" Fix tooltip and Clap
+		" Fix tooltip
 		hi Pmenu ctermfg=255 ctermbg=238
 
 		" Fix Git Gutter

@@ -43,10 +43,7 @@ let g:lightline = {
 \}
 
 au User LspDiagnosticsChanged call lightline#update()
-au User ClapOnExit call lightline#update()
-au BufEnter call lightline#update()
-au BufLeave call lightline#update()
-au BufDelete call lightline#update()
+au BufEnter,BufLeave,BufDelete call lightline#update()
 au BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
 function! GitStatus() abort

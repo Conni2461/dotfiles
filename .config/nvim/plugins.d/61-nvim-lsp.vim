@@ -31,7 +31,6 @@ nnoremap <leader>ac <cmd>lua vim.lsp.buf.document_symbol()<CR>
 
 nnoremap <leader>an :NextDiagnosticCycle<CR>
 nnoremap <leader>ap :PrevDiagnosticCycle<CR>
-nnoremap <leader>ae :Clap loclist<CR>
 nnoremap <leader>al <cmd>lua require'diagnostic.util'.show_line_diagnostics()<CR>
 
 augroup SwitchSource
