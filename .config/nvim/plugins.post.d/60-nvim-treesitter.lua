@@ -86,6 +86,11 @@ ts.setup {
 			},
 		},
 	},
+	playground = {
+		enable = true,
+		updatetime = 25,
+		persist_queries = false
+	},
 	ensure_installed = { -- one of 'all', 'language' or a list of languages
 		'bash',
 		'c',
