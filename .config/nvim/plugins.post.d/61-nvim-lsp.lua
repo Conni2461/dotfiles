@@ -62,12 +62,35 @@ local on_attach = function(_, _)
 	require'completion'.on_attach({
 		chain_complete_list = chain_complete_list,
 		customize_lsp_label = customize_lsp_label,
+		enable_auto_signatur = 1,
 		auto_change_source = 1,
 	})
 	vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.util.show_line_diagnostics()')
 end
 
-local function setup_ls(ls, ls_cmd, backup, backup_cmd)
+local cap = {
+	textDocument = {
+		completion = {
+			completionItem = {
+				snippetSupport = true
+			}
+		}
+	}
+}
+
+local lua_settings = {
+	Lua = {
+		runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
+		workspace = {
+			library = {
+				[vim.fn.expand("$VIMRUNTIME/lua")] = true,
+				[vim.fn.expand("~/build/neovim/src/nvim/lua")] = true,
+			},
+		},
+	},
+}
+
+local function setup_ls(ls, ls_cmd, backup, backup_cmd, passed_settings)
 	local bin, arr
 	local backup_bin, backup_arr
 	if type(ls_cmd) == "string" then
@@ -93,6 +116,8 @@ local function setup_ls(ls, ls_cmd, backup, backup_cmd)
 		ls.setup{
 			on_attach = on_attach;
 			cmd = arr;
+			capabilities = cap;
+			settings = passed_settings;
 		}
 	else
 		if not (backup == nil) then
@@ -100,6 +125,8 @@ local function setup_ls(ls, ls_cmd, backup, backup_cmd)
 				backup.setup{
 					on_attach = on_attach;
 					cmd = backup_arr;
+					capabilities = cap;
+					settings = passed_settings;
 				}
 			end
 		end
@@ -125,7 +152,7 @@ setup_ls(nvim_lsp.pyls_ms, "mspyls", nvim_lsp.pyls, "pyls")
 setup_ls(nvim_lsp.r_language_server, { "R", "--slave", "-e", "languageserver::run()" })
 setup_ls(nvim_lsp.rust_analyzer, "rust-analyzer", nvim_lsp.rls, "rls")
 setup_ls(nvim_lsp.solargraph, { "solargraph", "stdio" })
-setup_ls(nvim_lsp.sumneko_lua, "lua-language-server")
+setup_ls(nvim_lsp.sumneko_lua, "lua-language-server", nil, nil, lua_settings)
 setup_ls(nvim_lsp.sqlls, "sql-language-server")
 setup_ls(nvim_lsp.texlab, "texlab")
 setup_ls(nvim_lsp.tsserver, { "typescript-language-server", "--stdio" })

@@ -6,10 +6,10 @@ Plug 'nvim-lua/diagnostic-nvim'
 Plug 'steelsojka/completion-buffers'
 Plug 'ncm2/float-preview.nvim'
 
-let g:indicator_errors = " "
-let g:indicator_warnings = " "
-let g:indicator_infos = " "
-let g:indicator_hints = "ﯧ "
+let g:indicator_errors = "\uf05e "
+let g:indicator_warnings = "\uf071 "
+let g:indicator_infos = "\uf7fc "
+let g:indicator_hints = "\ufbe6 "
 
 call sign_define("LspDiagnosticsErrorSign", {"text" : g:indicator_errors, "texthl" : "LspDiagnosticsError"})
 call sign_define("LspDiagnosticsWarningSign", {"text" : g:indicator_warnings, "texthl" : "LspDiagnosticsWarning"})
