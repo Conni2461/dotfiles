@@ -4,7 +4,7 @@ Plug 'nvim-lua/telescope.nvim'
 
 " lua RELOAD = require('plenary.reload').reload_module
 
-nnoremap <Leader>q  <cmd>lua require('plenary.reload').reload_module('telescope'); require'telescope.builtin'.fd{ shorten_path = true }<CR>
+nnoremap <Leader>q  <cmd>lua require('plenary.reload').reload_module('telescope'); require'telescope.builtin'.find_files{ shorten_path = true }<CR>
 nnoremap <Leader>w  <cmd>lua require('plenary.reload').reload_module('telescope'); require'telescope.builtin'.git_files{ shorten_path = true }<CR>
 nnoremap <Leader>gp <cmd>lua require('plenary.reload').reload_module('telescope'); require'telescope.builtin'.live_grep{}<CR>
 nnoremap <Leader>gw <cmd>lua require('plenary.reload').reload_module('telescope'); require'telescope.builtin'.lsp_references{}<CR>

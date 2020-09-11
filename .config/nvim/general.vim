@@ -59,7 +59,7 @@
 	set directory=~/.local/share/nvim/backup/
 
 " Buffer Setup
-	"set hidden
+	set hidden
 	nnoremap <leader>bn :enew<CR>
 	nnoremap <leader>bh :bprevious<CR>
 	nnoremap <leader>bl :bnext<CR>
