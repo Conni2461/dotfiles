@@ -16,6 +16,8 @@
 
 ## Introduction
 
+The current dotfiles refer to a system with [dwm](https://github.com/conni2461/dwm) and [st](https://github.com/conni2461/st). The remaining i3 configurations have been removed and are only accessible via the hash <code><a href="https://github.com/Conni2461/dotfiles/tree/a5978268a8b37fce1549b6658446bee8372d7442">a597826</a></code>.
+
 ## Table of Contents
 
 - [Install](#Install)
@@ -92,36 +94,45 @@ All further commands can be found on [vim-plugs github page](https://github.com/
 
 A full list of used plugins:
 
-| Plugin                                                                       | Description                                                                                                                                                                                               |
-| ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [signature](https://github.com/kshenoy/vim-signature)                        | Plugin to toggle, display and navigate marks                                                                                                                                                              |
-| [startify](https://github.com/mhinz/vim-startify)                            | The fancy start screen for Vim with session support                                                                                                                                                       |
-| [lastplace](https://github.com/farmergreg/vim-lastplace)                     | Intelligently reopen files at your last edit position                                                                                                                                                     |
-| [scrolling](https://github.com/psliwka/vim-smoothie)                         | Smoth scrolling with `Ctrl-d` / `Ctrl-u` / `Ctrl-f` / `Ctrl-b`                                                                                                                                            |
-| [animate](https://github.com/camspiers/animate.vim)                          | Vim animation api                                                                                                                                                                                         |
-| [fugitive](https://github.com/tpope/vim-fugitive)                            | Git Wrapper                                                                                                                                                                                               |
-| [rhubarb](https://github.com/tpope/vim-rhubarb)                              | GitHub extension for fugitive                                                                                                                                                                             |
-| [gitgutter](https://github.com/airblade/vim-gitgutter)                       | A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks and partial hunks.                                                                                                |
-| [git-messenger](https://github.com/rhysd/git-messenger.vim)                  | Show git messages with `<leader>gm`. Using nvim-floating-window                                                                                                                                           |
-| [gitignore highlight](https://github.com/gisphm/vim-gitignore)               | gitignore highlighting support                                                                                                                                                                            |
-| [clap](https://github.com/liuchengxu/vim-clap)                               | Modern generic interactive finder and dispatcher for Vim and NeoVim. Using nvim-floating-window. Shortcuts for files, buffer, grep, tags and marks. See [keybindings](.config/nvim/plugins.d/30-clap.vim) |
-| [goyo](https://github.com/junegunn/goyo.vim)                                 | Distraction-free writing in Vim                                                                                                                                                                           |
-| [limelight](https://github.com/junegunn/limelight.vim)                       | Hyperfocus-writing in Vim                                                                                                                                                                                 |
-| [vimwiki](https://github.com/vimwiki/vimwiki)                                | Personal Wiki for Vim                                                                                                                                                                                     |
-| [clever-f](https://github.com/rhysd/clever-f.vim)                            | Changes behavior of f/F and t/T                                                                                                                                                                           |
-| [commentary](https://github.com/tpope/vim-commentary)                        | comment stuff out with `gcc` to comment out line and `gc` in visual mode                                                                                                                                  |
-| [surround](https://github.com/tpope/vim-surround)                            | quoting/parenthesizing made simple                                                                                                                                                                        |
-| [CommentFrame](https://github.com/cometsong/CommentFrame.vim)                | Add comment frames. Use <leader>fcS for c/c++ and <leader>fch or <leader>fcH for bash                                                                                                                     |
-| [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)             | Currently used for Syntax highlighting and incremental selection. Currently the folding feature is disabled because it makes neovim startup times way worse                                               |
-| [nvim-lsp](https://github.com/neovim/nvim-lsp)                               | Providing config for built-in lsp                                                                                                                                                                         |
-| [completion](https://github.com/nvim-lua/completion-nvim)                    | Adds completion for nvim-lsp                                                                                                                                                                              |
-| [diagnostic](https://github.com/nvim-lua/diagnostic-nvim)                    | Changes default nvim-lsp diagnostics behavior                                                                                                                                                             |
-| [buffer completion](https://github.com/steelsojka/completion-buffers)        | Adds word completion for all words in all open buffers. Additional source for completion-nvim                                                                                                             |
-| [lightline](https://github.com/itchyny/lightline.vim)                        | A light and configurable statusline/tabline plugin                                                                                                                                                        |
-| [lightline bufferline](https://github.com/mengelbrecht/lightline-bufferline) | A lightweight plugin to display the list of buffers in the lightline vim plugin                                                                                                                           |
-| [undotree](https://github.com/mbbill/undotree)                               | The undo history visualizer for VIM                                                                                                                                                                       |
-| [devicons](https://github.com/ryanoasis/vim-devicons)                        | Adds file type icons to Vim plugins such as: NERDTree, vim-airline, CtrlP, unite, Denite, lightline, vim-startify and many more                                                                           |
-| [css-color](https://github.com/ap/vim-css-color)                             | Adds color to hexcodes                                                                                                                                                                                    |
+| Plugin                                                                       | Description                                                                                                |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| [signature](https://github.com/kshenoy/vim-signature)                        | Plugin to toggle, display and navigate marks                                                               |
+| [scrolling](https://github.com/psliwka/vim-smoothie)                         | Smoth scrolling with `Ctrl-d` / `Ctrl-u` / `Ctrl-f` / `Ctrl-b`                                             |
+| [fugitive](https://github.com/tpope/vim-fugitive)                            | Git Wrapper                                                                                                |
+| [rhubarb](https://github.com/tpope/vim-rhubarb)                              | GitHub extension for fugitive                                                                              |
+| [gitgutter](https://github.com/airblade/vim-gitgutter)                       | A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks and partial hunks. |
+| [git-messenger](https://github.com/rhysd/git-messenger.vim)                  | Show git messages with `<leader>gm`. Using nvim-floating-window                                            |
+| [committia](https://github.com/rhysd/committia.vim)                          | Layout for git commit                                                                                      |
+| [gitignore highlight](https://github.com/gisphm/vim-gitignore)               | gitignore highlighting support                                                                             |
+| [clever-f](https://github.com/rhysd/clever-f.vim)                            | Changes behavior of f/F and t/T                                                                            |
+| [commentary](https://github.com/tpope/vim-commentary)                        | comment stuff out with `gcc` to comment out line and `gc` in visual mode                                   |
+| [surround](https://github.com/tpope/vim-surround)                            | quoting/parenthesizing made simple                                                                         |
+| [CommentFrame](https://github.com/cometsong/CommentFrame.vim)                | Add comment frames. Use <leader>fcS for c/c++ and <leader>fch or <leader>fcH for bash                      |
+| [css-color](https://github.com/ap/vim-css-color)                             | Adds color to hexcodes                                                                                     |
+| [startify](https://github.com/mhinz/vim-startify)                            | The fancy start screen for Vim with session support                                                        |
+| [lastplace](https://github.com/farmergreg/vim-lastplace)                     | Intelligently reopen files at your last edit position                                                      |
+| [animate](https://github.com/camspiers/animate.vim)                          | Vim animation api                                                                                          |
+| [popup](https://github.com/nvim-lua/popup.nvim)                              | An implementation of the Popup API from vim in Neovim.                                                     |
+| [plenary](https://github.com/nvim-lua/plenary.nvim)                          | All the lua functions I don't want to write twice.                                                         |
+| [telescope](https://github.com/nvim-lua/telescope.nvim)                      | Find, Filter, Preview, Pick. Fuzzyfinder written in Lua, with providers for treesitter and lsp.            |
+| [goyo](https://github.com/junegunn/goyo.vim)                                 | Distraction-free writing in Vim                                                                            |
+| [limelight](https://github.com/junegunn/limelight.vim)                       | Hyperfocus-writing in Vim                                                                                  |
+| [vimwiki](https://github.com/vimwiki/vimwiki)                                | Personal Wiki for Vim                                                                                      |
+| [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)             | Currently used for Syntax highlighting and incremental selection.                                          |
+| [treesitter playground](https://github.com/nvim-treesitter/playground)       | Treesitter playground integrated into Neovim. Interactive Debugging tool for treesitter                    |
+| [treesitter context](https://github.com/vigoux/treesitter-context.nvim)      | A context.vim clone powered by treesitter.                                                                 |
+| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                   | Providing config for built-in lsp                                                                          |
+| [vsnip](https://github.com/hrsh7th/vim-vsnip)                                | Snippet plugin for vim/nvim that supports LSP/VSCode's snippet format.                                     |
+| [vsnip integration](https://github.com/hrsh7th/vim-vsnip-integ)              | vim-vsnip integrations to other plugins.                                                                   |
+| [completion](https://github.com/nvim-lua/completion-nvim)                    | Adds completion for nvim-lsp                                                                               |
+| [diagnostic](https://github.com/nvim-lua/diagnostic-nvim)                    | Changes default nvim-lsp diagnostics behavior                                                              |
+| [buffer completion](https://github.com/steelsojka/completion-buffers)        | Adds word completion for all words in all open buffers. Additional source for completion-nvim              |
+| [floating preview](https://github.com/ncm2/float-preview.nvim)               | Less annoying completion preview window based on neovim's floating window                                  |
+| [lightline](https://github.com/itchyny/lightline.vim)                        | A light and configurable statusline/tabline plugin                                                         |
+| [lightline bufferline](https://github.com/mengelbrecht/lightline-bufferline) | A lightweight plugin to display the list of buffers in the lightline vim plugin                            |
+| [devicons](https://github.com/kyazdani42/nvim-web-devicons)                  | lua `fork` of vim-web-devicons for neovim                                                                  |
+| [undotree](https://github.com/mbbill/undotree)                               | The undo history visualizer for VIM                                                                        |
+| [file tree](https://github.com/kyazdani42/nvim-tree.lua)                     | A simple tree for neovim written in lua                                                                    |
 
 Some plugins require additional packages installed:
 
