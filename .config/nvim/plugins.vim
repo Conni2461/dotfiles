@@ -19,6 +19,7 @@
 	Plug 'tpope/vim-rhubarb'
 	Plug 'airblade/vim-gitgutter'
 	Plug 'rhysd/git-messenger.vim'
+	Plug 'rhysd/committia.vim'
 
 	Plug 'gisphm/vim-gitignore'
 
