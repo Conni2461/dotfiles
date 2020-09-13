@@ -24,30 +24,27 @@
 	last = log -1 HEAD --show-signature
 	uncommit = reset --soft HEAD~1
 
-	graph = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-
-	# Code Review
-	files = !git diff --name-only $(git merge-base HEAD \"$REVIEW_BASE\")
-	stat  = !git diff --stat $(git merge-base HEAD \"$REVIEW_BASE\")
-	review = !nvim -p $(git files) +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
-	reviewone = !nvim -p +\"tabdo Gdiff $REVIEW_BASE\" +\"let g:gitgutter_diff_base = '$REVIEW_BASE'\"
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	ldate = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+	ldatelong = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 
 	# External commands
-	af = "!files=$(fgst -a '[Add Files] >'); [ \"$files\" = \"\" ] && exit; git add $files && echo \"Files added:\" && echo \"$files\""
-	ah = "!files=$(fgst -a '[Add Hunks] >'); [ \"$files\" = \"\" ] && exit; git add --patch $files && echo \"Hunks added:\" && echo \"$files\""
-	cf = "!files=$(fgst -c '[Checkout Files] >'); [ \"$files\" = \"\" ] && exit; git checkout -- $files >/dev/null && echo \"Files checkouted:\" && echo \"$files\""
-	ch = "!files=$(fgst -c '[Checkout Hunks] >'); [ \"$files\" = \"\" ] && exit; git checkout -p -- $files && echo \"Hunks checkouted:\" && echo \"$files\""
-	uf = "!files=$(fgst -u '[Unstage Files] >'); [ \"$files\" = \"\" ] && exit; git reset HEAD -- $files >/dev/null && echo \"Files reseted:\" && echo \"$files\""
-
-	pr = "!pull-request"
-	tig = "!tig"
+	af = "!fgstwrap af"
+	ah = "!fgstwrap ah"
+	cf = "!fgstwrap cf"
+	ch = "!fgstwrap ch"
+	uf = "!fgstwrap uf"
 
 [color]
 	ui = true
-
 	diff = auto
 	status = auto
 	branch = auto
+
+[pull]
+	rebase = true
 
 [diff]
 	tool = vimdiff3
@@ -60,7 +57,6 @@
 
 [mergetool "vimdiff3"]
 	path = nvim
-
 
 [color "diff-highlight"]
 	oldNormal = red bold
@@ -82,5 +78,11 @@
 	process = git-lfs filter-process
 	required = true
 
-[pull]
-	rebase = false
+[delta]
+	line-numbers = true
+	side-by-side = true
+
+	file-modified-label = modified:
+
+[interactive]
+	diffFilter = delta --color-only

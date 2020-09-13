@@ -1,0 +1,40 @@
+#!/bin/sh
+
+af() {
+	files=$(fgst -a '[Add Files] >')
+	[ "$files" = "" ] && exit
+	git add $files && echo "Files added:" && echo "$files"
+}
+
+ah() {
+	files=$(fgst -a '[Add Hunks] >')
+	[ "$files" = "" ] && exit
+	git add --patch $files && echo "Hunks added:" && echo "$files"
+}
+
+cf() {
+	files=$(fgst -c '[Checkout Files] >')
+	[ "$files" = "" ] && exit
+	git checkout -- $files >/dev/null && echo "Files checkouted:" && echo "$files"
+}
+
+ch() {
+	files=$(fgst -c '[Checkout Hunks] >')
+	[ "$files" = "" ] && exit
+	git checkout -p -- $files && echo "Hunks checkouted:" && echo "$files"
+}
+
+uf() {
+	files=$(fgst -u '[Unstage Files] >')
+	[ "$files" = "" ] && exit
+	git reset HEAD -- $files >/dev/null && echo "Files reseted:" && echo "$files"
+}
+
+case "$1" in
+	"af") af ;;
+	"ah") ah ;;
+	"cf") cf ;;
+	"ch") ch ;;
+	"uf") uf ;;
+	* ) exit 1 ;;
+esac
