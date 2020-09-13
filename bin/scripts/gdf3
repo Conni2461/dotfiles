@@ -1,4 +1,0 @@
-#!/bin/sh
-
-gdf | sed 1q
-gdf | grep -Ew '/|boot|home|internal'

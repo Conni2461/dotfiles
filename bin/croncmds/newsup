@@ -9,8 +9,8 @@ notify-send "Updating RSS feeds..."
 pgrep -x newsboat >/dev/null && exit
 
 echo 🔃 > ~/.config/newsboat/.update
-pkill -RTMIN+6 i3blocks
+refbar
 newsboat -x reload
 rm -f ~/.config/newsboat/.update
-pkill -RTMIN+6 i3blocks
+refbar
 notify-send "RSS feed update complete."
