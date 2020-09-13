@@ -12,6 +12,10 @@ let g:startify_bookmarks = [
 	\ '~/.config/nvim/init.vim',
 \ ]
 
+let g:startify_skiplist = [
+	\ 'COMMIT_EDITMSG',
+\ ]
+
 let g:startify_custom_footer = [
 	\ '',
 	\ "   Vim is charityware. Please read ':help uganda'.",
