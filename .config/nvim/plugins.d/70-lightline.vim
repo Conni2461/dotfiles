@@ -6,7 +6,7 @@ set laststatus=2
 
 let g:lightline#bufferline#filename_modifier = ':t'
 let g:lightline#bufferline#read_only=''
-let g:lightline#bufferline#show_number=1
+let g:lightline#bufferline#show_number=0
 
 let g:gitgutter_sign_added = '+'
 let g:gitgutter_sign_modified = '~'
