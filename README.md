@@ -136,8 +136,7 @@ A full list of used plugins:
 
 Some plugins require additional packages installed:
 
-- vim-clap requires [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd) to work best. It is also requires [rust-lang](https://github.com/rust-lang/rust) to compile necessary binaries for vim-clap. If you don't want to use rust, you can checkout an early vim-clap version.
-- vim-clap proj_tags requires [ctags](https://ctags.io/)
+- telescope requires [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd) to work best.
 - Already preonfigured LSP Server. Install one or more of the listed Servers and you are good to go for the specific language (setup can be verified with `:checkhealth`):
   - [als](https://github.com/AdaCore/ada_language_server) for ada
   - [bash-language-server](https://github.com/bash-lsp/bash-language-server) for bash and posix compliant shells
