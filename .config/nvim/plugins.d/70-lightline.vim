@@ -4,9 +4,16 @@ let g:lightline#bufferline#filename_modifier = ':t'
 let g:lightline#bufferline#read_only=''
 let g:lightline#bufferline#show_number=0
 
-let g:gitgutter_sign_added = '+'
-let g:gitgutter_sign_modified = '~'
-let g:gitgutter_sign_removed = '-'
+" TODO move signify into own file
+let g:signify_line_highlight         = 0
+let g:signify_sign_add               = '+'
+let g:signify_sign_delete            = '-'
+let g:signify_sign_change            = '~'
+
+highlight SignifySignAdd ctermfg=2
+highlight SignifySignChange ctermfg=3
+highlight SignifySignDelete ctermfg=1
+highlight link SignifySignDeleteFirstLine SignifySignDelete
 
 let g:lightline = {
 	\'active': {
@@ -43,15 +50,21 @@ au BufEnter,BufLeave,BufDelete call lightline#update()
 au BufWritePost,TextChanged,TextChangedI * call lightline#update()
 
 function! GitStatus() abort
-	let [a,m,r] = GitGutterGetHunkSummary()
-	let l:output = ""
-	let l:output .= a == 0 ? "" : printf("%s%d ", g:gitgutter_sign_added, a)
-	let l:output .= m == 0 ? "" : printf("%s%d ", g:gitgutter_sign_modified, m)
-	let l:output .= r == 0 ? "" : printf("%s%d ", g:gitgutter_sign_removed, r)
+	let stats = sy#repo#get_stats()
+	let symbols = ['+', '~', '-']
+	let statline = ''
 
-	let l:output = trim(l:output)
+	for i in range(3)
+		if stats[i] > 0
+			let statline .= printf('%s%s ', symbols[i], stats[i])
+		endif
+	endfor
 
-	return l:output
+	if !empty(statline)
+		let statline = printf('[%s]', statline[:-2])
+	endif
+
+	return statline
 endfunction
 
 function! MyFiletype()
