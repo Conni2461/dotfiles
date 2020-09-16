@@ -1,7 +1,3 @@
-Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
-Plug 'kyazdani42/nvim-web-devicons'
-
 set laststatus=2
 
 let g:lightline#bufferline#filename_modifier = ':t'

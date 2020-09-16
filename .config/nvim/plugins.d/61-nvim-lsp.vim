@@ -1,11 +1,3 @@
-Plug 'neovim/nvim-lspconfig'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
-Plug 'nvim-lua/completion-nvim'
-Plug 'nvim-lua/diagnostic-nvim'
-Plug 'steelsojka/completion-buffers'
-Plug 'ncm2/float-preview.nvim'
-
 let g:indicator_errors = "\uf05e "
 let g:indicator_warnings = "\uf071 "
 let g:indicator_infos = "\uf7fc "

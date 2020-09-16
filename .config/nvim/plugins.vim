@@ -30,13 +30,44 @@
 
 	Plug 'ap/vim-css-color'
 
-" Plugins that are neater in their own file
-	for f in split(glob('~/.config/nvim/plugins.d/*.vim'), '\n')
-		exe 'source' f
-	endfor
-	call plug#end()
+" Plugins that have configfiles in ~/.config/nvim/plugins.d/
+" Config files will be loaded after lua .init
+	Plug 'mhinz/vim-startify'
 
-" Evaluate post load plugin code (calling plugin functions etc)
-	for f in split(glob('~/.config/nvim/plugins.post.d/*.vim'), '\n')
-		exe 'source' f
-	endfor
+	Plug 'farmergreg/vim-lastplace'
+
+	Plug 'camspiers/animate.vim'
+
+	Plug 'nvim-lua/popup.nvim'
+	Plug 'nvim-lua/plenary.nvim'
+	Plug 'nvim-lua/telescope.nvim'
+
+	Plug 'junegunn/goyo.vim'
+	Plug 'junegunn/limelight.vim'
+
+	Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
+
+	Plug 'nvim-treesitter/nvim-treesitter'
+	Plug 'nvim-treesitter/playground'
+	Plug 'vigoux/treesitter-context.nvim'
+
+	Plug 'neovim/nvim-lspconfig'
+	Plug 'hrsh7th/vim-vsnip'
+	Plug 'hrsh7th/vim-vsnip-integ'
+	Plug 'nvim-lua/completion-nvim'
+	Plug 'nvim-lua/diagnostic-nvim'
+	Plug 'steelsojka/completion-buffers'
+	Plug 'ncm2/float-preview.nvim'
+
+	Plug 'Olical/conjure'
+
+	Plug 'itchyny/lightline.vim'
+	Plug 'mengelbrecht/lightline-bufferline'
+	Plug 'kyazdani42/nvim-web-devicons'
+
+	Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+
+	Plug 'kyazdani42/nvim-tree.lua', { 'on': 'LuaTreeToggle' }
+
+
+	call plug#end()

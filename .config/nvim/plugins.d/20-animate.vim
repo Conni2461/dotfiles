@@ -1,5 +1,3 @@
-Plug 'camspiers/animate.vim'
-
 function! OpenAnimatedLazygit() abort
 	new term://lazygit
 	setlocal norelativenumber nonumber
