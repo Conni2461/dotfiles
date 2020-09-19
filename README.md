@@ -96,6 +96,7 @@ A full list of used plugins:
 
 | Plugin                                                                       | Description                                                                                                |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| [startuptime](https://github.com/dstein64/vim-startuptime)                   | vim-startuptime is a Vim plugin for viewing vim and nvim startup event timing information.                 |
 | [signature](https://github.com/kshenoy/vim-signature)                        | Plugin to toggle, display and navigate marks                                                               |
 | [scrolling](https://github.com/psliwka/vim-smoothie)                         | Smoth scrolling with `Ctrl-d` / `Ctrl-u` / `Ctrl-f` / `Ctrl-b`                                             |
 | [fugitive](https://github.com/tpope/vim-fugitive)                            | Git Wrapper                                                                                                |

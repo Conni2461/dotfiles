@@ -11,6 +11,8 @@
 
 " Plugin
 	call plug#begin('~/.config/nvim/plugged')
+	Plug 'dstein64/vim-startuptime'
+
 	Plug 'kshenoy/vim-signature'
 
 	Plug 'psliwka/vim-smoothie'
