@@ -27,6 +27,8 @@
 	Plug 'dhruvasagar/vim-table-mode'
 	Plug 'gyim/vim-boxdraw'
 
+	Plug 'AndrewRadev/splitjoin.vim'
+
 	Plug 'rhysd/clever-f.vim'
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
