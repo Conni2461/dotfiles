@@ -104,6 +104,8 @@ A full list of used plugins:
 | [git-messenger](https://github.com/rhysd/git-messenger.vim)                  | Show git messages with `<leader>gm`. Using nvim-floating-window                                            |
 | [committia](https://github.com/rhysd/committia.vim)                          | Layout for git commit                                                                                      |
 | [gitignore highlight](https://github.com/gisphm/vim-gitignore)               | gitignore highlighting support                                                                             |
+| [table-mode](https://github.com/dhruvasagar/vim-table-mode)                  | Mode for editing tables                                                                                    |
+| [boxdraw](https://github.com/gyim/vim-boxdraw)                               | Helps with drawing ascii boxes                                                                             |
 | [clever-f](https://github.com/rhysd/clever-f.vim)                            | Changes behavior of f/F and t/T                                                                            |
 | [commentary](https://github.com/tpope/vim-commentary)                        | comment stuff out with `gcc` to comment out line and `gc` in visual mode                                   |
 | [surround](https://github.com/tpope/vim-surround)                            | quoting/parenthesizing made simple                                                                         |

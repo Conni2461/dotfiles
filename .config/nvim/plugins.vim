@@ -24,6 +24,9 @@
 
 	Plug 'gisphm/vim-gitignore'
 
+	Plug 'dhruvasagar/vim-table-mode'
+	Plug 'gyim/vim-boxdraw'
+
 	Plug 'rhysd/clever-f.vim'
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
