@@ -31,6 +31,7 @@
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
 	Plug 'cometsong/CommentFrame.vim'
+	Plug 'godlygeek/tabular'
 
 	Plug 'ap/vim-css-color'
 

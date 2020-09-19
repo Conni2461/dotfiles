@@ -110,6 +110,7 @@ A full list of used plugins:
 | [commentary](https://github.com/tpope/vim-commentary)                        | comment stuff out with `gcc` to comment out line and `gc` in visual mode                                   |
 | [surround](https://github.com/tpope/vim-surround)                            | quoting/parenthesizing made simple                                                                         |
 | [CommentFrame](https://github.com/cometsong/CommentFrame.vim)                | Add comment frames. Use <leader>fcS for c/c++ and <leader>fch or <leader>fcH for bash                      |
+| [tabular](https://github.com/godlygeek/tabular)                              | Helps with aligning text                                                                                   |
 | [css-color](https://github.com/ap/vim-css-color)                             | Adds color to hexcodes                                                                                     |
 | [startify](https://github.com/mhinz/vim-startify)                            | The fancy start screen for Vim with session support                                                        |
 | [lastplace](https://github.com/farmergreg/vim-lastplace)                     | Intelligently reopen files at your last edit position                                                      |
@@ -124,7 +125,7 @@ A full list of used plugins:
 | [treesitter playground](https://github.com/nvim-treesitter/playground)       | Treesitter playground integrated into Neovim. Interactive Debugging tool for treesitter                    |
 | [treesitter context](https://github.com/vigoux/treesitter-context.nvim)      | A context.vim clone powered by treesitter.                                                                 |
 | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                   | Providing config for built-in lsp                                                                          |
-| [snippets](https://github.com/norcalli/snippets.nvim)                        | Adds snippet support. Works with completion-nvim.
+| [snippets](https://github.com/norcalli/snippets.nvim)                        | Adds snippet support. Works with completion-nvim.                                                          |
 | [completion](https://github.com/nvim-lua/completion-nvim)                    | Adds completion for nvim-lsp                                                                               |
 | [diagnostic](https://github.com/nvim-lua/diagnostic-nvim)                    | Changes default nvim-lsp diagnostics behavior                                                              |
 | [buffer completion](https://github.com/steelsojka/completion-buffers)        | Adds word completion for all words in all open buffers. Additional source for completion-nvim              |
