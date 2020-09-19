@@ -124,8 +124,7 @@ A full list of used plugins:
 | [treesitter playground](https://github.com/nvim-treesitter/playground)       | Treesitter playground integrated into Neovim. Interactive Debugging tool for treesitter                    |
 | [treesitter context](https://github.com/vigoux/treesitter-context.nvim)      | A context.vim clone powered by treesitter.                                                                 |
 | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                   | Providing config for built-in lsp                                                                          |
-| [vsnip](https://github.com/hrsh7th/vim-vsnip)                                | Snippet plugin for vim/nvim that supports LSP/VSCode's snippet format.                                     |
-| [vsnip integration](https://github.com/hrsh7th/vim-vsnip-integ)              | vim-vsnip integrations to other plugins.                                                                   |
+| [snippets](https://github.com/norcalli/snippets.nvim)                        | Adds snippet support. Works with completion-nvim.
 | [completion](https://github.com/nvim-lua/completion-nvim)                    | Adds completion for nvim-lsp                                                                               |
 | [diagnostic](https://github.com/nvim-lua/diagnostic-nvim)                    | Changes default nvim-lsp diagnostics behavior                                                              |
 | [buffer completion](https://github.com/steelsojka/completion-buffers)        | Adds word completion for all words in all open buffers. Additional source for completion-nvim              |

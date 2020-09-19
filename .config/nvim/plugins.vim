@@ -56,8 +56,7 @@
 	Plug 'vigoux/treesitter-context.nvim'
 
 	Plug 'neovim/nvim-lspconfig'
-	Plug 'hrsh7th/vim-vsnip'
-	Plug 'hrsh7th/vim-vsnip-integ'
+	Plug 'norcalli/snippets.nvim'
 	Plug 'nvim-lua/completion-nvim'
 	Plug 'nvim-lua/diagnostic-nvim'
 	Plug 'steelsojka/completion-buffers'
@@ -72,6 +71,4 @@
 	Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
 	Plug 'kyazdani42/nvim-tree.lua', { 'on': 'LuaTreeToggle' }
-
-
 	call plug#end()
