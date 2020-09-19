@@ -100,7 +100,6 @@ A full list of used plugins:
 | [signature](https://github.com/kshenoy/vim-signature)                        | Plugin to toggle, display and navigate marks                                                               |
 | [scrolling](https://github.com/psliwka/vim-smoothie)                         | Smoth scrolling with `Ctrl-d` / `Ctrl-u` / `Ctrl-f` / `Ctrl-b`                                             |
 | [fugitive](https://github.com/tpope/vim-fugitive)                            | Git Wrapper                                                                                                |
-| [rhubarb](https://github.com/tpope/vim-rhubarb)                              | GitHub extension for fugitive                                                                              |
 | [vim-signify](https://github.com/mhinz/vim-signify)                          | A Vim plugin which shows a git diff in the gutter (sign column)                                            |
 | [git-messenger](https://github.com/rhysd/git-messenger.vim)                  | Show git messages with `<leader>gm`. Using nvim-floating-window                                            |
 | [committia](https://github.com/rhysd/committia.vim)                          | Layout for git commit                                                                                      |

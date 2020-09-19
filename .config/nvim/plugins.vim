@@ -18,7 +18,6 @@
 	Plug 'psliwka/vim-smoothie'
 
 	Plug 'tpope/vim-fugitive'
-	Plug 'tpope/vim-rhubarb'
 	Plug 'mhinz/vim-signify'
 	Plug 'rhysd/git-messenger.vim'
 	Plug 'rhysd/committia.vim'
