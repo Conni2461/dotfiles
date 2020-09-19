@@ -14,11 +14,11 @@ if [ "$(caltoday)" != "" ]; then
 	echo "\${color}\${exec caltoday}"
 fi
 
-if [ "$(listnews)" != "" ]; then
-	echo
-	echo "\${color1}\${font}NEWS"
-	echo "\${color}\${exec listnews}"
-fi
+# if [ "$(listnews)" != "" ]; then
+# 	echo
+# 	echo "\${color1}\${font}NEWS"
+# 	echo "\${color}\${exec listnews}"
+# fi
 
 if [ ! -f /tmp/today_netflix ] || [ "$(date +%M:%S)" = "00:00" ]; then
 	netflixdb -t >/tmp/today_netflix
