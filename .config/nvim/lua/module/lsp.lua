@@ -84,7 +84,6 @@ local lua_settings = {
 		workspace = {
 			library = {
 				[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-				[vim.fn.expand("~/build/neovim/src/nvim/lua")] = true,
 			},
 		},
 	},
