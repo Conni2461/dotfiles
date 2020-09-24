@@ -129,6 +129,7 @@ A full list of used plugins:
 | [snippets](https://github.com/norcalli/snippets.nvim)                        | Adds snippet support. Works with completion-nvim.                                                          |
 | [completion](https://github.com/nvim-lua/completion-nvim)                    | Adds completion for nvim-lsp                                                                               |
 | [diagnostic](https://github.com/nvim-lua/diagnostic-nvim)                    | Changes default nvim-lsp diagnostics behavior                                                              |
+| [lsp extensions](https://github.com/tjdevries/lsp_extensions.nvim)           | Adds more lsp stuff. Example: Inlay hints                                                                  |
 | [buffer completion](https://github.com/steelsojka/completion-buffers)        | Adds word completion for all words in all open buffers. Additional source for completion-nvim              |
 | [floating preview](https://github.com/ncm2/float-preview.nvim)               | Less annoying completion preview window based on neovim's floating window                                  |
 | [lightline](https://github.com/itchyny/lightline.vim)                        | A light and configurable statusline/tabline plugin                                                         |

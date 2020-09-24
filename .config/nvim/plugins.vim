@@ -62,6 +62,7 @@
 	Plug 'norcalli/snippets.nvim'
 	Plug 'nvim-lua/completion-nvim'
 	Plug 'nvim-lua/diagnostic-nvim'
+	Plug 'tjdevries/lsp_extensions.nvim'
 	Plug 'steelsojka/completion-buffers'
 	Plug 'ncm2/float-preview.nvim'
 
