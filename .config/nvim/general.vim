@@ -42,7 +42,7 @@
 " Nvim specifics
 	" Shows realtime changes with :s/
 	if has('nvim')
-		set inccommand=nosplit
+		set inccommand=split
 	endif
 
 " Sandwich! :w!! to save with sudo
