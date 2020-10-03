@@ -32,6 +32,7 @@
 	Plug 'rhysd/clever-f.vim'
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
+	Plug 'tpope/vim-scriptease'
 	Plug 'cometsong/CommentFrame.vim'
 	Plug 'godlygeek/tabular'
 
