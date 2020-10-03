@@ -208,13 +208,17 @@
 	endfunction
 
 	function! s:compile_code() abort
-		:silent! write
-		let cmd = printf('compiler %s', expand('%:p'))
-		let cwd = getcwd()
-		call s:run_term(cmd, cwd)
+		silent! write
+		call s:run_term(printf('compiler %s', expand('%:p')), getcwd())
+	endfunction
+
+	function! s:lint_code() abort
+		silent! write
+		call s:run_term(printf('lintf %s %s', expand('%:p'), &ft), getcwd())
 	endfunction
 
 	nnoremap <leader>c :call <SID>compile_code()<CR>
+	nnoremap <leader>av :call <SID>lint_code()<CR>
 
 " Execute this file
 	function! s:save_and_exec() abort
