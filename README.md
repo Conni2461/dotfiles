@@ -147,6 +147,7 @@ Some plugins require additional packages installed:
   - [clangd](https://clangd.llvm.org/) for c/c++. [ccls](https://github.com/MaskRay/ccls) is currently disabled because clangd offers option to switch between header and source file
   - [cmake](https://github.com/regen100/cmake-language-server) for cmake
   - [cssls](https://github.com/vscode-langservers/vscode-css-languageserver-bin) for css files
+  - [diagnosticls](https://github.com/iamcco/diagnostic-languageserver) to get linter data. Currently configured with spellcheck.
   - [dockerls](https://github.com/rcjsuen/dockerfile-language-server-nodejs) for dockerfiles
   - [elixirls](https://github.com/elixir-lsp/elixir-ls) for Elixir
   - [flow](https://github.com/facebook/flow) for JavaScript

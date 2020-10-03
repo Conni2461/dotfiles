@@ -156,3 +156,38 @@ setup_ls(nvim_lsp.sqlls, "sql-language-server")
 setup_ls(nvim_lsp.texlab, "texlab")
 setup_ls(nvim_lsp.tsserver, { "typescript-language-server", "--stdio" })
 setup_ls(nvim_lsp.vimls, { "vim-language-server", "--stdio" })
+
+nvim_lsp.diagnosticls.setup{
+  cmd = { "diagnostic-languageserver", "--stdio" },
+  filetypes = { "sh" },
+  on_attach = on_attach,
+  init_options = {
+    filetypes = {
+      sh = "shellcheck",
+    },
+    linters = {
+      shellcheck = {
+        sourceName = "shellcheck",
+        command = "shellcheck",
+        debounce = 100,
+        args = { "--format=gcc", "-" },
+        offsetLine = 0,
+        offsetColumn = 0,
+        formatLines = 1,
+        formatPattern = {
+          "^[^:]+:(\\d+):(\\d+):\\s+([^:]+):\\s+(.*)$",
+          {
+            line = 1,
+            column = 2,
+            message = 4,
+            security = 3
+          }
+        },
+        securities = {
+          error = "error",
+          warning = "warning",
+        }
+      },
+    }
+  }
+}
