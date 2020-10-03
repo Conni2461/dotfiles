@@ -103,34 +103,29 @@ if val_res.status_code == 401:
 filelocation = HOME + "/.local/share/twitch-streams.txt"
 apipage = "https://api.twitch.tv/helix/"
 
+# Emulates a do while
 # First follow fetch. Will fetch 20
 followed = []
-followrequest = apipage + "users/follows?from_id=%s" % user_id
+followrequest = "%susers/follows?from_id=%s" % (apipage, user_id)
 data = requests.get(followrequest, headers=headers).json()
+for channel in data["data"]:
+    followed.append(channel["to_id"])
 
 # Collect all follows.
-# So this will send requests until there are all followers fetched
-while len(data["data"]) != 0:
-    # Get followed channels
+# So we will send requests until all followers are fetched
+while "cursor" in data["pagination"].keys():
+    nextV = data["pagination"]["cursor"]
+    data = requests.get("%s&after=%s" % (followrequest, nextV),
+                        headers=headers).json()
     for channel in data["data"]:
         followed.append(channel["to_id"])
-
-    # TODO fix condition:
-    # do while would be better because last pull does no longer has a cursor in
-    # pagination. Check with
-    # print(data, "\n")
-    if "cursor" not in data["pagination"].keys():
-        break
-    nextV = data["pagination"]["cursor"]
-    followr = apipage + "users/follows?from_id=%s&after=%s" % (user_id, nextV)
-    data = requests.get(followr, headers=headers).json()
 
 game_cache = {}
 output = {}
 
 for j in range(math.ceil(len(followed) / 100)):
     # Get Stream info
-    streamrequest = apipage + "streams?user_id=" + followed[100 * j]
+    streamrequest = "%sstreams?user_id=%s" % (apipage, followed[100 * j])
     for i in range((100 * j) + 1, (j + 1) * 100):
         if i >= len(followed):
             break
@@ -153,7 +148,7 @@ for j in range(math.ceil(len(followed) / 100)):
                 channel_game = "\"unknown game\""
                 game_cache[game_id] = channel_game
             else:
-                gamerequest = apipage + "games?id=%d" % game_id
+                gamerequest = "%sgames?id=%d" % (apipage, game_id)
                 rg = requests.get(gamerequest, headers=headers)
                 game_json = rg.json()
                 channel_game = game_json["data"][0]["name"]
