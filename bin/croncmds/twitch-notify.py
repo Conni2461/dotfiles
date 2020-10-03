@@ -106,7 +106,7 @@ apipage = "https://api.twitch.tv/helix/"
 # Emulates a do while
 # First follow fetch. Will fetch 20
 followed = []
-followrequest = "%susers/follows?from_id=%s" % (apipage, user_id)
+followrequest = "{}users/follows?from_id={}".format(apipage, user_id)
 data = requests.get(followrequest, headers=headers).json()
 for channel in data["data"]:
     followed.append(channel["to_id"])
@@ -115,7 +115,7 @@ for channel in data["data"]:
 # So we will send requests until all followers are fetched
 while "cursor" in data["pagination"].keys():
     nextV = data["pagination"]["cursor"]
-    data = requests.get("%s&after=%s" % (followrequest, nextV),
+    data = requests.get("{}&after={}".format(followrequest, nextV),
                         headers=headers).json()
     for channel in data["data"]:
         followed.append(channel["to_id"])
@@ -125,11 +125,11 @@ output = {}
 
 for j in range(math.ceil(len(followed) / 100)):
     # Get Stream info
-    streamrequest = "%sstreams?user_id=%s" % (apipage, followed[100 * j])
+    streamrequest = "{}streams?user_id={}".format(apipage, followed[100 * j])
     for i in range((100 * j) + 1, (j + 1) * 100):
         if i >= len(followed):
             break
-        streamrequest += '&user_id=%s' % followed[i]
+        streamrequest += '&user_id={}'.format(followed[i])
 
     streams = requests.get(streamrequest, headers=headers).json()
 
@@ -148,7 +148,7 @@ for j in range(math.ceil(len(followed) / 100)):
                 channel_game = "\"unknown game\""
                 game_cache[game_id] = channel_game
             else:
-                gamerequest = "%sgames?id=%d" % (apipage, game_id)
+                gamerequest = "{}games?id={}".format(apipage, game_id)
                 rg = requests.get(gamerequest, headers=headers)
                 game_json = rg.json()
                 channel_game = game_json["data"][0]["name"]
