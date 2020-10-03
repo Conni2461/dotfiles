@@ -57,8 +57,8 @@ export WGETRC="$XDG_CONFIG_HOME/wgetrc"
 export WINEPREFIX="$XDG_DATA_HOME"/wineprefixes/default
 export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
 
-# Git Review
-export REVIEW_BASE=master
+# Enable Calibre Dark Mode
+export CALIBRE_USE_DARK_PALETTE=1
 
 # Fixing misbehaving Java applications
 export _JAVA_AWT_WM_NONREPARENTING=1
