@@ -65,11 +65,11 @@ def calc_diff(t_curr, t_event):
 
 notify = Notifycation()
 done = set()
-format = '{cancelled}{start-time} - {end-time}; {title}'
+calformat = '{cancelled}{start-time} - {end-time}; {title}'
 while True:
     currtime = convert(time.strftime("%H:%M"))
     events = [line.strip() for line in
-              get(["khal", "list", "today", "today", "--format", format])
+              get(["khal", "list", "today", "today", "--format", calformat])
               .splitlines()][1:]
     initial = set()
 
