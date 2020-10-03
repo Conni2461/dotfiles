@@ -2,21 +2,27 @@
 
 import sys
 import requests
-import notify2
 from pathlib import Path
 import configparser
+import notify2
+import dbus
 
 
-def sendmessage(gh_type, repo, title):
-    '''
-    Send notification with notify-send
-    Uses notify2 package
-    '''
-    l_owner = repo.split("/")[0]
-    l_repo = repo.split("/")[1]
-    content = "{}/<b>{}</b>\n{}".format(l_owner, l_repo, title)
-    if not notify_off:
-        notify2.Notification(gh_type, content).show()
+class Notifycation():
+    def __init__(self):
+        try:
+            notify2.init("Github-notify")
+            self.notify_off = False
+        except dbus.exceptions.DBusException:
+            print("Notification do not work")
+            self.notify_off = True
+
+    def send(self, gh_type, repo, title, icon=""):
+        l_owner = repo.split("/")[0]
+        l_repo = repo.split("/")[1]
+        content = "{}/<b>{}</b>\n{}".format(l_owner, l_repo, title)
+        if not self.notify_off:
+            notify2.Notification(gh_type, content, icon).show()
 
 # Settings
 # Read in config file
@@ -28,8 +34,7 @@ def sendmessage(gh_type, repo, title):
 #
 
 
-notify_off = False
-
+notify = Notifycation()
 HOME = str(Path.home())
 
 config = configparser.ConfigParser()
@@ -42,13 +47,6 @@ except Exception:
     print("Config file not found")
     sys.exit()
 
-# Init notify2
-try:
-    notify2.init("Github-notify")
-except Exception:
-    print("Notification do not work")
-    notify_off = True
-
 url = "https://api.github.com/notifications"
 data = requests.get(url, headers=headers).json()
 
@@ -56,4 +54,4 @@ for element in data:
     gh_type = element["subject"]["type"]
     repo = element["repository"]["full_name"]
     title = element["subject"]["title"]
-    sendmessage(gh_type, repo, title)
+    notify.send(gh_type, repo, title)
