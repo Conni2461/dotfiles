@@ -9,15 +9,21 @@ from pathlib import Path
 import configparser
 import requests
 import notify2
+import dbus
 
 
-def sendmessage(message):
-    '''
-    Send notification with notify-send
-    Uses notify2 package
-    '''
-    if not notify_off:
-        notify2.Notification("Twitch", message).show()
+class Notifycation():
+    def __init__(self):
+        try:
+            notify2.init("Twitch-notify")
+            self.notify_off = False
+        except dbus.exceptions.DBusException:
+            print("Notification do not work")
+            self.notify_off = True
+
+    def send(self, text, icon=""):
+        if not self.notify_off:
+            notify2.Notification("Twitch", text, icon).show()
 
 
 def log(message):
@@ -39,6 +45,7 @@ def getNewOAuthToken(client):
     print("Paste the new token in the config file.")
 
 
+notify = Notifycation()
 HOME = str(Path.home())
 configFilePath = HOME + "/.config/twitch-notify.conf"
 
@@ -94,15 +101,7 @@ if val_res.status_code == 401:
     sys.exit()
 
 filelocation = HOME + "/.local/share/twitch-streams.txt"
-notify_off = False
 apipage = "https://api.twitch.tv/helix/"
-
-# Init notify2
-try:
-    notify2.init("Twitch-notify")
-except Exception:
-    print("Notification do not work")
-    notify_off = True
 
 # First follow fetch. Will fetch 20
 followed = []
@@ -116,6 +115,12 @@ while len(data["data"]) != 0:
     for channel in data["data"]:
         followed.append(channel["to_id"])
 
+    # TODO fix condition:
+    # do while would be better because last pull does no longer has a cursor in
+    # pagination. Check with
+    # print(data, "\n")
+    if "cursor" not in data["pagination"].keys():
+        break
     nextV = data["pagination"]["cursor"]
     followr = apipage + "users/follows?from_id=%s&after=%s" % (user_id, nextV)
     data = requests.get(followr, headers=headers).json()
@@ -183,12 +188,12 @@ for k, v in output.items():
 if went_live or went_offline or changed_game:
     # Send notifications
     for line in iter(went_live):
-        sendmessage("<b>{}</b> is <b>LIVE</b> playing <b>{}</b>"
+        notify.send("<b>{}</b> is <b>LIVE</b> playing <b>{}</b>"
                     .format(line, output[line]))
     for line in iter(went_offline):
-        sendmessage("<b>{}</b> is <b>NO LONGER LIVE</b>".format(line))
+        notify.send("<b>{}</b> is <b>NO LONGER LIVE</b>".format(line))
     for line in iter(changed_game):
-        sendmessage("<b>{}</b> changed game and is now playing <b>{}</b>"
+        notify.send("<b>{}</b> changed game and is now playing <b>{}</b>"
                     .format(line, output[line]))
 
     # Update file
