@@ -1,3 +1,18 @@
+local U = require'snippets.utils'
+
+local tex = {
+}
+
+local m = {}
+
+m.get_snippets = function()
+  return tex
+end
+
+return m
+
+
+--[[
 " Word count:
 autocmd FileType tex map <leader><leader>o :w !detex \| wc -w<CR>
 " Code snippets
@@ -36,3 +51,4 @@ autocmd FileType tex inoremap ,bt {\blindtext}
 autocmd FileType tex inoremap ,nu $\varnothing$
 autocmd FileType tex inoremap ,col \begin{columns}[T]<Enter>\begin{column}{.5\textwidth}<Enter><Enter>\end{column}<Enter>\begin{column}{.5\textwidth}<Enter><++><Enter>\end{column}<Enter>\end{columns}<Esc>5kA
 autocmd FileType tex inoremap ,rn (\ref{})<++><Esc>F}i
+--]]
