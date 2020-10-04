@@ -14,12 +14,8 @@ ts.setup {
     }
   },
   refactor = {
-    highlight_definitions = {
-      enable = true
-    },
-    highlight_current_scope = {
-      enable = false
-    },
+    highlight_definitions = { enable = true },
+    highlight_current_scope = { enable = false },
     smart_rename = {
       enable = true,
       keymaps = {
@@ -31,6 +27,7 @@ ts.setup {
       keymaps = {
         goto_definition = "gnd",
         list_definitions = "gnD",
+        list_definitions_toc = "gO",
         goto_next_usage = "<a-*>",
         goto_previous_usage = "<a-#>",
       }
@@ -40,21 +37,21 @@ ts.setup {
     select = {
       enable = true,
       keymaps = {
-        ["af"] = "@function.outer",
-        ["if"] = "@function.inner",
-        ["aC"] = "@class.outer",
-        ["iC"] = "@class.inner",
-        ["ac"] = "@conditional.outer",
-        ["ic"] = "@conditional.inner",
-        ["ae"] = "@block.outer",
         ["ie"] = "@block.inner",
-        ["al"] = "@loop.outer",
-        ["il"] = "@loop.inner",
-        ["is"] = "@statement.inner",
-        ["as"] = "@statement.outer",
-        ["ad"] = "@comment.outer",
+        ["ae"] = "@block.outer",
+        ["im"] = "@call.inner",
         ["am"] = "@call.outer",
-        ["im"] = "@call.inner"
+        ["iC"] = "@class.inner",
+        ["aC"] = "@class.outer",
+        ["ad"] = "@comment.outer",
+        ["ic"] = "@conditional.inner",
+        ["ac"] = "@conditional.outer",
+        ["if"] = "@function.inner",
+        ["af"] = "@function.outer",
+        ["il"] = "@loop.inner",
+        ["al"] = "@loop.outer",
+        ["is"] = "@parameter.inner",
+        ["as"] = "@statement.outer",
       }
     },
     swap = {
