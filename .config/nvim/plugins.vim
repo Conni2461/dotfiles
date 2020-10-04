@@ -67,7 +67,6 @@
 	Plug 'steelsojka/completion-buffers'
 	Plug 'ncm2/float-preview.nvim'
 
-	Plug 'Olical/conjure'
 
 	Plug 'itchyny/lightline.vim'
 	Plug 'mengelbrecht/lightline-bufferline'

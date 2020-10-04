@@ -5,6 +5,7 @@ file=$(readlink -f "$1")
 case "$2" in
 	lua) luacheck "$file" ;;
 	sh) shellcheck "$file" ;;
+	vim) vint "$file" ;;
 	*) exit 1 ;;
 esac
 
