@@ -96,6 +96,7 @@ A full list of used plugins:
 
 | Plugin                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| [base16](https://github.com/chriskempson/base16-vim)                                     | Vim Colorscheme collection                                                                                 |
 | [startuptime](https://github.com/dstein64/vim-startuptime)                               | vim-startuptime is a Vim plugin for viewing vim and nvim startup event timing information.                 |
 | [signature](https://github.com/kshenoy/vim-signature)                                    | Plugin to toggle, display and navigate marks                                                               |
 | [scrolling](https://github.com/psliwka/vim-smoothie)                                     | Smoth scrolling with `Ctrl-d` / `Ctrl-u` / `Ctrl-f` / `Ctrl-b`                                             |
@@ -113,7 +114,6 @@ A full list of used plugins:
 | [scriptease.vim](https://github.com/tpope/vim-scriptease)                                | Vim plugin for making Vim plugins. Loads `:messages` into quickfix list, `:verbose` improvments, etc       |
 | [CommentFrame](https://github.com/cometsong/CommentFrame.vim)                            | Add comment frames. Use <leader>fcS for c/c++ and <leader>fch or <leader>fcH for bash                      |
 | [tabular](https://github.com/godlygeek/tabular)                                          | Helps with aligning text                                                                                   |
-| [css-color](https://github.com/ap/vim-css-color)                                         | Adds color to hexcodes                                                                                     |
 | [startify](https://github.com/mhinz/vim-startify)                                        | The fancy start screen for Vim with session support                                                        |
 | [lastplace](https://github.com/farmergreg/vim-lastplace)                                 | Intelligently reopen files at your last edit position                                                      |
 | [animate](https://github.com/camspiers/animate.vim)                                      | Vim animation api                                                                                          |
@@ -140,6 +140,7 @@ A full list of used plugins:
 | [devicons](https://github.com/kyazdani42/nvim-web-devicons)                              | lua `fork` of vim-web-devicons for neovim                                                                  |
 | [undotree](https://github.com/mbbill/undotree)                                           | The undo history visualizer for VIM                                                                        |
 | [file tree](https://github.com/kyazdani42/nvim-tree.lua)                                 | A simple tree for neovim written in lua                                                                    |
+| [colorizer](https://github.com/norcalli/nvim-colorizer.lua)                              | Adds color to hexcodes                                                                                     |
 
 Some plugins require additional packages installed:
 

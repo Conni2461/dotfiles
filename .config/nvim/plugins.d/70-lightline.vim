@@ -10,11 +10,6 @@ let g:signify_sign_add               = '+'
 let g:signify_sign_delete            = '-'
 let g:signify_sign_change            = '~'
 
-highlight SignifySignAdd ctermfg=2
-highlight SignifySignChange ctermfg=3
-highlight SignifySignDelete ctermfg=1
-highlight link SignifySignDeleteFirstLine SignifySignDelete
-
 let g:lightline = {
 	\'active': {
 		\'left': [['mode', 'paste' ], ['gitbranch', 'gitstatus', 'readonly', 'buffers']],

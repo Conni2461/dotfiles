@@ -11,6 +11,8 @@
 
 " Plugin
 	call plug#begin('~/.config/nvim/plugged')
+	Plug 'chriskempson/base16-vim'
+
 	Plug 'dstein64/vim-startuptime'
 
 	Plug 'kshenoy/vim-signature'
@@ -36,10 +38,7 @@
 	Plug 'cometsong/CommentFrame.vim'
 	Plug 'godlygeek/tabular'
 
-	Plug 'ap/vim-css-color'
-
 " Plugins that have configfiles in ~/.config/nvim/plugins.d/
-" Config files will be loaded after lua .init
 	Plug 'mhinz/vim-startify'
 
 	Plug 'farmergreg/vim-lastplace'
@@ -77,4 +76,6 @@
 	Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 
 	Plug 'kyazdani42/nvim-tree.lua', { 'on': 'LuaTreeToggle' }
+
+	Plug 'norcalli/nvim-colorizer.lua'
 	call plug#end()
