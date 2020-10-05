@@ -1,4 +1,5 @@
 local ts = require'nvim-treesitter.configs'
+local parsers = require'nvim-treesitter.parsers'
 
 ts.setup {
   highlight = {
@@ -106,8 +107,13 @@ ts.setup {
     'ruby',
     'rust',
     'scala',
+    'teal',
     'toml',
     'typescript',
     'yaml'
   }
 }
+
+local configs = parsers.get_parser_configs()
+local ft_str = table.concat(vim.tbl_map(function(ft) return configs[ft].filetype or ft end, parsers.available_parsers()), ',')
+vim.cmd('autocmd Filetype ' .. ft_str .. ' setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()')
