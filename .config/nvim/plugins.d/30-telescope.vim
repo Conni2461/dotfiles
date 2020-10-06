@@ -1,3 +1,5 @@
+hi! link TelescopeMatching Statement
+
 nnoremap <Leader>w  <cmd>lua RELOAD('telescope'); require'telescope.builtin'.git_files{ shorten_path = true }<CR>
 nnoremap <Leader>q  <cmd>lua RELOAD('telescope'); require'telescope.builtin'.find_files{ shorten_path = true }<CR>
 nnoremap <Leader>gp <cmd>lua RELOAD('telescope'); require'telescope.builtin'.live_grep{ shorten_path = true }<CR>
