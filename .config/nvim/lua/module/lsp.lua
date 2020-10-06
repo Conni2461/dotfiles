@@ -81,13 +81,28 @@ local cap = {
   }
 }
 
+local function get_lua_runtime()
+  local result = {}
+  for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
+    local lua_path = path .. "/lua"
+    if vim.fn.isdirectory(lua_path) == 1 then
+      result[lua_path] = true
+    end
+  end
+
+  result[vim.fn.expand("$VIMRUNTIME/lua")] = true
+  return result
+end
+
 local lua_settings = {
   Lua = {
-    runtime = { version = "LuaJIT", path = vim.split(package.path, ';'), },
+    runtime = { version = "LuaJIT" },
+    diagnostics = {
+      enable = true,
+      globals = { "vim" },
+    },
     workspace = {
-      library = {
-        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-      },
+      library = get_lua_runtime()
     },
   },
 }
