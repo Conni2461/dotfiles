@@ -73,9 +73,5 @@
 	Plug 'mengelbrecht/lightline-bufferline'
 	Plug 'kyazdani42/nvim-web-devicons'
 
-	Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
-
-	Plug 'kyazdani42/nvim-tree.lua', { 'on': 'LuaTreeToggle' }
-
 	Plug 'norcalli/nvim-colorizer.lua'
 	call plug#end()
