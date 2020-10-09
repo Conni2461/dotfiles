@@ -96,7 +96,7 @@ A full list of used plugins:
 
 | Plugin                                                                                   | Description                                                                                                |
 | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| [base16](https://github.com/chriskempson/base16-vim)                                     | Vim Colorscheme collection                                                                                 |
+| [base16](https://github.com/norcalli/nvim-base16.lua)                                    | Neovim Colorscheme collection                                                                              |
 | [startuptime](https://github.com/dstein64/vim-startuptime)                               | vim-startuptime is a Vim plugin for viewing vim and nvim startup event timing information.                 |
 | [signature](https://github.com/kshenoy/vim-signature)                                    | Plugin to toggle, display and navigate marks                                                               |
 | [scrolling](https://github.com/psliwka/vim-smoothie)                                     | Smoth scrolling with `Ctrl-d` / `Ctrl-u` / `Ctrl-f` / `Ctrl-b`                                             |

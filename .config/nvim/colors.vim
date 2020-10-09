@@ -1,2 +1,5 @@
 set termguicolors
-colorscheme base16-tomorrow-night
+lua << EOF
+	local base16 = require 'base16'
+	base16(base16.themes["tomorrow-night"], true)
+EOF

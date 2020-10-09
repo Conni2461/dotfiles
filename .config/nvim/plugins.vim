@@ -11,7 +11,7 @@
 
 " Plugin
 	call plug#begin('~/.config/nvim/plugged')
-	Plug 'chriskempson/base16-vim'
+	Plug 'norcalli/nvim-base16.lua'
 
 	Plug 'dstein64/vim-startuptime'
 
