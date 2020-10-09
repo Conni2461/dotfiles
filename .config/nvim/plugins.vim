@@ -70,7 +70,6 @@
 
 
 	Plug 'itchyny/lightline.vim'
-	Plug 'mengelbrecht/lightline-bufferline'
 	Plug 'kyazdani42/nvim-web-devicons'
 
 	Plug 'norcalli/nvim-colorizer.lua'

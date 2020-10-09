@@ -12,7 +12,7 @@ let g:signify_sign_change            = '~'
 
 let g:lightline = {
 	\'active': {
-		\'left': [['mode', 'paste' ], ['gitbranch', 'gitstatus', 'readonly', 'buffers']],
+		\'left': [['mode', 'paste' ], ['gitbranch', 'gitstatus', 'readonly', 'filename']],
 		\'right': [['linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints'], ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype']]
 	\},
 	\'inactive': {
@@ -24,14 +24,12 @@ let g:lightline = {
 		\'linter_warnings': 'GetWarnings',
 		\'linter_infos': 'GetInformations',
 		\'linter_hints': 'GetHints',
-		\'buffers': 'lightline#bufferline#buffers'
 	\},
 	\'component_type': {
 		\'linter_errors': 'error',
 		\'linter_warnings': 'warning',
 		\'linter_infos': 'right',
 		\'linter_hints': 'right',
-		\'buffers': 'tabsel'
 	\},
 	\'component_function': {
 		\'gitstatus': 'GitStatus',
