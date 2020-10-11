@@ -12,7 +12,7 @@ let g:signify_sign_change            = '~'
 
 let g:lightline = {
 	\'active': {
-		\'left': [['mode', 'paste' ], ['gitbranch', 'gitstatus', 'readonly', 'filename']],
+		\'left': [['mode', 'paste' ], ['gitbranch', 'gitstatus', 'readonly', 'filename'], ['treesittertype']],
 		\'right': [['linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints'], ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype']]
 	\},
 	\'inactive': {
@@ -34,6 +34,7 @@ let g:lightline = {
 	\'component_function': {
 		\'gitstatus': 'GitStatus',
 		\'gitbranch': 'fugitive#head',
+		\'treesittertype': 'TreesitterType',
 		\'filetype': 'MyFiletype'
 	\}
 \}
@@ -58,6 +59,11 @@ function! GitStatus() abort
 	endif
 
 	return statline
+endfunction
+
+function! TreesitterType()
+	let l:result = nvim_treesitter#statusline()
+	return l:result == "null" ? "" : l:result
 endfunction
 
 function! MyFiletype()
