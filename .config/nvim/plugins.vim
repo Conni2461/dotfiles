@@ -66,7 +66,6 @@
 	Plug 'nvim-lua/diagnostic-nvim'
 	Plug 'nvim-lua/lsp_extensions.nvim'
 	Plug 'steelsojka/completion-buffers'
-	Plug 'ncm2/float-preview.nvim'
 
 
 	Plug 'itchyny/lightline.vim'

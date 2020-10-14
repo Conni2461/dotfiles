@@ -31,18 +31,16 @@ augroup END
 
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
+set shortmess+=c
 
 " Enable Snippet Support
 let g:completion_enable_snippet = 'snippets.nvim'
 
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+inoremap <expr> <Up>   pumvisible() ? "\<C-p>" : "\<Up>"
+inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
+
 inoremap <silent> <C-Space> <cmd>lua require'completion'.triggerCompletion()<CR>
 inoremap <tab> <cmd>lua require'completion'.smart_tab()<CR>
-
-let g:float_preview#docked = 0
-function! DisableExtras()
-	call nvim_win_set_option(g:float_preview#win, 'number', v:false)
-	call nvim_win_set_option(g:float_preview#win, 'relativenumber', v:false)
-	call nvim_win_set_option(g:float_preview#win, 'cursorline', v:false)
-endfunction
-
-autocmd User FloatPreviewWinOpen call DisableExtras()

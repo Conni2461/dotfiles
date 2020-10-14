@@ -62,8 +62,10 @@ local on_attach = function(_, _)
   require'completion'.on_attach({
     chain_complete_list = chain_complete_list,
     customize_lsp_label = customize_lsp_label,
-    enable_auto_signatur = 1,
+    enable_auto_popup = 1,
+    enable_auto_signature = 1,
     auto_change_source = 1,
+    enable_auto_hover = 1,
   })
   vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.util.show_line_diagnostics()')
   if vim.api.nvim_buf_get_option(0, 'filetype') == 'rust' then
