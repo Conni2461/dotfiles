@@ -11,7 +11,6 @@
 
 	set cmdheight=1
 	set updatetime=300
-	set shortmess+=c
 	set signcolumn=yes
 
 	set colorcolumn=80
@@ -70,19 +69,7 @@
 	set noexpandtab
 	set listchars=tab:\¦\ " Required comment
 	set list
-	let s:defaultList=1
 	nnoremap <leader>vr :%retab!<CR>
-
-	function! ToggleListchars()
-		if s:defaultList
-			set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,space:·
-			let s:defaultList=0
-		else
-			set listchars=tab:\¦\ " Required comment
-			let s:defaultList=1
-		endif
-	endfunction
-	nnoremap <leader>vh :call ToggleListchars()<CR>
 
 	augroup SplitsSize
 		au!
@@ -111,9 +98,6 @@
 " Disable ex mode
 	map q: <Nop>
 	nnoremap Q <Nop>
-
-" Exit insert, dd line, enter insert
-	inoremap <C-d> <esc>ddi
 
 " Split Lines (Merge line by default with J)
 	nnoremap S :keeppatterns substitute/\s*\%#\s*/\r/e <bar> normal! ==<CR>
@@ -148,16 +132,10 @@
 	map <C-p> "+p
 	nnoremap s "_d
 
-" Tab jumping
-" - Use ^] to jump to tag under cursor
-" - Use g^] for ambiguous tags
-" - Use ^t to jump back up the tag stack
-	command! MakeTags !ctags -R .
-
 " Disable automatic commenting on newline:
 	augroup commenting
 		au!
-		au FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+		au FileType * setlocal formatoptions-=cro
 	augroup END
 
 " Spellcheck
