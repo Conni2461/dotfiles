@@ -51,6 +51,7 @@ local customize_lsp_label = {
   Keyword = utf8(0xf80a) .. ' [keyword]',
   Color = utf8(0xe22b) .. ' [color]',
   Unit = utf8(0xe3ce) .. ' [unit]',
+  ["snippets.nvim"] = utf8(0xf68e) .. ' [nsnip]',
   Snippet = utf8(0xf68e) .. ' [snippet]',
   Text = utf8(0xf52b) .. ' [text]',
   Buffers = utf8(0xf64d) .. ' [buffers]',
