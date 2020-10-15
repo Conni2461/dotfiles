@@ -63,13 +63,16 @@ endfunction
 
 function! TreesitterType()
 	let l:result = nvim_treesitter#statusline()
-	return l:result == "null" ? "" : l:result
+	return winwidth(0) > 70 ? (l:result == "null" ? "" : l:result) : ''
 endfunction
 
 function! MyFiletype()
-	let l:tmp_icon = luaeval("require'nvim-web-devicons'.get_icon(_, vim.api.nvim_buf_get_option(vim.api.nvim_get_current_buf(), 'filetype'))")
-	let l:icon = l:tmp_icon == "null" ? "" : ' ' . l:tmp_icon
-	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . l:icon  : 'no ft') : ''
+	let l:filename = expand('%:t') == "" ? "_" : expand('%:t')
+	let l:fileextension = expand('%:e') == "" ? "_" : expand('%:e')
+	let l:cmd = printf("require'nvim-web-devicons'.get_icon(\"%s\", \"%s\")", l:filename, l:fileextension)
+	let l:icon = luaeval(l:cmd)
+	let l:icon = l:icon == "null" ? "" : l:icon
+	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . " " . l:icon  : 'no ft') : ''
 endfunction
 
 function! GetErrors()
