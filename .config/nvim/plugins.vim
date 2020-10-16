@@ -38,6 +38,8 @@
 	Plug 'cometsong/CommentFrame.vim'
 	Plug 'godlygeek/tabular'
 
+	Plug 'rafcamlet/nvim-luapad'
+
 " Plugins that have configfiles in ~/.config/nvim/plugins.d/
 	Plug 'mhinz/vim-startify'
 

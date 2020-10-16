@@ -114,6 +114,7 @@ A full list of used plugins:
 | [scriptease.vim](https://github.com/tpope/vim-scriptease)                                | Vim plugin for making Vim plugins. Loads `:messages` into quickfix list, `:verbose` improvments, etc       |
 | [CommentFrame](https://github.com/cometsong/CommentFrame.vim)                            | Add comment frames. Use <leader>fcS for c/c++ and <leader>fch or <leader>fcH for bash                      |
 | [tabular](https://github.com/godlygeek/tabular)                                          | Helps with aligning text                                                                                   |
+| [Luapad](https://github.com/rafcamlet/nvim-luapad)                                       | Adds interactive scratchpad for lua and `:Lua` command with autocomplete                                   |
 | [startify](https://github.com/mhinz/vim-startify)                                        | The fancy start screen for Vim with session support                                                        |
 | [lastplace](https://github.com/farmergreg/vim-lastplace)                                 | Intelligently reopen files at your last edit position                                                      |
 | [animate](https://github.com/camspiers/animate.vim)                                      | Vim animation api                                                                                          |
