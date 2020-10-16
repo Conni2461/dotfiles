@@ -39,10 +39,6 @@ let g:lightline = {
 	\}
 \}
 
-au User LspDiagnosticsChanged call lightline#update()
-au BufEnter,BufLeave,BufDelete call lightline#update()
-au BufWritePost,TextChanged,TextChangedI * call lightline#update()
-
 function! GitStatus() abort
 	let stats = sy#repo#get_stats()
 	let symbols = ['+', '~', '-']
