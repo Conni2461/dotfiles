@@ -80,17 +80,27 @@
 	set foldenable
 	set foldmethod=indent
 	set foldlevelstart=99
-	" source: gist.github.com/sjl/3360978
+	" See https://github.com/nvim-treesitter/nvim-treesitter/pull/390#issuecomment-709666989
+	function! GetSpaces(foldLevel)
+		if &expandtab == 1
+			" Indenting with spaces
+			let str = repeat(" ", a:foldLevel / (&shiftwidth + 1) - 1)
+			return str
+		elseif &expandtab == 0
+			" Indenting with tabs
+			return repeat(" ", indent(v:foldstart) - (indent(v:foldstart) / &shiftwidth))
+		endif
+	endfunction
+
 	function! MyFoldText()
-		let line = getline(v:foldstart)
+		let startLineText = getline(v:foldstart)
+		let endLineText = trim(getline(v:foldend))
+		let indentation = GetSpaces(foldlevel("."))
+		let spaces = repeat(" ", 200)
 
-		let nucolwidth = &fdc + &number * &numberwidth
-		let windowwidth = winwidth(0) - nucolwidth - 3
-		let foldedlinecount = v:foldend - v:foldstart
+		let str = indentation . startLineText . "..." . endLineText . spaces
 
-		let line = strpart(line, 0, windowwidth - 2 -len(foldedlinecount))
-		let fillcharcount = windowwidth - strdisplaywidth(line) - len(foldedlinecount)
-		return line . '…' . repeat(' ',fillcharcount) . foldedlinecount . '…' . ' '
+		return str
 	endfunction
 	set foldtext=MyFoldText()
 	nnoremap <s-tab> za
