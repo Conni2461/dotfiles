@@ -6,15 +6,15 @@
 modules="#todols 📝
 #appointments 📅
 #corona de
-#weather
 news 📰
 mailbox 📬
 #cpu 🌡️
 #memory 🧠
 #disk /dev/sda4 💽
 pacpackages 📦
+weather
 internet
-#battery BAT0
+#battery BAT1
 volume"
 
 mrun() {
