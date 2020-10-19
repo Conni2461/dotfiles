@@ -4,6 +4,7 @@ local parsers = require'nvim-treesitter.parsers'
 ts.setup {
   highlight = {
     enable = true,
+    use_languagetree = true,
   },
   incremental_selection = {
     enable = true,
@@ -13,6 +14,9 @@ ts.setup {
       scope_incremental = "grc",
       node_decremental = "grm",
     }
+  },
+  indent = {
+    enable = true,
   },
   refactor = {
     highlight_definitions = { enable = true },
@@ -117,3 +121,5 @@ ts.setup {
 local configs = parsers.get_parser_configs()
 local ft_str = table.concat(vim.tbl_map(function(ft) return configs[ft].filetype or ft end, parsers.available_parsers()), ',')
 vim.cmd('autocmd Filetype ' .. ft_str .. ' setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()')
+
+vim.cmd('autocmd VimEnter * TSContextDisable')
