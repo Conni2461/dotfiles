@@ -35,7 +35,6 @@
 	Plug 'tpope/vim-commentary'
 	Plug 'tpope/vim-surround'
 	Plug 'tpope/vim-scriptease'
-	Plug 'cometsong/CommentFrame.vim'
 	Plug 'godlygeek/tabular'
 
 	Plug 'rafcamlet/nvim-luapad'

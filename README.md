@@ -112,7 +112,6 @@ A full list of used plugins:
 | [commentary](https://github.com/tpope/vim-commentary)                                    | comment stuff out with `gcc` to comment out line and `gc` in visual mode                                   |
 | [surround](https://github.com/tpope/vim-surround)                                        | quoting/parenthesizing made simple                                                                         |
 | [scriptease.vim](https://github.com/tpope/vim-scriptease)                                | Vim plugin for making Vim plugins. Loads `:messages` into quickfix list, `:verbose` improvments, etc       |
-| [CommentFrame](https://github.com/cometsong/CommentFrame.vim)                            | Add comment frames. Use <leader>fcS for c/c++ and <leader>fch or <leader>fcH for bash                      |
 | [tabular](https://github.com/godlygeek/tabular)                                          | Helps with aligning text                                                                                   |
 | [Luapad](https://github.com/rafcamlet/nvim-luapad)                                       | Adds interactive scratchpad for lua and `:Lua` command with autocomplete                                   |
 | [startify](https://github.com/mhinz/vim-startify)                                        | The fancy start screen for Vim with session support                                                        |
