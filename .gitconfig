@@ -37,6 +37,10 @@
 	ch = "!fgstwrap ch"
 	uf = "!fgstwrap uf"
 
+	fcb = "!fcob"
+	fct = "!fcot"
+	fcc = "!fcoc"
+
 [color]
 	ui = true
 	diff = auto
