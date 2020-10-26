@@ -21,12 +21,16 @@ snips.java      = require('module/snip/java').get_snippets()      -- WIP
 snips.lua       = require('module/snip/lua').get_snippets()
 snips.make      = require('module/snip/make').get_snippets()      -- WIP
 snips.markdown  = require('module/snip/markdown').get_snippets()  -- WIP
-snips.python    = require('module/snip/python').get_snippets()    -- WIP
+snips.python    = require('module/snip/python').get_snippets()
 snips.rmd       = require('module/snip/rmd').get_snippets()       -- WIP
 snips.rust      = require('module/snip/rust').get_snippets()      -- WIP
-snips.sh        = require('module/snip/sh').get_snippets()        -- WIP
+snips.sh        = require('module/snip/sh').get_snippets()
 snips.tex       = require('module/snip/tex').get_snippets()       -- WIP
 snips.vim       = require('module/snip/vim').get_snippets()       -- WIP
 
 snippets.snippets = snips
 snippets.use_suggested_mappings()
+
+vim.g.snips_author = "conni2461"
+vim.g.snips_email  = "Simon-Hauser@outlook.de"
+vim.g.snips_github = "conni2461"
