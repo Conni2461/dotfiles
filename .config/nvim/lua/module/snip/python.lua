@@ -12,10 +12,10 @@ def __unicode__(self):
   from = [[from $1 import $0]],
   docs = [[
 """
-File: ${1:=vim.fn.expand("%:t)}
-Author: ${=vim.g.snips_author}
-Email: ${vim.g.snips_email}
-Github: ${vim.g.snips_github}
+File:   ${=vim.fn.expand("%:t")}
+Author: ${2=vim.g.snips_author}
+Email:  ${3=vim.g.snips_email}
+Github: ${4=vim.g.snips_github}
 Description: $0
 """]],
   sk = [[@unittest.skip(${1:skip_reason})]],
