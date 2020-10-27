@@ -13,7 +13,7 @@ snips._global = {
 }
 snips.bib       = require('module/snip/bib').get_snippets()       -- WIP
 snips.c         = require('module/snip/c').get_snippets()
-snips.cpp       = require('module/snip/cpp').get_snippets()       -- WIP
+snips.cpp       = require('module/snip/cpp').get_snippets()
 snips.cmake     = require('module/snip/cmake').get_snippets()
 snips.go        = require('module/snip/go').get_snippets()        -- WIP
 snips.html      = require('module/snip/html').get_snippets()      -- WIP
@@ -26,7 +26,7 @@ snips.rmd       = require('module/snip/rmd').get_snippets()       -- WIP
 snips.rust      = require('module/snip/rust').get_snippets()      -- WIP
 snips.sh        = require('module/snip/sh').get_snippets()
 snips.tex       = require('module/snip/tex').get_snippets()       -- WIP
-snips.vim       = require('module/snip/vim').get_snippets()       -- WIP
+snips.vim       = require('module/snip/vim').get_snippets()
 
 snippets.snippets = snips
 snippets.use_suggested_mappings()
