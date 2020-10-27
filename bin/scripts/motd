@@ -72,9 +72,9 @@ done
 
 # 40-services
 # set column width
-COLUMNS=4
+COLUMNS=2
 # colors
-services=( "cronie" "dbus" "fail2ban" "sshd" "fancontrol" "httpd" "mariadb" )
+services=( "cronie" "dbus" "fail2ban" "sshd" "fancontrol" "nginx" "mariadb" "php-fpm" )
 # sort services
 IFS=$'\n' services=($(sort <<<"${services[*]}"))
 unset IFS
@@ -88,9 +88,9 @@ done
 for i in ${!services[@]}; do
     # color green if service is active, else red
     if [[ "${service_status[$i]}" == "active" ]]; then
-        out+="\e[32mup\e[0m ${services[$i]},"
+        out+="\e[32mupsymb\e[0m ${services[$i]},"
     else
-        out+="\e[31mdown\e[0m ${services[$i]},"
+        out+="\e[31mdosymb\e[0m ${services[$i]},"
     fi
     # insert \n every $COLUMNS column
     if [ $((($i+1) % $COLUMNS)) -eq 0 ]; then
@@ -100,7 +100,7 @@ done
 out+="\n"
 
 printf "\nServices:\n" >> $motd
-printf "$out" | column -ts $',' | sed -e 's/^/  /;s/up/●/g;s/down/▲/g' >> $motd
+printf "$out" | column -ts $',' | sed -e 's/^/  /;s/upsymb/●/g;s/dosymb/▲/g' >> $motd
 
 # 41-overdue-services
 pids="$(lsof -d DEL 2>/dev/null | awk '$8~/\/usr\/lib/ {printf $2" "}')"
