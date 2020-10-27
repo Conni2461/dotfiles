@@ -74,13 +74,12 @@ All credits goes to the creators of those scripts.
 
 Most of the scripts are written for POSIX compliant shells. All scripts with `/bin/sh` are programmed and tested with [dash](http://gondor.apana.org.au/~herbert/dash/) and are not garanteed to run with [bash](https://www.gnu.org/software/bash/bash.html). How to configure and use dash, can be found [here](https://wiki.archlinux.org/index.php/Dash).
 
-Some scripts in the bin folder require [dmenu](https://tools.suckless.org/dmenu/), [skim](https://github.com/lotabout/skim), [the_silver_searcher](https://github.com/ggreer/the_silver_searcher), [fd](https://github.com/sharkdp/fd) and [ripgrep](https://github.com/BurntSushi/ripgrep).
+Some scripts in the bin folder require [dmenu](https://tools.suckless.org/dmenu/), [skim](https://github.com/lotabout/skim), [ag](https://github.com/ggreer/the_silver_searcher), [fd](https://github.com/sharkdp/fd) and [ripgrep](https://github.com/BurntSushi/ripgrep).
 Also [twitch-notify](bin/croncmds/twitch-notify.py) and [github-notify](bin/croncmds/github-notify.py) require [python-notify2](https://pypi.org/project/notify2/).
 
 ## Zsh
 
-If you wanna use zsh, [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) and [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) is required to be installed.
-If you don't want to use this features remove the last two lines of the [zshrc](.zshrc).
+Zsh is configured similar to bash and offers [syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting) and [autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) when installed.
 If you ran into problems check the path of both extensions. It is possible that it has to be changed for your system.
 
 ## Vim
@@ -90,7 +89,7 @@ If you ran into problems check the path of both extensions. It is possible that 
 
 When neovim is started for the first time, vim-plug is downloaded and `:PlugInstall` is executed.
 To update plugins use `:PlugUpdate` and to upgrade vim-plug run `:PlugUpgrade`.
-All further commands can be found on [vim-plugs github page](https://github.com/junegunn/vim-plug).
+All further commands can be found on [here](https://github.com/junegunn/vim-plug).
 
 A full list of used plugins:
 
@@ -142,9 +141,9 @@ Some plugins require additional packages installed:
 
 - telescope requires [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd) to work best.
 - Already preonfigured LSP Server. Install one or more of the listed Servers and you are good to go for the specific language (setup can be verified with `:checkhealth`):
-  - [als](https://github.com/AdaCore/ada_language_server) for ada
-  - [bash-language-server](https://github.com/bash-lsp/bash-language-server) for bash and posix compliant shells
-  - [clangd](https://clangd.llvm.org/) for c/c++. [ccls](https://github.com/MaskRay/ccls) is currently disabled because clangd offers option to switch between header and source file
+  - [als](https://github.com/AdaCore/ada_language_server) for ada.
+  - [bashls](https://github.com/bash-lsp/bash-language-server) for bash and posix compliant shells.
+  - [clangd](https://clangd.llvm.org/) for c/c++. [ccls](https://github.com/MaskRay/ccls) is currently disabled because clangd offers option to switch between header and source file.
   - [cmake](https://github.com/regen100/cmake-language-server) for cmake
   - [cssls](https://github.com/vscode-langservers/vscode-css-languageserver-bin) for css files
   - [diagnosticls](https://github.com/iamcco/diagnostic-languageserver) to get linter data. Currently configured with shellcheck.
@@ -157,12 +156,13 @@ Some plugins require additional packages installed:
   - [jsonls](https://github.com/vscode-langservers/vscode-json-languageserver) for json
   - [kotlin_language_server](https://github.com/fwcd/kotlin-language-server) for kotlin
   - [metals](https://scalameta.org/metals/) for scala
-  - Using [microsoft-python-language-server](https://github.com/Microsoft/python-language-server) if installed and [python-language-server](https://github.com/palantir/python-language-server) as fallback for python
-  - [R-language-server](https://github.com/REditorSupport/languageserver) for R
+  - Using [pyls_ms](https://github.com/Microsoft/python-language-server) if installed and [pyls](https://github.com/palantir/python-language-server) as fallback for python
+  - [R_language_server](https://github.com/REditorSupport/languageserver) for R
   - Using [rust-analyzer](https://github.com/rust-analyzer/rust-analyzer) if installed and [rls](https://github.com/rust-lang/rls) as fallback for rust
   - [solargraph](https://solargraph.org/) for ruby
   - [sumneko lua](https://github.com/sumneko/lua-language-server) for lua
+  - [sqlls](https://github.com/joe-re/sql-language-server) for sql
   - [texlab](https://github.com/latex-lsp/texlab) for latex
   - [tsserver](https://github.com/theia-ide/typescript-language-server) for TypeScript
   - [vimls](https://github.com/iamcco/vim-language-server) for vimlang
-  - additional linters can be configured [here](.config/nvim/plugins.post.d/61-nvim-lsp.lua). Take a look at [nvim-lsp](https://github.com/neovim/nvim-lsp).
+  - additional language server can be configured [here](.config/nvim/lua/module/lsp.lua). Take a look at [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig).
