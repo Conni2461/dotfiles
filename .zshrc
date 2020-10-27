@@ -29,7 +29,7 @@ export TERM=xterm-256color
 [ -f "$HOME/.config/functionrc" ] && source "$HOME/.config/functionrc"
 
 # Load grc aliases
-[[ -s "/etc/grc.zsh" ]] && source /etc/grc.zsh
+[ -f "/etc/grc.zsh" ] && source /etc/grc.zsh
 
 # History repeat edit
 fh() { print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | sk | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g') ; }
@@ -102,5 +102,5 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 fi
 
 # Load zsh-syntax-highlighting; should be last.
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 2>/dev/null
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh 2>/dev/null
+[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
