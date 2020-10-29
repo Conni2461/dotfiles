@@ -18,7 +18,7 @@ for ${1:i}, ${2:v} in ipairs(${3:t}) do
 end]],
   ["if"] = U.match_indentation [[
 if $1 then
-  $2
+  $0
 end]],
   ife = U.match_indentation [[
 if $1 then

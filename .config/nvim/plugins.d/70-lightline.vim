@@ -67,8 +67,8 @@ function! MyFiletype()
 	let l:fileextension = expand('%:e') == "" ? "_" : expand('%:e')
 	let l:cmd = printf("require'nvim-web-devicons'.get_icon(\"%s\", \"%s\")", l:filename, l:fileextension)
 	let l:icon = luaeval(l:cmd)
-	let l:icon = l:icon == "null" ? "" : l:icon
-	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . " " . l:icon  : 'no ft') : ''
+	let l:icon = l:icon == "null" ? "" : " " . l:icon
+	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . l:icon  : 'no ft') : ''
 endfunction
 
 function! GetErrors()
