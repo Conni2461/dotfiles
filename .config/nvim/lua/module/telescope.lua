@@ -7,6 +7,7 @@ local conf = require('telescope.config').values
 require('telescope').setup {
   defaults = {
     layout_strategy = "flex",
+    scroll_strategy = 'cycle',
     winblend = 5,
     color_devicons = false,
     generic_sorter = require'telescope.sorters'.get_fzy_sorter,
@@ -49,6 +50,15 @@ M.load_bib = function(opts)
       return true
     end
   }):find()
+end
+
+M.grep_input_string = function(opts)
+  local input_string = vim.fn.input("Enter string: ")
+
+  require'telescope.builtin'.grep_string{
+    shorten_path = true,
+    default_text = input_string
+  }
 end
 
 return M
