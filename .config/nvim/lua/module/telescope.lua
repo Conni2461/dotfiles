@@ -1,3 +1,9 @@
+local pickers = require('telescope.pickers')
+local finders = require('telescope.finders')
+local actions = require('telescope.actions')
+
+local conf = require('telescope.config').values
+
 require('telescope').setup {
   defaults = {
     layout_strategy = "flex",
@@ -7,3 +13,42 @@ require('telescope').setup {
     file_sorter = require'telescope.sorters'.get_fzy_sorter,
   }
 }
+
+local M = {}
+
+M.load_bib = function(opts)
+  opts = opts or {}
+  local handle = io.popen("loadbib -l")
+  local results = vim.split(handle:read("*a"), '\n')
+  handle:close()
+
+  pickers.new(opts, {
+    prompt_title = 'Load bib',
+    finder = finders.new_table {
+      results = results,
+      entry_maker = function(line)
+        return {
+          ordinal = line,
+          display = line,
+        }
+      end
+    },
+    sorter = conf.generic_sorter(opts),
+    attach_mappings = function(prompt_bufnr, map)
+      local read_bib = function()
+        local selection = actions.get_selected_entry(prompt_bufnr)
+        actions.close(prompt_bufnr)
+        local bib = vim.split(selection.display, ':')[1]
+        vim.cmd('read !loadbib -g ' .. bib)
+        vim.cmd [[stopinsert]]
+      end
+
+      map('n', '<CR>', read_bib)
+      map('i', '<CR>', read_bib)
+
+      return true
+    end
+  }):find()
+end
+
+return M
