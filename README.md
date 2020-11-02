@@ -13,6 +13,7 @@
 
 [![license](https://img.shields.io/github/license/conni2461/dotfiles.svg?style=flat-square)](https://github.com/conni2461/dotfiles/blob/master/LICENSE)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ef9d3503d02343ac8f6d1c0a7eb25d66)](https://app.codacy.com/app/Conni2461/dotfiles?utm_source=github.com&utm_medium=referral&utm_content=Conni2461/dotfiles&utm_campaign=Badge_Grade_Dashboard)
+[![Scc Code Badge](https://sloc.xyz/github/conni2461/dotfiles?category=code)](https://github.com/conni2461/dotfiles)
 
 ## Introduction
 
