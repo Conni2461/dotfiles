@@ -60,6 +60,7 @@
 	Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 	Plug 'nvim-treesitter/playground'
 	Plug 'romgrk/nvim-treesitter-context'
+	Plug 'p00f/nvim-ts-rainbow'
 
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'norcalli/snippets.nvim'

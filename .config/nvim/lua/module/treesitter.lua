@@ -6,6 +6,10 @@ ts.setup {
     enable = true,
     use_languagetree = true,
   },
+  rainbow = {
+    enable = true,
+    disable = { 'lua' } -- please disable lua for now
+  },
   incremental_selection = {
     enable = true,
     keymaps = {
