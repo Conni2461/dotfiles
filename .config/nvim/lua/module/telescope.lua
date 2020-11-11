@@ -7,7 +7,7 @@ local conf = require('telescope.config').values
 require('telescope').setup {
   defaults = {
     layout_strategy = "flex",
-    scroll_strategy = 'cycle',
+    scroll_strategy = 'descending',
     winblend = 5,
     color_devicons = false,
     generic_sorter = require'telescope.sorters'.get_fzy_sorter,

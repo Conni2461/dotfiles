@@ -18,8 +18,8 @@ nnoremap <leader>at <cmd>lua vim.lsp.buf.type_definition()<CR>
 nnoremap <leader>ai <cmd>lua vim.lsp.buf.declaration()<CR>
 nnoremap <leader>ah <cmd>lua vim.lsp.buf.hover()<CR>
 nnoremap <leader>as <cmd>lua vim.lsp.buf.signature_help()<CR>
-nnoremap <leader>ar <cmd>lua vim.lsp.buf.references()<CR>
-nnoremap <leader>ac <cmd>lua vim.lsp.buf.document_symbol()<CR>
+" nnoremap <leader>ar <cmd>lua vim.lsp.buf.references()<CR>
+" nnoremap <leader>ac <cmd>lua vim.lsp.buf.document_symbol()<CR>
 
 nnoremap <leader>an :NextDiagnosticCycle<CR>
 nnoremap <leader>ap :PrevDiagnosticCycle<CR>

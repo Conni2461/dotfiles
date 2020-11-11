@@ -68,6 +68,8 @@
 	Plug 'nvim-lua/lsp_extensions.nvim'
 	Plug 'steelsojka/completion-buffers'
 
+	Plug 'mfussenegger/nvim-dap'
+	Plug 'theHamsta/nvim-dap-virtual-text'
 
 	Plug 'itchyny/lightline.vim'
 	Plug 'kyazdani42/nvim-web-devicons'
