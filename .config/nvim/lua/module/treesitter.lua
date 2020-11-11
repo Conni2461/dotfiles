@@ -7,7 +7,7 @@ ts.setup {
     use_languagetree = true,
   },
   rainbow = {
-    enable = true,
+    enable = false,
     disable = { 'lua' } -- please disable lua for now
   },
   incremental_selection = {
