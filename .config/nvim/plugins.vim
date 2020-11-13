@@ -65,7 +65,6 @@
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'norcalli/snippets.nvim'
 	Plug 'nvim-lua/completion-nvim'
-	Plug 'nvim-lua/diagnostic-nvim'
 	Plug 'nvim-lua/lsp_extensions.nvim'
 	Plug 'steelsojka/completion-buffers'
 

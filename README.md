@@ -132,7 +132,6 @@ A full list of used plugins:
 | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                               | Providing config for built-in lsp                                                                          |
 | [snippets](https://github.com/norcalli/snippets.nvim)                                    | Adds snippet support. Works with completion-nvim.                                                          |
 | [completion](https://github.com/nvim-lua/completion-nvim)                                | Adds completion for nvim-lsp                                                                               |
-| [diagnostic](https://github.com/nvim-lua/diagnostic-nvim)                                | Changes default nvim-lsp diagnostics behavior                                                              |
 | [lsp extensions](https://github.com/tjdevries/lsp_extensions.nvim)                       | Adds more lsp stuff. Example: Inlay hints                                                                  |
 | [buffer completion](https://github.com/steelsojka/completion-buffers)                    | Adds word completion for all words in all open buffers. Additional source for completion-nvim              |
 | [dap](https://github.com/mfussenegger/nvim-dap)                                          | Debug Adapter Protocol client implementation for Neovim                                                    |

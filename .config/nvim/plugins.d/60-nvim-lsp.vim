@@ -3,13 +3,10 @@ let g:indicator_warnings = "\uf071 "
 let g:indicator_infos = "\uf7fc "
 let g:indicator_hints = "\ufbe6 "
 
-call sign_define("LspDiagnosticsErrorSign", {"text" : g:indicator_errors, "texthl" : "LspDiagnosticsError"})
-call sign_define("LspDiagnosticsWarningSign", {"text" : g:indicator_warnings, "texthl" : "LspDiagnosticsWarning"})
-call sign_define("LspDiagnosticsInformationSign", {"text" : g:indicator_infos, "texthl" : "LspDiagnosticsInformation"})
-call sign_define("LspDiagnosticsHintSign", {"text" : g:indicator_hints, "texthl" : "LspDiagnosticsHint"})
-
-let g:diagnostic_insert_delay = 1
-let g:diagnostic_enable_underline = 0
+call sign_define("LspDiagnosticsSignError", {"text" : g:indicator_errors, "texthl" : "LspDiagnosticsDefaultError"})
+call sign_define("LspDiagnosticsSignWarning", {"text" : g:indicator_warnings, "texthl" : "LspDiagnosticsDefaultWarning"})
+call sign_define("LspDiagnosticsSignInformation", {"text" : g:indicator_infos, "texthl" : "LspDiagnosticsDefaultInformation"})
+call sign_define("LspDiagnosticsSignHint", {"text" : g:indicator_hints, "texthl" : "LspDiagnosticsDefaultHint"})
 
 nnoremap <leader>af :w! \| !formatf <c-r>%<CR> \| :e <CR>
 
@@ -21,8 +18,8 @@ nnoremap <leader>as <cmd>lua vim.lsp.buf.signature_help()<CR>
 " nnoremap <leader>ar <cmd>lua vim.lsp.buf.references()<CR>
 " nnoremap <leader>ac <cmd>lua vim.lsp.buf.document_symbol()<CR>
 
-nnoremap <leader>an :NextDiagnosticCycle<CR>
-nnoremap <leader>ap :PrevDiagnosticCycle<CR>
+nnoremap <leader>an <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
+nnoremap <leader>ap <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
 
 augroup SwitchSource
 	au!

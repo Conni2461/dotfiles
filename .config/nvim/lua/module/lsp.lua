@@ -1,6 +1,15 @@
 local nvim_lsp = require'nvim_lsp'
 local util     = require'nvim_lsp/util'
 
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = false,
+    virtual_text = false,
+    signs = true,
+    update_in_insert = false,
+  }
+)
+
 local chain_complete_list = {
   default = {
     {complete_items = {'lsp', 'snippet'}},
@@ -59,7 +68,6 @@ local customize_lsp_label = {
 }
 
 local on_attach = function(_, _)
-  require'diagnostic'.on_attach()
   require'completion'.on_attach({
     chain_complete_list = chain_complete_list,
     customize_lsp_label = customize_lsp_label,
@@ -68,7 +76,7 @@ local on_attach = function(_, _)
     auto_change_source = 1,
     enable_auto_hover = 1,
   })
-  vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.util.show_line_diagnostics()')
+  vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()')
   if vim.api.nvim_buf_get_option(0, 'filetype') == 'rust' then
     vim.api.nvim_command('autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost <buffer> lua require"lsp_extensions".inlay_hints{ prefix = " » ", highlight = "NonText" }')
   end
