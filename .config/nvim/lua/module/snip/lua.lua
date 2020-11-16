@@ -9,11 +9,11 @@ for ${1:i}=${2:1},${3:10} do
   $0
 end]],
   forp = U.match_indentation [[
-for ${1:i},${2:v} in pairs(${3:table_name}) do
+for ${1:k}, ${2:v} in pairs(${3:table_name}) do
   $0
 end]],
   fori = U.match_indentation [[
-for ${1:i}, ${2:v} in ipairs(${3:t}) do
+for ${1:k}, ${2:v} in ipairs(${3:t}) do
   $0
 end]],
   ["if"] = U.match_indentation [[
