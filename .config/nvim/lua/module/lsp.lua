@@ -1,5 +1,5 @@
-local nvim_lsp = require'nvim_lsp'
-local util     = require'nvim_lsp/util'
+local lspconfig = require'lspconfig'
+local util      = require'lspconfig/util'
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -140,16 +140,16 @@ local function setup_ls(ls, ls_cmd, backup, backup_cmd, passed_settings)
   end
 
   if util.has_bins(bin) then
-    ls.setup{
+    lspconfig[ls].setup{
       on_attach = on_attach,
       cmd = arr,
       capabilities = cap,
       settings = passed_settings,
     }
   else
-    if not (backup == nil) then
-      if not (backup_bin == nil) and util.has_bins(backup_bin) then
-        backup.setup{
+    if backup ~= nil then
+      if backup_bin ~= nil and util.has_bins(backup_bin) then
+        lspconfig[backup].setup{
           on_attach = on_attach,
           cmd = backup_arr,
           capabilities = cap,
@@ -160,33 +160,33 @@ local function setup_ls(ls, ls_cmd, backup, backup_cmd, passed_settings)
   end
 end
 
-setup_ls(nvim_lsp.als, "ada_language_server")
-setup_ls(nvim_lsp.bashls, { "bash-language-server", "start" })
--- setup_ls(nvim_lsp.ccls, "ccls", nvim_lsp.clangd, "clangd")
-setup_ls(nvim_lsp.clangd, { "clangd", "--background-index" }, nil, nil)
-setup_ls(nvim_lsp.cmake, "cmake-language-server")
-setup_ls(nvim_lsp.cssls, { "css-languageserver", "--stdio" })
-setup_ls(nvim_lsp.dockerls, { "docker-langserver", "--stdio" })
-setup_ls(nvim_lsp.elixirls, "elixir-ls")
-setup_ls(nvim_lsp.flow, {"npm", "run", "flow", "lsp"})
-setup_ls(nvim_lsp.fortls, "fortls")
-setup_ls(nvim_lsp.gopls, "gopls")
-setup_ls(nvim_lsp.html, { "html-languageserver", "--stdio" })
-setup_ls(nvim_lsp.jsonls, { "vscode-json-languageserver", "--stdio" })
-setup_ls(nvim_lsp.kotlin_language_server, "kotlin-language-server")
-setup_ls(nvim_lsp.metals, "metals")
-setup_ls(nvim_lsp.pyls_ms, "mspyls", nvim_lsp.pyls, "pyls")
-setup_ls(nvim_lsp.r_language_server, { "R", "--slave", "-e", "languageserver::run()" })
-setup_ls(nvim_lsp.rust_analyzer, "rust-analyzer", nvim_lsp.rls, "rls")
-setup_ls(nvim_lsp.solargraph, { "solargraph", "stdio" })
-setup_ls(nvim_lsp.sumneko_lua, "lua-language-server", nil, nil, lua_settings)
-setup_ls(nvim_lsp.sqlls, "sql-language-server")
-setup_ls(nvim_lsp.texlab, "texlab")
-setup_ls(nvim_lsp.tsserver, { "typescript-language-server", "--stdio" })
-setup_ls(nvim_lsp.vimls, { "vim-language-server", "--stdio" })
+setup_ls("als", "ada_language_server")
+setup_ls("bashls", { "bash-language-server", "start" })
+setup_ls("clangd", { "clangd", "--background-index" })
+setup_ls("cmake", "cmake-language-server")
+setup_ls("cssls", { "css-languageserver", "--stdio" })
+setup_ls("dockerls", { "docker-langserver", "--stdio" })
+setup_ls("elixirls", "elixir-ls")
+setup_ls("flow", {"npm", "run", "flow", "lsp"})
+setup_ls("fortls", "fortls")
+setup_ls("gopls", "gopls")
+setup_ls("html", { "html-languageserver", "--stdio" })
+-- setup_ls("jdtls", { "jdtls" })
+setup_ls("jsonls", { "vscode-json-languageserver", "--stdio" })
+setup_ls("kotlin_language_server", "kotlin-language-server")
+setup_ls("metals", "metals")
+setup_ls("pyls_ms", "mspyls", "pyls", "pyls")
+setup_ls("r_language_server", { "R", "--slave", "-e", "languageserver::run()" })
+setup_ls("rust_analyzer", "rust-analyzer", "rls", "rls")
+setup_ls("solargraph", { "solargraph", "stdio" })
+setup_ls("sumneko_lua", "lua-language-server", nil, nil, lua_settings)
+setup_ls("sqlls", "sql-language-server")
+setup_ls("texlab", "texlab")
+setup_ls("tsserver", { "typescript-language-server", "--stdio" })
+setup_ls("vimls", { "vim-language-server", "--stdio" })
 
 if util.has_bins('diagnostic-languageserver') then
-  nvim_lsp.diagnosticls.setup{
+  lspconfig.diagnosticls.setup{
     cmd = { "diagnostic-languageserver", "--stdio" },
     filetypes = { "sh" },
     on_attach = on_attach,
