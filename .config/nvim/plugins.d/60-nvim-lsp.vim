@@ -29,6 +29,7 @@ augroup END
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
+set pumblend=10
 
 " Enable Snippet Support
 let g:completion_enable_snippet = 'snippets.nvim'
