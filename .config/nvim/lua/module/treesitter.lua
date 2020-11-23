@@ -4,11 +4,10 @@ local parsers = require'nvim-treesitter.parsers'
 ts.setup {
   highlight = {
     enable = true,
-    use_languagetree = true,
   },
   rainbow = {
-    enable = false,
-    disable = { 'lua' } -- please disable lua for now
+    enable = bash,
+    disable = { 'lua', 'bash' } -- please disable lua for now
   },
   incremental_selection = {
     enable = true,
@@ -20,7 +19,7 @@ ts.setup {
     }
   },
   indent = {
-    enable = true,
+    enable = false,
   },
   refactor = {
     highlight_definitions = { enable = true },
