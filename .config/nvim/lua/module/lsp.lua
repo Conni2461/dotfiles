@@ -1,5 +1,6 @@
 local lspconfig = require'lspconfig'
 local util      = require'lspconfig/util'
+local configs   = require'lspconfig/configs'
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -171,7 +172,6 @@ setup_ls("flow", {"npm", "run", "flow", "lsp"})
 setup_ls("fortls", "fortls")
 setup_ls("gopls", "gopls")
 setup_ls("html", { "html-languageserver", "--stdio" })
--- setup_ls("jdtls", { "jdtls" })
 setup_ls("jsonls", { "vscode-json-languageserver", "--stdio" })
 setup_ls("kotlin_language_server", "kotlin-language-server")
 setup_ls("metals", "metals")
@@ -184,6 +184,32 @@ setup_ls("sqlls", "sql-language-server")
 setup_ls("texlab", "texlab")
 setup_ls("tsserver", { "typescript-language-server", "--stdio" })
 setup_ls("vimls", { "vim-language-server", "--stdio" })
+
+configs.own_jdtls = {
+  default_config = {
+    cmd = { 'jdtls' },
+    filetypes = { 'java' },
+    root_dir = util.root_pattern(".git"),
+    init_options = {
+      jvm_args = {},
+      workspace = util.path.join { vim.loop.os_homedir(), "workspace" },
+    },
+    handlers = {
+      ['textDocument/codeAction'] = function(a, b, actions)
+        for _, action in ipairs(actions) do
+          if action.command == 'java.apply.workspaceEdit' then
+            action.edit = action.arguments[1]
+          end
+        end
+
+        handlers['textDocument/codeAction'](a, b, actions)
+      end
+    },
+    settings = {},
+  }
+}
+
+lspconfig.own_jdtls.setup{ on_attach = on_attach }
 
 if util.has_bins('diagnostic-languageserver') then
   lspconfig.diagnosticls.setup{
