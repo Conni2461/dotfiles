@@ -39,6 +39,8 @@ let g:lightline = {
 	\}
 \}
 
+au User LspDiagnosticsChanged call lightline#update()
+
 function! GitStatus() abort
 	let stats = sy#repo#get_stats()
 	let symbols = ['+', '~', '-']
@@ -72,32 +74,32 @@ function! MyFiletype()
 endfunction
 
 function! GetErrors()
-	if luaeval('#vim.lsp.buf_get_clients() > 0')
-		let l:all_errors = luaeval("vim.lsp.util.buf_diagnostics_count([[Error]])")
+	if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
+		let l:all_errors = luaeval("vim.lsp.diagnostic.get_count(0, 'Error')")
 		return l:all_errors == 0 ? '' : printf('%s%d', g:indicator_errors, all_errors)
 	endif
 	return ''
 endfunction
 
 function! GetWarnings()
-	if luaeval('#vim.lsp.buf_get_clients() > 0')
-		let l:all_warns = luaeval("vim.lsp.util.buf_diagnostics_count([[Warning]])")
+	if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
+		let l:all_warns = luaeval("vim.lsp.diagnostic.get_count(0, 'Warning')")
 		return l:all_warns == 0 ? '' : printf('%s%d', g:indicator_warnings, all_warns)
 	endif
 	return ''
 endfunction
 
 function! GetInformations()
-	if luaeval('#vim.lsp.buf_get_clients() > 0')
-		let l:all_infos = luaeval("vim.lsp.util.buf_diagnostics_count([[Information]])")
+	if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
+		let l:all_infos = luaeval("vim.lsp.diagnostic.get_count(0, 'Information')")
 		return l:all_infos == 0 ? '' : printf('%s%d', g:indicator_infos, all_infos)
 	endif
 	return ''
 endfunction
 
 function! GetHints()
-	if luaeval('#vim.lsp.buf_get_clients() > 0')
-		let l:all_hints = luaeval("vim.lsp.util.buf_diagnostics_count([[Hint]])")
+	if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
+		let l:all_hints = luaeval("vim.lsp.diagnostic.get_count(0, 'Hint')")
 		return l:all_hints == 0 ? '' : printf('%d', g:indicator_hints, all_hints)
 	endif
 	return ''
