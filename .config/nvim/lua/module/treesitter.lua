@@ -6,7 +6,7 @@ ts.setup {
     enable = true,
   },
   rainbow = {
-    enable = bash,
+    enable = false,
     disable = { 'lua', 'bash' } -- please disable lua for now
   },
   incremental_selection = {
