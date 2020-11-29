@@ -10,7 +10,8 @@ require('telescope').setup {
     scroll_strategy = 'descending',
     winblend = 5,
     color_devicons = false,
-    set_env = { ['COLORTERM'] = 'truecolor' },
+    set_env = { ['COLORTERM'] = 'truecolor', LESS = '-SMR' },
+    vim_buffers_everywhere = true,
   }
 }
 

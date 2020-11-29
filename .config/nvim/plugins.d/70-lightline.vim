@@ -75,7 +75,7 @@ endfunction
 
 function! GetErrors()
 	if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-		let l:all_errors = luaeval("vim.lsp.diagnostic.get_count(0, 'Error')")
+		let l:all_errors = luaeval("vim.lsp.diagnostic.get_count(vim.fn.bufnr('%'), 'Error')")
 		return l:all_errors == 0 ? '' : printf('%s%d', g:indicator_errors, all_errors)
 	endif
 	return ''
@@ -83,7 +83,7 @@ endfunction
 
 function! GetWarnings()
 	if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-		let l:all_warns = luaeval("vim.lsp.diagnostic.get_count(0, 'Warning')")
+		let l:all_warns = luaeval("vim.lsp.diagnostic.get_count(vim.fn.bufnr('%'), 'Warning')")
 		return l:all_warns == 0 ? '' : printf('%s%d', g:indicator_warnings, all_warns)
 	endif
 	return ''
@@ -91,7 +91,7 @@ endfunction
 
 function! GetInformations()
 	if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-		let l:all_infos = luaeval("vim.lsp.diagnostic.get_count(0, 'Information')")
+		let l:all_infos = luaeval("vim.lsp.diagnostic.get_count(vim.fn.bufnr('%'), 'Information')")
 		return l:all_infos == 0 ? '' : printf('%s%d', g:indicator_infos, all_infos)
 	endif
 	return ''
@@ -99,7 +99,7 @@ endfunction
 
 function! GetHints()
 	if luaeval('not vim.tbl_isempty(vim.lsp.buf_get_clients(0))')
-		let l:all_hints = luaeval("vim.lsp.diagnostic.get_count(0, 'Hint')")
+		let l:all_hints = luaeval("vim.lsp.diagnostic.get_count(vim.fn.bufnr('%'), 'Hint')")
 		return l:all_hints == 0 ? '' : printf('%d', g:indicator_hints, all_hints)
 	endif
 	return ''
