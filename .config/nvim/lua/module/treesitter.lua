@@ -5,10 +5,6 @@ ts.setup {
   highlight = {
     enable = true,
   },
-  rainbow = {
-    enable = true,
-    disable = { 'java' } -- please disable lua for now
-  },
   incremental_selection = {
     enable = true,
     keymaps = {
