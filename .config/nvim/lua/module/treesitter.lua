@@ -6,8 +6,8 @@ ts.setup {
     enable = true,
   },
   rainbow = {
-    enable = false,
-    disable = { 'lua', 'bash' } -- please disable lua for now
+    enable = true,
+    disable = { 'java' } -- please disable lua for now
   },
   incremental_selection = {
     enable = true,
@@ -113,11 +113,9 @@ ts.setup {
     'rst',
     'ruby',
     'rust',
-    'scala',
     'teal',
     'toml',
     'typescript',
-    'yaml'
   }
 }
 

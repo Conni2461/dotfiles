@@ -57,7 +57,7 @@
 
 	Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
 
-	Plug 'nvim-treesitter/nvim-treesitter'
+	Plug 'nvim-treesitter/nvim-treesitter', { 'do': 'TSUpdate' }
 	Plug 'nvim-treesitter/nvim-treesitter-refactor'
 	Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 	Plug 'nvim-treesitter/playground'
