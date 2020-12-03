@@ -108,7 +108,7 @@ ts.setup {
     'regex',
     'rst',
     'ruby',
-    'rust',
+    -- 'rust',
     'teal',
     'toml',
     'typescript',

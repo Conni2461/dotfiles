@@ -138,6 +138,8 @@ A full list of used plugins:
 | [lightline](https://github.com/itchyny/lightline.vim)                                    | A light and configurable statusline/tabline plugin                                                         |
 | [devicons](https://github.com/kyazdani42/nvim-web-devicons)                              | lua `fork` of vim-web-devicons for neovim                                                                  |
 | [colorizer](https://github.com/norcalli/nvim-colorizer.lua)                              | Adds color to hexcodes                                                                                     |
+| [conjure](https://github.com/Olical/conjure)                                             | Interactive evaluation for Neovim (Clojure, Fennel, Janet, Racket)                                         |
+| [aniseed](https://github.com/Olical/aniseed)                                             | Configure and extend Neovim with Fennel (Lisp to Lua)                                                      |
 
 Some plugins require additional packages installed:
 

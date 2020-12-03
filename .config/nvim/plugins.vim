@@ -57,7 +57,7 @@
 
 	Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
 
-	Plug 'nvim-treesitter/nvim-treesitter', { 'do': 'TSUpdate' }
+	Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 	Plug 'nvim-treesitter/nvim-treesitter-refactor'
 	Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 	Plug 'nvim-treesitter/playground'
@@ -76,4 +76,7 @@
 	Plug 'kyazdani42/nvim-web-devicons'
 
 	Plug 'norcalli/nvim-colorizer.lua'
+
+	Plug 'Olical/conjure'
+	Plug 'Olical/aniseed'
 	call plug#end()
