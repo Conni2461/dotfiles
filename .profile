@@ -64,6 +64,10 @@ export CALIBRE_USE_DARK_PALETTE=1
 # Fixing misbehaving Java applications
 export _JAVA_AWT_WM_NONREPARENTING=1
 
+# Lua 5.1 path
+export LUA_PATH="/usr/share/lua/5.1/?.lua;/usr/share/lua/5.1/?/init.lua;/usr/lib/lua/5.1/?.lua;/usr/lib/lua/5.1/?/init.lua;./?.lua;./?/init.lua;${HOME}/.luarocks/share/lua/5.1/?.lua;${HOME}/.luarocks/share/lua/5.1/?/init.lua"
+export LUA_CPATH="/usr/lib/lua/5.1/?.so;/usr/lib/lua/5.1/loadall.so;./?.so;${HOME}/.luarocks/lib/lua/5.1/?.so"
+
 # Bash specific stuff
 if echo $SHELL | grep 'bash' >/dev/null; then
 	export HISTCONTROL=ignoreboth:erasedups
