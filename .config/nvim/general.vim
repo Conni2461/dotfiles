@@ -71,11 +71,6 @@
 	set list
 	nnoremap <leader>vr :%retab!<CR>
 
-	augroup SplitsSize
-		au!
-		au VimResized * execute "normal! \<c-w>="
-	augroup END
-
 " Folding setup
 	set foldenable
 	set foldmethod=indent

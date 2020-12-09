@@ -51,6 +51,7 @@
 	Plug 'nvim-telescope/telescope.nvim'
 	Plug 'nvim-telescope/telescope-fzy-native.nvim'
 	Plug 'nvim-telescope/telescope-dap.nvim'
+	Plug 'nvim-telescope/telescope-symbols.nvim'
 
 	Plug 'junegunn/goyo.vim'
 	Plug 'junegunn/limelight.vim'

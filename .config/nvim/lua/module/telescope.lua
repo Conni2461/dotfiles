@@ -1,6 +1,7 @@
 local pickers = require('telescope.pickers')
 local finders = require('telescope.finders')
 local actions = require('telescope.actions')
+local previewers = require('telescope.previewers')
 
 local conf = require('telescope.config').values
 
@@ -11,7 +12,9 @@ require('telescope').setup {
     winblend = 5,
     color_devicons = false,
     set_env = { ['COLORTERM'] = 'truecolor', LESS = '-SMR' },
-    vim_buffers_everywhere = true,
+    file_previewer = previewers.vim_buffer_cat.new,
+    grep_previewer = previewers.vim_buffer_vimgrep.new,
+    qflist_previewer = previewers.vim_buffer_qflist.new,
   }
 }
 
@@ -62,6 +65,11 @@ M.grep_input_string = function(opts)
     shorten_path = true,
     default_text = input_string
   }
+end
+
+M.show_diagnostics = function()
+  vim.lsp.diagnostic.set_loclist({open_loclist = false})
+  require'telescope.builtin'.loclist{}
 end
 
 return M
