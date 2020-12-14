@@ -25,6 +25,7 @@
 	Plug 'rhysd/committia.vim'
 
 	Plug 'gisphm/vim-gitignore'
+	Plug 'bakpakin/fennel.vim'
 
 	Plug 'dhruvasagar/vim-table-mode'
 	Plug 'gyim/vim-boxdraw'
