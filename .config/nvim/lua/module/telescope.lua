@@ -8,7 +8,7 @@ local conf = require('telescope.config').values
 require('telescope').setup {
   defaults = {
     layout_strategy = "flex",
-    scroll_strategy = 'descending',
+    scroll_strategy = 'cycle',
     winblend = 5,
     color_devicons = false,
     set_env = { ['COLORTERM'] = 'truecolor', LESS = '-SMR' },
