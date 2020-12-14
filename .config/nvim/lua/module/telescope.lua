@@ -10,6 +10,18 @@ require('telescope').setup {
     layout_strategy = "flex",
     scroll_strategy = 'cycle',
     winblend = 5,
+    layout_defaults = {
+      horizontal = {
+        width_padding = 0.1,
+        height_padding = 0.1,
+        preview_width = 0.6,
+      },
+      vertical = {
+        width_padding = 0.05,
+        height_padding = 1,
+        preview_height = 0.5,
+      }
+    },
     color_devicons = false,
     set_env = { ['COLORTERM'] = 'truecolor', LESS = '-SMR' },
     file_previewer = previewers.vim_buffer_cat.new,
