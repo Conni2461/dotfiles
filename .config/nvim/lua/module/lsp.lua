@@ -184,6 +184,7 @@ setup_ls("sqlls", "sql-language-server")
 setup_ls("texlab", "texlab")
 setup_ls("tsserver", { "typescript-language-server", "--stdio" })
 setup_ls("vimls", { "vim-language-server", "--stdio" })
+setup_ls("yamlls", { "yaml-language-server", "--stdio" })
 
 configs.own_jdtls = {
   default_config = {
