@@ -11,6 +11,6 @@ ping -q -t 1 -c 1 `ip r | grep -m 1 default | cut -d ' ' -f 3` >/dev/null || exi
 notify-send "Syncing Calendar and Contacts..."
 
 vdirsyncer discover || failed
-vdirsyncer metasync || failed
+# vdirsyncer metasync || failed
 vdirsyncer sync || failed
 notify-send "Calendar and Contacts synced."
