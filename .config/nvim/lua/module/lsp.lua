@@ -24,24 +24,21 @@ local chain_complete_list = {
   comment = {},
 }
 
-local bytemarkers = { {0x7FF, 192}, {0xFFFF, 224}, {0x1FFFFF, 240} }
-local function utf8(decimal)
-  if decimal < 128 then
-    return string.char(decimal)
+local utf8 = function(cp)
+  if cp < 128 then
+    return string.char(cp)
   end
-  local charbytes = {}
-  for bytes,vals in ipairs(bytemarkers) do
-    if decimal <= vals[1] then
-      for b = bytes + 1, 2, -1 do
-        local mod = decimal % 64
-        decimal = (decimal - mod) / 64
-        charbytes[b] = string.char(128 + mod)
-      end
-      charbytes[1] = string.char(vals[2] + decimal)
-      break
+  local s = ""
+  local prefix_max = 32
+  while true do
+    local suffix = cp % 64
+    s = string.char(128 + suffix)..s
+    cp = (cp - suffix) / 64
+    if cp < prefix_max then
+      return string.char((256 - (2 * prefix_max)) + cp)..s
     end
+    prefix_max = prefix_max / 2
   end
-  return table.concat(charbytes)
 end
 
 local customize_lsp_label = {
