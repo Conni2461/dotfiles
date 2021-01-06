@@ -70,8 +70,7 @@ Also you should change the email and name in the `.gitconfig` as well as the rem
 ## Bash
 
 Dotfiles provide [clipmenu](https://github.com/cdown/clipmenu) which requires [dmenu](https://tools.suckless.org/dmenu/), [xsel](http://www.vergenet.net/~conrad/software/xsel/) and [clipnotify](https://github.com/cdown/clipnotify).
-Also a spotify commandline handler script [sp](https://gist.github.com/wandernauta/6800547).
-All credits goes to the creators of those scripts.
+All credits goes to the creator of that scripts.
 
 Most of the scripts are written for POSIX compliant shells. All scripts with `/bin/sh` are programmed and tested with [dash](http://gondor.apana.org.au/~herbert/dash/) and are not garanteed to run with [bash](https://www.gnu.org/software/bash/bash.html). How to configure and use dash, can be found [here](https://wiki.archlinux.org/index.php/Dash).
 
