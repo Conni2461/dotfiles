@@ -100,10 +100,6 @@
 	set foldtext=MyFoldText()
 	nnoremap <s-tab> za
 
-" Disable ex mode
-	map q: <Nop>
-	nnoremap Q <Nop>
-
 " Split Lines (Merge line by default with J)
 	nnoremap S :keeppatterns substitute/\s*\%#\s*/\r/e <bar> normal! ==<CR>
 
