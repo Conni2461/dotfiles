@@ -15,7 +15,7 @@ ts.setup {
     }
   },
   indent = {
-    enable = false,
+    enable = true,
   },
   refactor = {
     highlight_definitions = { enable = true },
@@ -92,13 +92,21 @@ ts.setup {
     updatetime = 25,
     persist_queries = false
   },
+ query_linter = {
+    enable = true,
+    use_virtual_text = true,
+    lint_events = { "BufWrite", "CursorHold" },
+  },
   ensure_installed = { -- one of 'all', 'language' or a list of languages
     'bash',
     'c',
     'cpp',
     'css',
     'c_sharp',
+    'fennel',
+    'gdscript',
     'go',
+    'graphql',
     'html',
     'java',
     'javascript',
@@ -106,6 +114,8 @@ ts.setup {
     'kotlin',
     'lua',
     'python',
+    'ql',
+    'query',
     'regex',
     'rst',
     'ruby',
