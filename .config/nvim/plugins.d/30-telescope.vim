@@ -1,6 +1,6 @@
 nnoremap <Leader>w  <cmd>lua RELOAD'telescope'; require'telescope.builtin'.git_files{ }<CR>
 nnoremap <Leader>q  <cmd>lua RELOAD'telescope'; require'telescope.builtin'.find_files{ }<CR>
-nnoremap <Leader>gp <cmd>lua RELOAD'telescope'; require'telescope.builtin'.live_grep{ shorten_path = true }<CR>
+nnoremap <Leader>gp <cmd>lua RELOAD'telescope'; require'telescope.builtin'.grep_string{ shorten_path = true, word_match = "-w", only_sort_text = true, search = '' }<CR>
 nnoremap <Leader>gw <cmd>lua RELOAD'telescope'; require'telescope.builtin'.grep_string{ shorten_path = true, word_match = "-w" }<CR>
 nnoremap <Leader>gs <cmd>lua RELOAD'telescope'; require'telescope.builtin'.grep_string{ search = vim.fn.input("Grep For >")}<CR>
 nnoremap <Leader>ar <cmd>lua RELOAD'telescope'; require'telescope.builtin'.lsp_references{ shorten_path = true }<CR>

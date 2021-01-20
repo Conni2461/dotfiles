@@ -1,3 +1,4 @@
+local telescope = require('telescope')
 local pickers = require('telescope.pickers')
 local finders = require('telescope.finders')
 local actions = require('telescope.actions')
@@ -5,9 +6,9 @@ local previewers = require('telescope.previewers')
 
 local conf = require('telescope.config').values
 
-require('telescope').setup {
+telescope.setup {
   defaults = {
-    layout_strategy = "flex",
+    layout_strategy = 'flex',
     scroll_strategy = 'cycle',
     winblend = 5,
     layout_defaults = {
@@ -27,11 +28,18 @@ require('telescope').setup {
     file_previewer = previewers.vim_buffer_cat.new,
     grep_previewer = previewers.vim_buffer_vimgrep.new,
     qflist_previewer = previewers.vim_buffer_qflist.new,
+  },
+  extensions = {
+    frecency = {
+      show_scores = true,
+      ignore_patterns = {"*.git/*", "*/tmp/*", "*.foo"},
+    }
   }
 }
 
-require('telescope').load_extension('fzy_native')
-require('telescope').load_extension('dap')
+telescope.load_extension('fzy_native')
+telescope.load_extension('dap')
+telescope.load_extension('frecency')
 
 local M = {}
 
