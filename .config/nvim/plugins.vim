@@ -39,6 +39,10 @@
 	Plug 'godlygeek/tabular'
 
 	Plug 'rafcamlet/nvim-luapad'
+	Plug 'kyazdani42/nvim-web-devicons'
+	Plug 'pwntester/octo.nvim'
+
+	Plug 'tami5/sql.nvim'
 
 " Plugins that have configfiles in ~/.config/nvim/plugins.d/
 	Plug 'mhinz/vim-startify'
@@ -53,6 +57,10 @@
 	Plug 'nvim-telescope/telescope-fzy-native.nvim'
 	Plug 'nvim-telescope/telescope-dap.nvim'
 	Plug 'nvim-telescope/telescope-symbols.nvim'
+	Plug 'nvim-telescope/telescope-cheat.nvim'
+	Plug 'nvim-telescope/telescope-frecency.nvim'
+
+	Plug 'tami5/lispdocs.nvim'
 
 	Plug 'junegunn/goyo.vim'
 	Plug 'junegunn/limelight.vim'
@@ -75,10 +83,8 @@
 	Plug 'theHamsta/nvim-dap-virtual-text'
 
 	Plug 'itchyny/lightline.vim'
-	Plug 'kyazdani42/nvim-web-devicons'
 
 	Plug 'norcalli/nvim-colorizer.lua'
-
-	Plug 'Olical/conjure'
-	Plug 'Olical/aniseed'
 	call plug#end()
+
+let g:lispdocs_mappings = 0

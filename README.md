@@ -103,7 +103,8 @@ A full list of used plugins:
 | [vim-signify](https://github.com/mhinz/vim-signify)                                      | A Vim plugin which shows a git diff in the gutter (sign column)                                            |
 | [git-messenger](https://github.com/rhysd/git-messenger.vim)                              | Show git messages with `<leader>gm`. Using nvim-floating-window                                            |
 | [committia](https://github.com/rhysd/committia.vim)                                      | Layout for git commit                                                                                      |
-| [gitignore highlight](https://github.com/gisphm/vim-gitignore)                           | gitignore highlighting support                                                                             |
+| [gitignore highlighting](https://github.com/gisphm/vim-gitignore)                        | gitignore highlighting support                                                                             |
+| [fennel highlighting](https://github.com/bakpakin/fennel.vim)                            | fennel highlighting support                                                                                |
 | [table-mode](https://github.com/dhruvasagar/vim-table-mode)                              | Mode for editing tables                                                                                    |
 | [boxdraw](https://github.com/gyim/vim-boxdraw)                                           | Helps with drawing ascii boxes                                                                             |
 | [splitjoin](https://github.com/AndrewRadev/splitjoin.vim)                                | Switch between single-line and multiline forms of code with gJ (join) and gS (split)                       |
@@ -113,12 +114,21 @@ A full list of used plugins:
 | [scriptease.vim](https://github.com/tpope/vim-scriptease)                                | Vim plugin for making Vim plugins. Loads `:messages` into quickfix list, `:verbose` improvments, etc       |
 | [tabular](https://github.com/godlygeek/tabular)                                          | Helps with aligning text                                                                                   |
 | [Luapad](https://github.com/rafcamlet/nvim-luapad)                                       | Adds interactive scratchpad for lua and `:Lua` command with autocomplete                                   |
+| [devicons](https://github.com/kyazdani42/nvim-web-devicons)                              | lua `fork` of vim-web-devicons for neovim                                                                  |
+| [octo](https://github.com/pwntester/octo.nvim)                                           | Github integration with telescope integration                                                              |
+| [sql](https://github.com/tami5/sql.nvim)                                                 | sqlite3 bindings written in lua                                                                            |
 | [startify](https://github.com/mhinz/vim-startify)                                        | The fancy start screen for Vim with session support                                                        |
 | [lastplace](https://github.com/farmergreg/vim-lastplace)                                 | Intelligently reopen files at your last edit position                                                      |
 | [animate](https://github.com/camspiers/animate.vim)                                      | Vim animation api                                                                                          |
 | [popup](https://github.com/nvim-lua/popup.nvim)                                          | An implementation of the Popup API from vim in Neovim.                                                     |
 | [plenary](https://github.com/nvim-lua/plenary.nvim)                                      | All the lua functions I don't want to write twice.                                                         |
-| [telescope](https://github.com/nvim-lua/telescope.nvim)                                  | Find, Filter, Preview, Pick. Fuzzyfinder written in Lua, with providers for treesitter and lsp.            |
+| [telescope](https://github.com/nvim-telescope/telescope.nvim)                            | Find, Filter, Preview, Pick. Fuzzyfinder written in Lua, with providers for treesitter and lsp.            |
+| [telescope-fzy-native](https://github.com/nvim-telescope/telescope-fzy-native.nvim)      | Native fzy sorter for telescope                                                                            |
+| [telescope-dap](https://github.com/nvim-telescope/telescope-dap.nvim)                    | dap integration with telescope                                                                             |
+| [telescope-symbols](https://github.com/nvim-telescope/telescope-symbols.nvim)            | symbol data for telescope                                                                                  |
+| [telescope-cheat](https://github.com/nvim-telescope/telescope-cheat.nvim)                | Cheat.sh integration for telescope                                                                         |
+| [telescope-frecency](https://github.com/nvim-telescope/telescope-frecency.nvim)          | Smart MRU for telescope                                                                                    |
+| [lispdocs](https://github.com/tami5/lispdocs.nvim)                                       | Lispdocs with telescope integration                                                                        |
 | [goyo](https://github.com/junegunn/goyo.vim)                                             | Distraction-free writing in Vim                                                                            |
 | [limelight](https://github.com/junegunn/limelight.vim)                                   | Hyperfocus-writing in Vim                                                                                  |
 | [vimwiki](https://github.com/vimwiki/vimwiki)                                            | Personal Wiki for Vim                                                                                      |
@@ -135,10 +145,7 @@ A full list of used plugins:
 | [dap](https://github.com/mfussenegger/nvim-dap)                                          | Debug Adapter Protocol client implementation for Neovim                                                    |
 | [dap virtual text](https://github.com/theHamsta/nvim-dap-virtual-text)                   | Displayes virtual text coming from dap using treesitter                                                    |
 | [lightline](https://github.com/itchyny/lightline.vim)                                    | A light and configurable statusline/tabline plugin                                                         |
-| [devicons](https://github.com/kyazdani42/nvim-web-devicons)                              | lua `fork` of vim-web-devicons for neovim                                                                  |
 | [colorizer](https://github.com/norcalli/nvim-colorizer.lua)                              | Adds color to hexcodes                                                                                     |
-| [conjure](https://github.com/Olical/conjure)                                             | Interactive evaluation for Neovim (Clojure, Fennel, Janet, Racket)                                         |
-| [aniseed](https://github.com/Olical/aniseed)                                             | Configure and extend Neovim with Fennel (Lisp to Lua)                                                      |
 
 Some plugins require additional packages installed:
 
