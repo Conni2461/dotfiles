@@ -4,15 +4,9 @@ let g:lightline#bufferline#filename_modifier = ':t'
 let g:lightline#bufferline#read_only=''
 let g:lightline#bufferline#show_number=0
 
-" TODO move signify into own file
-let g:signify_line_highlight         = 0
-let g:signify_sign_add               = '+'
-let g:signify_sign_delete            = '-'
-let g:signify_sign_change            = '~'
-
 let g:lightline = {
 	\'active': {
-		\'left': [['mode', 'paste' ], ['gitbranch', 'gitstatus', 'readonly', 'filename']],
+		\'left': [['mode', 'paste' ], ['gitbranch', 'readonly', 'filename']],
 		\'right': [['linter_errors', 'linter_warnings', 'linter_infos', 'linter_hints'], ['percent', 'lineinfo'], ['fileformat', 'fileencoding', 'filetype']]
 	\},
 	\'inactive': {
@@ -32,31 +26,12 @@ let g:lightline = {
 		\'linter_hints': 'right',
 	\},
 	\'component_function': {
-		\'gitstatus': 'GitStatus',
 		\'gitbranch': 'fugitive#head',
 		\'filetype': 'MyFiletype'
 	\}
 \}
 
 au User LspDiagnosticsChanged call lightline#update()
-
-function! GitStatus() abort
-	let stats = sy#repo#get_stats()
-	let symbols = ['+', '~', '-']
-	let statline = ''
-
-	for i in range(3)
-		if stats[i] > 0
-			let statline .= printf('%s%s ', symbols[i], stats[i])
-		endif
-	endfor
-
-	if !empty(statline)
-		let statline = printf('[%s]', statline[:-2])
-	endif
-
-	return statline
-endfunction
 
 function! MyFiletype()
 	let l:filename = expand('%:t') == "" ? "_" : expand('%:t')

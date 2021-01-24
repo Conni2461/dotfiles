@@ -99,7 +99,6 @@ A full list of used plugins:
 | [signature](https://github.com/kshenoy/vim-signature)                                    | Plugin to toggle, display and navigate marks                                                               |
 | [scrolling](https://github.com/psliwka/vim-smoothie)                                     | Smoth scrolling with `Ctrl-d` / `Ctrl-u` / `Ctrl-f` / `Ctrl-b`                                             |
 | [fugitive](https://github.com/tpope/vim-fugitive)                                        | Git Wrapper                                                                                                |
-| [vim-signify](https://github.com/mhinz/vim-signify)                                      | A Vim plugin which shows a git diff in the gutter (sign column)                                            |
 | [git-messenger](https://github.com/rhysd/git-messenger.vim)                              | Show git messages with `<leader>gm`. Using nvim-floating-window                                            |
 | [committia](https://github.com/rhysd/committia.vim)                                      | Layout for git commit                                                                                      |
 | [gitignore highlighting](https://github.com/gisphm/vim-gitignore)                        | gitignore highlighting support                                                                             |
@@ -122,7 +121,9 @@ A full list of used plugins:
 | [telescope-symbols](https://github.com/nvim-telescope/telescope-symbols.nvim)            | symbol data for telescope                                                                                  |
 | [telescope-cheat](https://github.com/nvim-telescope/telescope-cheat.nvim)                | Cheat.sh integration for telescope                                                                         |
 | [telescope-frecency](https://github.com/nvim-telescope/telescope-frecency.nvim)          | Smart MRU for telescope                                                                                    |
+| [telescope-snippets](https://github.com/nvim-telescope/telescope-snippets.nvim)          | snippets.nvim integration for telescope                                                                    |
 | [lispdocs](https://github.com/tami5/lispdocs.nvim)                                       | Lispdocs with telescope integration                                                                        |
+| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                                   | Git signs written in pure lua                                                                              |
 | [goyo](https://github.com/junegunn/goyo.vim)                                             | Distraction-free writing in Vim                                                                            |
 | [limelight](https://github.com/junegunn/limelight.vim)                                   | Hyperfocus-writing in Vim                                                                                  |
 | [vimwiki](https://github.com/vimwiki/vimwiki)                                            | Personal Wiki for Vim                                                                                      |

@@ -18,7 +18,6 @@
 	Plug 'psliwka/vim-smoothie'
 
 	Plug 'tpope/vim-fugitive'
-	Plug 'mhinz/vim-signify'
 	Plug 'rhysd/git-messenger.vim'
 	Plug 'rhysd/committia.vim'
 
@@ -50,8 +49,10 @@
 	Plug 'nvim-telescope/telescope-symbols.nvim'
 	Plug 'nvim-telescope/telescope-cheat.nvim'
 	Plug 'nvim-telescope/telescope-frecency.nvim'
-
+	Plug 'nvim-telescope/telescope-snippets.nvim'
 	Plug 'tami5/lispdocs.nvim'
+
+	Plug 'lewis6991/gitsigns.nvim'
 
 	Plug 'junegunn/goyo.vim'
 	Plug 'junegunn/limelight.vim'
