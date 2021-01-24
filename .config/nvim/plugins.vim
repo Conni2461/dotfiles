@@ -13,8 +13,6 @@
 	call plug#begin('~/.config/nvim/plugged')
 	Plug 'norcalli/nvim-base16.lua'
 
-	Plug 'dstein64/vim-startuptime'
-
 	Plug 'kshenoy/vim-signature'
 
 	Plug 'psliwka/vim-smoothie'
@@ -25,12 +23,6 @@
 	Plug 'rhysd/committia.vim'
 
 	Plug 'gisphm/vim-gitignore'
-	Plug 'bakpakin/fennel.vim'
-
-	Plug 'dhruvasagar/vim-table-mode'
-	Plug 'gyim/vim-boxdraw'
-
-	Plug 'AndrewRadev/splitjoin.vim'
 
 	Plug 'rhysd/clever-f.vim'
 	Plug 'tpope/vim-commentary'
@@ -38,7 +30,6 @@
 	Plug 'tpope/vim-scriptease'
 	Plug 'godlygeek/tabular'
 
-	Plug 'rafcamlet/nvim-luapad'
 	Plug 'kyazdani42/nvim-web-devicons'
 	Plug 'pwntester/octo.nvim'
 
@@ -71,7 +62,6 @@
 	Plug 'nvim-treesitter/nvim-treesitter-refactor'
 	Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 	Plug 'nvim-treesitter/playground'
-	Plug 'romgrk/nvim-treesitter-context'
 
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'norcalli/snippets.nvim'

@@ -123,11 +123,10 @@ ts.setup {
     'teal',
     'toml',
     'typescript',
+    'yaml'
   }
 }
 
 local configs = parsers.get_parser_configs()
 local ft_str = table.concat(vim.tbl_map(function(ft) return configs[ft].filetype or ft end, parsers.available_parsers()), ',')
 vim.cmd('autocmd Filetype ' .. ft_str .. ' setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()')
-
-vim.cmd('autocmd VimEnter * TSContextDisable')
