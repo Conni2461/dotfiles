@@ -17,7 +17,6 @@
 
 	Plug 'psliwka/vim-smoothie'
 
-	Plug 'tpope/vim-fugitive'
 	Plug 'rhysd/git-messenger.vim'
 	Plug 'rhysd/committia.vim'
 
@@ -30,7 +29,6 @@
 	Plug 'godlygeek/tabular'
 
 	Plug 'kyazdani42/nvim-web-devicons'
-	Plug 'pwntester/octo.nvim'
 
 	Plug 'tami5/sql.nvim'
 

@@ -98,7 +98,6 @@ A full list of used plugins:
 | [base16](https://github.com/norcalli/nvim-base16.lua)                                    | Neovim Colorscheme collection                                                                              |
 | [signature](https://github.com/kshenoy/vim-signature)                                    | Plugin to toggle, display and navigate marks                                                               |
 | [scrolling](https://github.com/psliwka/vim-smoothie)                                     | Smoth scrolling with `Ctrl-d` / `Ctrl-u` / `Ctrl-f` / `Ctrl-b`                                             |
-| [fugitive](https://github.com/tpope/vim-fugitive)                                        | Git Wrapper                                                                                                |
 | [git-messenger](https://github.com/rhysd/git-messenger.vim)                              | Show git messages with `<leader>gm`. Using nvim-floating-window                                            |
 | [committia](https://github.com/rhysd/committia.vim)                                      | Layout for git commit                                                                                      |
 | [gitignore highlighting](https://github.com/gisphm/vim-gitignore)                        | gitignore highlighting support                                                                             |
@@ -108,7 +107,6 @@ A full list of used plugins:
 | [scriptease.vim](https://github.com/tpope/vim-scriptease)                                | Vim plugin for making Vim plugins. Loads `:messages` into quickfix list, `:verbose` improvments, etc       |
 | [tabular](https://github.com/godlygeek/tabular)                                          | Helps with aligning text                                                                                   |
 | [devicons](https://github.com/kyazdani42/nvim-web-devicons)                              | lua `fork` of vim-web-devicons for neovim                                                                  |
-| [octo](https://github.com/pwntester/octo.nvim)                                           | Github integration with telescope integration                                                              |
 | [sql](https://github.com/tami5/sql.nvim)                                                 | sqlite3 bindings written in lua                                                                            |
 | [startify](https://github.com/mhinz/vim-startify)                                        | The fancy start screen for Vim with session support                                                        |
 | [lastplace](https://github.com/farmergreg/vim-lastplace)                                 | Intelligently reopen files at your last edit position                                                      |
