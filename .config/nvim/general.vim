@@ -221,3 +221,10 @@
 		au BufRead,BufNewFile *.tex set filetype=tex
 		au BufRead,BufNewFile *.h set filetype=c
 	augroup END
+
+" Terminal mode changes
+	tnoremap <Esc> <C-\><C-n>
+	augroup terminalmode
+		au!
+		au TermOpen * setlocal nonumber norelativenumber
+	augroup END
