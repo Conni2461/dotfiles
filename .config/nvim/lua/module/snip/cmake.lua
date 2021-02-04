@@ -1,7 +1,7 @@
-local U = require'snippets.utils'
+local indent = require'snippets.utils'.match_indentation
 
 local cmake = {
-  init = U.match_indentation [[
+  init = indent [[
 cmake_minimum_required(VERSION ${1:3.18})
 project(${2:ProjectName})
 
@@ -24,11 +24,11 @@ target_link_libraries($2 ${3}_LIBRARIES})]],
   link = [[target_link_libraries(${1:bin} ${2:somelib})]],
   bin = [[add_executable(${1:bin})]],
   set = [[set(${1:var} ${2:val})]],
-  dep = U.match_indentation [[
+  dep = indent [[
 add_dependencies(${1:target}
 	${2:dep}
 )]],
-  Ext_url = U.match_indentation [[
+  Ext_url = indent [[
 include(ExternalProject)
 ExternalProject_Add(${1:googletest}
   URL               ${2:http://googletest.googlecode.com/files/gtest-1.7.0.zip}
@@ -40,7 +40,7 @@ ExternalProject_Add(${1:googletest}
   INSTALL_COMMAND   ""
   TEST_COMMAND      ""
 )]],
-  Ext_git = U.match_indentation [[
+  Ext_git = indent [[
 include(ExternalProject)
 ExternalProject_Add(${1:googletest}
   GIT_REPOSITORY    ${2:https://github.com/google/googletest.git}
@@ -52,7 +52,7 @@ ExternalProject_Add(${1:googletest}
   INSTALL_COMMAND   ""
   TEST_COMMAND      ""
 )]],
-  props = U.match_indentation [[
+  props = indent [[
 set_target_properties(${1:target}
   ${2:properties} ${3:compile_flags}
   ${4:"-O3 -Wall -pedantic"}

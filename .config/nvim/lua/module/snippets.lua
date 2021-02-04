@@ -6,6 +6,7 @@ local snips = {}
 snips._global = {
   copyright = U.force_comment [[Copyright (C) ${1=vim.g.snips_author} ${=os.date("%Y")}]],
   todo = U.force_comment [[TODO(${1=vim.g.snips_author}): ]],
+  fixme = U.force_comment [[FIXME(${1=vim.g.snips_author}): ]],
   note = U.force_comment [[NOTE(${1=vim.g.snips_author}): ]],
   uname = function() return vim.loop.os_uname().sysname end,
   date = function() return os.date() end,

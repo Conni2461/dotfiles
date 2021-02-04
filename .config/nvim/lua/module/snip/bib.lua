@@ -1,6 +1,35 @@
-local U = require'snippets.utils'
+local indent = require'snippets.utils'.match_indentation
 
 local bib = {
+  ["art"] = indent [[@article{
+  author  = {$1},
+  year    = {$2},
+  title   = {$3},
+  journal = {$4},
+  volume  = {$5},
+  pages   = {$6},
+}]],
+  ["book"] = indent [[@book{
+  author    = {$1},
+  year      = {$2},
+  title     = {$3},
+  publisher = {$4},
+}]],
+  ["col"] = indent [[@incollection{
+  author    = {$1},
+  title     = {$2},
+  booktitle = {$3},
+  editor    = {$4},
+  year      = {$5},
+  publisher = {$6},
+}]],
+  ["misc"] = indent [[@Misc{
+  title        = {$1},
+  note         = {$2},
+  url          = {$3},
+  howpublished = "\url{$4}",
+  key          = {$5},
+}]],
 }
 
 local m = {}
@@ -10,10 +39,3 @@ m.get_snippets = function()
 end
 
 return m
-
---[[
-autocmd FileType bib inoremap ,a @article{<Enter>author<Space>=<Space>{<++>},<Enter>year<Space>=<Space>{<++>},<Enter>title<Space>=<Space>{<++>},<Enter>journal<Space>=<Space>{<++>},<Enter>volume<Space>=<Space>{<++>},<Enter>pages<Space>=<Space>{<++>},<Enter>}<Enter><++><Esc>8kA,<Esc>i
-autocmd FileType bib inoremap ,b @book{<Enter>author<Space>=<Space>{<++>},<Enter>year<Space>=<Space>{<++>},<Enter>title<Space>=<Space>{<++>},<Enter>publisher<Space>=<Space>{<++>},<Enter>}<Enter><++><Esc>6kA,<Esc>i
-autocmd FileType bib inoremap ,c @incollection{<Enter>author<Space>=<Space>{<++>},<Enter>title<Space>=<Space>{<++>},<Enter>booktitle<Space>=<Space>{<++>},<Enter>editor<Space>=<Space>{<++>},<Enter>year<Space>=<Space>{<++>},<Enter>publisher<Space>=<Space>{<++>},<Enter>}<Enter><++><Esc>8kA,<Esc>i
-autocmd FileType bib inoremap ,m @Misc{<Enter>title<Space>=<Space>{<++>},<Enter>note<Space>=<Space>{<++>},<Enter>url<Space>=<Space>{<++>},<Enter>howpublished<Space>=<Space>"\url{<++>}",<Enter>key<Space>=<Space>{<++>},<Enter>}<Enter><++><Esc>7kA,<Esc>i
---]]

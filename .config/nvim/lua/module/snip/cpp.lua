@@ -1,4 +1,4 @@
-local U = require'snippets.utils'
+local indent = require'snippets.utils'.match_indentation
 
 local cpp = {
   incc = [[#include <${1:iostream}>]],
@@ -27,7 +27,7 @@ local cpp = {
   pub = [[public]],
   fr = [[friend]],
   mu = [[mutable]],
-  cl = U.match_indentation [[
+  cl = indent [[
 /*! \class $1
  *  \brief ${3:Brief class description}
  *
@@ -36,17 +36,17 @@ local cpp = {
 class $1
 {
 public:
-	$1(${2});
-	virtual ~$1();
+  $1(${2});
+  virtual ~$1();
 
 protected:
-	m_${5}; /*!< ${6:Member description} */
+  m_${5}; /*!< ${6:Member description} */
 };]],
-  mfun = U.match_indentation [[
+  mfun = indent [[
 ${4:void} $1::$2($3) {
-	$0
+  $0
 }]],
-  dmfun0 = U.match_indentation [[
+  dmfun0 = indent [[
 /*! \brief ${4:Brief function description here}
  *
  *  ${5:Detailed description}
@@ -54,9 +54,9 @@ ${4:void} $1::$2($3) {
  * \return ${6:Return parameter description}
  */
 ${3:void} $1::$2() {
-	$0
+  $0
 }]],
-  dmfun1 = U.match_indentation [[
+  dmfun1 = indent [[
 /*! \brief ${6:Brief function description here}
  *
  *  ${7:Detailed description}
@@ -65,9 +65,9 @@ ${3:void} $1::$2() {
  * \return ${9:Return parameter description}
  */
 ${5:void} $1::$2($3 $4) {
-	$0
+  $0
 }]],
-  dmfun2 = U.match_indentation [[
+  dmfun2 = indent [[
 /*! \brief ${8:Brief function description here}
  *
  *  ${9:Detailed description}
@@ -77,15 +77,15 @@ ${5:void} $1::$2($3 $4) {
  * \return ${12:Return parameter description}
  */
 ${7:void} $1::$2($3 $4,$5 $6) {
-	$0
+  $0
 }]],
-  ns = U.match_indentation [[
+  ns = indent [[
 namespace $1 {
-	$0
+  $0
 } /* namespace $1 */]],
-  ans = U.match_indentation [[
+  ans = indent [[
 namespace {
-	$0
+  $0
 }]],
   cout = [[std::cout << $1 << std::endl;]],
   cin = [[std::cin >> $1;]],
@@ -93,32 +93,32 @@ namespace {
   dca = [[dynamic_cast<${1:unsigned}>(${2:expr})${3}]],
   rca = [[reinterpret_cast<${1:unsigned}>(${2:expr})${3}]],
   cca = [[const_cast<${1:unsigned}>(${2:expr})${3}]],
-  fore = U.match_indentation [[
+  fore = indent [[
 for (${1:auto} ${2:i} : ${3:container}) {
-	$0
+  $0
 }]],
-  iter = U.match_indentation [[
+  iter = indent [[
 for (${1:std::vector}<${2:type}>::${3:const_iterator} ${4:i} = ${5:container}.begin(); $4 != $5.end(); ++$4) {
-	$0
+  $0
 }]],
-  itera = U.match_indentation [[
+  itera = indent [[
 for (auto ${1:i} = ${2:container}.begin(); $1 != $2.end(); ++$1) {
-	${3:std::cout << *$1 << std::endl;}
+  ${3:std::cout << *$1 << std::endl;}
 }]],
   ld = [[[$1]($2){$3};]],
-  lld = U.match_indentation [[
+  lld = indent [[
 [$1]($2) {
-	$3
+  $3
 };]],
-  try = U.match_indentation [[
+  try = indent [[
 try {
-	$0
+  $0
 } catch($2) {
-	$1
+  $1
 }]],
-  af = U.match_indentation [[
+  af = indent [[
 auto ${1:name}($2) -> ${3:void} {
-	$0
+  $0
 };]],
 }
 

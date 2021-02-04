@@ -2,7 +2,7 @@
 -- We have to do this for every filetype which does not have a lsp(markdown, etc...)
 -- Should be autocmd Filetype make setlocal lua require'completion'...
 
-local U = require'snippets.utils'
+local indent = require'snippets.utils'.match_indentation
 
 local make = {
   base = [[
@@ -23,25 +23,25 @@ clean:
 
 veryclean: clean
 	rm -f $1]],
-  add = U.match_indentation [[
+  add = indent [[
 ${1:out}: $1.o
 	\$(CC) \$(CFLAGS) -o \$@ \$+]],
   print = [[print-%: ; @echo \$*=\$(\$*)]],
-  ["if"] = U.match_indentation [[
+  ["if"] = indent [[
 ifeq (${1:cond0}, ${2:cond1})
 	$0
 endif]],
-  ife = U.match_indentation [[
+  ife = indent [[
 ifeq (${1:cond0}, ${2:cond1})
 	$3
 else
 	$0
 endif]],
-  el = U.match_indentation [[
+  el = indent [[
 else
 	$0]],
   default = [[.DEFAULT_GOAL := $1]],
-  help = U.match_indentation [[
+  help = indent [[
 help: ## Prints help for targets with comments
 	@cat \$(MAKEFILE_LIST) | grep -E '^[a-zA-Z_-]+:.*?## .*\$\$' | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", \$\$1, \$\$2}']],
 }

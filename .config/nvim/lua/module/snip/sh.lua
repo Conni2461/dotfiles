@@ -1,4 +1,4 @@
-local U = require'snippets.utils'
+local indent = require'snippets.utils'.match_indentation
 
 local sh = {
   ["#!"] = [[#!/bin/sh]],
@@ -11,40 +11,40 @@ set -eu]],
 #!/bin/bash
 set -euo pipefail
 IFS=\$'\n\t']],
-  ["if"] = U.match_indentation [[
+  ["if"] = indent [[
 if [ $1 ]; then
 	$0
 fi]],
-  elif = U.match_indentation [[
+  elif = indent [[
 elif [ $1 ]; then
 	$0]],
-  ["for"] = U.match_indentation [[
+  ["for"] = indent [[
 for (( ${2:i} = 0; $2 < ${1:count}; $2++ )); do
 	$0
 done]],
-  fori = U.match_indentation [[
+  fori = indent [[
 for ${1:el} in $2; do
 	$0
 done]],
-  wh = U.match_indentation [[
+  wh = indent [[
 while [ $1 ]; do
 	$0
 done]],
-  ["until"] = U.match_indentation [[
+  ["until"] = indent [[
 until [ $1 ]; do
 	$0
 done]],
-  case = U.match_indentation [[
+  case = indent [[
 case $1 in
 	$2)
 		$0;;
 esac]],
   root = [[if [ \$(id -u) -ne 0 ]; then exec sudo \$0; fi]],
-  fun = U.match_indentation [[
+  fun = indent [[
 $1() {
 	$0
 }]],
-  ["fun-bash"] = U.match_indentation [[
+  ["fun-bash"] = indent [[
 function $1() {
 	$0
 }]],

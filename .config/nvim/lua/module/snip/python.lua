@@ -1,4 +1,4 @@
-local U = require'snippets.utils'
+local indent = require'snippets.utils'.match_indentation
 
 local python = {
   ["#!"] = [[#!/bin/python]],
@@ -6,7 +6,7 @@ local python = {
 #!/usr/bin/env python2
 # -*- coding: utf-8 -*-]],
   imp = [[import $0]],
-  uni = U.match_indentation [[
+  uni = indent [[
 def __unicode__(self):
     $0]],
   from = [[from $1 import $0]],
@@ -19,10 +19,10 @@ Github: ${4=vim.g.snips_github}
 Description: $0
 """]],
   sk = [[@unittest.skip(${1:skip_reason})]],
-  wh = U.match_indentation [[
+  wh = indent [[
 while $1:
     $0]],
-  dowh = U.match_indentation [[
+  dowh = indent [[
 while True:
     $1
     if $0:
@@ -33,45 +33,45 @@ with ${1:expr} as ${2:var}:
   awith = [[
 async with ${1:expr} as ${2:var}:
     $0]],
-  cl = U.match_indentation [[
+  cl = indent [[
 class $1($2):
     """${3:docstring for $1}"""
     def __init__(self, $4):
         ${5:super($1, self).__init__()}
         self.$4 = $4
         $0]],
-  cla = U.match_indentation [[
+  cla = indent [[
 class $1:
     """${2:description}"""]],
-  clai = U.match_indentation [[
+  clai = indent [[
 class $1:
     """${2:description}"""
     def __init__(self, $3):
         $0]],
-  def = U.match_indentation [[
+  def = indent [[
 def $1($2):
     """${3:docstring for $1}"""
     $0]],
-  deff = U.match_indentation [[
+  deff = indent [[
 def $1($2):
     $0]],
-  adef = U.match_indentation [[
+  adef = indent [[
 async def $1($2):
     """${3:docstring for $1}"""
     $0]],
-  adeff = U.match_indentation [[
+  adeff = indent [[
 async def $1($2):
     $0]],
-  defi = U.match_indentation [[
+  defi = indent [[
 def __init__(self, $1):
     $0]],
-  defm = U.match_indentation [[
+  defm = indent [[
 def $1(self, $2):
     $0]],
-  adefm = U.match_indentation [[
+  adefm = indent [[
 async def $1(self, $2):
     $0]],
-  property = U.match_indentation [[
+  property = indent [[
 def $1():
     doc = "${2:The $1 property.}"
     def fget(self):
@@ -82,16 +82,16 @@ def $1():
         ${5:del self._$1}
     return locals()
 $1 = property(**$1())]],
-  ["if"] = U.match_indentation [[
+  ["if"] = indent [[
 if $1:
     $0]],
-  el = U.match_indentation [[
+  el = indent [[
 else:
     $0]],
-  ei = U.match_indentation [[
+  ei = indent [[
 elif $1:
     $0]],
-  ["for"] = U.match_indentation [[
+  ["for"] = indent [[
 for ${1:item} in $2:
     $0]],
   cutf8 = [[# -*- coding: utf-8 -*-]],
@@ -100,26 +100,26 @@ for ${1:item} in $2:
   ld = [[${1:var} = lambda ${2:vars} : ${3:action}]],
   ret = [[return $0]],
   sa = [[self.$1 = $1]],
-  try = U.match_indentation [[
+  try = indent [[
 try:
     $1
 except $2 as ${3:e}:
     ${4:raise $3}]],
-  trye = U.match_indentation [[
+  trye = indent [[
 try:
     $0
 except $2 as ${3:e}:
     ${4:raise $3}
 else:
     $1]],
-tryf = U.match_indentation [[
+tryf = indent [[
 try:
     $0
 except $2 as ${3:e}:
     ${4:raise $3}
 finally:
     $1]],
-  tryef = U.match_indentation [[
+  tryef = indent [[
 try:
     $0
 except $2 as ${3:e}:
@@ -128,7 +128,7 @@ else:
     $5
 finally:
     $1]],
-  ifmain = U.match_indentation [[
+  ifmain = indent [[
 if __name__ == '__main__':
     $0]],
   ["_"] = [[__${1:init}__]],
@@ -140,28 +140,28 @@ if __name__ == '__main__':
   wdb = [[__import__('wdb').set_trace()]],
   ptpython = [[__import__('ptpython.repl', fromlist=('repl')).embed(globals(), locals(), vi_mode=${1:False}, history_filename=${2:None})]],
   pudb = [[__import__('pudb').set_trace()]],
-  pudbr = U.match_indentation [[
+  pudbr = indent [[
 from pudb.remote import set_trace
 set_trace()]],
   nosetrace = [[__import__('nose').tools.set_trace()]],
   pprint = [[__import__('pprint').pprint($1)]],
-  ["\""] = U.match_indentation [[
+  ["\""] = indent [[
 """${1:doc}
 """]],
   ["a="] = [[self.assertEqual($1, $2)]],
-  test = U.match_indentation [[
+  test = indent [[
 def test_${1:description}($2):
     $0]],
-  testcase = U.match_indentation [[
+  testcase = indent [[
 class ${1:ExampleCase}(unittest.TestCase):
     def test_${2:description}(self):
         $0]],
-  tgwt = U.match_indentation [[
+  tgwt = indent [[
 # given: $1
 # when: $2
 # then: $3]],
   fut = [[from __future__ import $0]],
-  getopt = U.match_indentation [[
+  getopt = indent [[
 try:
     # Short option syntax: "hv:"
     # Long option syntax: "help" or "verbose="
@@ -183,7 +183,7 @@ for option, argument in opts:
   addnarg = [[parser.add_argument("${1:arg}", nargs="${2:*}", default"${3:None}, help="${4:Help text}")]],
   addaarg = [[parser.add_argument("${1:arg}", "${2:long_arg}", action="${3:store_true}", default=${4:False}, help="${5:Help text}")]],
   pargs = [["${1:return }"parser.parse_args()]],
-  glog = U.match_indentation [[
+  glog = indent [[
 import logging
 LOGGER = logging.getLogger(${1:__name__})]],
   le = [[LOGGER.error(${1:msg})]],
@@ -191,7 +191,7 @@ LOGGER = logging.getLogger(${1:__name__})]],
   lw = [[LOGGER.warning(${1:msg})]],
   lc = [[LOGGER.critical(${1:msg})]],
   li = [[LOGGER.info(${1:msg})]],
-  epydoc = U.match_indentation [[
+  epydoc = indent [[
 """${1:Description}
 
 @param ${2:param}: ${3: Description}
@@ -202,7 +202,7 @@ LOGGER = logging.getLogger(${1:__name__})]],
 
 @raise e: ${7: Description}
 """]],
-  dol = U.match_indentation [[
+  dol = indent [[
 def ${1:__init__}(self, *args, **kwargs):
     super(${2:ClassName}, self).$1(*args, **kwargs)]],
   kwg = [[self.${1:var_name} = kwargs.get('$1', ${2:None})]],
@@ -213,7 +213,7 @@ def ${1:__init__}(self, *args, **kwargs):
   lcp = [===[[$1 for $2 in $3]$0]===],
   dcp = [[{$1: $2 for $3 in $4}$0]],
   scp = [[{$1 for $2 in $3}$0]],
-  contain = U.match_indentation [[
+  contain = indent [[
 def __len__(self):
     ${1:pass}
 
@@ -234,13 +234,13 @@ def __reversed__(self):
 
 def __contains__(self, item):
     ${7:pass}]],
-  context = U.match_indentation [[
+  context = indent [[
 def __enter__(self):
     ${1:pass}
 
 def __exit__(self, exc_type, exc_value, traceback):
     ${2:pass}]],
-  attr = U.match_indentation [[
+  attr = indent [[
 def __getattr__(self, name):
     ${1:pass}
 
@@ -249,7 +249,7 @@ def __setattr__(self, name, value):
 
 def __delattr__(self, name):
     ${3:pass}]],
-  desc = U.match_indentation [[
+  desc = indent [[
 def __get__(self, instance, owner):
     ${1:pass}
 
@@ -258,7 +258,7 @@ def __set__(self, instance, value):
 
 def __delete__(self, instance):
     ${3:pass}]],
-  cmp = U.match_indentation [[
+  cmp = indent [[
 def __eq__(self, other):
     ${1:pass}
 
@@ -279,7 +279,7 @@ def __ge__(self, other):
 
 def __cmp__(self, other):
     ${7:pass}]],
-  repr = U.match_indentation [[
+  repr = indent [[
 def __repr__(self):
     ${1:pass}
 
