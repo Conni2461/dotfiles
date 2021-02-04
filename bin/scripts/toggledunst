@@ -1,13 +1,3 @@
 #!/bin/sh
 
-# suspend message display
-DISABLEFILE="/tmp/$USER-dunst-disabled"
-if [ -f "$DISABLEFILE" ]; then
-	rm "$DISABLEFILE"
-	echo "Enabled dunst"
-	pkill -u "$USER" -USR2 dunst
-else
-	touch "$DISABLEFILE"
-	echo "Disabled dunst"
-	pkill -u "$USER" -USR1 dunst
-fi
+dunstctl set-paused toggle
