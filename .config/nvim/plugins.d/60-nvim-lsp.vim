@@ -46,3 +46,5 @@ inoremap <tab> <cmd>lua require'completion'.smart_tab()<CR>
 " Enable completion for buffers which use snippets but no lsp
 " Add customize_lsp_label and chain_complete_list
 autocmd Filetype markdown,make lua require'completion'.on_attach()
+
+command! RestartLSP :lua vim.lsp.stop_client(vim.lsp.get_active_clients()); vim.cmd 'edit'
