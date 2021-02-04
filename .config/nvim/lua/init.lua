@@ -6,6 +6,7 @@ require('module/lsp')
 require('module/telescope')
 require('module/snippets')
 require('module/dap')
+require('module/signs')
 
 -- Might move into own module
 require'colorizer'.setup()
