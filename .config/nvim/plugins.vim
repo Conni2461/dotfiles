@@ -48,6 +48,7 @@
 	Plug 'nvim-telescope/telescope-cheat.nvim'
 	Plug 'nvim-telescope/telescope-frecency.nvim'
 	Plug 'nvim-telescope/telescope-snippets.nvim'
+	Plug 'nvim-telescope/telescope-bibtex.nvim'
 	Plug 'tami5/lispdocs.nvim'
 
 	Plug 'lewis6991/gitsigns.nvim'

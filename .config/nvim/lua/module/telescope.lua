@@ -10,6 +10,7 @@ telescope.setup {
   defaults = {
     layout_strategy = 'flex',
     scroll_strategy = 'cycle',
+    -- sorting_strategy = 'ascending',
     winblend = 5,
     layout_defaults = {
       horizontal = {
@@ -23,8 +24,16 @@ telescope.setup {
         preview_height = 0.5,
       }
     },
+    mappings = {
+      i = {
+        ["<C-q>"] = actions.send_to_qflist,
+      },
+      n = {
+        ["<C-q>"] = actions.send_to_qflist,
+      },
+    },
     color_devicons = true,
-    set_env = { ['COLORTERM'] = 'truecolor', LESS = '-SMR' },
+    -- set_env = { ['COLORTERM'] = 'truecolor', LESS = '-SMR' },
     file_previewer = previewers.vim_buffer_cat.new,
     grep_previewer = previewers.vim_buffer_vimgrep.new,
     qflist_previewer = previewers.vim_buffer_qflist.new,
@@ -32,7 +41,14 @@ telescope.setup {
   extensions = {
     frecency = {
       show_scores = true,
+      show_unindexed = true,
       ignore_patterns = {"*.git/*", "*/tmp/*", "*.foo"},
+      workspaces = {
+        ["conf"]    = "/home/conni/.config",
+        ["nvim"]    = "/home/conni/.config/nvim/plugged",
+        ["data"]    = "/home/conni/.local/share",
+        ["project"] = "/home/conni/repos",
+      }
     }
   }
 }
@@ -40,6 +56,7 @@ telescope.setup {
 telescope.load_extension('fzy_native')
 telescope.load_extension('dap')
 telescope.load_extension('frecency')
+telescope.load_extension('bibtex')
 
 local M = {}
 
