@@ -117,7 +117,6 @@ ts.setup {
     'ql',
     'query',
     'regex',
-    'rst',
     'ruby',
     'rust',
     'teal',

@@ -48,3 +48,5 @@ inoremap <tab> <cmd>lua require'completion'.smart_tab()<CR>
 autocmd Filetype markdown,make lua require'completion'.on_attach()
 
 command! RestartLSP :lua vim.lsp.stop_client(vim.lsp.get_active_clients()); vim.cmd 'edit'
+
+autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()

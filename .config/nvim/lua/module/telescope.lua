@@ -26,11 +26,8 @@ telescope.setup {
     },
     mappings = {
       i = {
-        ["<C-q>"] = actions.send_to_qflist,
-      },
-      n = {
-        ["<C-q>"] = actions.send_to_qflist,
-      },
+        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
+      }
     },
     color_devicons = true,
     -- set_env = { ['COLORTERM'] = 'truecolor', LESS = '-SMR' },
@@ -57,6 +54,7 @@ telescope.load_extension('fzy_native')
 telescope.load_extension('dap')
 telescope.load_extension('frecency')
 telescope.load_extension('bibtex')
+telescope.load_extension('octo')
 
 local M = {}
 
@@ -94,6 +92,12 @@ end
 M.show_diagnostics = function()
   vim.lsp.diagnostic.set_loclist({open_loclist = false})
   require'telescope.builtin'.loclist{}
+end
+
+M.my_fd = function(opts)
+  opts = opts or {}
+  opts.cwd = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+  require'telescope.builtin'.find_files(opts)
 end
 
 return M

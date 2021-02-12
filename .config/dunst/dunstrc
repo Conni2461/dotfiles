@@ -148,7 +148,7 @@ dmenu = /usr/bin/dmenu -p dunst:
 browser = /usr/bin/firefox -new-tab
 
 # Align icons left/right/off
-icon_position = off
+icon_position = left
 max_icon_size = 80
 
 # Paths to default icons.

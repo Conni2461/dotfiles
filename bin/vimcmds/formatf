@@ -7,5 +7,6 @@ case "$file" in
 	*\.cpp) clang-format --style=file -i "$file" ;;
 	*\.rs) rustfmt "$file" ;;
 	*\.py) yapf -i "$file" ;;
+	*\.html) prettier -w "$file" ;;
 	*) exit 1 ;;
 esac

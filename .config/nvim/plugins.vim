@@ -50,6 +50,7 @@
 	Plug 'nvim-telescope/telescope-snippets.nvim'
 	Plug 'nvim-telescope/telescope-bibtex.nvim'
 	Plug 'tami5/lispdocs.nvim'
+	Plug 'pwntester/octo.nvim'
 
 	Plug 'lewis6991/gitsigns.nvim'
 
@@ -68,6 +69,7 @@
 	Plug 'nvim-lua/completion-nvim'
 	Plug 'nvim-lua/lsp_extensions.nvim'
 	Plug 'steelsojka/completion-buffers'
+	Plug 'kosayoda/nvim-lightbulb'
 
 	Plug 'mfussenegger/nvim-dap'
 	Plug 'theHamsta/nvim-dap-virtual-text'
