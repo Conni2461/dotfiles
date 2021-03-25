@@ -65,6 +65,64 @@ local customize_lsp_label = {
   TypeParameter = utf8(0xf635) .. ' [type]',
 }
 
+-- require('vim.lsp.protocol').CompletionItemKind = {
+--   '';             -- Text          = 1;
+--   '';             -- Method        = 2;
+--   'ƒ';             -- Function      = 3;
+--   '';             -- Constructor   = 4;
+--   'Field';         -- Field         = 5;
+--   '';             -- Variable      = 6;
+--   '';             -- Class         = 7;
+--   'ﰮ';             -- Interface     = 8;
+--   '';             -- Module        = 9;
+--   '';             -- Property      = 10;
+--   '';             -- Unit          = 11;
+--   '';             -- Value         = 12;
+--   '了';            -- Enum          = 13;
+--   '';             -- Keyword       = 14;
+--   '﬌';             -- Snippet       = 15;
+--   '';             -- Color         = 16;
+--   '';             -- File          = 17;
+--   'Reference';     -- Reference     = 18;
+--   '';             -- Folder        = 19;
+--   '';             -- EnumMember    = 20;
+--   '';             -- Constant      = 21;
+--   '';             -- Struct        = 22;
+--   'Event';         -- Event         = 23;
+--   'Operator';      -- Operator      = 24;
+--   'TypeParameter'; -- TypeParameter = 25;
+-- }
+-- "suggest.completionItemKindLabels": {
+--     "method": "  ",
+--     "function": "  ",
+--     "variable": "[]",
+--     "field": "  ",
+--     "typeParameter": "<>",
+--     "constant": "  ",
+--     "class": " פּ ",
+--     "interface": " 蘒",
+--     "struct": "  ",
+--     "event": "  ",
+--     "operator": "  ",
+--     "module": "  ",
+--     "property": "  ",
+--     "enum": " 練",
+--     "reference": "  ",
+--     "keyword": "  ",
+--     "file": "  ",
+--     "folder": " ﱮ ",
+--     "color": "  ",
+--     "unit": " 塞 ",
+--     "snippet": "  ",
+--     "text": "  ",
+--     "constructor": "  ",
+--     "value": "  ",
+--     "enumMember": "  "
+--   },
+
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true;
+
 local on_attach = function(_, _)
   require'completion'.on_attach({
     chain_complete_list = chain_complete_list,
@@ -74,27 +132,21 @@ local on_attach = function(_, _)
     auto_change_source = 1,
     enable_auto_hover = 1,
   })
-  vim.api.nvim_command('autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()')
-  if vim.api.nvim_buf_get_option(0, 'filetype') == 'rust' then
-    vim.api.nvim_command('autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost <buffer> lua require"lsp_extensions".inlay_hints{ prefix = " » ", highlight = "NonText", aligned = true, }')
+  vim.cmd [[autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()]]
+  vim.cmd [[autocmd CursorHold,CursorHoldI <buffer> lua require'nvim-lightbulb'.update_lightbulb()]]
+  if vim.bo.filetype == 'rust' then
+    vim.cmd('autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost <buffer> ' ..
+            'lua require"lsp_extensions".inlay_hints{ prefix = " » ", highlight = "NonText", ' ..
+            'aligned = true, enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }')
   end
 end
-
-local cap = {
-  textDocument = {
-    completion = {
-      completionItem = {
-        snippetSupport = true
-      }
-    }
-  }
-}
 
 local function get_lua_runtime()
   local result = {}
   for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
     local lua_path = path .. "/lua"
-    if vim.fn.isdirectory(lua_path) == 1 then
+    local stat = vim.loop.fs_stat(lua_path)
+    if stat and stat.type == "directory" then
       result[lua_path] = true
     end
   end
@@ -105,17 +157,26 @@ end
 
 local lua_settings = {
   Lua = {
-    runtime = { version = "LuaJIT" },
+    telemetry = {
+     enable = false,
+    },
+    runtime = {
+      version = "LuaJIT",
+      path = vim.split(package.path, ';'),
+    },
     diagnostics = {
       enable = true,
-      globals = { "vim" },
+      globals = { "vim", "describe", "it", "before_each", "teardown", "pending" },
     },
     workspace = {
-      library = get_lua_runtime()
+      library = get_lua_runtime(),
+      maxPreload = 1000,
+      preloadFileSize = 1000,
     },
   },
 }
 
+-- TODO(conni2461): REFACTOR
 local function setup_ls(ls, ls_cmd, backup, backup_cmd, passed_settings)
   local bin, arr
   local backup_bin, backup_arr
@@ -141,7 +202,6 @@ local function setup_ls(ls, ls_cmd, backup, backup_cmd, passed_settings)
     lspconfig[ls].setup{
       on_attach = on_attach,
       cmd = arr,
-      capabilities = cap,
       settings = passed_settings,
     }
   else
@@ -150,7 +210,6 @@ local function setup_ls(ls, ls_cmd, backup, backup_cmd, passed_settings)
         lspconfig[backup].setup{
           on_attach = on_attach,
           cmd = backup_arr,
-          capabilities = cap,
           settings = passed_settings,
         }
       end
@@ -160,7 +219,7 @@ end
 
 setup_ls("als", "ada_language_server")
 setup_ls("bashls", { "bash-language-server", "start" })
-setup_ls("clangd", { "clangd", "--background-index" })
+setup_ls("clangd", { "clangd", "--background-index", "--header-insertion=never" })
 setup_ls("cmake", "cmake-language-server")
 setup_ls("cssls", { "css-languageserver", "--stdio" })
 setup_ls("dockerls", { "docker-langserver", "--stdio" })
@@ -172,7 +231,7 @@ setup_ls("html", { "html-languageserver", "--stdio" })
 setup_ls("jsonls", { "vscode-json-languageserver", "--stdio" })
 setup_ls("kotlin_language_server", "kotlin-language-server")
 setup_ls("metals", "metals")
-setup_ls("pyls_ms", "mspyls", "pyls", "pyls")
+-- setup_ls("pyright", { "pyright-langserver", "--stdio" }, "pyls", "pyls")
 setup_ls("r_language_server", { "R", "--slave", "-e", "languageserver::run()" })
 setup_ls("rust_analyzer", "rust-analyzer", "rls", "rls")
 setup_ls("solargraph", { "solargraph", "stdio" })
@@ -182,6 +241,18 @@ setup_ls("texlab", "texlab")
 setup_ls("tsserver", { "typescript-language-server", "--stdio" })
 setup_ls("vimls", { "vim-language-server", "--stdio" })
 setup_ls("yamlls", { "yaml-language-server", "--stdio" })
+
+-- lspconfig.rust_analyzer.setup{
+--   cmd = {"rust-analyzer"},
+--   filetypes = {"rust"},
+--   on_attach = on_attach,
+-- }
+
+lspconfig.pyright.setup{
+  on_attach = on_attach,
+  capabilities = cap,
+  root_dir = function() return vim.fn.getcwd() end,
+}
 
 configs.own_jdtls = {
   default_config = {
