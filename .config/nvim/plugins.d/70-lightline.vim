@@ -36,8 +36,7 @@ au User LspDiagnosticsChanged call lightline#update()
 function! MyFiletype()
 	let l:filename = expand('%:t') == "" ? "_" : expand('%:t')
 	let l:fileextension = expand('%:e') == "" ? "_" : expand('%:e')
-	let l:cmd = printf("require'nvim-web-devicons'.get_icon(\"%s\", \"%s\")", l:filename, l:fileextension)
-	let l:icon = luaeval(l:cmd)
+	let l:icon = luaeval("require'nvim-web-devicons'.get_icon(_A[1], _A[2])", [l:filename, l:fileextension])
 	let l:icon = l:icon == "null" ? "" : " " . l:icon
 	return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . l:icon  : 'no ft') : ''
 endfunction

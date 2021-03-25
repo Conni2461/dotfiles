@@ -6,7 +6,7 @@
 	set smartcase
 	set clipboard=unnamedplus
 	set noshowmode
-	set showtabline=0
+	set showtabline=1
 	set scrolloff=2
 
 	set cmdheight=1

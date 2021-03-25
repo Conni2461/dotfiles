@@ -1,4 +1,9 @@
 RELOAD = require('plenary.reload').reload_module
+RTELE = function()
+  RELOAD('module/telescope')
+  RELOAD('telescope')
+end
+
 P = function(...) print(vim.inspect(...)) end
 
 require('module/treesitter')

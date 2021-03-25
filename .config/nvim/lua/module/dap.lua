@@ -29,7 +29,6 @@ dap.configurations.python = {
     request = 'launch',
     name = "Launch file",
     program = "${file}",
-    console = "internalConsole",
     pythonPath = function(_)
       return '/usr/bin/python'
     end,
