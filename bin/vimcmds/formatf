@@ -8,5 +8,6 @@ case "$file" in
 	*\.rs) rustfmt "$file" ;;
 	*\.py) yapf -i "$file" ;;
 	*\.html) prettier -w "$file" ;;
+	*\.lua) stylua "$file" ;;
 	*) exit 1 ;;
 esac
