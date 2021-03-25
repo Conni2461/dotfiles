@@ -25,7 +25,7 @@
 	uncommit = reset --soft HEAD~1
 
 	wip ="!git ci -m \"[WIP]: $(date)\""
-	fpr = "!f() { git fetch origin pull/$1/head:pr-$1; }; f"
+	fpr = "!f() { git fetch origin pull/$1/head:pr-$1; git checkout pr-$1; }; f"
 
 	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
 	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
