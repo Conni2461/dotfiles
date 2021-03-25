@@ -12,7 +12,7 @@ export SUDO_ASKPASS="$HOME/bin/scripts/askpass"
 export PAGER='less'
 
 # Enable X11 VA-API for Firefox
-export MOZ_X11_EGL=1
+# export MOZ_X11_EGL=1
 
 # less/man colors
 export LESS=-R
