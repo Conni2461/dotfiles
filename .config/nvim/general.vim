@@ -228,3 +228,10 @@
 		au!
 		au TermOpen * setlocal nonumber norelativenumber
 	augroup END
+
+	function! s:split_term() abort
+		botright split term://$SHELL
+		setlocal norelativenumber nonumber
+		startinsert
+	endfunction
+	command! T call s:split_term()

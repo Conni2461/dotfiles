@@ -34,22 +34,15 @@
 
 " Plugins that have configfiles in ~/.config/nvim/plugins.d/
 	Plug 'mhinz/vim-startify'
-
 	Plug 'farmergreg/vim-lastplace'
-
-	Plug 'camspiers/animate.vim'
 
 	Plug 'nvim-lua/popup.nvim'
 	Plug 'nvim-lua/plenary.nvim'
 	Plug 'nvim-telescope/telescope.nvim'
-	Plug 'nvim-telescope/telescope-fzy-native.nvim'
-	Plug 'nvim-telescope/telescope-dap.nvim'
+	Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 	Plug 'nvim-telescope/telescope-symbols.nvim'
-	Plug 'nvim-telescope/telescope-cheat.nvim'
 	Plug 'nvim-telescope/telescope-frecency.nvim'
-	Plug 'nvim-telescope/telescope-snippets.nvim'
-	Plug 'nvim-telescope/telescope-bibtex.nvim'
-	Plug 'tami5/lispdocs.nvim'
+
 	Plug 'pwntester/octo.nvim'
 
 	Plug 'lewis6991/gitsigns.nvim'
@@ -61,8 +54,8 @@
 
 	Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
 	Plug 'nvim-treesitter/nvim-treesitter-refactor'
-	Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 	Plug 'nvim-treesitter/playground'
+	Plug 'tjdevries/tree-sitter-lua'
 
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'norcalli/snippets.nvim'
@@ -73,10 +66,9 @@
 
 	Plug 'mfussenegger/nvim-dap'
 	Plug 'theHamsta/nvim-dap-virtual-text'
+	Plug 'jbyuki/one-small-step-for-vimkind'
 
 	Plug 'itchyny/lightline.vim'
 
 	Plug 'norcalli/nvim-colorizer.lua'
 	call plug#end()
-
-let g:lispdocs_mappings = 0

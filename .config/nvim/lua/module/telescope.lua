@@ -3,37 +3,78 @@ local pickers = require('telescope.pickers')
 local finders = require('telescope.finders')
 local actions = require('telescope.actions')
 local previewers = require('telescope.previewers')
+local Job = require('plenary.job')
 
 local conf = require('telescope.config').values
+
+-- local transform_mod = require('telescope.actions.mt').transform_mod
+
+-- -- or create your custom action
+-- local my_cool_custom_action = transform_mod({
+--   x = function(prompt_bufnr)
+--     print(prompt_bufnr)
+--   end,
+-- })
+
+-- local new_maker = function(filepath, bufnr, opts)
+--   filepath = vim.fn.expand(filepath)
+--   Job:new({
+--     command = 'file',
+--     args = { '--mime-type', '-b', filepath },
+--     on_exit = function(j)
+--       local mime_type = vim.split(j:result()[1], '/')[1]
+--       if mime_type == "text" then
+--         previewers.buffer_previewer_maker(filepath, bufnr, opts)
+--       else
+--         vim.schedule(function()
+--           vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, { 'BINARY' })
+--         end)
+--       end
+--     end
+--   }):sync()
+-- end
 
 telescope.setup {
   defaults = {
     layout_strategy = 'flex',
     scroll_strategy = 'cycle',
+    -- prompt_position = "top",
     -- sorting_strategy = 'ascending',
-    winblend = 5,
+    -- buffer_previewer_maker = new_maker,
+    winblend = 0,
     layout_defaults = {
       horizontal = {
         width_padding = 0.1,
         height_padding = 0.1,
         preview_width = 0.6,
+        mirror = false,
       },
       vertical = {
         width_padding = 0.05,
         height_padding = 1,
         preview_height = 0.5,
+        mirror = true,
       }
     },
     mappings = {
       i = {
-        ["<C-q>"] = actions.send_to_qflist + actions.open_qflist,
-      }
+        -- ["<C-s>"] = actions.cycle_previewers_next,
+        -- ["<C-a>"] = actions.cycle_previewers_prev,
+
+        -- ["<C-n>"] = actions.cycle_history_next,
+        -- ["<C-p>"] = actions.cycle_history_prev,
+
+        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist, -- + my_cool_custom_action.x,
+        ["<a-q>"] = false,
+        ["<esc>"] = actions.close,
+      },
     },
+    file_ignore_patterns = { 'tags', 'src/parser.c' },
     color_devicons = true,
-    -- set_env = { ['COLORTERM'] = 'truecolor', LESS = '-SMR' },
-    file_previewer = previewers.vim_buffer_cat.new,
-    grep_previewer = previewers.vim_buffer_vimgrep.new,
-    qflist_previewer = previewers.vim_buffer_qflist.new,
+    -- dynamic_preview_title = false,
+    -- history_handler = require('telescope.actions.history').get_smart_history,
+    -- history_location = '~/.local/share/nvim/databases/telescope_history.sqlite3',
+    -- history_limit = 100,
   },
   extensions = {
     frecency = {
@@ -50,10 +91,8 @@ telescope.setup {
   }
 }
 
-telescope.load_extension('fzy_native')
-telescope.load_extension('dap')
+telescope.load_extension('fzf')
 telescope.load_extension('frecency')
-telescope.load_extension('bibtex')
 telescope.load_extension('octo')
 
 local M = {}
