@@ -4,7 +4,9 @@ file=$(readlink -f "$1")
 
 case "$file" in
 	*\.c) clang-format --style=file -i "$file" ;;
+	*\.h) clang-format --style=file -i "$file" ;;
 	*\.cpp) clang-format --style=file -i "$file" ;;
+	*\.hpp) clang-format --style=file -i "$file" ;;
 	*\.rs) rustfmt "$file" ;;
 	*\.py) yapf -i "$file" ;;
 	*\.html) prettier -w "$file" ;;
