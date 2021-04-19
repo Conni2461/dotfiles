@@ -44,6 +44,8 @@
 	fct = "!fcot"
 	fcc = "!fcoc"
 
+	alias = !git config --get-regexp '^alias\\.' | sed -e 's/^alias\\.//' -e 's/\\ /\\ =\\ /' | sort
+
 [color]
 	ui = true
 	diff = auto
