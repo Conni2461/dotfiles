@@ -1,6 +1,8 @@
 autoload -Uz colors
 colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%c%{$fg[red]%}]%{$reset_color%}%B$%b "
+setopt PROMPT_SUBST
+
+PS1='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magenta]%}%c%{$fg[red]%}]%{$reset_color%}$(git_super_status)%B$%b '
 
 # History Settings
 # Use same history file for zsh and bash
@@ -104,3 +106,8 @@ fi
 # Load zsh-syntax-highlighting; should be last.
 [ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+[ -f "/usr/share/doc/pkgfile/command-not-found.zsh" ] && source /usr/share/doc/pkgfile/command-not-found.zsh
+
+# Local plugins
+[ -f "$XDG_CONFIG_HOME/zsh/plugins/you-should-use.zsh" ] && source $XDG_CONFIG_HOME/zsh/plugins/you-should-use.zsh
+[ -f "$XDG_CONFIG_HOME/zsh/plugins/git-prompt.zsh" ] && source $XDG_CONFIG_HOME/zsh/plugins/git-prompt.zsh
