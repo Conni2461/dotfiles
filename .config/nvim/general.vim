@@ -163,7 +163,7 @@
 		function! s:OnExit(status) closure abort
 			if a:status == 0
 				execute 'silent! bd! '.bufnr
-				call lightline#update()
+				lua require("module/simpleline").update()
 			endif
 		endfunction
 

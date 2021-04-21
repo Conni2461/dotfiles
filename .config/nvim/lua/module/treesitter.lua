@@ -23,9 +23,7 @@ ts.setup {
       scope_incremental = "<s-cr>"
     }
   },
-  indent = {
-    enable = true,
-  },
+  indent = { enable = false },
   refactor = {
     highlight_definitions = { enable = true },
     highlight_current_scope = { enable = false },

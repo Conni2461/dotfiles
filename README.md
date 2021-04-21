@@ -119,7 +119,6 @@ A full list of used plugins:
 | [octo](https://github.com/pwntester/octo.nvim)                                      | Github integration in neovim. With telescope integration                                        |
 | [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                              | Git signs written in pure lua                                                                   |
 | [goyo](https://github.com/junegunn/goyo.vim)                                        | Distraction-free writing in Vim                                                                 |
-| [limelight](https://github.com/junegunn/limelight.vim)                              | Hyperfocus-writing in Vim                                                                       |
 | [vimwiki](https://github.com/vimwiki/vimwiki)                                       | Personal Wiki for Vim                                                                           |
 | [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)                    | Currently used for Syntax highlighting and incremental selection.                               |
 | [treesitter-refactor](https://github.com/nvim-treesitter/nvim-treesitter-refactor)  | Adds Refactor module to Treesitter. Highlight definition, smart rename and more.                |
@@ -134,7 +133,6 @@ A full list of used plugins:
 | [dap](https://github.com/mfussenegger/nvim-dap)                                     | Debug Adapter Protocol client implementation for Neovim                                         |
 | [dap virtual text](https://github.com/theHamsta/nvim-dap-virtual-text)              | Displayes virtual text coming from dap using treesitter                                         |
 | [nvim lua debug](https://github.com/jbyuki/one-small-step-for-vimkind)              | Debug lua neovim code in neovim                                                                 |
-| [lightline](https://github.com/itchyny/lightline.vim)                               | A light and configurable statusline/tabline plugin                                              |
 | [colorizer](https://github.com/norcalli/nvim-colorizer.lua)                         | Adds color to hexcodes                                                                          |
 
 Some plugins require additional packages installed:

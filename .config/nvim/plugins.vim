@@ -48,8 +48,6 @@
 	Plug 'lewis6991/gitsigns.nvim'
 
 	Plug 'junegunn/goyo.vim'
-	Plug 'junegunn/limelight.vim'
-
 	Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
 
 	Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
@@ -67,8 +65,6 @@
 	Plug 'mfussenegger/nvim-dap'
 	Plug 'theHamsta/nvim-dap-virtual-text'
 	Plug 'jbyuki/one-small-step-for-vimkind'
-
-	Plug 'itchyny/lightline.vim'
 
 	Plug 'norcalli/nvim-colorizer.lua'
 	call plug#end()

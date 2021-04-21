@@ -13,5 +13,7 @@ require('module/snippets')
 require('module/dap')
 require('module/signs')
 
+require("module.simpleline").init()
+
 -- Might move into own module
 require'colorizer'.setup()
