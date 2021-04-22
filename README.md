@@ -97,13 +97,9 @@ A full list of used plugins:
 | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | [base16](https://github.com/norcalli/nvim-base16.lua)                               | Neovim Colorscheme collection                                                                   |
 | [signature](https://github.com/kshenoy/vim-signature)                               | Plugin to toggle, display and navigate marks                                                    |
-| [scrolling](https://github.com/psliwka/vim-smoothie)                                | Smoth scrolling with `Ctrl-d` / `Ctrl-u` / `Ctrl-f` / `Ctrl-b`                                  |
 | [git-messenger](https://github.com/rhysd/git-messenger.vim)                         | Show git messages with `<leader>gm`. Using nvim-floating-window                                 |
-| [committia](https://github.com/rhysd/committia.vim)                                 | Layout for git commit                                                                           |
 | [gitignore highlighting](https://github.com/gisphm/vim-gitignore)                   | gitignore highlighting support                                                                  |
-| [clever-f](https://github.com/rhysd/clever-f.vim)                                   | Changes behavior of f/F and t/T                                                                 |
 | [commentary](https://github.com/tpope/vim-commentary)                               | comment stuff out with `gcc` to comment out line and `gc` in visual mode                        |
-| [surround](https://github.com/tpope/vim-surround)                                   | quoting/parenthesizing made simple                                                              |
 | [scriptease.vim](https://github.com/tpope/vim-scriptease)                           | Vim plugin for making Vim plugins. Loads `:messages` into quickfix list                         |
 | [tabular](https://github.com/godlygeek/tabular)                                     | Helps with aligning text                                                                        |
 | [devicons](https://github.com/kyazdani42/nvim-web-devicons)                         | lua `fork` of vim-web-devicons for neovim                                                       |
@@ -134,11 +130,12 @@ A full list of used plugins:
 | [dap virtual text](https://github.com/theHamsta/nvim-dap-virtual-text)              | Displayes virtual text coming from dap using treesitter                                         |
 | [nvim lua debug](https://github.com/jbyuki/one-small-step-for-vimkind)              | Debug lua neovim code in neovim                                                                 |
 | [colorizer](https://github.com/norcalli/nvim-colorizer.lua)                         | Adds color to hexcodes                                                                          |
+| [shade](https://github.com/sunjon/shade.nvim)                                       | Dim inactive windows                                                                            |
 
 Some plugins require additional packages installed:
 
 - telescope requires [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd) to work best.
-- Already preonfigured LSP Server. Install one or more of the listed Servers and you are good to go for the specific language (setup can be verified with `:checkhealth`):
+- Already preconfigured LSP Server. Install one or more of the listed Servers and you are good to go for the specific language (setup can be verified with `:checkhealth`):
   - [als](https://github.com/AdaCore/ada_language_server) for ada.
   - [bashls](https://github.com/bash-lsp/bash-language-server) for bash and posix compliant shells.
   - [clangd](https://clangd.llvm.org/) for c/c++. [ccls](https://github.com/MaskRay/ccls) is currently disabled because clangd offers option to switch between header and source file.

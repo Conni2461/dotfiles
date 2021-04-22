@@ -15,16 +15,10 @@
 
 	Plug 'kshenoy/vim-signature'
 
-	Plug 'psliwka/vim-smoothie'
-
 	Plug 'rhysd/git-messenger.vim'
-	Plug 'rhysd/committia.vim'
-
 	Plug 'gisphm/vim-gitignore'
 
-	Plug 'rhysd/clever-f.vim'
 	Plug 'tpope/vim-commentary'
-	Plug 'tpope/vim-surround'
 	Plug 'tpope/vim-scriptease'
 	Plug 'godlygeek/tabular'
 
@@ -42,7 +36,6 @@
 	Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 	Plug 'nvim-telescope/telescope-symbols.nvim'
 	Plug 'nvim-telescope/telescope-frecency.nvim'
-
 	Plug 'pwntester/octo.nvim'
 
 	Plug 'lewis6991/gitsigns.nvim'
@@ -67,4 +60,6 @@
 	Plug 'jbyuki/one-small-step-for-vimkind'
 
 	Plug 'norcalli/nvim-colorizer.lua'
+
+	Plug 'sunjon/shade.nvim'
 	call plug#end()
