@@ -1,4 +1,5 @@
 local Job = require("plenary.job")
+local devicons = require("nvim-web-devicons")
 
 local hl_groups = {
   default = { "ColorColumn" },
@@ -28,21 +29,15 @@ local static_entries = {
   filename = block(hl_groups.default[1], " %t"),
   info = block(hl_groups.linenr[1], "%l:%c | %p%%"),
   inactive = block(hl_groups.default[1], "%t"),
-  separator = block(hl_groups.default[1], "%( | %)")
 }
-local cached_entires = { branch = "" } -- maybe we show the filetype icon before the filename. If so we cache it
-
-local if_left = function(left)
-  if left ~= "" then return static_entries.separator end
-  return ""
-end
+local cached_entries = { branch = "", filetype = "" }
 
 local severities = { "Error", "Warning", "Information", "Hint" }
 local severities_gens = {
-  "%%#LspDiagnosticsDefaultError#%%(" .. vim.g.indicator_errors .. "%d%%)",
-  "%%#LspDiagnosticsDefaultWarning#%%(" .. vim.g.indicator_warnings .. "%d%%)",
-  "%%#LspDiagnosticsDefaultInformation#%%(" .. vim.g.indicator_infos .. "%d%%)",
-  "%%#LspDiagnosticsDefaultHint#%%(" .. vim.g.indicator_hints .. "%d%%)",
+  "%%#LspDiagnosticsDefaultError#%%(" .. vim.g.indicator_errors .. "%d %%)",
+  "%%#LspDiagnosticsDefaultWarning#%%(" .. vim.g.indicator_warnings .. "%d %%)",
+  "%%#LspDiagnosticsDefaultInformation#%%(" .. vim.g.indicator_infos .. "%d %%)",
+  "%%#LspDiagnosticsDefaultHint#%%(" .. vim.g.indicator_hints .. "%d %%)",
 }
 local diagnostics = function()
   local output = {}
@@ -50,7 +45,6 @@ local diagnostics = function()
   for i = #severities, 1, -1 do
     local res = vim.lsp.diagnostic.get_count(0, severities[i])
     if res > 0 then
-      if size > 0 then output[size] = output[size] .. " " end
       size = size + 1
       output[size] = string.format(severities_gens[i], res)
     end
@@ -58,9 +52,16 @@ local diagnostics = function()
   return table.concat(output)
 end
 
+local filetype = function()
+  if cached_entries.filetype and cached_entries.filetype ~= "" then
+    return block(hl_groups.default[1], string.format("%%( %s%%)", cached_entries.filetype))
+  end
+  return ""
+end
+
 local branch = function()
-  if cached_entires.branch ~= "" then
-    return block(hl_groups.default[1], string.format("%%( |  %s%%)", cached_entires.branch))
+  if cached_entries.branch ~= "" then
+    return block(hl_groups.default[1], string.format("%%( |  %s%%)", cached_entries.branch))
   end
   return ""
 end
@@ -77,8 +78,9 @@ end
 
 m.update = function()
   Job:new({ "git", "branch", "--show-current", on_exit = function(j, c)
-    if c == 0 then cached_entires.branch = j:result()[1] end
+    if c == 0 then cached_entries.branch = j:result()[1] end
   end }):start()
+  cached_entries.filetype = devicons.get_icon(vim.fn.expand('%:t'), vim.bo.filetype)
 
   local curr = vim.fn.winnr()
   local last = vim.fn.winnr("$")
@@ -93,19 +95,15 @@ end
 
 m.active = function()
   local mode = mode_map[vim.fn.mode()]
-  local lsp = diagnostics()
-  local git = branch()
-
   local res = {
     block(mode[2], string.format("%%( %s %%)", mode[1])),
+    filetype(),
     static_entries.filename,
-    git,
+    branch(),
     "%=",
-    lsp,
-    if_left(lsp),
+    diagnostics(),
     static_entries.info
   }
-
   return table.concat(res)
 end
 
