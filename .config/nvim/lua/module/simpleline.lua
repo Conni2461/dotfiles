@@ -9,19 +9,18 @@ local hl_groups = {
   replace = { "SimplelineReplace", "#ffffff", "#df0000" },
   linenr = { "SimplelineNumber", "#303030", "#9e9e9e" },
 }
-
 local mode_map = {
-  ['n'] = { 'NORMAL', hl_groups.normal[1] },
-  ['i'] = { 'INSERT', hl_groups.insert[1] },
-  ['R'] = { 'REPLACE', hl_groups.replace[1] },
-  ['v'] = { 'VISUAL', hl_groups.visual[1] },
-  ['V'] = { 'V-LINE', hl_groups.visual[1] },
-  [""]= { 'V-BLOCK', hl_groups.visual[1] },
-  ['c'] = { 'COMMAND', hl_groups.normal[1] },
-  ['s'] = { 'SELECT', hl_groups.visual[1] },
-  ['S'] = { 'S-LINE', hl_groups.visual[1] },
-  [""] = { 'S-BLOCK', hl_groups.visual[1] },
-  ['t'] = { 'TERMINAL', hl_groups.insert[1] },
+  ['n']  = { 'N', hl_groups.normal[1] },
+  ['i']  = { 'I', hl_groups.insert[1] },
+  ['R']  = { 'R', hl_groups.replace[1] },
+  ['v']  = { 'V', hl_groups.visual[1] },
+  ['V']  = { 'V', hl_groups.visual[1] },
+  [""] = { 'V', hl_groups.visual[1] },
+  ['c']  = { 'C', hl_groups.normal[1] },
+  ['s']  = { 'S', hl_groups.visual[1] },
+  ['S']  = { 'S', hl_groups.visual[1] },
+  [""] = { 'S', hl_groups.visual[1] },
+  ['t']  = { 'T', hl_groups.insert[1] },
 }
 
 local block = function(hi, txt) return string.format("%%#%s#%s", hi, txt) end
@@ -82,20 +81,20 @@ m.update = function()
   end }):start()
   cached_entries.filetype = devicons.get_icon(vim.fn.expand('%:t'), vim.bo.filetype)
 
-  local curr = vim.fn.winnr()
-  local last = vim.fn.winnr("$")
-  for i = 1, last do
-    if i == curr then
-      vim.fn.setwinvar(i, "&statusline", [=[%!luaeval('require("module/simpleline").active()')]=])
+  local curr = vim.api.nvim_get_current_win()
+  local wins = vim.api.nvim_tabpage_list_wins(0)
+  for _, v in ipairs(wins) do
+    if v == curr then
+      vim.api.nvim_win_set_option(v, "statusline", [=[%!luaeval('require("module/simpleline").active()')]=])
     else
-      vim.fn.setwinvar(i, "&statusline", [=[%!luaeval('require("module/simpleline").inactive()')]=])
+      vim.api.nvim_win_set_option(v, "statusline", string.format([=[%%!luaeval('require("module/simpleline").inactive(%d)')]=], v))
     end
   end
 end
 
 m.active = function()
   local mode = mode_map[vim.fn.mode()]
-  local res = {
+  return table.concat {
     block(mode[2], string.format("%%( %s %%)", mode[1])),
     filetype(),
     static_entries.filename,
@@ -104,11 +103,18 @@ m.active = function()
     diagnostics(),
     static_entries.info
   }
-  return table.concat(res)
 end
 
-m.inactive = function()
-  return static_entries.inactive
+m.inactive = function(winid)
+  local bufnr = vim.api.nvim_win_get_buf(winid)
+  local icon = devicons.get_icon(
+    vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ':t'),
+    vim.api.nvim_buf_get_option(bufnr, "filetype")
+  )
+  return table.concat {
+    icon and block(hl_groups.default[1], string.format("%%(%s %%)", icon)) or "",
+    static_entries.inactive
+  }
 end
 
 return m
