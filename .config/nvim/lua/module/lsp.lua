@@ -60,7 +60,8 @@ vim.lsp.protocol.CompletionItemKind = {
 }
 
 local on_attach = function(_, _)
-  vim.cmd [[autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()]]
+  require'lsp_signature'.on_attach()
+  vim.cmd [[autocmd CursorHold,CursorHoldI <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()]]
   vim.cmd [[autocmd CursorHold,CursorHoldI <buffer> lua require'nvim-lightbulb'.update_lightbulb()]]
   if vim.bo.filetype == 'rust' then
     vim.cmd('autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost <buffer> ' ..

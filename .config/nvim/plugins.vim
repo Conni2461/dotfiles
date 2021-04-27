@@ -50,6 +50,7 @@
 
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'hrsh7th/nvim-compe'
+	Plug 'ray-x/lsp_signature.nvim'
 	Plug 'norcalli/snippets.nvim'
 	Plug 'nvim-lua/lsp_extensions.nvim'
 	Plug 'kosayoda/nvim-lightbulb'
