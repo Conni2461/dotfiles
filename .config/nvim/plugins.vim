@@ -49,11 +49,11 @@
 	Plug 'tjdevries/tree-sitter-lua'
 
 	Plug 'neovim/nvim-lspconfig'
+	Plug 'hrsh7th/nvim-compe'
 	Plug 'norcalli/snippets.nvim'
-	Plug 'nvim-lua/completion-nvim'
 	Plug 'nvim-lua/lsp_extensions.nvim'
-	Plug 'steelsojka/completion-buffers'
 	Plug 'kosayoda/nvim-lightbulb'
+	Plug 'simrat39/symbols-outline.nvim'
 
 	Plug 'mfussenegger/nvim-dap'
 	Plug 'theHamsta/nvim-dap-virtual-text'

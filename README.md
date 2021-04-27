@@ -121,11 +121,11 @@ A full list of used plugins:
 | [treesitter playground](https://github.com/nvim-treesitter/playground)              | Treesitter playground integrated into Neovim. Interactive Debugging tool for Treesitter         |
 | [treesitter-lua](https://github.com/tjdevries/tree-sitter-lua)                      | Treesitter lua grammar                                                                          |
 | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                          | Providing config for built-in lsp                                                               |
-| [snippets](https://github.com/norcalli/snippets.nvim)                               | Adds snippet support. Works with completion-nvim.                                               |
-| [completion](https://github.com/nvim-lua/completion-nvim)                           | Adds completion for nvim-lsp                                                                    |
+| [nvim-compe](https://github.com/hrsh7th/nvim-compe)                                 | Adds completion for nvim-lsp, buffer and snippets                                               |
+| [snippets](https://github.com/norcalli/snippets.nvim)                               | Adds snippet support.                                                                           |
 | [lsp extensions](https://github.com/tjdevries/lsp_extensions.nvim)                  | Adds more lsp stuff. Example: Inlay hints                                                       |
-| [buffer completion](https://github.com/steelsojka/completion-buffers)               | Adds word completion for all words in all open buffers. Additional source for completion-nvim   |
 | [lightbulb](https://github.com/kosayoda/nvim-lightbulb)                             | Show lightbulb when there is a code action at the current line                                  |
+| [symbols-outline](https://github.com/simrat39/symbols-outline.nvim)                 | A symbols outline for builtin lsp                                                               |
 | [dap](https://github.com/mfussenegger/nvim-dap)                                     | Debug Adapter Protocol client implementation for Neovim                                         |
 | [dap virtual text](https://github.com/theHamsta/nvim-dap-virtual-text)              | Displayes virtual text coming from dap using treesitter                                         |
 | [nvim lua debug](https://github.com/jbyuki/one-small-step-for-vimkind)              | Debug lua neovim code in neovim                                                                 |

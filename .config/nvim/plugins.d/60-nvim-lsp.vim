@@ -44,22 +44,6 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set pumblend=10
 
-" Enable Snippet Support
-let g:completion_enable_snippet = 'snippets.nvim'
-
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-inoremap <expr> <Up>   pumvisible() ? "\<C-p>" : "\<Up>"
-inoremap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
-
-inoremap <silent> <C-Space> <cmd>lua require'completion'.triggerCompletion()<CR>
-inoremap <tab> <cmd>lua require'completion'.smart_tab()<CR>
-
-" Enable completion for buffers which use snippets but no lsp
-" Add customize_lsp_label and chain_complete_list
-autocmd Filetype markdown,make lua require'completion'.on_attach()
-
-command! RestartLSP :lua vim.lsp.stop_client(vim.lsp.get_active_clients()); vim.cmd 'edit'
-
-autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb()
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')

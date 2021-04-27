@@ -1,6 +1,26 @@
 local lspconfig = require'lspconfig'
 local util      = require'lspconfig/util'
-local configs   = require'lspconfig/configs'
+
+require'compe'.setup {
+  enabled = true,
+  autocomplete = true,
+  debug = false,
+  min_length = 1,
+  preselect = 'enable',
+  throttle_time = 80,
+  source_timeout = 200,
+  incomplete_delay = 400,
+  max_abbr_width = 100,
+  max_kind_width = 100,
+  max_menu_width = 100,
+  documentation = true,
+  source = {
+    path = true,
+    buffer = true,
+    nvim_lsp = true,
+    snippets_nvim = true,
+  }
+}
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -11,127 +31,35 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
-local chain_complete_list = {
-  default = {
-    {complete_items = {'lsp', 'snippet'}},
-    {complete_items = {'path'}, triggered_only = {'./', '/'}},
-    {complete_items = {'buffers'}},
-  },
-  string = {
-    {complete_items = {'path'}, triggered_only = {'./', '/'}},
-    {complete_items = {'buffers'}},
-  },
-  comment = {},
+vim.lsp.protocol.CompletionItemKind = {
+  ' [text]',
+  ' [method]',
+  'ƒ [function]',
+  ' [constructor]',
+  ' [field]',
+  ' [variable]',
+  ' [class]',
+  ' [interface]',
+  ' [module]',
+  ' [property]',
+  ' [unit]',
+  ' [value]',
+  ' [enum]',
+  ' [keyword]',
+  '﬌ [snippet]',
+  ' [color]',
+  ' [file]',
+  ' [reference]',
+  ' [dir]',
+  ' [enummember]',
+  ' [constant]',
+  ' [struct]',
+  '  [event]',
+  ' [operator]',
+  ' [type]',
 }
-
-local utf8 = function(cp)
-  if cp < 128 then
-    return string.char(cp)
-  end
-  local s = ""
-  local prefix_max = 32
-  while true do
-    local suffix = cp % 64
-    s = string.char(128 + suffix)..s
-    cp = (cp - suffix) / 64
-    if cp < prefix_max then
-      return string.char((256 - (2 * prefix_max)) + cp)..s
-    end
-    prefix_max = prefix_max / 2
-  end
-end
-
-local customize_lsp_label = {
-  Method = utf8(0xf794) .. ' [method]',
-  Function = utf8(0xf794) .. ' [function]',
-  Variable = utf8(0xf6a6) .. ' [variable]',
-  Field = utf8(0xf6a6) .. ' [field]',
-  Class = utf8(0xfb44) .. ' [class]',
-  Struct = utf8(0xfb44) .. ' [struct]',
-  Interface = utf8(0xf836) .. ' [interface]',
-  Module = utf8(0xf668) .. ' [module]',
-  Property = utf8(0xf0ad) .. ' [property]',
-  Value = utf8(0xf77a) .. ' [value]',
-  Enum = utf8(0xf77a) .. ' [enum]',
-  Operator = utf8(0xf055) .. ' [operator]',
-  Reference = utf8(0xf838) .. ' [reference]',
-  Keyword = utf8(0xf80a) .. ' [keyword]',
-  Color = utf8(0xe22b) .. ' [color]',
-  Unit = utf8(0xe3ce) .. ' [unit]',
-  ["snippets.nvim"] = utf8(0xf68e) .. ' [nsnip]',
-  Snippet = utf8(0xf68e) .. ' [snippet]',
-  Text = utf8(0xf52b) .. ' [text]',
-  Buffers = utf8(0xf64d) .. ' [buffers]',
-  TypeParameter = utf8(0xf635) .. ' [type]',
-}
-
--- require('vim.lsp.protocol').CompletionItemKind = {
---   '';             -- Text          = 1;
---   '';             -- Method        = 2;
---   'ƒ';             -- Function      = 3;
---   '';             -- Constructor   = 4;
---   'Field';         -- Field         = 5;
---   '';             -- Variable      = 6;
---   '';             -- Class         = 7;
---   'ﰮ';             -- Interface     = 8;
---   '';             -- Module        = 9;
---   '';             -- Property      = 10;
---   '';             -- Unit          = 11;
---   '';             -- Value         = 12;
---   '了';            -- Enum          = 13;
---   '';             -- Keyword       = 14;
---   '﬌';             -- Snippet       = 15;
---   '';             -- Color         = 16;
---   '';             -- File          = 17;
---   'Reference';     -- Reference     = 18;
---   '';             -- Folder        = 19;
---   '';             -- EnumMember    = 20;
---   '';             -- Constant      = 21;
---   '';             -- Struct        = 22;
---   'Event';         -- Event         = 23;
---   'Operator';      -- Operator      = 24;
---   'TypeParameter'; -- TypeParameter = 25;
--- }
--- "suggest.completionItemKindLabels": {
---     "method": "  ",
---     "function": "  ",
---     "variable": "[]",
---     "field": "  ",
---     "typeParameter": "<>",
---     "constant": "  ",
---     "class": " פּ ",
---     "interface": " 蘒",
---     "struct": "  ",
---     "event": "  ",
---     "operator": "  ",
---     "module": "  ",
---     "property": "  ",
---     "enum": " 練",
---     "reference": "  ",
---     "keyword": "  ",
---     "file": "  ",
---     "folder": " ﱮ ",
---     "color": "  ",
---     "unit": " 塞 ",
---     "snippet": "  ",
---     "text": "  ",
---     "constructor": "  ",
---     "value": "  ",
---     "enumMember": "  "
---   },
-
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true;
 
 local on_attach = function(_, _)
-  require'completion'.on_attach({
-    chain_complete_list = chain_complete_list,
-    customize_lsp_label = customize_lsp_label,
-    enable_auto_popup = 1,
-    enable_auto_signature = 1,
-    auto_change_source = 1,
-    enable_auto_hover = 1,
-  })
   vim.cmd [[autocmd CursorHold <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()]]
   vim.cmd [[autocmd CursorHold,CursorHoldI <buffer> lua require'nvim-lightbulb'.update_lightbulb()]]
   if vim.bo.filetype == 'rust' then
@@ -176,44 +104,26 @@ local lua_settings = {
   },
 }
 
--- TODO(conni2461): REFACTOR
 local function setup_ls(ls, ls_cmd, backup, backup_cmd, passed_settings)
-  local bin, arr
-  local backup_bin, backup_arr
   if type(ls_cmd) == "string" then
-    bin = ls_cmd
-    arr = { ls_cmd }
-  else
-    bin = ls_cmd[1]
-    arr = ls_cmd
+    ls_cmd = { ls_cmd }
+  end
+  if backup_cmd and type(backup_cmd) == "string" then
+    backup_cmd = { backup_cmd }
   end
 
-  if not (backup_cmd == nil) then
-    if type(backup_cmd) == "string" then
-      backup_bin = backup_cmd
-      backup_arr = { backup_cmd }
-    else
-      backup_bin = backup_cmd[1]
-      backup_arr = backup_cmd
-    end
-  end
-
-  if util.has_bins(bin) then
+  if util.has_bins(ls_cmd[1]) then
     lspconfig[ls].setup{
       on_attach = on_attach,
-      cmd = arr,
+      cmd = ls_cmd,
       settings = passed_settings,
     }
-  else
-    if backup ~= nil then
-      if backup_bin ~= nil and util.has_bins(backup_bin) then
-        lspconfig[backup].setup{
-          on_attach = on_attach,
-          cmd = backup_arr,
-          settings = passed_settings,
-        }
-      end
-    end
+  elseif backup and backup_cmd and util.has_bins(backup_cmd[1]) then
+    lspconfig[backup].setup{
+      on_attach = on_attach,
+      cmd = backup_cmd,
+      settings = passed_settings,
+    }
   end
 end
 
@@ -242,43 +152,10 @@ setup_ls("tsserver", { "typescript-language-server", "--stdio" })
 setup_ls("vimls", { "vim-language-server", "--stdio" })
 setup_ls("yamlls", { "yaml-language-server", "--stdio" })
 
--- lspconfig.rust_analyzer.setup{
---   cmd = {"rust-analyzer"},
---   filetypes = {"rust"},
---   on_attach = on_attach,
--- }
-
 lspconfig.pyright.setup{
   on_attach = on_attach,
-  capabilities = cap,
-  root_dir = function() return vim.fn.getcwd() end,
+  root_dir = function() return vim.loop.cwd() end,
 }
-
-configs.own_jdtls = {
-  default_config = {
-    cmd = { 'jdtls' },
-    filetypes = { 'java' },
-    root_dir = util.root_pattern(".git"),
-    init_options = {
-      jvm_args = {},
-      workspace = util.path.join { vim.loop.os_homedir(), "workspace" },
-    },
-    handlers = {
-      ['textDocument/codeAction'] = function(a, b, actions)
-        for _, action in ipairs(actions) do
-          if action.command == 'java.apply.workspaceEdit' then
-            action.edit = action.arguments[1]
-          end
-        end
-
-        handlers['textDocument/codeAction'](a, b, actions)
-      end
-    },
-    settings = {},
-  }
-}
-
-lspconfig.own_jdtls.setup{ on_attach = on_attach }
 
 if util.has_bins('diagnostic-languageserver') then
   lspconfig.diagnosticls.setup{
