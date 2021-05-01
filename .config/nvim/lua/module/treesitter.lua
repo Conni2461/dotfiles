@@ -11,9 +11,7 @@ vim.treesitter.set_query("lua", "indents", "")
 vim.treesitter.set_query("lua", "locals", "")
 
 ts.setup {
-  highlight = {
-    enable = true,
-  },
+  highlight = { enable = true },
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -27,12 +25,7 @@ ts.setup {
   refactor = {
     highlight_definitions = { enable = true },
     highlight_current_scope = { enable = false },
-    smart_rename = {
-      enable = true,
-      keymaps = {
-        smart_rename = "grr",
-      }
-    },
+    smart_rename = { enable = false },
     navigation = {
       enable = true,
       keymaps = {
@@ -53,6 +46,13 @@ ts.setup {
     enable = true,
     use_virtual_text = true,
     lint_events = { "BufWrite", "CursorHold" },
+  },
+  context_commentstring = {
+    enable = true,
+    config = {
+      c = '// %s',
+      lua = '-- %s'
+    }
   },
   ensure_installed = { -- one of 'all', 'language' or a list of languages
     'bash',

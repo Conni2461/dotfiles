@@ -47,6 +47,7 @@
 	Plug 'nvim-treesitter/nvim-treesitter-refactor'
 	Plug 'nvim-treesitter/playground'
 	Plug 'tjdevries/tree-sitter-lua'
+	Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
 	Plug 'neovim/nvim-lspconfig'
 	Plug 'hrsh7th/nvim-compe'

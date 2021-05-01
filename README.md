@@ -93,45 +93,46 @@ All further commands can be found on [here](https://github.com/junegunn/vim-plug
 
 A full list of used plugins:
 
-| Plugin                                                                              | Description                                                                                     |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| [base16](https://github.com/norcalli/nvim-base16.lua)                               | Neovim Colorscheme collection                                                                   |
-| [signature](https://github.com/kshenoy/vim-signature)                               | Plugin to toggle, display and navigate marks                                                    |
-| [git-messenger](https://github.com/rhysd/git-messenger.vim)                         | Show git messages with `<leader>gm`. Using nvim-floating-window                                 |
-| [gitignore highlighting](https://github.com/gisphm/vim-gitignore)                   | gitignore highlighting support                                                                  |
-| [commentary](https://github.com/tpope/vim-commentary)                               | comment stuff out with `gcc` to comment out line and `gc` in visual mode                        |
-| [scriptease.vim](https://github.com/tpope/vim-scriptease)                           | Vim plugin for making Vim plugins. Loads `:messages` into quickfix list                         |
-| [tabular](https://github.com/godlygeek/tabular)                                     | Helps with aligning text                                                                        |
-| [devicons](https://github.com/kyazdani42/nvim-web-devicons)                         | lua `fork` of vim-web-devicons for neovim                                                       |
-| [sql](https://github.com/tami5/sql.nvim)                                            | sqlite3 bindings written in lua                                                                 |
-| [startify](https://github.com/mhinz/vim-startify)                                   | The fancy start screen for Vim with session support                                             |
-| [lastplace](https://github.com/farmergreg/vim-lastplace)                            | Intelligently reopen files at your last edit position                                           |
-| [popup](https://github.com/nvim-lua/popup.nvim)                                     | An implementation of the Popup API from vim in Neovim.                                          |
-| [plenary](https://github.com/nvim-lua/plenary.nvim)                                 | All the lua functions I don't want to write twice.                                              |
-| [telescope](https://github.com/nvim-telescope/telescope.nvim)                       | Find, Filter, Preview, Pick. Fuzzyfinder written in Lua, with providers for treesitter and lsp  |
-| [telescope-fzf-native](https://github.com/nvim-telescope/telescope-fzf-native.nvim) | Native fzf sorter for telescope                                                                 |
-| [telescope-symbols](https://github.com/nvim-telescope/telescope-symbols.nvim)       | symbol data for telescope                                                                       |
-| [telescope-frecency](https://github.com/nvim-telescope/telescope-frecency.nvim)     | Smart MRU for telescope                                                                         |
-| [octo](https://github.com/pwntester/octo.nvim)                                      | Github integration in neovim. With telescope integration                                        |
-| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                              | Git signs written in pure lua                                                                   |
-| [goyo](https://github.com/junegunn/goyo.vim)                                        | Distraction-free writing in Vim                                                                 |
-| [vimwiki](https://github.com/vimwiki/vimwiki)                                       | Personal Wiki for Vim                                                                           |
-| [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)                    | Currently used for Syntax highlighting and incremental selection.                               |
-| [treesitter-refactor](https://github.com/nvim-treesitter/nvim-treesitter-refactor)  | Adds Refactor module to Treesitter. Highlight definition, smart rename and more.                |
-| [treesitter playground](https://github.com/nvim-treesitter/playground)              | Treesitter playground integrated into Neovim. Interactive Debugging tool for Treesitter         |
-| [treesitter-lua](https://github.com/tjdevries/tree-sitter-lua)                      | Treesitter lua grammar                                                                          |
-| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                          | Providing config for built-in lsp                                                               |
-| [nvim-compe](https://github.com/hrsh7th/nvim-compe)                                 | Adds completion for nvim-lsp, buffer and snippets                                               |
-| [lsp_signature](https://github.com/ray-x/lsp_signature.nvim)                        | lsp signature hint when you type                                                                |
-| [snippets](https://github.com/norcalli/snippets.nvim)                               | Adds snippet support.                                                                           |
-| [lsp extensions](https://github.com/tjdevries/lsp_extensions.nvim)                  | Adds more lsp stuff. Example: Inlay hints                                                       |
-| [lightbulb](https://github.com/kosayoda/nvim-lightbulb)                             | Show lightbulb when there is a code action at the current line                                  |
-| [symbols-outline](https://github.com/simrat39/symbols-outline.nvim)                 | A symbols outline for builtin lsp                                                               |
-| [dap](https://github.com/mfussenegger/nvim-dap)                                     | Debug Adapter Protocol client implementation for Neovim                                         |
-| [dap virtual text](https://github.com/theHamsta/nvim-dap-virtual-text)              | Displayes virtual text coming from dap using treesitter                                         |
-| [nvim lua debug](https://github.com/jbyuki/one-small-step-for-vimkind)              | Debug lua neovim code in neovim                                                                 |
-| [colorizer](https://github.com/norcalli/nvim-colorizer.lua)                         | Adds color to hexcodes                                                                          |
-| [shade](https://github.com/sunjon/shade.nvim)                                       | Dim inactive windows                                                                            |
+| Plugin                                                                                     | Description                                                                                     |
+| ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
+| [base16](https://github.com/norcalli/nvim-base16.lua)                                      | Neovim Colorscheme collection                                                                   |
+| [signature](https://github.com/kshenoy/vim-signature)                                      | Plugin to toggle, display and navigate marks                                                    |
+| [git-messenger](https://github.com/rhysd/git-messenger.vim)                                | Show git messages with `<leader>gm`. Using nvim-floating-window                                 |
+| [gitignore highlighting](https://github.com/gisphm/vim-gitignore)                          | gitignore highlighting support                                                                  |
+| [commentary](https://github.com/tpope/vim-commentary)                                      | comment stuff out with `gcc` to comment out line and `gc` in visual mode                        |
+| [scriptease.vim](https://github.com/tpope/vim-scriptease)                                  | Vim plugin for making Vim plugins. Loads `:messages` into quickfix list                         |
+| [tabular](https://github.com/godlygeek/tabular)                                            | Helps with aligning text                                                                        |
+| [devicons](https://github.com/kyazdani42/nvim-web-devicons)                                | lua `fork` of vim-web-devicons for neovim                                                       |
+| [sql](https://github.com/tami5/sql.nvim)                                                   | sqlite3 bindings written in lua                                                                 |
+| [startify](https://github.com/mhinz/vim-startify)                                          | The fancy start screen for Vim with session support                                             |
+| [lastplace](https://github.com/farmergreg/vim-lastplace)                                   | Intelligently reopen files at your last edit position                                           |
+| [popup](https://github.com/nvim-lua/popup.nvim)                                            | An implementation of the Popup API from vim in Neovim.                                          |
+| [plenary](https://github.com/nvim-lua/plenary.nvim)                                        | All the lua functions I don't want to write twice.                                              |
+| [telescope](https://github.com/nvim-telescope/telescope.nvim)                              | Find, Filter, Preview, Pick. Fuzzyfinder written in Lua, with providers for treesitter and lsp  |
+| [telescope-fzf-native](https://github.com/nvim-telescope/telescope-fzf-native.nvim)        | Native fzf sorter for telescope                                                                 |
+| [telescope-symbols](https://github.com/nvim-telescope/telescope-symbols.nvim)              | symbol data for telescope                                                                       |
+| [telescope-frecency](https://github.com/nvim-telescope/telescope-frecency.nvim)            | Smart MRU for telescope                                                                         |
+| [octo](https://github.com/pwntester/octo.nvim)                                             | Github integration in neovim. With telescope integration                                        |
+| [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                                     | Git signs written in pure lua                                                                   |
+| [goyo](https://github.com/junegunn/goyo.vim)                                               | Distraction-free writing in Vim                                                                 |
+| [vimwiki](https://github.com/vimwiki/vimwiki)                                              | Personal Wiki for Vim                                                                           |
+| [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)                           | Currently used for Syntax highlighting and incremental selection.                               |
+| [treesitter-refactor](https://github.com/nvim-treesitter/nvim-treesitter-refactor)         | Adds Refactor module to Treesitter. Highlight definition, smart rename and more.                |
+| [treesitter playground](https://github.com/nvim-treesitter/playground)                     | Treesitter playground integrated into Neovim. Interactive Debugging tool for Treesitter         |
+| [treesitter-lua](https://github.com/tjdevries/tree-sitter-lua)                             | Treesitter lua grammar                                                                          |
+| [ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) | treesitter plugin for setting the commentstring based on the cursor location in a file          |
+| [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                                 | Providing config for built-in lsp                                                               |
+| [nvim-compe](https://github.com/hrsh7th/nvim-compe)                                        | Adds completion for nvim-lsp, buffer and snippets                                               |
+| [lsp_signature](https://github.com/ray-x/lsp_signature.nvim)                               | lsp signature hint when you type                                                                |
+| [snippets](https://github.com/norcalli/snippets.nvim)                                      | Adds snippet support.                                                                           |
+| [lsp extensions](https://github.com/tjdevries/lsp_extensions.nvim)                         | Adds more lsp stuff. Example: Inlay hints                                                       |
+| [lightbulb](https://github.com/kosayoda/nvim-lightbulb)                                    | Show lightbulb when there is a code action at the current line                                  |
+| [symbols-outline](https://github.com/simrat39/symbols-outline.nvim)                        | A symbols outline for builtin lsp                                                               |
+| [dap](https://github.com/mfussenegger/nvim-dap)                                            | Debug Adapter Protocol client implementation for Neovim                                         |
+| [dap virtual text](https://github.com/theHamsta/nvim-dap-virtual-text)                     | Displayes virtual text coming from dap using treesitter                                         |
+| [nvim lua debug](https://github.com/jbyuki/one-small-step-for-vimkind)                     | Debug lua neovim code in neovim                                                                 |
+| [colorizer](https://github.com/norcalli/nvim-colorizer.lua)                                | Adds color to hexcodes                                                                          |
+| [shade](https://github.com/sunjon/shade.nvim)                                              | Dim inactive windows                                                                            |
 
 Some plugins require additional packages installed:
 

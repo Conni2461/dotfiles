@@ -1,8 +1,8 @@
 nnoremap <Leader>w  <cmd>lua RTELE(); require'telescope.builtin'.git_files{ }<CR>
 nnoremap <Leader>q  <cmd>lua RTELE(); require'telescope.builtin'.find_files{ }<CR>
-nnoremap <Leader>gp <cmd>lua RTELE(); require'telescope.builtin'.grep_string{ shorten_path = true, word_match = "-w", only_sort_text = true, search = '' }<CR>
-nnoremap <Leader>gw <cmd>lua RTELE(); require'telescope.builtin'.grep_string{ shorten_path = true, word_match = "-w", only_sort_text = true }<CR>
-nnoremap <Leader>gs <cmd>lua RTELE(); require'telescope.builtin'.grep_string{ shorten_path = true, only_sort_text = true, search = vim.fn.input("Grep For >") }<CR>
+nnoremap <Leader>gp <cmd>lua RTELE(); require'telescope.builtin'.grep_string{ shorten_path = true, word_match = "-w", search = '' }<CR>
+nnoremap <Leader>gw <cmd>lua RTELE(); require'telescope.builtin'.grep_string{ shorten_path = true, word_match = "-w" }<CR>
+nnoremap <Leader>gs <cmd>lua RTELE(); require'telescope.builtin'.grep_string{ shorten_path = true, search = vim.fn.input("Grep For >") }<CR>
 nnoremap <Leader>ar <cmd>lua RTELE(); require'telescope.builtin'.lsp_references{ shorten_path = true }<CR>
 nnoremap <leader>ac <cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{ shorten_path = true }<CR>
 nnoremap <leader>aw <cmd>lua RTELE(); require'telescope.builtin'.lsp_workspace_symbols({ query = vim.fn.input("Query >"), shorten_path = true })<CR>
