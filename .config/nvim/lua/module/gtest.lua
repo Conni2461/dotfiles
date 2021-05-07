@@ -23,22 +23,25 @@ local get_window = function()
   return res, chan
 end
 
+local get_job_opts = function(chan, args)
+  local writer = vim.schedule_wrap(function(_, data)
+      vim.api.nvim_chan_send(chan, data .. '\r\n')
+  end)
+  return {
+    command = "./build/test/MPTtest",
+    args = args,
+    on_stdout = writer,
+    on_stderr = writer,
+  }
+end
+
 m.run_test = function()
   local file = vim.api.nvim_buf_get_lines(0, 0, -1, false)
   local cursor = vim.api.nvim_win_get_cursor(0)
   local a, b = string.match(file[cursor[1]], "^%s*TEST%(([^,]+),%s([^)]*)%).*$")
 
   local _, chan = get_window()
-  Job:new({
-    "./build/test/MPTtest", "--gtest_color=yes", "--gtest_filter=" .. a .. '.' .. b,
-    on_stdout = vim.schedule_wrap(function(_, data)
-      vim.api.nvim_chan_send(chan, data .. '\r\n')
-    end),
-
-    on_stderr = vim.schedule_wrap(function(_, data)
-      vim.api.nvim_chan_send(chan, data .. '\r\n')
-    end),
-  }):start()
+  Job:new(get_job_opts(chan, { "--gtest_color=yes", "--gtest_filter=" .. a .. '.' .. b })):start()
 end
 
 m.run_file = function()
@@ -52,30 +55,12 @@ m.run_file = function()
   until a ~= nil or i == len
 
   local _, chan = get_window()
-  Job:new({
-    "./build/test/MPTtest", "--gtest_color=yes", "--gtest_filter=" .. a .. '*',
-    on_stdout = vim.schedule_wrap(function(_, data)
-      vim.api.nvim_chan_send(chan, data .. '\r\n')
-    end),
-
-    on_stderr = vim.schedule_wrap(function(_, data)
-      vim.api.nvim_chan_send(chan, data .. '\r\n')
-    end),
-  }):start()
+  Job:new(get_job_opts(chan, { "--gtest_color=yes", "--gtest_filter=" .. a .. '*' })):start()
 end
 
 m.run_all = function()
   local _, chan = get_window()
-  Job:new({
-    "./build/test/MPTtest", "--gtest_color=yes",
-    on_stdout = vim.schedule_wrap(function(_, data)
-      vim.api.nvim_chan_send(chan, data .. '\r\n')
-    end),
-
-    on_stderr = vim.schedule_wrap(function(_, data)
-      vim.api.nvim_chan_send(chan, data .. '\r\n')
-    end),
-  }):start()
+  Job:new(get_job_opts(chan, { "--gtest_color=yes" })):start()
 end
 
 m.setup = function()
