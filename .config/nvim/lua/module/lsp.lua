@@ -60,7 +60,11 @@ vim.lsp.protocol.CompletionItemKind = {
 }
 
 local on_attach = function(_, _)
-  require'lsp_signature'.on_attach()
+  require'lsp_signature'.on_attach{
+    handler_opts = {
+      border = "none"
+    }
+  }
   vim.cmd [[autocmd CursorHold,CursorHoldI <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()]]
   vim.cmd [[autocmd CursorHold,CursorHoldI <buffer> lua require'nvim-lightbulb'.update_lightbulb()]]
   if vim.bo.filetype == 'rust' then
