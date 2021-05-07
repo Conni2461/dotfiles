@@ -26,7 +26,7 @@ local mode_map = {
 local block = function(hi, txt) return string.format("%%#%s#%s", hi, txt) end
 local static_entries = {
   filename = block(hl_groups.default[1], " %t"),
-  info = block(hl_groups.linenr[1], "%l:%c | %p%%"),
+  info = block(hl_groups.linenr[1], "%l:%c ▏%p%%"),
   inactive = block(hl_groups.default[1], "%t"),
 }
 local cached_entries = { branch = "", filetype = "" }
@@ -60,7 +60,7 @@ end
 
 local branch = function()
   if cached_entries.branch ~= "" then
-    return block(hl_groups.default[1], string.format("%%( |  %s%%)", cached_entries.branch))
+    return block(hl_groups.default[1], string.format("%%( ▏ %s%%)", cached_entries.branch))
   end
   return ""
 end
@@ -68,27 +68,26 @@ end
 local m = {}
 
 m.init = function()
-  vim.cmd [=[ autocmd BufWinEnter,WinEnter * :lua require("module/simpleline").update() ]=]
+  vim.cmd [=[ autocmd BufWinEnter,WinEnter * :lua require("module/simpleline").update("active") ]=]
+  vim.cmd [=[ autocmd WinLeave * :lua require("module/simpleline").update("inactive") ]=]
   for _, tbl in pairs(hl_groups) do
     if #tbl > 1 then vim.cmd(string.format("hi %s gui=bold guifg=%s guibg=%s", unpack(tbl))) end
   end
   m.update()
 end
 
-m.update = function()
-  Job:new({ "git", "branch", "--show-current", on_exit = function(j, c)
-    if c == 0 then cached_entries.branch = j:result()[1] end
-  end }):start()
-  cached_entries.filetype = devicons.get_icon(vim.fn.expand('%:t'), vim.bo.filetype)
+m.update = function(mode)
+  mode = mode or "active"
 
   local curr = vim.api.nvim_get_current_win()
-  local wins = vim.api.nvim_tabpage_list_wins(0)
-  for _, v in ipairs(wins) do
-    if v == curr then
-      vim.api.nvim_win_set_option(v, "statusline", [=[%!luaeval('require("module/simpleline").active()')]=])
-    else
-      vim.api.nvim_win_set_option(v, "statusline", string.format([=[%%!luaeval('require("module/simpleline").inactive(%d)')]=], v))
-    end
+  if mode == "active" then
+    Job:new({ "git", "branch", "--show-current", on_exit = function(j, c)
+      if c == 0 then cached_entries.branch = j:result()[1] end
+    end }):start()
+    cached_entries.filetype = devicons.get_icon(vim.fn.expand('%:t'), vim.bo.filetype)
+    vim.api.nvim_win_set_option(curr, "statusline", [=[%!luaeval('require("module/simpleline").active()')]=])
+  else
+    vim.api.nvim_win_set_option(curr, "statusline", string.format([=[%%!luaeval('require("module/simpleline").inactive(%d)')]=], curr))
   end
 end
 
