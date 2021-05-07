@@ -62,6 +62,4 @@
 	Plug 'jbyuki/one-small-step-for-vimkind'
 
 	Plug 'norcalli/nvim-colorizer.lua'
-
-	Plug 'sunjon/shade.nvim'
 	call plug#end()

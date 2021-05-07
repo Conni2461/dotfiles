@@ -132,7 +132,6 @@ A full list of used plugins:
 | [dap virtual text](https://github.com/theHamsta/nvim-dap-virtual-text)                     | Displayes virtual text coming from dap using treesitter                                         |
 | [nvim lua debug](https://github.com/jbyuki/one-small-step-for-vimkind)                     | Debug lua neovim code in neovim                                                                 |
 | [colorizer](https://github.com/norcalli/nvim-colorizer.lua)                                | Adds color to hexcodes                                                                          |
-| [shade](https://github.com/sunjon/shade.nvim)                                              | Dim inactive windows                                                                            |
 
 Some plugins require additional packages installed:
 
