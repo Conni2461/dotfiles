@@ -14,6 +14,7 @@ require('module/dap')
 require('module/signs')
 
 require("module.simpleline").init()
+require("module.gtest").setup()
 
 -- Might move into own module
 require("colorizer").setup()
