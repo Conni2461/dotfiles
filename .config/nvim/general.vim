@@ -39,9 +39,7 @@
 
 " Nvim specifics
 	" Shows realtime changes with :s/
-	if has('nvim')
-		set inccommand=split
-	endif
+	set inccommand=split
 
 " Sandwich! :w!! to save with sudo
 	ca w!! w !sudo tee >/dev/null "%"
@@ -127,11 +125,6 @@
 " Bubble multiple lines
 	xnoremap <silent> <C-Up>   @='"zxk"zP`[V`]'<CR>
 	xnoremap <silent> <C-Down> @='"zx"zp`[V`]'<CR>
-
-" Copy paste with primary clipboard
-	xnoremap <C-c> "+y
-	map <C-p> "+p
-	nnoremap s "_d
 
 " Disable automatic commenting on newline:
 	augroup commenting
