@@ -18,16 +18,15 @@ require'compe'.setup {
     path = true,
     buffer = true,
     nvim_lsp = true,
-    snippets_nvim = true,
   }
 }
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = false,
-    virtual_text = false,
+    virtual_text = true,
     signs = true,
-    update_in_insert = false,
+    update_in_insert = true,
   }
 )
 
@@ -65,7 +64,6 @@ local on_attach = function(_, _)
       border = "none"
     }
   }
-  vim.cmd [[autocmd CursorHold,CursorHoldI <buffer> lua vim.lsp.diagnostic.show_line_diagnostics()]]
   vim.cmd [[autocmd CursorHold,CursorHoldI <buffer> lua require'nvim-lightbulb'.update_lightbulb()]]
   if vim.bo.filetype == 'rust' then
     vim.cmd('autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost <buffer> ' ..

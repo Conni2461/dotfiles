@@ -3,6 +3,7 @@
 file=$(readlink -f "$1")
 
 case "$file" in
+	*\CMakeLists.txt) cmake-format -i "$file" ;;
 	*\.c) clang-format --style=file -i "$file" ;;
 	*\.h) clang-format --style=file -i "$file" ;;
 	*\.cpp) clang-format --style=file -i "$file" ;;

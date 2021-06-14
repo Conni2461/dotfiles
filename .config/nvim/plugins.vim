@@ -55,7 +55,6 @@
 	Plug 'norcalli/snippets.nvim'
 	Plug 'nvim-lua/lsp_extensions.nvim'
 	Plug 'kosayoda/nvim-lightbulb'
-	Plug 'simrat39/symbols-outline.nvim'
 
 	Plug 'mfussenegger/nvim-dap'
 	Plug 'theHamsta/nvim-dap-virtual-text'

@@ -1,7 +1,7 @@
 #!/bin/sh
 # Profile file. Runs on login
 
-export PATH=$PATH:$(find $HOME/bin -mindepth 1 -maxdepth 1 -type d | grep -Ev 'external|shared' | tr '\n' ':' | sed 's/:*$//'):${HOME}/.luarocks/bin
+export PATH=$PATH:$(find $HOME/bin -mindepth 1 -maxdepth 1 -type d | grep -Ev 'external|shared' | tr '\n' ':' | sed 's/:*$//')
 
 export EDITOR='nvim'
 export VISUAL='nvim'

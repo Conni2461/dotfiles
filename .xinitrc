@@ -24,6 +24,9 @@ case $1 in
   dwm)
     exec startdwm
     ;;
+  awesome)
+    exec awesome >/tmp/awesomelog.1 2>/tmp/awesomelog.2
+    ;;
   budgie)
     export XDG_CURRENT_DESKTOP=Budgie:GNOME
     exec budgie-desktop

@@ -127,7 +127,6 @@ A full list of used plugins:
 | [snippets](https://github.com/norcalli/snippets.nvim)                                      | Adds snippet support.                                                                           |
 | [lsp extensions](https://github.com/tjdevries/lsp_extensions.nvim)                         | Adds more lsp stuff. Example: Inlay hints                                                       |
 | [lightbulb](https://github.com/kosayoda/nvim-lightbulb)                                    | Show lightbulb when there is a code action at the current line                                  |
-| [symbols-outline](https://github.com/simrat39/symbols-outline.nvim)                        | A symbols outline for builtin lsp                                                               |
 | [dap](https://github.com/mfussenegger/nvim-dap)                                            | Debug Adapter Protocol client implementation for Neovim                                         |
 | [dap virtual text](https://github.com/theHamsta/nvim-dap-virtual-text)                     | Displayes virtual text coming from dap using treesitter                                         |
 | [nvim lua debug](https://github.com/jbyuki/one-small-step-for-vimkind)                     | Debug lua neovim code in neovim                                                                 |

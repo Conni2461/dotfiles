@@ -22,7 +22,7 @@ script='tmp=$(echo {} | grep -E "^AM|^\ M|^MM|UU|^R" | sed -e "s/^[[:space:]]*//
         echo {} | grep "^??" >/dev/null && file=$(echo {} | cut -d" " -f2);
         [ -d ${file} ] && exa -la --color always --tree ${file} || highlight --out-format=ansi --force ${file} | nl -ba;'
 
-git rev-parse HEAD > /dev/null 2>&1 || exit
+# git rev-parse HEAD > /dev/null 2>&1 || exit
 allFiles=$(git status -s)
 [ "${allFiles}" = "" ] && exit
 

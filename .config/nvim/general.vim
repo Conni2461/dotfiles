@@ -33,7 +33,7 @@
 	endfunction
 	augroup remove
 		au!
-		au BufWritePre * %s/\s\+$//e
+		" au BufWritePre * %s/\s\+$//e
 		au BufWritePre * call TrimTrailingLines()
 	augroup END
 
