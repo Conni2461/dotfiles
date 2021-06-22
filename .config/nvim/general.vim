@@ -31,9 +31,14 @@
 			silent! execute lastNonblankLine + 1 . ',$delete _'
 		endif
 	endfunction
+	fun! TrimWhitespace()
+		let l:save = winsaveview()
+		keeppatterns %s/\s\+$//e
+		call winrestview(l:save)
+	endfun
 	augroup remove
 		au!
-		" au BufWritePre * %s/\s\+$//e
+		au BufWritePre * call TrimWhitespace()
 		au BufWritePre * call TrimTrailingLines()
 	augroup END
 
