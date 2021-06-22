@@ -23,16 +23,27 @@ local get_window = function()
   return res, chan
 end
 
-local get_job_opts = function(chan, args)
+local gen_gtest_job = function(chan, args)
   local writer = vim.schedule_wrap(function(_, data)
-      vim.api.nvim_chan_send(chan, data .. '\r\n')
+    vim.api.nvim_chan_send(chan, data .. '\r\n')
   end)
-  return {
-    command = "./build/test/MPTtest",
-    args = args,
+  local make = Job:new {
+    command = "make",
     on_stdout = writer,
     on_stderr = writer,
+    on_exit = function(_, code)
+      if code == 0 then
+        Job:new({
+          command = "./build/test/MPTtest",
+          args = args,
+          on_stdout = writer,
+          on_stderr = writer,
+        }):start()
+      end
+    end
   }
+
+  return make
 end
 
 m.run_test = function()
@@ -41,7 +52,7 @@ m.run_test = function()
   local a, b = string.match(file[cursor[1]], "^%s*TEST%(([^,]+),%s([^)]*)%).*$")
 
   local _, chan = get_window()
-  Job:new(get_job_opts(chan, { "--gtest_color=yes", "--gtest_filter=" .. a .. '.' .. b })):start()
+  gen_gtest_job(chan, { "--gtest_color=yes", "--gtest_filter=" .. a .. '.' .. b }):start()
 end
 
 m.run_file = function()
@@ -55,12 +66,12 @@ m.run_file = function()
   until a ~= nil or i == len
 
   local _, chan = get_window()
-  Job:new(get_job_opts(chan, { "--gtest_color=yes", "--gtest_filter=" .. a .. '*' })):start()
+  gen_gtest_job(chan, { "--gtest_color=yes", "--gtest_filter=" .. a .. '*' }):start()
 end
 
 m.run_all = function()
   local _, chan = get_window()
-  Job:new(get_job_opts(chan, { "--gtest_color=yes" })):start()
+  gen_gtest_job(chan, { "--gtest_color=yes" }):start()
 end
 
 m.setup = function()
