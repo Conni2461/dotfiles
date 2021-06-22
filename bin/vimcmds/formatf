@@ -3,7 +3,7 @@
 file=$(readlink -f "$1")
 
 case "$file" in
-	*\CMakeLists.txt) cmake-format -i "$file" ;;
+	*CMakeLists.txt) cmake-format -i "$file" ;;
 	*\.c) clang-format --style=file -i "$file" ;;
 	*\.h) clang-format --style=file -i "$file" ;;
 	*\.cpp) clang-format --style=file -i "$file" ;;
@@ -11,6 +11,8 @@ case "$file" in
 	*\.rs) rustfmt "$file" ;;
 	*\.py) yapf -i "$file" ;;
 	*\.html) prettier -w "$file" ;;
+	*\.yml) prettier -w "$file" ;;
+	*\.yaml) prettier -w "$file" ;;
 	*\.lua) stylua "$file" ;;
 	*) exit 1 ;;
 esac
