@@ -23,27 +23,7 @@ call sign_define("LspDiagnosticsSignHint", {
 
 nnoremap <leader>af :w! \| !formatf <c-r>%<CR> \| :e <CR>
 
-nnoremap <leader>ad <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <leader>at <cmd>lua vim.lsp.buf.type_definition()<CR>
-nnoremap <leader>ai <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <leader>ah <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <leader>as <cmd>lua vim.lsp.buf.signature_help()<CR>
-" nnoremap <leader>ar <cmd>lua vim.lsp.buf.references()<CR>
-" nnoremap <leader>ac <cmd>lua vim.lsp.buf.document_symbol()<CR>
-
-nnoremap <leader>an <cmd>lua vim.lsp.diagnostic.goto_next()<CR>
-nnoremap <leader>ap <cmd>lua vim.lsp.diagnostic.goto_prev()<CR>
-
-augroup SwitchSource
-	au!
-	au FileType c,cpp,h,hpp nnoremap <buffer> <leader>am :ClangdSwitchSourceHeader<CR>
-augroup END
-
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 set pumblend=10
-
-inoremap <silent><expr> <C-Space> compe#complete()
-inoremap <silent><expr> <CR>      compe#confirm('<CR>')
-inoremap <silent><expr> <C-e>     compe#close('<C-e>')

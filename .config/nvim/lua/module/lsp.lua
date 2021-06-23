@@ -1,26 +1,6 @@
 local lspconfig = require'lspconfig'
 local util      = require'lspconfig/util'
 
-require'compe'.setup {
-  enabled = true,
-  autocomplete = true,
-  debug = false,
-  min_length = 1,
-  preselect = 'enable',
-  throttle_time = 80,
-  source_timeout = 200,
-  incomplete_delay = 400,
-  max_abbr_width = 100,
-  max_kind_width = 100,
-  max_menu_width = 100,
-  documentation = true,
-  source = {
-    path = true,
-    buffer = true,
-    nvim_lsp = true,
-  }
-}
-
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = false,
@@ -58,12 +38,58 @@ vim.lsp.protocol.CompletionItemKind = {
   ' [type]',
 }
 
-local on_attach = function(_, _)
-  require'lsp_signature'.on_attach{
+local on_attach = function(_, bufnr)
+  require'lsp_signature'.on_attach {
     handler_opts = {
       border = "none"
     }
   }
+
+  require'compe'.setup({
+    enabled = true,
+    autocomplete = true,
+    debug = false,
+    min_length = 1,
+    preselect = 'enable',
+    throttle_time = 80,
+    source_timeout = 200,
+    incomplete_delay = 400,
+    max_abbr_width = 100,
+    max_kind_width = 100,
+    max_menu_width = 100,
+    documentation = true,
+    source = {
+      path = true,
+      buffer = true,
+      nvim_lsp = true,
+    }
+  }, bufnr)
+
+  local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
+  local opts = { noremap=true, silent=true }
+
+  buf_set_keymap("n", "<leader>ad", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+  buf_set_keymap("n", "<leader>at", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
+  buf_set_keymap("n", "<leader>ai", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
+  buf_set_keymap("n", "<leader>ah", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  buf_set_keymap("n", "<leader>as", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
+  buf_set_keymap("n", "<leader>an", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+  buf_set_keymap("n", "<leader>ap", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
+  buf_set_keymap("n", "<leader>av", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
+  buf_set_keymap("n", "<Leader>ar", "<cmd>lua require'telescope.builtin'.lsp_references()<CR>", opts)
+  buf_set_keymap("n", "<leader>ac", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{}<CR>", opts)
+  buf_set_keymap("n", "<leader>aw", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_workspace_symbols{ query = vim.fn.input('Query >') }<CR>", opts)
+  buf_set_keymap("n", "<leader>aa", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_code_actions{}<cr>", opts)
+
+  buf_set_keymap("i", "<C-Space>", "compe#complete()", { noremap = true, silent = true, expr = true })
+  buf_set_keymap("i", "<CR>", "compe#confirm('<CR>')", { noremap = true, silent = true, expr = true })
+  buf_set_keymap("i", "<C-e>", "compe#close('<C-e>')", { noremap = true, silent = true, expr = true })
+
+  local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
+  if ft == "c" or ft == "cpp" or ft == "h" or ft == "hpp" then
+    buf_set_keymap("n", "<leader>am", ":ClangdSwitchSourceHeader<CR>", opts)
+  end
+
   vim.cmd [[autocmd CursorHold,CursorHoldI <buffer> lua require'nvim-lightbulb'.update_lightbulb()]]
   if vim.bo.filetype == 'rust' then
     vim.cmd('autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost <buffer> ' ..

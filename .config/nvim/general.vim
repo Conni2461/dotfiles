@@ -194,7 +194,7 @@
 	endfunction
 
 	nnoremap <leader>c :call <SID>compile_code()<CR>
-	nnoremap <leader>av :call <SID>lint_code()<CR>
+	nnoremap <leader>al :call <SID>lint_code()<CR>
 
 " Execute this file
 	function! s:save_and_exec() abort
