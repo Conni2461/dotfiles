@@ -233,3 +233,20 @@
 		startinsert
 	endfunction
 	command! T call s:split_term()
+
+" cpp stuff
+function! s:CppMan()
+  let old_isk = &iskeyword
+  setl iskeyword+=:
+  let str = expand("<cword>")
+  let &l:iskeyword = old_isk
+  execute 'Man ' . str
+endfunction
+command! CppMan :call s:CppMan()
+augroup customcppman
+  au!
+  au FileType c,cpp,h,hpp nnoremap <buffer>K :CppMan<CR>
+augroup END
+
+nnoremap <silent> <leader>osx :lua require("module/openb").smart_search("cppref")<CR>
+nnoremap <silent> <leader>osq :lua require("module/openb").smart_search("qt")<CR>
