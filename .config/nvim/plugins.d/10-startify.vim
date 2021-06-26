@@ -1,26 +1,26 @@
 let g:startify_lists = [
-	\ { 'type': 'files',     'header': ['   MRU']            },
-	\ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
-	\ { 'type': 'sessions',  'header': ['   Sessions']       },
-	\ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
+  \ { 'type': 'files',     'header': ['   MRU']            },
+  \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+  \ { 'type': 'sessions',  'header': ['   Sessions']       },
+  \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
 \ ]
 
 let g:startify_bookmarks = [
-	\ '~/.zshrc',
-	\ '~/.config/nvim/init.vim',
+  \ '~/.zshrc',
+  \ '~/.config/nvim/init.vim',
 \ ]
 
 let g:startify_skiplist = [
-	\ 'COMMIT_EDITMSG',
+  \ 'COMMIT_EDITMSG',
 \ ]
 
 let g:startify_custom_footer = [
-	\ '',
-	\ "   Vim is charityware. Please read ':help uganda'.",
-	\ ''
+  \ '',
+  \ "   Vim is charityware. Please read ':help uganda'.",
+  \ ''
 \ ]
 
-let g:startify_session_dir = '~/.config/nvim/session'
+let g:startify_session_dir = '~/.local/share/nvim/session'
 let g:startify_session_autoload = 'no'
 let g:startify_change_to_dir = 0
 
