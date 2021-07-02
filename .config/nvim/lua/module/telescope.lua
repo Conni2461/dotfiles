@@ -5,27 +5,16 @@ telescope.setup {
   defaults = {
     layout_strategy = 'flex',
     scroll_strategy = 'cycle',
-    -- prompt_position = "top",
-    -- sorting_strategy = 'ascending',
     winblend = 0,
-    layout_defaults = {
-      horizontal = {
-        width_padding = 0.1,
-        height_padding = 0.1,
-        preview_width = 0.6,
-        mirror = false,
-      },
+    layout_config = {
       vertical = {
-        width_padding = 0.05,
-        height_padding = 1,
-        preview_height = 0.5,
         mirror = true,
       }
     },
     mappings = {
       i = {
-        -- ["<C-s>"] = actions.cycle_previewers_next,
-        -- ["<C-a>"] = actions.cycle_previewers_prev,
+        ["<C-s>"] = actions.cycle_previewers_next,
+        ["<C-a>"] = actions.cycle_previewers_prev,
 
         -- ["<C-Down>"] = actions.cycle_history_next,
         -- ["<C-Up>"] = actions.cycle_history_prev,
@@ -37,12 +26,16 @@ telescope.setup {
     },
     file_ignore_patterns = { 'build', 'tags', 'src/parser.c' },
     color_devicons = true,
-    -- dynamic_preview_title = false,
+    dynamic_preview_title = true,
     -- history_location = '~/.local/share/nvim/databases/telescope_history.sqlite3',
     -- history_limit = 25,
   },
   pickers = {
     find_files = {
+      theme = "dropdown",
+      previewer = false,
+    },
+    file_browser = {
       theme = "dropdown",
       previewer = false,
     },
@@ -53,13 +46,14 @@ telescope.setup {
     buffers = {
       sort_lastused = true,
       theme = "dropdown",
+      selection_strategy = "closest",
       previewer = false,
       mappings = {
         i = { ["<c-d>"] = actions.delete_buffer },
       }
     },
     lsp_references = { shorten_path = true },
-    lsp_document_symbols = { shorten_path = true },
+    lsp_document_symbols = { symbol_width = 1, shorten_path = true },
     lsp_workspace_symbols = { shorten_path = true },
     lsp_code_actions = { theme = "dropdown" },
     current_buffer_fuzzy_find = { theme = "dropdown", previewer = false },
