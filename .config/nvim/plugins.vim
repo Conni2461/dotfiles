@@ -28,7 +28,6 @@ call plug#begin('~/.config/nvim/plugged')
 
 " Plugins that have configfiles in ~/.config/nvim/plugins.d/
   Plug 'mhinz/vim-startify'
-  Plug 'farmergreg/vim-lastplace'
 
   Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
@@ -62,3 +61,13 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
+
+let g:loaded_gzip         = 1
+let g:loaded_tar          = 1
+let g:loaded_tarPlugin    = 1
+let g:loaded_zipPlugin    = 1
+let g:loaded_2html_plugin = 1
+let g:loaded_netrw        = 1
+let g:loaded_netrwPlugin  = 1
+let g:loaded_matchit      = 1
+let g:loaded_spec         = 1
