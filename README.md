@@ -118,6 +118,7 @@ A full list of used plugins:
 | [vimwiki](https://github.com/vimwiki/vimwiki)                                              | Personal Wiki for Vim                                                                           |
 | [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)                           | Currently used for Syntax highlighting and incremental selection.                               |
 | [treesitter-refactor](https://github.com/nvim-treesitter/nvim-treesitter-refactor)         | Adds Refactor module to Treesitter. Highlight definition, smart rename and more.                |
+| [treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)   | Adds Textobjects based on treesitter                                                            |
 | [treesitter playground](https://github.com/nvim-treesitter/playground)                     | Treesitter playground integrated into Neovim. Interactive Debugging tool for Treesitter         |
 | [treesitter-lua](https://github.com/tjdevries/tree-sitter-lua)                             | Treesitter lua grammar                                                                          |
 | [ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) | treesitter plugin for setting the commentstring based on the cursor location in a file          |

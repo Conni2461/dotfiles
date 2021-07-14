@@ -1,11 +1,6 @@
 local ts = require'nvim-treesitter.configs'
 local parsers = require'nvim-treesitter.parsers'
 
-local Path = require('plenary.path')
-
-for _, file in ipairs(vim.fn.glob("~/.config/nvim/plugged/tree-sitter-lua/queries/lua/*.scm", false, true)) do
-  vim.treesitter.set_query("lua", vim.fn.fnamemodify(file, ":t:r"), Path:new(file):read())
-end
 vim.treesitter.set_query("lua", "folds", "")
 vim.treesitter.set_query("lua", "indents", "")
 vim.treesitter.set_query("lua", "locals", "")
@@ -37,6 +32,47 @@ ts.setup {
       }
     }
   },
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+      },
+    },
+    swap = {
+      enable = true,
+      swap_next = {
+        ["<leader>a"] = "@parameter.inner",
+      },
+      swap_previous = {
+        ["<leader>A"] = "@parameter.inner",
+      },
+    },
+    move = {
+      enable = true,
+      set_jumps = true, -- whether to set jumps in the jumplist
+      goto_next_start = {
+        ["]m"] = "@function.outer",
+        ["]]"] = "@class.outer",
+      },
+      goto_next_end = {
+        ["]M"] = "@function.outer",
+        ["]["] = "@class.outer",
+      },
+      goto_previous_start = {
+        ["[m"] = "@function.outer",
+        ["[["] = "@class.outer",
+      },
+      goto_previous_end = {
+        ["[M"] = "@function.outer",
+        ["[]"] = "@class.outer",
+      },
+    },
+  },
   playground = {
     enable = true,
     updatetime = 25,
@@ -60,6 +96,7 @@ ts.setup {
     'c',
     'c_sharp',
     'clojure',
+    'cmake',
     'comment',
     'cpp',
     'css',

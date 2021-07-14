@@ -45,6 +45,7 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'nvim-treesitter/nvim-treesitter-refactor'
+  Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   Plug 'nvim-treesitter/playground'
   Plug 'tjdevries/tree-sitter-lua'
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
