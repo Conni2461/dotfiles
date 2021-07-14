@@ -111,6 +111,7 @@ A full list of used plugins:
 | [telescope-fzf-native](https://github.com/nvim-telescope/telescope-fzf-native.nvim)        | Native fzf sorter for telescope                                                                 |
 | [telescope-symbols](https://github.com/nvim-telescope/telescope-symbols.nvim)              | symbol data for telescope                                                                       |
 | [telescope-frecency](https://github.com/nvim-telescope/telescope-frecency.nvim)            | Smart MRU for telescope                                                                         |
+| [telescope-smart-history](https://github.com/nvim-telescope/telescope-smart-history.nvim)  | Smart history replacement for the telescope builtin history                                     |
 | [octo](https://github.com/pwntester/octo.nvim)                                             | Github integration in neovim. With telescope integration                                        |
 | [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                                     | Git signs written in pure lua                                                                   |
 | [goyo](https://github.com/junegunn/goyo.vim)                                               | Distraction-free writing in Vim                                                                 |

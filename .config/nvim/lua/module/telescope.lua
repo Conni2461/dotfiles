@@ -16,8 +16,8 @@ telescope.setup {
         ["<C-s>"] = actions.cycle_previewers_next,
         ["<C-a>"] = actions.cycle_previewers_prev,
 
-        -- ["<C-Down>"] = actions.cycle_history_next,
-        -- ["<C-Up>"] = actions.cycle_history_prev,
+        ["<C-Down>"] = actions.cycle_history_next,
+        ["<C-Up>"] = actions.cycle_history_prev,
 
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist, -- + my_cool_custom_action.x,
         ["<a-q>"] = false,
@@ -27,8 +27,6 @@ telescope.setup {
     file_ignore_patterns = { 'build', 'tags', 'src/parser.c' },
     color_devicons = true,
     dynamic_preview_title = true,
-    -- history_location = '~/.local/share/nvim/databases/telescope_history.sqlite3',
-    -- history_limit = 25,
   },
   pickers = {
     find_files = {
@@ -60,6 +58,7 @@ telescope.setup {
   },
   extensions = {
     frecency = {
+      persistent_filter = false,
       show_scores = true,
       show_unindexed = true,
       ignore_patterns = {"*.git/*", "*/tmp/*", "*.foo"},
@@ -73,7 +72,7 @@ telescope.setup {
   }
 }
 
--- telescope.load_extension('smart_history')
+telescope.load_extension('smart_history')
 telescope.load_extension('fzf')
 telescope.load_extension('frecency')
 telescope.load_extension('octo')

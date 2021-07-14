@@ -35,6 +35,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   Plug 'nvim-telescope/telescope-symbols.nvim'
   Plug 'nvim-telescope/telescope-frecency.nvim'
+  Plug 'nvim-telescope/telescope-smart-history.nvim'
   Plug 'pwntester/octo.nvim'
 
   Plug 'lewis6991/gitsigns.nvim'
