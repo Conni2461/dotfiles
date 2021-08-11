@@ -125,13 +125,11 @@ nnoremap <silent><expr> $ &wrap ? "g$" : "$"
 xnoremap < <gv
 xnoremap > >gv
 
-" Bubble single lines
-nnoremap <C-Up>   :m .-2<CR>
-nnoremap <C-Down> :m  .+1<CR>
-
-" Bubble multiple lines
-xnoremap <silent> <C-Up>   @='"zxk"zP`[V`]'<CR>
-xnoremap <silent> <C-Down> @='"zx"zp`[V`]'<CR>
+" Bubble lines
+vnoremap K :m '<-2<CR>gv=gv
+vnoremap J :m '>+1<CR>gv=gv
+nnoremap <leader>k :m .-2<cr>==
+nnoremap <leader>j :m .+1<cr>==
 
 " Disable automatic commenting on newline:
 augroup commenting
@@ -252,3 +250,11 @@ augroup END
 
 nnoremap <silent> <leader>osx :lua require("module/openb").smart_search("cppref")<CR>
 nnoremap <silent> <leader>osq :lua require("module/openb").smart_search("qt")<CR>
+
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+inoremap , ,<c-g>u
+inoremap . .<c-g>u
+inoremap ! !<c-g>u
+inoremap ? ?<c-g>u
