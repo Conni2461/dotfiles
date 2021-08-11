@@ -29,7 +29,6 @@ call plug#begin('~/.config/nvim/plugged')
 " Plugins that have configfiles in ~/.config/nvim/plugins.d/
   Plug 'mhinz/vim-startify'
 
-  Plug 'nvim-lua/popup.nvim'
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }

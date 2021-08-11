@@ -105,7 +105,6 @@ A full list of used plugins:
 | [devicons](https://github.com/kyazdani42/nvim-web-devicons)                                | lua `fork` of vim-web-devicons for neovim                                                       |
 | [sql](https://github.com/tami5/sql.nvim)                                                   | sqlite3 bindings written in lua                                                                 |
 | [startify](https://github.com/mhinz/vim-startify)                                          | The fancy start screen for Vim with session support                                             |
-| [popup](https://github.com/nvim-lua/popup.nvim)                                            | An implementation of the Popup API from vim in Neovim.                                          |
 | [plenary](https://github.com/nvim-lua/plenary.nvim)                                        | All the lua functions I don't want to write twice.                                              |
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)                              | Find, Filter, Preview, Pick. Fuzzyfinder written in Lua, with providers for treesitter and lsp  |
 | [telescope-fzf-native](https://github.com/nvim-telescope/telescope-fzf-native.nvim)        | Native fzf sorter for telescope                                                                 |

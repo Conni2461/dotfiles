@@ -42,7 +42,7 @@ telescope.setup {
       previewer = false,
     },
     buffers = {
-      sort_lastused = true,
+      sort_mru = true,
       theme = "dropdown",
       selection_strategy = "closest",
       previewer = false,
@@ -50,9 +50,9 @@ telescope.setup {
         i = { ["<c-d>"] = actions.delete_buffer },
       }
     },
-    lsp_references = { shorten_path = true },
-    lsp_document_symbols = { symbol_width = 1, shorten_path = true },
-    lsp_workspace_symbols = { shorten_path = true },
+    lsp_references = { path_display = { "shorten" } },
+    lsp_document_symbols = { path_display = { "hidden" } },
+    lsp_workspace_symbols = { path_display = { "shorten" } },
     lsp_code_actions = { theme = "dropdown" },
     current_buffer_fuzzy_find = { theme = "dropdown", previewer = false },
   },
