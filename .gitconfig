@@ -23,6 +23,7 @@
 	unstage = reset HEAD --
 	last = log -1 HEAD --show-signature
 	uncommit = reset --soft HEAD~1
+	sp = submodule foreach git pull origin master
 
 	wip ="!git ci -m \"[WIP]: $(date)\""
 	fpr = "!f() { git fetch origin pull/$1/head:pr-$1; git checkout pr-$1; }; f"
