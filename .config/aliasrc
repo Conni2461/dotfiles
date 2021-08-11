@@ -50,7 +50,12 @@ alias lsp='pacman -Qett --color=always | less'
 alias ffmpeg='ffmpeg -hide_banner'
 alias d="docker"
 alias dps="docker ps"
+alias dm="docker-machine"
+alias dcu="docker-compose up"
+alias dcd="docker-compose down"
+alias dcb="docker-compose build"
 alias ru="docker run -ti --rm ubuntu:latest /bin/bash"
+alias ra="docker run -ti --rm archlinux:latest /bin/bash"
 alias :q='echo you are not in vim'
 alias :wq='echo you are not in vim'
 alias R='R -q --save'
