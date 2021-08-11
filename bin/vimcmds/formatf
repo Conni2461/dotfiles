@@ -14,5 +14,6 @@ case "$file" in
 	*\.yml) prettier -w "$file" ;;
 	*\.yaml) prettier -w "$file" ;;
 	*\.lua) stylua "$file" ;;
+	*\.java) astyle -A2 -s2 -c -J -n -q -z2 -xC80 "$file" ;;
 	*) exit 1 ;;
 esac
