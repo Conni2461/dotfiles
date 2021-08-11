@@ -6,5 +6,6 @@ vf() { sk --preview='highlight --out-format=ansi --force {}' | xargs -r "$EDITOR
 gf() { OUTPUT=$(sk --ansi -i -c 'ag --color "{}"') ; FILE=$(echo "$OUTPUT" | cut -d ':' -f 1) ; LINE=$(echo "$OUTPUT" | cut -d ':' -f 2); $EDITOR +"$LINE" "$FILE" ; }
 lod() { pacman -Qi "${1}" | sed -n '/^Optional/,$p' | sed '/^Required/q' | head -n -1 | cut -c19- | cut -d: -f1 | grep -v installed ; }
 randmov() { curl -s https://www.imdb.com/list/ls062548361/export | shuf -n 1 | cut -d, -f6; }
-pdfshrink() { gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$1_shrinked.pdf $1 ; }
+pdfshrink() { gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$1_shrinked.pdf $1 ; mv $1_shrinked.pdf $1 ; }
 videocompress() { ffmpeg -i $1 -vcodec libx265 -crf 28 $1_compress.mp4 ; }
+tomp3() { ffmpeg -i $1 -vn -ar 44100 -ac 2 -b:a 192k "${1%.*}.mp3" ; }
