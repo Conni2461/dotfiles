@@ -1,19 +1,28 @@
 #!/bin/sh
 
-file=$(readlink -f "$1")
+in=$(readlink -f "$1")
 
-case "$file" in
-	*CMakeLists.txt) cmake-format -i "$file" ;;
-	*\.c) clang-format --style=file -i "$file" ;;
-	*\.h) clang-format --style=file -i "$file" ;;
-	*\.cpp) clang-format --style=file -i "$file" ;;
-	*\.hpp) clang-format --style=file -i "$file" ;;
-	*\.rs) rustfmt "$file" ;;
-	*\.py) yapf -i "$file" ;;
-	*\.html) prettier -w "$file" ;;
-	*\.yml) prettier -w "$file" ;;
-	*\.yaml) prettier -w "$file" ;;
-	*\.lua) stylua "$file" ;;
-	*\.java) astyle -A2 -s2 -c -J -n -q -z2 -xC80 "$file" ;;
-	*) exit 1 ;;
+check_mime() {
+  type=$(file --mime-type "$1" | cut -d' ' -f2)
+
+  case "$type" in
+    *shellscript) shfmt -w -i 2 -ci -sr "$in" ;;
+    *) exit 1 ;;
+  esac
+}
+
+case "$in" in
+  *CMakeLists.txt) cmake-format -i "$in" ;;
+  *\.c) clang-format --style=file -i "$in" ;;
+  *\.h) clang-format --style=file -i "$in" ;;
+  *\.cpp) clang-format --style=file -i "$in" ;;
+  *\.hpp) clang-format --style=file -i "$in" ;;
+  *\.rs) rustfmt "$in" ;;
+  *\.py) yapf -i "$in" ;;
+  *\.html) prettier -w "$in" ;;
+  *\.yml) prettier -w "$in" ;;
+  *\.yaml) prettier -w "$in" ;;
+  *\.lua) stylua "$in" ;;
+  *\.java) astyle -A2 -s2 -c -J -n -q -z2 -xC80 "$in" ;;
+  *) check_mime "$in" ;;
 esac
