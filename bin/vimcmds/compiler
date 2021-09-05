@@ -51,8 +51,8 @@ case "$file" in
 	*\.rmd) echo "require(rmarkdown); render('$file')" | R -q --vanilla ;;
 	*\.tex) textype "$file" ;;
 	*\.md) pandoc "$file" --pdf-engine=xelatex -o "$base".pdf ;;
-	*\.c) cc "$file" -o "$base" && "$base" && pause || exit 1 ;;
-	*\.cpp) c++ "$file" -o "$base" && "$base" && pause || exit 1 ;;
+	*\.c) cc -Og -ggdb3 "$file" -o "$base" && "$base" && pause || exit 1 ;;
+	*\.cpp) c++ -Og -ggdb3 "$file" -o "$base" && "$base" && pause || exit 1 ;;
 	*\.py) python "$file" && pause || exit 1 ;;
 	*\.r) Rscript "$file" && pause || exit 1 ;;
 	*\.go) go run "$file" && pause || exit 1 ;;
