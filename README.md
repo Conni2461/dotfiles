@@ -95,7 +95,7 @@ A full list of used plugins:
 
 | Plugin                                                                                     | Description                                                                                     |
 | ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| [base16](https://github.com/norcalli/nvim-base16.lua)                                      | Neovim Colorscheme collection                                                                   |
+| [gruvbox](https://github.com/morhetz/gruvbox)                                              | gruvbox colorscheme                                                                             |
 | [signature](https://github.com/kshenoy/vim-signature)                                      | Plugin to toggle, display and navigate marks                                                    |
 | [git-messenger](https://github.com/rhysd/git-messenger.vim)                                | Show git messages with `<leader>gm`. Using nvim-floating-window                                 |
 | [gitignore highlighting](https://github.com/gisphm/vim-gitignore)                          | gitignore highlighting support                                                                  |

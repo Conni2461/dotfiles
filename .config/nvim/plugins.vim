@@ -11,7 +11,7 @@ endif
 
 " Plugin
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'norcalli/nvim-base16.lua'
+  Plug 'morhetz/gruvbox'
 
   Plug 'kshenoy/vim-signature'
 
