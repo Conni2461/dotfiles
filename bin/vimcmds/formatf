@@ -13,6 +13,7 @@ check_mime() {
 
 case "$in" in
   *CMakeLists.txt) cmake-format -i "$in" ;;
+  *\.cmake) cmake-format -i "$in" ;;
   *\.c) clang-format --style=file -i "$in" ;;
   *\.h) clang-format --style=file -i "$in" ;;
   *\.cpp) clang-format --style=file -i "$in" ;;
