@@ -9,8 +9,9 @@ telescope.setup {
     layout_config = {
       vertical = {
         mirror = true,
-      }
+      },
     },
+    cache = false,
     mappings = {
       i = {
         ["<C-s>"] = actions.cycle_previewers_next,
@@ -26,7 +27,7 @@ telescope.setup {
     },
     file_ignore_patterns = { 'build', 'tags', 'src/parser.c' },
     color_devicons = true,
-    dynamic_preview_title = true,
+    -- dynamic_preview_title = true,
   },
   pickers = {
     find_files = {
