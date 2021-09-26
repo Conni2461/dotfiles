@@ -9,7 +9,7 @@ P = function(...) print(vim.inspect(...)) end
 require('module.treesitter')
 require('module.lsp')
 require('module.telescope')
--- require('module.snippets')
+require('module.newsnip')
 require('module.dap')
 require('module.signs')
 

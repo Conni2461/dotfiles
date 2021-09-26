@@ -50,11 +50,16 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
   Plug 'neovim/nvim-lspconfig'
-  Plug 'hrsh7th/nvim-compe'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'saadparwaiz1/cmp_luasnip'
+
   Plug 'ray-x/lsp_signature.nvim'
-  Plug 'norcalli/snippets.nvim'
   Plug 'nvim-lua/lsp_extensions.nvim'
   Plug 'kosayoda/nvim-lightbulb'
+
+  Plug 'L3MON4D3/LuaSnip'
 
   Plug 'mfussenegger/nvim-dap'
   Plug 'theHamsta/nvim-dap-virtual-text'
