@@ -23,6 +23,7 @@ case "$in" in
   *\.html) prettier -w "$in" ;;
   *\.yml) prettier -w "$in" ;;
   *\.yaml) prettier -w "$in" ;;
+  *\.json) prettier -w "$in" ;;
   *\.lua) stylua "$in" ;;
   *\.java) astyle -A2 -s2 -c -J -n -q -z2 -xC80 "$in" ;;
   *) check_mime "$in" ;;
