@@ -33,10 +33,10 @@ local cached_entries = { branch = "", filetype = "" }
 
 local severities = { "Error", "Warning", "Information", "Hint" }
 local severities_gens = {
-  "%%#LspDiagnosticsDefaultError#%%(" .. vim.g.indicator_errors .. "%d %%)",
-  "%%#LspDiagnosticsDefaultWarning#%%(" .. vim.g.indicator_warnings .. "%d %%)",
-  "%%#LspDiagnosticsDefaultInformation#%%(" .. vim.g.indicator_infos .. "%d %%)",
-  "%%#LspDiagnosticsDefaultHint#%%(" .. vim.g.indicator_hints .. "%d %%)",
+  "%%#DiagnosticError#%%(" .. vim.g.indicator_errors .. "%d %%)",
+  "%%#DiagnosticWarning#%%(" .. vim.g.indicator_warnings .. "%d %%)",
+  "%%#DiagnosticInformation#%%(" .. vim.g.indicator_infos .. "%d %%)",
+  "%%#DiagnosticHint#%%(" .. vim.g.indicator_hints .. "%d %%)",
 }
 local diagnostics = function()
   local output = {}
