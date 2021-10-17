@@ -3,7 +3,6 @@ local parsers = require'nvim-treesitter.parsers'
 
 vim.treesitter.set_query("lua", "folds", "")
 vim.treesitter.set_query("lua", "indents", "")
-vim.treesitter.set_query("lua", "locals", "")
 
 ts.setup {
   highlight = { enable = true },

@@ -3,13 +3,17 @@ local actions = require('telescope.actions')
 
 telescope.setup {
   defaults = {
-    layout_strategy = 'flex',
-    scroll_strategy = 'cycle',
+    layout_strategy = "flex",
+    scroll_strategy = "cycle",
+    selection_strategy = "row",
     winblend = 0,
     layout_config = {
       vertical = {
         mirror = true,
       },
+    },
+    preview = {
+      msg_bg_fillchar = " ",
     },
     cache = false,
     mappings = {
@@ -20,14 +24,13 @@ telescope.setup {
         ["<C-Down>"] = actions.cycle_history_next,
         ["<C-Up>"] = actions.cycle_history_prev,
 
-        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist, -- + my_cool_custom_action.x,
+        ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
         ["<a-q>"] = false,
         ["<esc>"] = actions.close,
       },
     },
     file_ignore_patterns = { 'build', 'tags', 'src/parser.c' },
-    color_devicons = true,
-    -- dynamic_preview_title = true,
+    dynamic_preview_title = true,
   },
   pickers = {
     find_files = {
@@ -51,6 +54,7 @@ telescope.setup {
         i = { ["<c-d>"] = actions.delete_buffer },
       }
     },
+    man_pages = { sections = { "2", "3" } },
     lsp_references = { path_display = { "shorten" } },
     lsp_document_symbols = { path_display = { "hidden" } },
     lsp_workspace_symbols = { path_display = { "shorten" } },
