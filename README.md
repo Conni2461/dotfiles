@@ -113,6 +113,7 @@ A full list of used plugins:
 | [telescope-smart-history](https://github.com/nvim-telescope/telescope-smart-history.nvim)  | Smart history replacement for the telescope builtin history                                     |
 | [octo](https://github.com/pwntester/octo.nvim)                                             | Github integration in neovim. With telescope integration                                        |
 | [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                                     | Git signs written in pure lua                                                                   |
+| [notify](https://github.com/rcarriga/nvim-notify)                                          | neovim notification system                                                                      |
 | [goyo](https://github.com/junegunn/goyo.vim)                                               | Distraction-free writing in Vim                                                                 |
 | [vimwiki](https://github.com/vimwiki/vimwiki)                                              | Personal Wiki for Vim                                                                           |
 | [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)                           | Currently used for Syntax highlighting and incremental selection.                               |

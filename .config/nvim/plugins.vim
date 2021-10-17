@@ -39,6 +39,8 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'lewis6991/gitsigns.nvim'
 
+  Plug 'rcarriga/nvim-notify'
+
   Plug 'junegunn/goyo.vim'
   Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
 
