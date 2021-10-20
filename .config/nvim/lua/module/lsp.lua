@@ -16,7 +16,6 @@ cmp.setup{
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
     ["<CR>"] = cmp.mapping.confirm{
-      behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
   },
@@ -79,11 +78,10 @@ local on_attach = function(_, bufnr)
   buf_set_keymap("n", "<leader>ad", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
   buf_set_keymap("n", "<leader>at", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
   buf_set_keymap("n", "<leader>ai", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  buf_set_keymap("n", "<leader>ah", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
+  buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
   buf_set_keymap("n", "<leader>as", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
   buf_set_keymap("n", "<leader>an", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
   buf_set_keymap("n", "<leader>ap", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-  buf_set_keymap("n", "<leader>av", "<cmd>lua MyLspRename()<CR>", opts)
   buf_set_keymap("n", "<Leader>ar", "<cmd>lua require'telescope.builtin'.lsp_references()<CR>", opts)
   buf_set_keymap("n", "<leader>ac", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{}<CR>", opts)
   buf_set_keymap(
@@ -196,104 +194,3 @@ setup_ls("texlab", "texlab")
 setup_ls("tsserver", { "typescript-language-server", "--stdio" })
 setup_ls("vimls", { "vim-language-server", "--stdio" })
 setup_ls("yamlls", { "yaml-language-server", "--stdio" })
-
-lspconfig.r_language_server.setup({
-  on_attach = on_attach,
-  root_dir = function()
-    return vim.loop.cwd()
-  end,
-})
-
-if util.has_bins("diagnostic-languageserver") then
-  lspconfig.diagnosticls.setup({
-    cmd = { "diagnostic-languageserver", "--stdio" },
-    filetypes = { "sh" },
-    on_attach = on_attach,
-    init_options = {
-      filetypes = {
-        sh = "shellcheck",
-      },
-      linters = {
-        shellcheck = {
-          sourceName = "shellcheck",
-          command = "shellcheck",
-          debounce = 100,
-          args = { "--format=gcc", "-" },
-          offsetLine = 0,
-          offsetColumn = 0,
-          formatLines = 1,
-          formatPattern = {
-            "^[^:]+:(\\d+):(\\d+):\\s+([^:]+):\\s+(.*)$",
-            {
-              line = 1,
-              column = 2,
-              message = 4,
-              security = 3,
-            },
-          },
-          securities = {
-            error = "error",
-            warning = "warning",
-          },
-        },
-      },
-    },
-  })
-end
-
-function MyLspRename()
-  local current_word = vim.fn.expand("<cword>")
-
-  local plenary_window = require("plenary.window.float").percentage_range_window(0.5, 0.2)
-  vim.api.nvim_buf_set_option(plenary_window.bufnr, "buftype", "prompt")
-  vim.fn.prompt_setprompt(plenary_window.bufnr, string.format('Rename "%s" to > ', current_word))
-  vim.fn.prompt_setcallback(plenary_window.bufnr, function(text)
-    vim.api.nvim_win_close(plenary_window.win_id, true)
-
-    if text ~= "" then
-      vim.schedule(function()
-        vim.api.nvim_buf_delete(plenary_window.bufnr, { force = true })
-
-        vim.lsp.buf.rename(text)
-      end)
-    else
-      print("Nothing to rename!")
-    end
-  end)
-
-  vim.cmd([[startinsert]])
-end
-
-local function rename()
-  local cursor = vim.api.nvim_win_get_cursor(0)
-  local line = vim.api.nvim_get_current_line()
-  local cword = vim.fn.expand("<cword>")
-  local line_nr, col = cursor[1], cursor[2] + 1
-  local title = "Rename '" .. cword .. "'"
-
-  local i = 1
-  local word_start, word_end = string.find(line, cword, col - i)
-  while word_end == nil or col - i < 0 do
-    i = i + 1
-    word_start, word_end = string.find(line, cword, col - i)
-  end
-
-  local popup_opts = {
-    padding = { 0, 0, 0, 0 },
-    width = #title + 4,
-    line = line_nr + 1,
-    col = word_start + math.floor((word_end - word_start) / 2),
-    cursor_line = true,
-    border = true,
-    title = title,
-    enter = true,
-    callback = function()
-      print("Hello")
-    end,
-  }
-
-  local buf_no, buf_opts
-  popup.create(cword, popup_opts)
-  local buf = vim.api.nvim_win_get_buf(buf_no)
-  print(buf)
-end
