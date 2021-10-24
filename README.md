@@ -123,9 +123,10 @@ A full list of used plugins:
 | [treesitter-lua](https://github.com/tjdevries/tree-sitter-lua)                             | Treesitter lua grammar                                                                          |
 | [ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) | treesitter plugin for setting the commentstring based on the cursor location in a file          |
 | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                                 | Providing config for built-in lsp                                                               |
-| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                                            | Completion plugin                                                                               |
-| [nvim-cmp-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)                                    | Lsp source for completion plugin                                                                |
-| [nvim-cmp-buffer](https://github.com/hrsh7th/cmp-buffer)                                   | Buffer source for completion plugin                                                             |
+| [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                                            | Completion engine                                                                               |
+| [nvim-cmp-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)                                    | Lsp source for completion engine                                                                |
+| [nvim-cmp-buffer](https://github.com/hrsh7th/cmp-buffer)                                   | Buffer source for completion engine                                                             |
+| [nvim-cmp-path](https://github.com/hrsh7th/cmp-path)                                       | Path source for completion engine                                                               |
 | [lsp_signature](https://github.com/ray-x/lsp_signature.nvim)                               | lsp signature hint when you type                                                                |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                                             | Snippets plugin                                                                                 |
 | [cmp-luasnip](https://github.com/saadparwaiz1/cmp_luasnip)                                 | Snippets source for completion plugin                                                           |

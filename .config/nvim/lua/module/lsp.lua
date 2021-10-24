@@ -21,7 +21,12 @@ cmp.setup{
   },
   sources = {
     { name = "nvim_lsp" },
-    { name = "buffer" },
+    { name = "path" },
+    { name = "luasnip" },
+    { name = "buffer", keyword_length = 5 },
+  },
+  experimental = {
+    native_menu = false,
   },
 }
 
