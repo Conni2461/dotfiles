@@ -127,7 +127,6 @@ A full list of used plugins:
 | [nvim-cmp-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)                                    | Lsp source for completion engine                                                                |
 | [nvim-cmp-buffer](https://github.com/hrsh7th/cmp-buffer)                                   | Buffer source for completion engine                                                             |
 | [nvim-cmp-path](https://github.com/hrsh7th/cmp-path)                                       | Path source for completion engine                                                               |
-| [lsp_signature](https://github.com/ray-x/lsp_signature.nvim)                               | lsp signature hint when you type                                                                |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                                             | Snippets plugin                                                                                 |
 | [cmp-luasnip](https://github.com/saadparwaiz1/cmp_luasnip)                                 | Snippets source for completion plugin                                                           |
 | [lsp extensions](https://github.com/tjdevries/lsp_extensions.nvim)                         | Adds more lsp stuff. Example: Inlay hints                                                       |

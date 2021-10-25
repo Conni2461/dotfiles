@@ -57,11 +57,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'saadparwaiz1/cmp_luasnip'
-
-  Plug 'ray-x/lsp_signature.nvim'
   Plug 'nvim-lua/lsp_extensions.nvim'
   Plug 'kosayoda/nvim-lightbulb'
-
   Plug 'L3MON4D3/LuaSnip'
 
   Plug 'mfussenegger/nvim-dap'
