@@ -196,6 +196,8 @@ endfunction
 nnoremap <leader>c :call <SID>compile_code()<CR>
 nnoremap <leader>al :call <SID>lint_code()<CR>
 
+autocmd TextYankPost * silent! lua vim.highlight.on_yank {}
+
 " Execute this file
 function! s:save_and_exec() abort
   if &filetype == 'vim'
