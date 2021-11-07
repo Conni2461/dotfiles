@@ -21,8 +21,6 @@ call sign_define("DiagnosticSignHint", {
  \ "text" : g:indicator_hints,
  \ "texthl" : "DiagnosticHint"})
 
-nnoremap <leader>af :w! \| !formatf <c-r>%<CR> \| :e <CR> \| :LuaSnipUnlinkCurrent <CR>
-
 " Set completeopt to have a better completion experience
 set completeopt=menuone,noinsert,noselect
 set shortmess+=c

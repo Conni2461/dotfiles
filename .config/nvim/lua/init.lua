@@ -20,3 +20,4 @@ require("module.gtest").setup()
 require("colorizer").setup()
 
 vim.notify = require("notify")
+vim.api.nvim_set_keymap("n", "<leader>af", ":lua require('module.formatf').run()<CR>", { noremap = true, })
