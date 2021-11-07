@@ -260,3 +260,5 @@ inoremap , ,<c-g>u
 inoremap . .<c-g>u
 inoremap ! !<c-g>u
 inoremap ? ?<c-g>u
+
+nnoremap <space>pn 64a0<esc>
