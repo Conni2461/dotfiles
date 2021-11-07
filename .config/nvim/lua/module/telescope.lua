@@ -1,5 +1,5 @@
-local telescope = require('telescope')
-local actions = require('telescope.actions')
+local telescope = require("telescope")
+local actions = require("telescope.actions")
 
 telescope.setup {
   defaults = {
@@ -12,6 +12,7 @@ telescope.setup {
         mirror = true,
       },
     },
+    hl_result_eol = false,
     preview = {
       msg_bg_fillchar = " ",
     },
@@ -29,7 +30,7 @@ telescope.setup {
         ["<esc>"] = actions.close,
       },
     },
-    file_ignore_patterns = { 'build', 'tags', 'src/parser.c' },
+    file_ignore_patterns = { "build", "tags", "src/parser.c" },
     dynamic_preview_title = true,
   },
   pickers = {
@@ -59,9 +60,14 @@ telescope.setup {
     lsp_document_symbols = { path_display = { "hidden" } },
     lsp_workspace_symbols = { path_display = { "shorten" } },
     lsp_code_actions = { theme = "dropdown" },
-    current_buffer_fuzzy_find = { theme = "dropdown", previewer = false },
+    current_buffer_fuzzy_find = { theme = "dropdown" },
   },
   extensions = {
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        -- even more opts
+      }
+    },
     frecency = {
       persistent_filter = false,
       show_scores = true,
@@ -77,7 +83,8 @@ telescope.setup {
   }
 }
 
-telescope.load_extension('smart_history')
-telescope.load_extension('fzf')
-telescope.load_extension('frecency')
-telescope.load_extension('octo')
+telescope.load_extension("smart_history")
+telescope.load_extension("fzf")
+telescope.load_extension("frecency")
+telescope.load_extension("octo")
+telescope.load_extension("ui-select")
