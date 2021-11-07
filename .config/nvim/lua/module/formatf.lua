@@ -3,7 +3,7 @@ local cmds = {
   c = "clang-format --style=file -i",
   cpp = "clang-format --style=file -i",
   rust = "rustfmt",
-  python = "yapf -i",
+  python = "black",
   html = "prettier -w",
   yaml = "prettier -w",
   json = "prettier -w",
