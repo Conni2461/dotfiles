@@ -20,25 +20,65 @@ script='tmp=$(echo {} | grep -E "^AM|^\ M|^MM|UU|^R" | sed -e "s/^[[:space:]]*//
         echo {} | grep -E "^AD|^\ D" >/dev/null && git diff --color -- $(echo {} | tr -d "AD" | sed -e "s/^[[:space:]]*//") && exit;
 
         echo {} | grep "^??" >/dev/null && file=$(echo {} | cut -d" " -f2);
-        [ -d ${file} ] && exa -la --color always --tree ${file} || highlight --out-format=ansi --force ${file} | nl -ba;'
+        [ -d ${file} ] && exa -la --color always --tree ${file} || bat --color=always ${file};'
 
-# git rev-parse HEAD > /dev/null 2>&1 || exit
-allFiles=$(git status -s)
-[ "${allFiles}" = "" ] && exit
+main() {
+  allFiles=$(git status -s)
+  [ "${allFiles}" = "" ] && exit
 
-case $1 in
-	-a ) files=$(echo "$allFiles" | grep -vE '^A\ |^M\ |^R\ |^D\ ') ;;
-	-c ) files=$(echo "$allFiles" | grep -vE '^A\ |^M\ |\?\?|^D\ ') ;;
-	-u ) files=$(echo "$allFiles" | grep -E '^A|^M|^R') ;;
-	*  ) exit 1;;
+  case $1 in
+    -a) files=$(echo "$allFiles" | grep -vE '^A\ |^M\ |^R\ |^D\ ') ;;
+    -c) files=$(echo "$allFiles" | grep -vE '^A\ |^M\ |\?\?|^D\ ') ;;
+    -u) files=$(echo "$allFiles" | grep -E '^A|^M|^R') ;;
+    *) exit 1 ;;
+  esac
+
+  [ "${files}" = "" ] && exit
+
+  echo "$files" | sk --prompt="$2" -m --reverse --preview "${script}" | while read -r item; do
+    if echo "$item" | grep -e '->' > /dev/null 2>&1; then
+      echo "$item" | awk '{print $2, $4}'
+    else
+      echo "$item" | awk '{print $2}'
+    fi
+  done
+}
+
+af() {
+  files=$(main -a '[Add Files] >')
+  [ "$files" = "" ] && exit
+  git add $files && echo "Files added:" && echo "$files"
+}
+
+ah() {
+  files=$(main -a '[Add Hunks] >')
+  [ "$files" = "" ] && exit
+  git add --patch $files && echo "Hunks added:" && echo "$files"
+}
+
+cf() {
+  files=$(main -c '[Checkout Files] >')
+  [ "$files" = "" ] && exit
+  git checkout -- $files > /dev/null && echo "Files checkouted:" && echo "$files"
+}
+
+ch() {
+  files=$(main -c '[Checkout Hunks] >')
+  [ "$files" = "" ] && exit
+  git checkout -p -- $files && echo "Hunks checkouted:" && echo "$files"
+}
+
+uf() {
+  files=$(main -u '[Unstage Files] >')
+  [ "$files" = "" ] && exit
+  git reset HEAD -- $files > /dev/null && echo "Files reseted:" && echo "$files"
+}
+
+case "$1" in
+  "af") af ;;
+  "ah") ah ;;
+  "cf") cf ;;
+  "ch") ch ;;
+  "uf") uf ;;
+  *) exit 1 ;;
 esac
-
-[ "${files}" = "" ] && exit
-
-echo "$files" | sk --prompt="$2" -m --reverse --preview "${script}" | while read -r item; do
-	if echo "$item" | grep -e '->' >/dev/null 2>&1; then
-		echo "$item" | awk '{print $2, $4}'
-	else
-		echo "$item" | awk '{print $2}'
-	fi
-done

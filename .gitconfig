@@ -35,11 +35,11 @@
 	lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 
 	# External commands
-	af = "!fgstwrap af"
-	ah = "!fgstwrap ah"
-	cf = "!fgstwrap cf"
-	ch = "!fgstwrap ch"
-	uf = "!fgstwrap uf"
+	af = "!fgst af"
+	ah = "!fgst ah"
+	cf = "!fgst cf"
+	ch = "!fgst ch"
+	uf = "!fgst uf"
 
 	fcb = "!fcob"
 	fct = "!fcot"
