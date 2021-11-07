@@ -33,6 +33,7 @@ class Daemon:
     A generic daemon class.
     Usage: subclass the daemon class and override the run() method.
     """
+
     def __init__(self, pidfile):
         self.pidfile = pidfile
 
@@ -47,11 +48,11 @@ class Daemon:
                 # exit first parent
                 sys.exit(0)
         except OSError as err:
-            sys.stderr.write('fork #1 failed: {0}\n'.format(err))
+            sys.stderr.write("fork #1 failed: {0}\n".format(err))
             sys.exit(1)
 
         # decouple from parent environment
-        os.chdir('/')
+        os.chdir("/")
         os.setsid()
         os.umask(0)
 
@@ -63,15 +64,15 @@ class Daemon:
                 # exit from second parent
                 sys.exit(0)
         except OSError as err:
-            sys.stderr.write('fork #2 failed: {0}\n'.format(err))
+            sys.stderr.write("fork #2 failed: {0}\n".format(err))
             sys.exit(1)
 
         # redirect standard file descriptors
         sys.stdout.flush()
         sys.stderr.flush()
-        si = open(os.devnull, 'r')
-        so = open(os.devnull, 'a+')
-        se = open(os.devnull, 'a+')
+        si = open(os.devnull, "r")
+        so = open(os.devnull, "a+")
+        se = open(os.devnull, "a+")
 
         os.dup2(si.fileno(), sys.stdin.fileno())
         os.dup2(so.fileno(), sys.stdout.fileno())
@@ -81,8 +82,8 @@ class Daemon:
         atexit.register(self.delpid)
 
         pid = str(os.getpid())
-        with open(self.pidfile, 'w+') as f:
-            f.write(pid + '\n')
+        with open(self.pidfile, "w+") as f:
+            f.write(pid + "\n")
 
     def delpid(self):
         os.remove(self.pidfile)
@@ -92,15 +93,14 @@ class Daemon:
 
         # Check for a pidfile to see if the daemon already runs
         try:
-            with open(self.pidfile, 'r') as pf:
+            with open(self.pidfile, "r") as pf:
 
                 pid = int(pf.read().strip())
         except IOError:
             pid = None
 
         if pid:
-            message = "pidfile {0} already exist. " + \
-              "Daemon already running?\n"
+            message = "pidfile {0} already exist. " + "Daemon already running?\n"
             sys.stderr.write(message.format(self.pidfile))
             sys.exit(1)
 
@@ -113,14 +113,13 @@ class Daemon:
 
         # Get the pid from the pidfile
         try:
-            with open(self.pidfile, 'r') as pf:
+            with open(self.pidfile, "r") as pf:
                 pid = int(pf.read().strip())
         except IOError:
             pid = None
 
         if not pid:
-            message = "pidfile {0} does not exist. " + \
-              "Daemon not running?\n"
+            message = "pidfile {0} does not exist. " + "Daemon not running?\n"
             sys.stderr.write(message.format(self.pidfile))
             return  # not an error in a restart
 
@@ -149,7 +148,7 @@ class Daemon:
         start() or restart()."""
 
 
-class Notifycation():
+class Notifycation:
     def __init__(self):
         try:
             notify2.init("Github-notify")
@@ -181,10 +180,11 @@ def handle_request(data, cache, n):
 
 
 def get_val_of_default(config, key, default):
-    if key in config['DEFAULT']:
-        return config['DEFAULT'][key]
+    if key in config["DEFAULT"]:
+        return config["DEFAULT"][key]
     else:
         return default
+
 
 URL = "https://api.github.com/notifications"
 
@@ -208,9 +208,9 @@ class Gh_notify_Daemon(Daemon):
         cache = dict()
 
         try:
-            token = config['DEFAULT']['token']
-            sleep_time = int(get_val_of_default(config, 'sleep', 60))
-            every = int(get_val_of_default(config, 'every', 10))
+            token = config["DEFAULT"]["token"]
+            sleep_time = int(get_val_of_default(config, "sleep", 60))
+            every = int(get_val_of_default(config, "every", 10))
             headers = {"Authorization": "token " + token}
         except Exception:
             print("Config file not found")
@@ -219,22 +219,21 @@ class Gh_notify_Daemon(Daemon):
         while True:
             now = datetime.datetime.now()
             if (now.minute % every) == 0:
-                handle_request(
-                    requests.get(URL, headers=headers).json(), cache, notify)
+                handle_request(requests.get(URL, headers=headers).json(), cache, notify)
 
             time.sleep(sleep_time)
 
 
-if __name__ == '__main__':
-    daemon = Gh_notify_Daemon('/tmp/gh_notify_daemon.pid')
+if __name__ == "__main__":
+    daemon = Gh_notify_Daemon("/tmp/gh_notify_daemon.pid")
     if len(sys.argv) == 2:
-        if 'start' == sys.argv[1]:
+        if "start" == sys.argv[1]:
             print("starting daemon")
             daemon.start()
-        elif 'stop' == sys.argv[1]:
+        elif "stop" == sys.argv[1]:
             print("stopping daemon")
             daemon.stop()
-        elif 'restart' == sys.argv[1]:
+        elif "restart" == sys.argv[1]:
             print("restarting daemon")
             daemon.restart()
         else:

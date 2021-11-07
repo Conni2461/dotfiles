@@ -15,25 +15,34 @@ Options:
   -h                    shows help page"
 
 case $1 in
-	-r ) refresh="true"; shift ;;
-	-h ) echo "$usage"; exit 0 ;;
-	"" ) ;;
-	-* ) echo "$usage"; exit 0 ;;
+  -r)
+    refresh="true"
+    shift
+    ;;
+  -h)
+    echo "$usage"
+    exit 0
+    ;;
+  "") ;;
+  -*)
+    echo "$usage"
+    exit 0
+    ;;
 esac
 
 country_code=$1
-prev_code=$(cat ~/.cache/corona 2>/dev/null | tail -n 1)
+prev_code=$(cat ~/.cache/corona 2> /dev/null | tail -n 1)
 
-if [ "$(stat -c %y ~/.cache/corona 2>/dev/null | cut -d' ' -f2 | cut -d':' -f1)" != "$(date '+%H')" ] || [ "$refresh" = "true" ] || [ "$prev_code" != "$country_code" ]; then
-	curl -s "https://corona-stats.online/${country_code}" > ~/.cache/corona
-	printf "\n%s\n" ${country_code} >> ~/.cache/corona
+if [ "$(stat -c %y ~/.cache/corona 2> /dev/null | cut -d' ' -f2 | cut -d':' -f1)" != "$(date '+%H')" ] || [ "$refresh" = "true" ] || [ "$prev_code" != "$country_code" ]; then
+  curl -s "https://corona-stats.online/${country_code}" > ~/.cache/corona
+  printf "\n%s\n" ${country_code} >> ~/.cache/corona
 fi
 
 print_data() {
-	echo $1 \
-		| sed "s/\s*//g; s/▲/ ⬆/g; s/▼/ ⬇/g; s/║//g; s/│/;/g; s/,//g; s/\x1b\[[0-9;]*m//g" \
-		| awk -F';' '{ printf "😷 %s (%s) 💀 %s (%.2f \%)\n", $3, $4, $5, 100*$5/$3 }' 2>/dev/null \
-		| sed ':a;s/\B[0-9]\{3\}\>/,&/;ta'
+  echo $1 |
+    sed "s/\s*//g; s/▲/ ⬆/g; s/▼/ ⬇/g; s/║//g; s/│/;/g; s/,//g; s/\x1b\[[0-9;]*m//g" |
+    awk -F';' '{ printf "😷 %s (%s) 💀 %s (%.2f \%)\n", $3, $4, $5, 100*$5/$3 }' 2> /dev/null |
+    sed ':a;s/\B[0-9]\{3\}\>/,&/;ta'
 }
 
 print_data "$(sed -n 4p ~/.cache/corona)"

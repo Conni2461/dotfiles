@@ -2,5 +2,5 @@
 
 tags=$(git tag | awk '{print "\x1b[31;1mtag\x1b[m\t" $1}') || exit
 [ -z "$tags" ] && echo "No tags found" && exit
-target=$(echo "$tags" | sk --no-hscroll --no-multi --delimiter="\t" -n 2 --ansi --preview="git log -200 --pretty=format:%s $(echo {+2..} | sed 's/$/../' )") || exit
+target=$(echo "$tags" | sk --no-hscroll --no-multi --delimiter="\t" -n 2 --ansi --preview="git log -200 --pretty=format:%s $(echo {+2..} | sed 's/$/../')") || exit
 git checkout "$(echo "$target" | awk '{print $2}')"

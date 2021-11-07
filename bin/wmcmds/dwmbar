@@ -18,36 +18,36 @@ internet
 volume"
 
 mrun() {
-	if echo $2 | grep -Eq "^[A-Za-z0-9/]+$"; then
-		[ "$3" != "" ] && symbol="$3 " || symbol=""
-		arg="$2"
-	else
-		[ "$2" != "" ] && symbol="$2 " || symbol=""
-	fi
-	tmp=$($1 $arg)
+  if echo $2 | grep -Eq "^[A-Za-z0-9/]+$"; then
+    [ "$3" != "" ] && symbol="$3 " || symbol=""
+    arg="$2"
+  else
+    [ "$2" != "" ] && symbol="$2 " || symbol=""
+  fi
+  tmp=$($1 $arg)
 
-	[ "$tmp" != "" ] && echo "${symbol}${tmp} | "
+  [ "$tmp" != "" ] && echo "${symbol}${tmp} | "
 }
 
 fmodules() {
-	IFS='
+  IFS='
 	'
-	for m in $modules; do
-		if [ "$m" != "${m#\#}" ]; then
-			continue
-		fi
-		arg1=$(echo $m | awk '{print $1;}')
-		arg2=$(echo $m | awk '{print $2;}')
-		arg3=$(echo $m | awk '{print $3;}')
+  for m in $modules; do
+    if [ "$m" != "${m#\#}" ]; then
+      continue
+    fi
+    arg1=$(echo $m | awk '{print $1;}')
+    arg2=$(echo $m | awk '{print $2;}')
+    arg3=$(echo $m | awk '{print $3;}')
 
-		output="$output$(mrun $arg1 $arg2 $arg3)"
-	done
+    output="$output$(mrun $arg1 $arg2 $arg3)"
+  done
 
-	echo $output
+  echo $output
 }
 
 while true; do
-	xsetroot -name "$(fmodules)$(clock)"
+  xsetroot -name "$(fmodules)$(clock)"
 
-	sleep 15
+  sleep 15
 done

@@ -1,9 +1,8 @@
 #!/bin/sh
 
-
 pid="$(pstree -lp | grep -- -dwmbar\([0-9] | sed "s/.*sleep(\([0-9]\+\)).*/\1/")"
 
 if [ -z "${pid##*[!0-9]*}" ]; then
-	exit 1
+  exit 1
 fi
 kill $pid

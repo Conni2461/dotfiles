@@ -7,7 +7,7 @@ Options: <x> <y> <max width> <max height>"
 [ "$1" == "-h" ] && echo "$usage" && exit
 [ "$1" == "--help" ] && echo "$usage" && exit
 [ ! -f "$1" ] && echo -e "$1 Is not an image \n\n$usage" && exit
-file "$1" | grep -v image >/dev/null 2>&1 && echo -e "$1 Is not an image \n\n$usage" && exit
+file "$1" | grep -v image > /dev/null 2>&1 && echo -e "$1 Is not an image \n\n$usage" && exit
 
 source "$(ueberzug library)"
 
@@ -17,44 +17,44 @@ defaultw="160"
 defaulth="90"
 
 function gcd {
-	a=$1
-	b=$2
+  a=$1
+  b=$2
 
-	if (( b > a )); then
-		gcd "$b" "$a"
-	else
-		if (( b % a == 0 )); then
-			echo "$a"
-		else
-			gcd $((a-b)) "$b"
-		fi
-	fi
+  if ((b > a)); then
+    gcd "$b" "$a"
+  else
+    if ((b % a == 0)); then
+      echo "$a"
+    else
+      gcd $((a - b)) "$b"
+    fi
+  fi
 }
 
 if [ -n "$2" ]; then
-	x=$2
-	y=$3
-	w=$4
-	h=$5
+  x=$2
+  y=$3
+  w=$4
+  h=$5
 else
-	x=$defaultx
-	y=$defaulty
-	width=$(identify -format "%w" "$1")
-	height=$(identify -format "%h" "$1")
-	d=$(gcd "$width" "$height")
+  x=$defaultx
+  y=$defaulty
+  width=$(identify -format "%w" "$1")
+  height=$(identify -format "%h" "$1")
+  d=$(gcd "$width" "$height")
 
-	if [ "$d" -eq 1 ]; then
-		w=$defaultw
-		h=$defaulth
-	else
-		w=$((width * 10 / d))
-		h=$((height * 10 / d))
-	fi
+  if [ "$d" -eq 1 ]; then
+    w=$defaultw
+    h=$defaulth
+  else
+    w=$((width * 10 / d))
+    h=$((height * 10 / d))
+  fi
 fi
 
 # process substitution example:
 ImageLayer 0< <(
-	ImageLayer::add [identifier]="example0" [x]="$x" [y]="$y" [max_width]="$w" [max_height]="$h" [path]="$1"
-	read -r
-	ImageLayer::remove [identifier]="example0"
+  ImageLayer::add [identifier]="example0" [x]="$x" [y]="$y" [max_width]="$w" [max_height]="$h" [path]="$1"
+  read -r
+  ImageLayer::remove [identifier]="example0"
 )

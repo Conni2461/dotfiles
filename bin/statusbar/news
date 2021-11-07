@@ -4,4 +4,4 @@
 # Displays number of unread news items and an loading icon if updating.
 # When clicked, brings up `newsboat`.
 
-cat ~/.config/newsboat/.update 2>/dev/null || echo "$(listnews | wc -l | sed s/^0$//g)"
+cat ~/.config/newsboat/.update 2> /dev/null || echo "$(listnews | wc -l | sed s/^0$//g)"

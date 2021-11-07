@@ -3,12 +3,12 @@
 output=$(df -kHT)
 echo "${output}" | sed 1q
 
-if ! command -v grc >/dev/null 2>&1; then
-	echo "${output}" | grep -Ew '/|boot|home|internal'
+if ! command -v grc > /dev/null 2>&1; then
+  echo "${output}" | grep -Ew '/|boot|home|internal'
 else
-	coloredoutput=$(grc --colour=on df -kHT)
-	lines=$(echo "${output}" | grep -Ewn '/|boot|home|internal' | cut -d: -f1)
-	for i in $lines; do
-		echo "${coloredoutput}" | sed -n "${i}"p
-	done
+  coloredoutput=$(grc --colour=on df -kHT)
+  lines=$(echo "${output}" | grep -Ewn '/|boot|home|internal' | cut -d: -f1)
+  for i in $lines; do
+    echo "${coloredoutput}" | sed -n "${i}"p
+  done
 fi

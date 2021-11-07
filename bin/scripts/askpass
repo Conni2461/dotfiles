@@ -7,5 +7,4 @@ promptbg=#d79921
 hidden=black
 font="Monospace-18:Bold"
 
-
 dmenu -p "$prompt" -fn "$font" -sb "$promptbg" -sf "$promptfg" -nf "$hidden" -nb "$hidden" <&-

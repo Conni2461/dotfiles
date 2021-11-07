@@ -3,8 +3,8 @@
 usage="$0 HH:mm TZ"
 
 if [ "$1" = "" ]; then
-	echo "$usage"
-	exit 1
+  echo "$usage"
+  exit 1
 fi
 
 c_hour=$(TZ=$2 date +%H)
@@ -17,8 +17,8 @@ h=$((t_hour - c_hour))
 m=$((t_minutes - c_minutes))
 
 if [ "$m" -lt "0" ]; then
-	h=$((h - 1))
-	m=$((m + 60))
+  h=$((h - 1))
+  m=$((m + 60))
 fi
 
 echo "${h}:${m}h till $1 $2"

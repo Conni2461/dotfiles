@@ -15,10 +15,10 @@ IFS=" " read -r LOAD1 LOAD5 LOAD15 <<< "$(awk '{ print $1,$2,$3 }' /proc/loadavg
 # get free memory
 IFS=" " read -r USED FREE TOTAL <<< "$(free -htm | grep "Mem" | awk '{print $3,$4,$2}')"
 # get processes
-PROCESS=$(ps -eo user=|sort|uniq -c | awk '{ print $2 " " $1 }')
-PROCESS_ALL=$(echo "$PROCESS"| awk '{print $2}' | awk '{ SUM += $1} END { print SUM }')
-PROCESS_ROOT=$(echo "$PROCESS"| grep root | awk '{print $2}')
-PROCESS_USER=$(echo "$PROCESS"| grep -v root | awk '{print $2}' | awk '{ SUM += $1} END { print SUM }')
+PROCESS=$(ps -eo user= | sort | uniq -c | awk '{ print $2 " " $1 }')
+PROCESS_ALL=$(echo "$PROCESS" | awk '{print $2}' | awk '{ SUM += $1} END { print SUM }')
+PROCESS_ROOT=$(echo "$PROCESS" | grep root | awk '{print $2}')
+PROCESS_USER=$(echo "$PROCESS" | grep -v root | awk '{print $2}' | awk '{ SUM += $1} END { print SUM }')
 
 W="\e[0;39m"
 G="\e[1;32m"
@@ -35,7 +35,7 @@ $W  Processes...:$W $G$PROCESS_ROOT$W (root), $G$PROCESS_USER$W (user) | $G$PROC
 $W  CPU.........: $W$(grep 'model name' /proc/cpuinfo | cut -d ' ' -f3- | awk '{print $0}' | head -1)
 $W  Memory......: $G$USED$W used, $G$FREE$W free, $G$TOTAL$W in total$W
 
-$W  Packages....: $G$(pacman -Q  | wc -l)$W packages are installed
+$W  Packages....: $G$(pacman -Q | wc -l)$W packages are installed
 $W  Updates.....: $G$(pacman -Qu | grep -vc '\[ignored\]')$W packages can be updated
 $W  Orphans.....: $G$(pacman -Qdtq | wc -l)$W packages are unused and can be removed$W" >> $motd
 
@@ -49,53 +49,53 @@ barclear=""
 echo >> $motd
 
 for point in "${mountpoints[@]}"; do
-    line=$(df -hl "${point}")
-    usagePercent=$(echo "$line"|tail -n1|awk '{print $5;}'|sed 's/%//')
-    usedBarWidth=$(((usagePercent*barWidth)/100))
-    barContent=""
-    color="\e[32m"
-    if [ "${usagePercent}" -ge "${maxDiscUsage}" ]; then
-        color="\e[31m"
-    fi
-    barContent="${color}"
-    for sep in $(seq 1 $usedBarWidth); do
-        barContent="${barContent}|"
-    done
-    barContent="${barContent}${clear}${dim}"
-    for sep in $(seq 1 $((barWidth-usedBarWidth))); do
-        barContent="${barContent}-"
-    done
-    bar="[${barContent}${clear}]"
-    echo "${line}" | awk  '{if ($1 != "Filesystem") printf("%-30s%+3s used out of %+5s\n", $1, $3, $2); }' | sed -e 's/^/  /' >> $motd
-    echo -e "${bar}" | sed -e 's/^/  /' >> $motd
+  line=$(df -hl "${point}")
+  usagePercent=$(echo "$line" | tail -n1 | awk '{print $5;}' | sed 's/%//')
+  usedBarWidth=$(((usagePercent * barWidth) / 100))
+  barContent=""
+  color="\e[32m"
+  if [ "${usagePercent}" -ge "${maxDiscUsage}" ]; then
+    color="\e[31m"
+  fi
+  barContent="${color}"
+  for sep in $(seq 1 $usedBarWidth); do
+    barContent="${barContent}|"
+  done
+  barContent="${barContent}${clear}${dim}"
+  for sep in $(seq 1 $((barWidth - usedBarWidth))); do
+    barContent="${barContent}-"
+  done
+  bar="[${barContent}${clear}]"
+  echo "${line}" | awk '{if ($1 != "Filesystem") printf("%-30s%+3s used out of %+5s\n", $1, $3, $2); }' | sed -e 's/^/  /' >> $motd
+  echo -e "${bar}" | sed -e 's/^/  /' >> $motd
 done
 
 # 40-services
 # set column width
 COLUMNS=2
 # colors
-services=( "cronie" "dbus" "fail2ban" "sshd" "fancontrol" "nginx" "mariadb" "php-fpm" )
+services=("cronie" "dbus" "fail2ban" "sshd" "fancontrol" "nginx" "mariadb" "php-fpm")
 # sort services
-IFS=$'\n' services=($(sort <<<"${services[*]}"))
+IFS=$'\n' services=($(sort <<< "${services[*]}"))
 unset IFS
 
 service_status=()
 # get status of all services
 for service in "${services[@]}"; do
-    service_status+=($(systemctl is-active "$service"))
+  service_status+=($(systemctl is-active "$service"))
 done
 
 for i in ${!services[@]}; do
-    # color green if service is active, else red
-    if [[ "${service_status[$i]}" == "active" ]]; then
-        out+="\e[32mupsymb\e[0m ${services[$i]},"
-    else
-        out+="\e[31mdosymb\e[0m ${services[$i]},"
-    fi
-    # insert \n every $COLUMNS column
-    if [ $((($i+1) % $COLUMNS)) -eq 0 ]; then
-        out+="\n"
-    fi
+  # color green if service is active, else red
+  if [[ "${service_status[$i]}" == "active" ]]; then
+    out+="\e[32mupsymb\e[0m ${services[$i]},"
+  else
+    out+="\e[31mdosymb\e[0m ${services[$i]},"
+  fi
+  # insert \n every $COLUMNS column
+  if [ $((($i + 1) % $COLUMNS)) -eq 0 ]; then
+    out+="\n"
+  fi
 done
 out+="\n"
 
@@ -103,15 +103,15 @@ printf "\nServices:\n" >> $motd
 printf "$out" | column -ts $',' | sed -e 's/^/  /;s/upsymb/●/g;s/dosymb/▲/g' >> $motd
 
 # 41-overdue-services
-pids="$(lsof -d DEL 2>/dev/null | awk '$8~/\/usr\/lib/ {printf $2" "}')"
+pids="$(lsof -d DEL 2> /dev/null | awk '$8~/\/usr\/lib/ {printf $2" "}')"
 if [[ ! -z "$pids" ]]; then
-	services="$(ps -o unit= $pids | sort -u)"
-	if [[ ! -z "$services" ]]; then
-		printf "\nOverdue Services:\n" >> $motd
-		for i in $services; do
-			printf "  \e[31m▲\e[0m $i\n" >> $motd
-		done
-	fi
+  services="$(ps -o unit= $pids | sort -u)"
+  if [[ ! -z "$services" ]]; then
+    printf "\nOverdue Services:\n" >> $motd
+    for i in $services; do
+      printf "  \e[31m▲\e[0m $i\n" >> $motd
+    done
+  fi
 fi
 
 # 50-SSL CERTS
@@ -121,22 +121,22 @@ currentTime=$(date +%s)
 printf "\n" >> $motd
 printf "SSL Certificates:\n" >> $motd
 for domain in $ssl_domains; do
-    delimiter="\t"
-    certTime=$(openssl s_client -connect ${domain}:443 < /dev/null 2>/dev/null | openssl x509 -noout -enddate 2>/dev/null | cut -d= -f2)
-    certLineTime=$(date -d "${certTime}" +"%a %b %d %Y")
+  delimiter="\t"
+  certTime=$(openssl s_client -connect ${domain}:443 < /dev/null 2> /dev/null | openssl x509 -noout -enddate 2> /dev/null | cut -d= -f2)
+  certLineTime=$(date -d "${certTime}" +"%a %b %d %Y")
 
-    certTimestamp=$(date -d "${certTime}" +%s)
-    if [ "${certTimestamp}" -ge "${currentTime}" ]; then
-        sign="\e[32m●\e[0m"
-    else
-        sign="\e[31m▲\e[0m"
-    fi
+  certTimestamp=$(date -d "${certTime}" +%s)
+  if [ "${certTimestamp}" -ge "${currentTime}" ]; then
+    sign="\e[32m●\e[0m"
+  else
+    sign="\e[31m▲\e[0m"
+  fi
 
-    if [ "${#domain}" -ge 10 ]; then
-        delimiter="\t\t"
-    fi
+  if [ "${#domain}" -ge 10 ]; then
+    delimiter="\t\t"
+  fi
 
-    printf "  ${sign} ${domain} ${delimiter} valid until ${certLineTime}\n" >> $motd
+  printf "  ${sign} ${domain} ${delimiter} valid until ${certLineTime}\n" >> $motd
 done
 
 printf "\n" >> $motd

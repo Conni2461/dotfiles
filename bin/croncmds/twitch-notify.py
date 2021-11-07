@@ -1,7 +1,7 @@
 #!/bin/python
-'''
+"""
 Script to send notification of new livestreams
-'''
+"""
 
 import sys
 import math
@@ -12,7 +12,7 @@ import notify2
 import dbus
 
 
-class Notifycation():
+class Notifycation:
     def __init__(self):
         try:
             notify2.init("Twitch-notify")
@@ -27,21 +27,27 @@ class Notifycation():
 
 
 def log(message):
-    '''
+    """
     Log message to stderr and exits script
-    '''
+    """
     print(message, file=sys.stderr)
     sys.exit()
 
 
 def getNewOAuthToken(client):
-    '''
+    """
     Prints message on how to receive a new OAuth token.
-    '''
+    """
     print()
     print("To get a custom OAuth Token run:")
-    print("curl 'https://id.twitch.tv/oauth2/authorize?response_type=token&client_id={}&redirect_uri=http://localhost' > output.html".format(client))
-    print("Open the html file with your browser and log into twitch. The next page that opens contains the token.")
+    print(
+        "curl 'https://id.twitch.tv/oauth2/authorize?response_type=token&client_id={}&redirect_uri=http://localhost' > output.html".format(
+            client
+        )
+    )
+    print(
+        "Open the html file with your browser and log into twitch. The next page that opens contains the token."
+    )
     print("Paste the new token in the config file.")
 
 
@@ -52,7 +58,8 @@ configFilePath = HOME + "/.config/twitch-notify.conf"
 try:
     configFile = open(configFilePath)
 except Exception:
-    log("""
+    log(
+        """
 Config file not found.
 
 # Location: ~/.config/twitch-notify.conf
@@ -63,7 +70,8 @@ Config file not found.
 # Client-ID = <Client-ID>
 # Client-Secret = <Client-Secret>
 # Access-token = <OAuth-token>
-        """)
+        """
+    )
 
 config = configparser.ConfigParser()
 config.read_file(configFile)
@@ -88,12 +96,9 @@ if token is None:
     getNewOAuthToken(client)
     sys.exit()
 
-headers_val = {'Authorization': 'OAuth {}'.format(token)}
-headers = {
-        'Client-ID': '{}'.format(client),
-        'Authorization': 'Bearer {}'.format(token)}
-val_res = requests.get('https://id.twitch.tv/oauth2/validate',
-                       headers=headers_val)
+headers_val = {"Authorization": "OAuth {}".format(token)}
+headers = {"Client-ID": "{}".format(client), "Authorization": "Bearer {}".format(token)}
+val_res = requests.get("https://id.twitch.tv/oauth2/validate", headers=headers_val)
 print(val_res.json())
 if val_res.status_code == 401:
     print("Your token is expired.")
@@ -115,8 +120,9 @@ for channel in data["data"]:
 # So we will send requests until all followers are fetched
 while "cursor" in data["pagination"].keys():
     nextV = data["pagination"]["cursor"]
-    data = requests.get("{}&after={}".format(followrequest, nextV),
-                        headers=headers).json()
+    data = requests.get(
+        "{}&after={}".format(followrequest, nextV), headers=headers
+    ).json()
     for channel in data["data"]:
         followed.append(channel["to_id"])
 
@@ -129,7 +135,7 @@ for j in range(math.ceil(len(followed) / 100)):
     for i in range((100 * j) + 1, (j + 1) * 100):
         if i >= len(followed):
             break
-        streamrequest += '&user_id={}'.format(followed[i])
+        streamrequest += "&user_id={}".format(followed[i])
 
     streams = requests.get(streamrequest, headers=headers).json()
 
@@ -145,7 +151,7 @@ for j in range(math.ceil(len(followed) / 100)):
             channel_game = game_cache.get(game_id)
         else:
             if game_id == -1:
-                channel_game = "\"unknown game\""
+                channel_game = '"unknown game"'
                 game_cache[game_id] = channel_game
             else:
                 gamerequest = "{}games?id={}".format(apipage, game_id)
@@ -161,12 +167,12 @@ prev_output = {}
 try:
     with open(filelocation, "r") as f:
         for line in f:
-            if line != '\n' or line != '':
-                c = line.replace('\n', '').split(';')[0]
-                g = line.replace('\n', '').split(';')[1]
+            if line != "\n" or line != "":
+                c = line.replace("\n", "").split(";")[0]
+                g = line.replace("\n", "").split(";")[1]
                 prev_output[c] = g
 except Exception:
-    print('File not created yet')
+    print("File not created yet")
 
 live_channels = set([k for k in output])
 prev_live = set([k for k in prev_output])
@@ -183,13 +189,17 @@ for k, v in output.items():
 if went_live or went_offline or changed_game:
     # Send notifications
     for line in iter(went_live):
-        notify.send("<b>{}</b> is <b>LIVE</b> playing <b>{}</b>"
-                    .format(line, output[line]))
+        notify.send(
+            "<b>{}</b> is <b>LIVE</b> playing <b>{}</b>".format(line, output[line])
+        )
     for line in iter(went_offline):
         notify.send("<b>{}</b> is <b>NO LONGER LIVE</b>".format(line))
     for line in iter(changed_game):
-        notify.send("<b>{}</b> changed game and is now playing <b>{}</b>"
-                    .format(line, output[line]))
+        notify.send(
+            "<b>{}</b> changed game and is now playing <b>{}</b>".format(
+                line, output[line]
+            )
+        )
 
     # Update file
     with open(filelocation, "w") as f:

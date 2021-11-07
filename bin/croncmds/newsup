@@ -2,11 +2,11 @@
 # Set as a cron job to check for new RSS entries for newsboat.
 # If newsboat is open, sends it an "R" key to refresh.
 
-ping -q -t 1 -c 1 `ip r | grep -m 1 default | cut -d ' ' -f 3` >/dev/null || exit
+ping -q -t 1 -c 1 $(ip r | grep -m 1 default | cut -d ' ' -f 3) > /dev/null || exit
 
 notify-send "Updating RSS feeds..."
 
-pgrep -x newsboat >/dev/null && exit
+pgrep -x newsboat > /dev/null && exit
 
 echo 🔃 > ~/.config/newsboat/.update
 refbar

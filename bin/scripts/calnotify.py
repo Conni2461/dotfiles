@@ -10,7 +10,7 @@ import dbus
 warn = int(sys.argv[1])
 
 
-class Notifycation():
+class Notifycation:
     def __init__(self):
         try:
             notify2.init("Calnotify")
@@ -30,8 +30,8 @@ class Event:
         self.end = end
         self.title = title
 
-        s = datetime.datetime.strptime(self.start, '%I:%M %p')
-        s = s.strftime('%H:%M')
+        s = datetime.datetime.strptime(self.start, "%I:%M %p")
+        s = s.strftime("%H:%M")
 
         self.calcstart = convert(s)
 
@@ -39,9 +39,11 @@ class Event:
         return self.start + " - " + self.end
 
     def __eq__(self, other):
-        return self.start == other.start and \
-               self.end == other.end and \
-               self.title == other.title
+        return (
+            self.start == other.start
+            and self.end == other.end
+            and self.title == other.title
+        )
 
     def __hash__(self):
         return hash((self.start, self.end, self.title))
@@ -58,25 +60,28 @@ def convert(t):
 
 def calc_diff(t_curr, t_event):
     # calculate time span
-    diff_hr = (t_event[0] - t_curr[0])*60
+    diff_hr = (t_event[0] - t_curr[0]) * 60
     diff_m = t_event[1] - t_curr[1]
     return diff_hr + diff_m
 
 
 notify = Notifycation()
 done = set()
-calformat = '{cancelled}{start-time} - {end-time}; {title}'
+calformat = "{cancelled}{start-time} - {end-time}; {title}"
 while True:
     currtime = convert(time.strftime("%H:%M"))
-    events = [line.strip() for line in
-              get(["khal", "list", "today", "today", "--format", calformat])
-              .splitlines()][1:]
+    events = [
+        line.strip()
+        for line in get(
+            ["khal", "list", "today", "today", "--format", calformat]
+        ).splitlines()
+    ][1:]
     initial = set()
 
     # Parse Events
     for e in events:
         # Ignore All Day EVENTS
-        if e.startswith('-'):
+        if e.startswith("-"):
             continue
 
         # Ignore Cancelled events

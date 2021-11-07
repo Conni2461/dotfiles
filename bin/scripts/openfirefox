@@ -6,7 +6,7 @@ urls=$(sqlite3 "$HOME"/.local/share/firefox-backup.sqlite "SELECT p.url FROM moz
 selection=$(echo "$urls" | dmenu -i -l 20 -p 'Open Page' "$@")
 
 if [ "$selection" != "" ]; then
-	firefox --new-window "$selection"
+  firefox --new-window "$selection"
 fi
 
 rm "$HOME"/.local/share/firefox-backup.sqlite

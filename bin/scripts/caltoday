@@ -4,13 +4,13 @@ format='{cancelled}{start-time} - {end-time}{nl}  {cancelled}- {title}'
 output=$(khal list Today Today --format "$format" | sed -n '1!p')
 output=$(echo "$output" | sed '/CANCELLED/d; /^ - $/d')
 
-echo "$output" | while IFS= read -r line ; do
-	first_char="$(printf '%s' "$line" | cut -c1)"
-	if [ "$first_char" != " " ]; then
-		if [ "$line" = "$lastDate" ]; then
-			continue
-		fi
-		lastDate="$line"
-	fi
-	echo "$line"
+echo "$output" | while IFS= read -r line; do
+  first_char="$(printf '%s' "$line" | cut -c1)"
+  if [ "$first_char" != " " ]; then
+    if [ "$line" = "$lastDate" ]; then
+      continue
+    fi
+    lastDate="$line"
+  fi
+  echo "$line"
 done

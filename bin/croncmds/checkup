@@ -3,7 +3,7 @@
 
 alias notify="sudo -u \#1000 DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send"
 
-ping -q -w 1 -c 1 `ip r | grep -m 1 default | cut -d ' ' -f 3` >/dev/null || exit
+ping -q -w 1 -c 1 $(ip r | grep -m 1 default | cut -d ' ' -f 3) > /dev/null || exit
 
 notify "Checking for package updates..."
 
@@ -13,11 +13,10 @@ Check your internet connection, if pacman is already running, or run update manu
 /home/conni/bin/wmcmds/refbar
 pkill -RTMIN+8 i3blocks
 
-if pacman -Qu | grep -v "\[ignored\]"
-then
-	notify "Package updates available. Click statusbar icon (📦) for update."
+if pacman -Qu | grep -v "\[ignored\]"; then
+  notify "Package updates available. Click statusbar icon (📦) for update."
 else
-	notify "Repository sync complete. No new packages for update."
+  notify "Repository sync complete. No new packages for update."
 fi
 
 unalias notify

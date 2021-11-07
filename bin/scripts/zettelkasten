@@ -16,70 +16,68 @@ Create, Open, Delete notes and search for tags in all notes
 option="$1"
 dir="$2"
 
-err()
-{
-	echo >&2 "$(tput bold; tput setaf 1)[-] ERROR: ${*}$(tput sgr0)"
-	return 1
+err() {
+  echo >&2 "$(
+    tput bold
+    tput setaf 1
+  )[-] ERROR: ${*}$(tput sgr0)"
+  return 1
 }
 
-create()
-{
-	fn=$(date +%Y%m%d%H%M)
-	cd "$dir" >/dev/null || exit 1
+create() {
+  fn=$(date +%Y%m%d%H%M)
+  cd "$dir" > /dev/null || exit 1
 
-	if [ -f "$fn.md" ]; then
-		err "File already exists"
-		exit 1
-	fi
+  if [ -f "$fn.md" ]; then
+    err "File already exists"
+    exit 1
+  fi
 
-	printf "# $fn\nTags:\n\n\n\n" > "$fn.md"
+  printf "# $fn\nTags:\n\n\n\n" > "$fn.md"
 
-	$EDITOR "$fn.md"
-	cd - >/dev/null || exit 1
+  $EDITOR "$fn.md"
+  cd - > /dev/null || exit 1
 }
 
-open()
-{
-	cd "$dir" >/dev/null || exit 1
-	script='highlight --out-format=ansi --force $(echo {} | cut -d" " -f 1 | sed -e "s/$/.md/g")'
-	sel=$(head -n1 -q * | sed -e 's/# //g' | sk -m --reverse --preview "$script" | cut -d' ' -f 1)
+open() {
+  cd "$dir" > /dev/null || exit 1
+  script='highlight --out-format=ansi --force $(echo {} | cut -d" " -f 1 | sed -e "s/$/.md/g")'
+  sel=$(head -n1 -q * | sed -e 's/# //g' | sk -m --reverse --preview "$script" | cut -d' ' -f 1)
 
-	[ "$sel" = "" ] && exit 0
-	$EDITOR "$sel.md"
-	cd - >/dev/null || exit 1
+  [ "$sel" = "" ] && exit 0
+  $EDITOR "$sel.md"
+  cd - > /dev/null || exit 1
 }
 
-grepn()
-{
-	echo -n "Input search string: "
-	read -r Search
+grepn() {
+  echo -n "Input search string: "
+  read -r Search
 
-	cd "$dir" >/dev/null || exit 1
-	sel=$(grep -l "$Search" * | fzf --preview "highlight --out-format=ansi --force {} | grep --color=always -z '$Search'")
+  cd "$dir" > /dev/null || exit 1
+  sel=$(grep -l "$Search" * | fzf --preview "highlight --out-format=ansi --force {} | grep --color=always -z '$Search'")
 
-	[ "$sel" = "" ] && exit 0
-	$EDITOR "$sel"
-	cd - >/dev/null || exit 1
+  [ "$sel" = "" ] && exit 0
+  $EDITOR "$sel"
+  cd - > /dev/null || exit 1
 }
 
-delete()
-{
-	cd "$dir" >/dev/null || exit 1
-	script='highlight --out-format=ansi --force $(echo {} | cut -d" " -f 1 | sed -e "s/$/.md/g")'
-	sel=$(head -n1 -q * | sed -e 's/# //g' | fzf --preview "$script" | cut -d' ' -f 1)
+delete() {
+  cd "$dir" > /dev/null || exit 1
+  script='highlight --out-format=ansi --force $(echo {} | cut -d" " -f 1 | sed -e "s/$/.md/g")'
+  sel=$(head -n1 -q * | sed -e 's/# //g' | fzf --preview "$script" | cut -d' ' -f 1)
 
-	[ "$sel" = "" ] && exit 0
-	rm "$sel.md"
-	cd - >/dev/null || exit 1
+  [ "$sel" = "" ] && exit 0
+  rm "$sel.md"
+  cd - > /dev/null || exit 1
 }
 
 case "$option" in
-	-c|--create) create ;;
-	-o|--open) open ;;
-	-g|--grep) grepn ;;
-	-d|--delete) delete ;;
-	-h|--help) echo "$usage" ;;
-	-v|--version) echo "Zettelkasten Version 0.1\nLicense: MIT" ;;
-	"") echo "$usage" ;;
-	*) err "Not a valid option" ;;
+  -c | --create) create ;;
+  -o | --open) open ;;
+  -g | --grep) grepn ;;
+  -d | --delete) delete ;;
+  -h | --help) echo "$usage" ;;
+  -v | --version) echo "Zettelkasten Version 0.1\nLicense: MIT" ;;
+  "") echo "$usage" ;;
+  *) err "Not a valid option" ;;
 esac
