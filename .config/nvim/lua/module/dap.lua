@@ -75,7 +75,7 @@ dap.configurations.cpp = {
 }
 
 -- Enable virutal text, requires theHamsta/nvim-dap-virutal-text
-vim.g.dap_virtual_text = true
+-- vim.g.dap_virtual_text = true
 
 mapper('n', '<F3>', '<cmd>lua require\'dap\'.stop()<CR>')
 mapper('n', '<F5>', '<cmd>lua require\'dap\'.continue()<CR>')
