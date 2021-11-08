@@ -1,5 +1,5 @@
-local ts = require'nvim-treesitter.configs'
-local parsers = require'nvim-treesitter.parsers'
+local ts = require"nvim-treesitter.configs"
+local parsers = require"nvim-treesitter.parsers"
 
 vim.treesitter.set_query("lua", "folds", "")
 vim.treesitter.set_query("lua", "indents", "")
@@ -85,44 +85,49 @@ ts.setup {
   context_commentstring = {
     enable = true,
     config = {
-      c = '// %s',
-      lua = '-- %s'
+      c = "// %s",
+      lua = "-- %s"
     }
   },
-  ensure_installed = { -- one of 'all', 'language' or a list of languages
-    'bash',
-    'bibtex',
-    'c',
-    'c_sharp',
-    'clojure',
-    'cmake',
-    'comment',
-    'cpp',
-    'css',
-    'fennel',
-    'gdscript',
-    'go',
-    'graphql',
-    'html',
-    'java',
-    'javascript',
-    'json',
-    'kotlin',
-    'latex',
-    'python',
-    'ql',
-    'query',
-    'regex',
-    'ruby',
-    'rust',
-    'rst',
-    'teal',
-    'toml',
-    'typescript',
-    'yaml'
+  ensure_installed = {
+    "bash",
+    "bibtex",
+    "c",
+    "c_sharp",
+    "clojure",
+    "cmake",
+    "comment",
+    "cpp",
+    "css",
+    "dockerfile",
+    "fennel",
+    "go",
+    "gomod",
+    "graphql",
+    "html",
+    "java",
+    "javascript",
+    "json",
+    "kotlin",
+    "latex",
+    "nix",
+    "perl",
+    "php",
+    "python",
+    "ql",
+    "query",
+    "r",
+    "regex",
+    "rst",
+    "ruby",
+    "rust",
+    "toml",
+    "typescript",
+    "vim",
+    "yaml"
   }
 }
 
 local configs = parsers.get_parser_configs()
-local ft_str = table.concat(vim.tbl_map(function(ft) return configs[ft].filetype or ft end, parsers.available_parsers()), ',')
-vim.cmd('autocmd Filetype ' .. ft_str .. ' setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()')
+local ft_str = table.concat(vim.tbl_map(function(ft) return configs[ft].filetype or ft end, parsers.available_parsers()), ",")
+vim.cmd("autocmd Filetype " .. ft_str .. " setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()")
