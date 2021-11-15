@@ -184,7 +184,6 @@ setup_ls("jsonls", { "vscode-json-languageserver", "--stdio" })
 setup_ls("java_language_server", "java-language-server")
 setup_ls("kotlin_language_server", "kotlin-language-server")
 setup_ls("metals", "metals")
-setup_ls("pyright", { "pyright-langserver", "--stdio" }, "pyls", "pyls")
 setup_ls("rust_analyzer", "rust-analyzer", "rls", "rls")
 setup_ls("solargraph", { "solargraph", "stdio" })
 setup_ls("sumneko_lua", "lua-language-server", nil, nil, lua_settings)
@@ -193,3 +192,33 @@ setup_ls("texlab", "texlab")
 setup_ls("tsserver", { "typescript-language-server", "--stdio" })
 setup_ls("vimls", { "vim-language-server", "--stdio" })
 setup_ls("yamlls", { "yaml-language-server", "--stdio" })
+
+local function get_python_path(workspace)
+  -- Use activated virtualenv.
+  if vim.env.VIRTUAL_ENV then
+    return util.path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
+  end
+
+  -- Check for a poetry.lock file
+  if vim.fn.glob(util.path.join(workspace, 'poetry.lock')) ~= '' then
+    return util.path.join(vim.fn.trim(vim.fn.system('poetry env info -p')), 'bin', 'python')
+  end
+
+  -- Find and use virtualenv from pipenv in workspace directory.
+  local match = vim.fn.glob(util.path.join(workspace, 'Pipfile'))
+  if match ~= '' then
+    local venv = vim.fn.trim(vim.fn.system('PIPENV_PIPFILE=' .. match .. ' pipenv --venv'))
+    return util.path.join(venv, 'bin', 'python')
+  end
+
+  -- Fallback to system Python.
+  return vim.fn.exepath('python3') or vim.fn.exepath('python') or 'python'
+end
+
+lspconfig.pyright.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  on_init = function(client)
+    client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
+  end
+}
