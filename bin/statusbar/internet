@@ -1,7 +1,5 @@
 #!/bin/sh
 
-[ "$(cat /sys/class/net/w*/operstate)" = 'down' ] && wifiicon="📡"
-
 [ ! -n "${wifiicon+var}" ] && wifiicon=$(grep "^\s*w" /proc/net/wireless | awk '{ print int($3 * 100 / 70) "%" }')
 
 printf "%s %s" "$(cat /sys/class/net/w*/operstate | sed "s/down/❎/;s/up/🌐/")" "$wifiicon" | sed "s/^ \{1,\}//"
