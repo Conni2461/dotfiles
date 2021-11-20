@@ -34,6 +34,10 @@ case $1 in
   deepin)
     exec startdde
     ;;
+  kde)
+    export DESKTOP_SESSION=plasma
+    exec startplasma-x11
+    ;;
   *)
     exec startdwm
     ;;
