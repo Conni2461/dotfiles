@@ -1,5 +1,6 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
+local actions_layout = require("telescope.actions.layout")
 
 telescope.setup {
   defaults = {
@@ -24,6 +25,7 @@ telescope.setup {
 
         ["<C-Down>"] = actions.cycle_history_next,
         ["<C-Up>"] = actions.cycle_history_prev,
+        ["<C-h>"] = actions_layout.toggle_preview,
 
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
         ["<a-q>"] = false,
