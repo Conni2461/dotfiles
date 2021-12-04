@@ -31,10 +31,10 @@ local static_entries = {
 }
 local cached_entries = { branch = "", filetype = "" }
 
-local severities = { "Error", "Warning", "Information", "Hint" }
+local severities = { "Error", "Warn", "Info", "Hint" }
 local severities_gens = (function()
   local res = {}
-  for _, s in ipairs({"Error", "Warning", "Information", "Hint"}) do
+  for _, s in ipairs(severities) do
     table.insert(
       res,
       "%%#Diagnostic" .. s .. "#%%(" .. vim.trim(vim.fn.sign_getdefined("DiagnosticSign" .. s)[1].text) .. "%d %%)"
@@ -46,7 +46,7 @@ local diagnostics = function()
   local output = {}
   local size = 0
   for i = #severities, 1, -1 do
-    local res = vim.lsp.diagnostic.get_count(0, severities[i])
+    local res = #vim.diagnostic.get(0, { severity = severities[i] })
     if res > 0 then
       size = size + 1
       output[size] = string.format(severities_gens[i], res)

@@ -7,13 +7,13 @@ vim.fn.sign_define("DiagnosticSignError", {
   text = " ",
   texthl = "DiagnosticError",
 })
-vim.fn.sign_define("DiagnosticSignWarning", {
+vim.fn.sign_define("DiagnosticSignWarn", {
    text = " ",
-   texthl = "DiagnosticWarning"
+   texthl = "DiagnosticWarn"
  })
-vim.fn.sign_define("DiagnosticSignInformation", {
+vim.fn.sign_define("DiagnosticSignInfo", {
    text = " ",
-   texthl = "DiagnosticInformation"
+   texthl = "DiagnosticInfo"
  })
 vim.fn.sign_define("DiagnosticSignHint", {
   text = "ﯦ ",
@@ -22,8 +22,8 @@ vim.fn.sign_define("DiagnosticSignHint", {
 
 vim.cmd [[
   hi DiagnosticError guifg=Red guibg=#282a2e
-  hi DiagnosticWarning guifg=Orange guibg=#282a2e
-  hi DiagnosticInformation guifg=LightBlue guibg=#282a2e
+  hi DiagnosticWarn guifg=Orange guibg=#282a2e
+  hi DiagnosticInfo guifg=LightBlue guibg=#282a2e
   hi DiagnosticHint guifg=LightGrey guibg=#282a2e
 ]]
 
