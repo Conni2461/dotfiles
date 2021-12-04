@@ -42,14 +42,28 @@ local severities_gens = (function()
   end
   return res
 end)()
+local severity = vim.diagnostic.severity
+local get_counts = function(diags)
+  local errors, warnings, infos, hints = 0, 0, 0, 0
+  for _, d in ipairs(diags) do
+    if d.severity == severity.ERROR then
+      errors = errors + 1
+    elseif d.severity == severity.WARN then
+      warnings = warnings + 1
+    elseif d.severity == severity.INFO then
+      infos = infos + 1
+    else
+      hints = hints + 1
+    end
+  end
+  return { errors, warnings, infos, hints }
+end
 local diagnostics = function()
   local output = {}
-  local size = 0
+  local counts = get_counts(vim.diagnostic.get(0))
   for i = #severities, 1, -1 do
-    local res = #vim.diagnostic.get(0, { severity = severities[i] })
-    if res > 0 then
-      size = size + 1
-      output[size] = string.format(severities_gens[i], res)
+    if counts[i] > 0 then
+      table.insert(output, string.format(severities_gens[i], counts[i]))
     end
   end
   return table.concat(output)
