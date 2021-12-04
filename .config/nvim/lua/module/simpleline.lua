@@ -32,12 +32,16 @@ local static_entries = {
 local cached_entries = { branch = "", filetype = "" }
 
 local severities = { "Error", "Warning", "Information", "Hint" }
-local severities_gens = {
-  "%%#DiagnosticError#%%(" .. vim.g.indicator_errors .. "%d %%)",
-  "%%#DiagnosticWarning#%%(" .. vim.g.indicator_warnings .. "%d %%)",
-  "%%#DiagnosticInformation#%%(" .. vim.g.indicator_infos .. "%d %%)",
-  "%%#DiagnosticHint#%%(" .. vim.g.indicator_hints .. "%d %%)",
-}
+local severities_gens = (function()
+  local res = {}
+  for _, s in ipairs({"Error", "Warning", "Information", "Hint"}) do
+    table.insert(
+      res,
+      "%%#Diagnostic" .. s .. "#%%(" .. vim.trim(vim.fn.sign_getdefined("DiagnosticSign" .. s)[1].text) .. "%d %%)"
+    )
+  end
+  return res
+end)()
 local diagnostics = function()
   local output = {}
   local size = 0

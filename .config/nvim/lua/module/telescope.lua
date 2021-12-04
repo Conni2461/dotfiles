@@ -39,6 +39,7 @@ telescope.setup {
     find_files = {
       theme = "dropdown",
       previewer = false,
+      find_command = { "fd", "--type", "f", "--strip-cwd-prefix" }
     },
     file_browser = {
       theme = "dropdown",
@@ -51,7 +52,6 @@ telescope.setup {
     buffers = {
       sort_mru = true,
       theme = "dropdown",
-      selection_strategy = "closest",
       previewer = false,
       mappings = {
         i = { ["<c-d>"] = actions.delete_buffer },

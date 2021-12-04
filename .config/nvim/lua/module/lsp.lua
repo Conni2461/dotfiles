@@ -2,7 +2,36 @@ local lspconfig = require("lspconfig")
 local util = require("lspconfig/util")
 local cmp = require("cmp")
 
-cmp.setup{
+
+vim.fn.sign_define("DiagnosticSignError", {
+  text = " ",
+  texthl = "DiagnosticError",
+})
+vim.fn.sign_define("DiagnosticSignWarning", {
+   text = " ",
+   texthl = "DiagnosticWarning"
+ })
+vim.fn.sign_define("DiagnosticSignInformation", {
+   text = " ",
+   texthl = "DiagnosticInformation"
+ })
+vim.fn.sign_define("DiagnosticSignHint", {
+  text = "ﯦ ",
+  texthl = "DiagnosticHint"
+})
+
+vim.cmd [[
+  hi DiagnosticError guifg=Red guibg=#282a2e
+  hi DiagnosticWarning guifg=Orange guibg=#282a2e
+  hi DiagnosticInformation guifg=LightBlue guibg=#282a2e
+  hi DiagnosticHint guifg=LightGrey guibg=#282a2e
+]]
+
+vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
+vim.opt.shortmess:append("c")
+vim.opt.pumblend = 10
+
+cmp.setup {
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
