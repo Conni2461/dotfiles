@@ -2,7 +2,7 @@ local cmds = {
   cmake = "cmake-format -i",
   c = "clang-format --style=file -i",
   cpp = "clang-format --style=file -i",
-  rust = "rustfmt",
+  rust = "rustfmt --edition 2018",
   python = "black",
   html = "prettier -w",
   yaml = "prettier -w",
