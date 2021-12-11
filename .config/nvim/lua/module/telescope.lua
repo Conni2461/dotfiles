@@ -6,7 +6,7 @@ telescope.setup {
   defaults = {
     layout_strategy = "flex",
     scroll_strategy = "cycle",
-    selection_strategy = "row",
+    selection_strategy = "reset",
     winblend = 0,
     layout_config = {
       vertical = {
@@ -29,6 +29,7 @@ telescope.setup {
 
         ["<C-q>"] = actions.smart_send_to_qflist + actions.open_qflist,
         ["<a-q>"] = false,
+        ["<c-c>"] = function() vim.cmd [[stopinsert]] end,
         ["<esc>"] = actions.close,
       },
     },
