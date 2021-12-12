@@ -18,7 +18,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'rhysd/git-messenger.vim'
   Plug 'gisphm/vim-gitignore'
 
-  Plug 'tpope/vim-commentary'
+  Plug 'numToStr/Comment.nvim'
   Plug 'tpope/vim-scriptease'
   Plug 'godlygeek/tabular'
 
@@ -50,7 +50,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
   Plug 'nvim-treesitter/playground'
   Plug 'tjdevries/tree-sitter-lua'
-  Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
   Plug 'neovim/nvim-lspconfig'
   Plug 'hrsh7th/nvim-cmp'

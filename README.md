@@ -99,7 +99,7 @@ A full list of used plugins:
 | [signature](https://github.com/kshenoy/vim-signature)                                      | Plugin to toggle, display and navigate marks                                                    |
 | [git-messenger](https://github.com/rhysd/git-messenger.vim)                                | Show git messages with `<leader>gm`. Using nvim-floating-window                                 |
 | [gitignore highlighting](https://github.com/gisphm/vim-gitignore)                          | gitignore highlighting support                                                                  |
-| [commentary](https://github.com/tpope/vim-commentary)                                      | comment stuff out with `gcc` to comment out line and `gc` in visual mode                        |
+| [comment.nvim](https://github.com/numToStr/comment.nvim)                                   | comment stuff out with `gcc` to comment out line and `gc` in visual mode                        |
 | [scriptease.vim](https://github.com/tpope/vim-scriptease)                                  | Vim plugin for making Vim plugins. Loads `:messages` into quickfix list                         |
 | [tabular](https://github.com/godlygeek/tabular)                                            | Helps with aligning text                                                                        |
 | [devicons](https://github.com/kyazdani42/nvim-web-devicons)                                | lua `fork` of vim-web-devicons for neovim                                                       |
@@ -122,7 +122,6 @@ A full list of used plugins:
 | [treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)   | Adds Textobjects based on treesitter                                                            |
 | [treesitter playground](https://github.com/nvim-treesitter/playground)                     | Treesitter playground integrated into Neovim. Interactive Debugging tool for Treesitter         |
 | [treesitter-lua](https://github.com/tjdevries/tree-sitter-lua)                             | Treesitter lua grammar                                                                          |
-| [ts-context-commentstring](https://github.com/JoosepAlviste/nvim-ts-context-commentstring) | treesitter plugin for setting the commentstring based on the cursor location in a file          |
 | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                                 | Providing config for built-in lsp                                                               |
 | [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                                            | Completion engine                                                                               |
 | [nvim-cmp-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)                                    | Lsp source for completion engine                                                                |

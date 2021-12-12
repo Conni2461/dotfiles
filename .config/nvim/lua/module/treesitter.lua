@@ -82,13 +82,6 @@ ts.setup {
     use_virtual_text = true,
     lint_events = { "BufWrite", "CursorHold" },
   },
-  context_commentstring = {
-    enable = true,
-    config = {
-      c = "// %s",
-      lua = "-- %s"
-    }
-  },
   ensure_installed = {
     "bash",
     "bibtex",
