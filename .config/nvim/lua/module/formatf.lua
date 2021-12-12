@@ -17,10 +17,10 @@ local cmds = {
 
 local m = {}
 m.run = function()
-  vim.cmd(":silent w!")
+  vim.cmd [[:silent w!]]
   vim.cmd((":silent !%s %%"):format(cmds[vim.o.filetype]))
-  vim.cmd(":silent e")
-  vim.cmd(":silent LuaSnipUnlinkCurrent")
+  vim.cmd [[:silent e]]
+  vim.cmd [[:silent LuaSnipUnlinkCurrent]]
 end
 
 return m

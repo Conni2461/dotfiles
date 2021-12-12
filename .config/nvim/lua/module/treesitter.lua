@@ -1,5 +1,5 @@
-local ts = require"nvim-treesitter.configs"
-local parsers = require"nvim-treesitter.parsers"
+local ts = require "nvim-treesitter.configs"
+local parsers = require "nvim-treesitter.parsers"
 
 vim.treesitter.set_query("lua", "folds", "")
 vim.treesitter.set_query("lua", "indents", "")
@@ -12,8 +12,8 @@ ts.setup {
       init_selection = "<cr>",
       node_incremental = "<cr>",
       node_decremental = "<tab>",
-      scope_incremental = "<s-cr>"
-    }
+      scope_incremental = "<s-cr>",
+    },
   },
   indent = { enable = false },
   refactor = {
@@ -28,8 +28,8 @@ ts.setup {
         list_definitions_toc = "gO",
         goto_next_usage = "<a-*>",
         goto_previous_usage = "<a-#>",
-      }
-    }
+      },
+    },
   },
   textobjects = {
     select = {
@@ -75,9 +75,9 @@ ts.setup {
   playground = {
     enable = true,
     updatetime = 25,
-    persist_queries = false
+    persist_queries = false,
   },
- query_linter = {
+  query_linter = {
     enable = true,
     use_virtual_text = true,
     lint_events = { "BufWrite", "CursorHold" },
@@ -117,10 +117,15 @@ ts.setup {
     "toml",
     "typescript",
     "vim",
-    "yaml"
-  }
+    "yaml",
+  },
 }
 
 local configs = parsers.get_parser_configs()
-local ft_str = table.concat(vim.tbl_map(function(ft) return configs[ft].filetype or ft end, parsers.available_parsers()), ",")
+local ft_str = table.concat(
+  vim.tbl_map(function(ft)
+    return configs[ft].filetype or ft
+  end, parsers.available_parsers()),
+  ","
+)
 vim.cmd("autocmd Filetype " .. ft_str .. " setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()")

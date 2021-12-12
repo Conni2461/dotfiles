@@ -1,67 +1,67 @@
-local dap = require'dap'
+local dap = require "dap"
 
 local mapper = function(mode, key, result)
-  vim.api.nvim_set_keymap(mode, key, result, {noremap = true, silent = true})
+  vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
 end
 
 dap.adapters.cpp = {
-  type = 'executable',
+  type = "executable",
   attach = {
     pidProperty = "pid",
-    pidSelect = "ask"
+    pidSelect = "ask",
   },
-  command = 'lldb-vscode',
+  command = "lldb-vscode",
   env = {
-    LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = "YES"
+    LLDB_LAUNCH_FLAG_LAUNCH_IN_TTY = "YES",
   },
-  name = "lldb"
+  name = "lldb",
 }
 
 dap.adapters.python = {
-  type = 'executable',
-  command = '/usr/bin/python',
-  args = { '-m', 'debugpy.adapter' }
+  type = "executable",
+  command = "/usr/bin/python",
+  args = { "-m", "debugpy.adapter" },
 }
 
 dap.adapters.nlua = function(callback, config)
-  callback({ type = 'server', host = config.host, port = config.port })
+  callback { type = "server", host = config.host, port = config.port }
 end
 
 dap.configurations.python = {
   {
-    type = 'python',
-    request = 'launch',
+    type = "python",
+    request = "launch",
     name = "Launch file",
     program = "${file}",
     pythonPath = function(_)
-      return '/usr/bin/python'
+      return "/usr/bin/python"
     end,
   },
 }
 
 dap.configurations.lua = {
   {
-    type = 'nlua',
-    request = 'attach',
+    type = "nlua",
+    request = "attach",
     name = "Attach to running Neovim instance",
     host = function()
-      local value = vim.fn.input('Host [127.0.0.1]: ')
+      local value = vim.fn.input "Host [127.0.0.1]: "
       if value ~= "" then
         return value
       end
-      return '127.0.0.1'
+      return "127.0.0.1"
     end,
     port = function()
-      local val = tonumber(vim.fn.input('Port: '))
+      local val = tonumber(vim.fn.input "Port: ")
       assert(val, "Please provide a port number")
       return val
     end,
-  }
+  },
 }
 
 dap.configurations.cpp = {
   {
-    type = 'cpp',
+    type = "cpp",
     name = "Launch",
     request = "launch",
     -- program = table.remove(args, 1),
@@ -70,21 +70,29 @@ dap.configurations.cpp = {
     environment = {},
     externalConsole = true,
     MIMode = mi_mode or "lldb",
-    MIDebuggerPath = mi_debugger_path
+    MIDebuggerPath = mi_debugger_path,
   },
 }
 
 -- Enable virutal text, requires theHamsta/nvim-dap-virutal-text
 -- vim.g.dap_virtual_text = true
 
-mapper('n', '<F3>', '<cmd>lua require\'dap\'.stop()<CR>')
-mapper('n', '<F5>', '<cmd>lua require\'dap\'.continue()<CR>')
-mapper('n', '<F10>', '<cmd>lua require\'dap\'.step_over()<CR>')
-mapper('n', '<F11>', '<cmd>lua require\'dap\'.step_into()<CR>')
-mapper('n', '<F12>', '<cmd>lua require\'dap\'.step_out()<CR>')
-mapper('n', '<F12>', '<cmd>lua require\'dap\'.step_out()<CR>')
-mapper('n', '<leader>db', '<cmd>lua require\'dap\'.toggle_breakpoint()<CR>')
-mapper('n', '<leader>dc', '<cmd>lua require\'dap\'.toggle_breakpoint(vim.fn.input(\'Breakpoint Condition: \'), nil, nil, true)<CR>')
-mapper('n', '<leader>dl', '<cmd>lua require\'dap\'.toggle_breakpoint(nil, nil, vim.fn.input(\'Log point message: \'), true)<CR>')
-mapper('n', '<leader>dr', '<cmd>lua require\'dap\'.repl.toggle({height=15})<CR>')
-vim.cmd('command! -nargs=0 DapBreakpoints :lua require\'dap\'.list_breakpoints()')
+mapper("n", "<F3>", "<cmd>lua require'dap'.stop()<CR>")
+mapper("n", "<F5>", "<cmd>lua require'dap'.continue()<CR>")
+mapper("n", "<F10>", "<cmd>lua require'dap'.step_over()<CR>")
+mapper("n", "<F11>", "<cmd>lua require'dap'.step_into()<CR>")
+mapper("n", "<F12>", "<cmd>lua require'dap'.step_out()<CR>")
+mapper("n", "<F12>", "<cmd>lua require'dap'.step_out()<CR>")
+mapper("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>")
+mapper(
+  "n",
+  "<leader>dc",
+  "<cmd>lua require'dap'.toggle_breakpoint(vim.fn.input('Breakpoint Condition: '), nil, nil, true)<CR>"
+)
+mapper(
+  "n",
+  "<leader>dl",
+  "<cmd>lua require'dap'.toggle_breakpoint(nil, nil, vim.fn.input('Log point message: '), true)<CR>"
+)
+mapper("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle({height=15})<CR>")
+vim.cmd "command! -nargs=0 DapBreakpoints :lua require'dap'.list_breakpoints()"
