@@ -84,8 +84,7 @@ If you ran into problems check the path of both extensions. It is possible that 
 
 ## Vim
 
-- [Neovim](https://github.com/neovim/neovim/) >= 0.5 required. (Probobly nightly build)
-- [pyneovim](https://github.com/neovim/pynvim) (Python client for Neovim)
+- [Neovim](https://github.com/neovim/neovim/) >= 0.6 required
 
 When neovim is started for the first time, vim-plug is downloaded and `:PlugInstall` is executed.
 To update plugins use `:PlugUpdate` and to upgrade vim-plug run `:PlugUpgrade`.
@@ -135,33 +134,3 @@ A full list of used plugins:
 | [dap virtual text](https://github.com/theHamsta/nvim-dap-virtual-text)                     | Displayes virtual text coming from dap using treesitter                                         |
 | [nvim lua debug](https://github.com/jbyuki/one-small-step-for-vimkind)                     | Debug lua neovim code in neovim                                                                 |
 | [colorizer](https://github.com/norcalli/nvim-colorizer.lua)                                | Adds color to hexcodes                                                                          |
-
-Some plugins require additional packages installed:
-
-- telescope requires [ripgrep](https://github.com/BurntSushi/ripgrep) and [fd](https://github.com/sharkdp/fd) to work best.
-- Already preconfigured LSP Server. Install one or more of the listed Servers and you are good to go for the specific language (setup can be verified with `:checkhealth`):
-  - [als](https://github.com/AdaCore/ada_language_server) for ada.
-  - [bashls](https://github.com/bash-lsp/bash-language-server) for bash and posix compliant shells.
-  - [clangd](https://clangd.llvm.org/) for c/c++. [ccls](https://github.com/MaskRay/ccls) is currently disabled because clangd offers option to switch between header and source file.
-  - [cmake](https://github.com/regen100/cmake-language-server) for cmake
-  - [cssls](https://github.com/vscode-langservers/vscode-css-languageserver-bin) for css files
-  - [diagnosticls](https://github.com/iamcco/diagnostic-languageserver) to get linter data. Currently configured with shellcheck.
-  - [dockerls](https://github.com/rcjsuen/dockerfile-language-server-nodejs) for dockerfiles
-  - [elixirls](https://github.com/elixir-lsp/elixir-ls) for Elixir
-  - [flow](https://github.com/facebook/flow) for JavaScript
-  - [fortls](https://github.com/hansec/fortran-language-server) for Fortran
-  - [gopls](https://github.com/golang/tools/tree/master/gopls) for golang
-  - [html](https://github.com/vscode-langservers/vscode-html-languageserver-bin) for html
-  - [jsonls](https://github.com/vscode-langservers/vscode-json-languageserver) for json
-  - [kotlin_language_server](https://github.com/fwcd/kotlin-language-server) for kotlin
-  - [metals](https://scalameta.org/metals/) for scala
-  - Using [pyls_ms](https://github.com/Microsoft/python-language-server) if installed and [pyls](https://github.com/palantir/python-language-server) as fallback for python
-  - [R_language_server](https://github.com/REditorSupport/languageserver) for R
-  - Using [rust-analyzer](https://github.com/rust-analyzer/rust-analyzer) if installed and [rls](https://github.com/rust-lang/rls) as fallback for rust
-  - [solargraph](https://solargraph.org/) for ruby
-  - [sumneko lua](https://github.com/sumneko/lua-language-server) for lua
-  - [sqlls](https://github.com/joe-re/sql-language-server) for sql
-  - [texlab](https://github.com/latex-lsp/texlab) for latex
-  - [tsserver](https://github.com/theia-ide/typescript-language-server) for TypeScript
-  - [vimls](https://github.com/iamcco/vim-language-server) for vimlang
-  - additional language server can be configured [here](.config/nvim/lua/module/lsp.lua). Take a look at [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig).

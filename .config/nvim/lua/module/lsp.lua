@@ -1,23 +1,22 @@
-local lspconfig = require("lspconfig")
-local util = require("lspconfig/util")
-local cmp = require("cmp")
-
+local lspconfig = require "lspconfig"
+local util = require "lspconfig/util"
+local cmp = require "cmp"
 
 vim.fn.sign_define("DiagnosticSignError", {
   text = " ",
   texthl = "DiagnosticError",
 })
 vim.fn.sign_define("DiagnosticSignWarn", {
-   text = " ",
-   texthl = "DiagnosticWarn"
- })
+  text = " ",
+  texthl = "DiagnosticWarn",
+})
 vim.fn.sign_define("DiagnosticSignInfo", {
-   text = " ",
-   texthl = "DiagnosticInfo"
- })
+  text = " ",
+  texthl = "DiagnosticInfo",
+})
 vim.fn.sign_define("DiagnosticSignHint", {
   text = "ﯦ ",
-  texthl = "DiagnosticHint"
+  texthl = "DiagnosticHint",
 })
 
 vim.cmd [[
@@ -28,13 +27,13 @@ vim.cmd [[
 ]]
 
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
-vim.opt.shortmess:append("c")
+vim.opt.shortmess:append "c"
 vim.opt.pumblend = 10
 
 cmp.setup {
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      require("luasnip").lsp_expand(args.body)
     end,
   },
   mapping = {
@@ -44,7 +43,7 @@ cmp.setup {
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
     ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm{
+    ["<CR>"] = cmp.mapping.confirm {
       select = true,
     },
   },
@@ -125,7 +124,7 @@ local on_attach = function(_, bufnr)
     buf_set_keymap("n", "<leader>am", ":ClangdSwitchSourceHeader<CR>", opts)
   end
 
-  vim.cmd([[autocmd CursorHold,CursorHoldI <buffer> lua require'nvim-lightbulb'.update_lightbulb()]])
+  vim.cmd [[autocmd CursorHold,CursorHoldI <buffer> lua require'nvim-lightbulb'.update_lightbulb()]]
   if vim.bo.filetype == "rust" then
     vim.cmd(
       "autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost <buffer> "
@@ -134,6 +133,34 @@ local on_attach = function(_, bufnr)
     )
   end
 end
+
+for _, server in ipairs {
+  "bashls",
+  "cmake",
+  "cssls",
+  "dockerls",
+  "gopls",
+  "html",
+  "intelephense",
+  "jsonls",
+  "rnix",
+  "rust_analyzer",
+  "texlab",
+  "tsserver",
+  "vimls",
+  "yamlls",
+} do
+  lspconfig[server].setup {
+    on_attach = on_attach,
+    capabilities = capabilities,
+  }
+end
+
+lspconfig.clangd.setup {
+  cmd = { "clangd", "--background-index", "--header-insertion=never", "--suggest-missing-includes", "--clang-tidy" },
+  on_attach = on_attach,
+  capabilities = capabilities,
+}
 
 local function get_lua_runtime()
   local result = {}
@@ -145,103 +172,56 @@ local function get_lua_runtime()
     end
   end
 
-  result[vim.fn.expand("$VIMRUNTIME/lua")] = true
+  result[vim.fn.expand "$VIMRUNTIME/lua"] = true
   return result
 end
 
-local lua_settings = {
-  Lua = {
-    telemetry = {
-      enable = false,
-    },
-    runtime = {
-      version = "LuaJIT",
-      path = vim.split(package.path, ";"),
-    },
-    diagnostics = {
-      enable = true,
-      globals = { "vim", "describe", "it", "before_each", "teardown", "pending" },
-    },
-    workspace = {
-      library = get_lua_runtime(),
-      maxPreload = 1000,
-      preloadFileSize = 1000,
+lspconfig.sumneko_lua.setup {
+  cmd = { "lua-language-server" },
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      telemetry = {
+        enable = false,
+      },
+      runtime = {
+        version = "LuaJIT",
+        path = vim.split(package.path, ";"),
+      },
+      diagnostics = {
+        enable = true,
+        globals = { "vim", "describe", "it", "before_each", "teardown", "pending" },
+      },
+      workspace = {
+        library = get_lua_runtime(),
+        maxPreload = 1000,
+        preloadFileSize = 1000,
+      },
     },
   },
 }
 
-local function setup_ls(ls, ls_cmd, backup, backup_cmd, passed_settings)
-  if type(ls_cmd) == "string" then
-    ls_cmd = { ls_cmd }
-  end
-  if backup_cmd and type(backup_cmd) == "string" then
-    backup_cmd = { backup_cmd }
-  end
-
-  if util.has_bins(ls_cmd[1]) then
-    lspconfig[ls].setup({
-      on_attach = on_attach,
-      cmd = ls_cmd,
-      settings = passed_settings,
-      capabilities = capabilities,
-    })
-  elseif backup and backup_cmd and util.has_bins(backup_cmd[1]) then
-    lspconfig[backup].setup({
-      on_attach = on_attach,
-      cmd = backup_cmd,
-      settings = passed_settings,
-      capabilities = capabilities,
-    })
-  end
-end
-
-setup_ls("als", "ada_language_server")
-setup_ls("bashls", { "bash-language-server", "start" })
-setup_ls(
-  "clangd",
-  { "clangd", "--background-index", "--header-insertion=never", "--suggest-missing-includes", "--clang-tidy" }
-)
-setup_ls("cmake", "cmake-language-server")
-setup_ls("cssls", { "css-languageserver", "--stdio" })
-setup_ls("dockerls", { "docker-langserver", "--stdio" })
-setup_ls("elixirls", "elixir-ls")
-setup_ls("flow", { "npm", "run", "flow", "lsp" })
-setup_ls("fortls", "fortls")
-setup_ls("gopls", "gopls")
-setup_ls("html", { "html-languageserver", "--stdio" })
-setup_ls("jsonls", { "vscode-json-languageserver", "--stdio" })
-setup_ls("java_language_server", "java-language-server")
-setup_ls("kotlin_language_server", "kotlin-language-server")
-setup_ls("metals", "metals")
-setup_ls("rust_analyzer", "rust-analyzer", "rls", "rls")
-setup_ls("solargraph", { "solargraph", "stdio" })
-setup_ls("sumneko_lua", "lua-language-server", nil, nil, lua_settings)
-setup_ls("sqlls", "sql-language-server")
-setup_ls("texlab", "texlab")
-setup_ls("tsserver", { "typescript-language-server", "--stdio" })
-setup_ls("vimls", { "vim-language-server", "--stdio" })
-setup_ls("yamlls", { "yaml-language-server", "--stdio" })
-
 local function get_python_path(workspace)
   -- Use activated virtualenv.
   if vim.env.VIRTUAL_ENV then
-    return util.path.join(vim.env.VIRTUAL_ENV, 'bin', 'python')
+    return util.path.join(vim.env.VIRTUAL_ENV, "bin", "python")
   end
 
   -- Check for a poetry.lock file
-  if vim.fn.glob(util.path.join(workspace, 'poetry.lock')) ~= '' then
-    return util.path.join(vim.fn.trim(vim.fn.system('poetry env info -p')), 'bin', 'python')
+  if vim.fn.glob(util.path.join(workspace, "poetry.lock")) ~= "" then
+    return util.path.join(vim.fn.trim(vim.fn.system "poetry env info -p"), "bin", "python")
   end
 
   -- Find and use virtualenv from pipenv in workspace directory.
-  local match = vim.fn.glob(util.path.join(workspace, 'Pipfile'))
-  if match ~= '' then
-    local venv = vim.fn.trim(vim.fn.system('PIPENV_PIPFILE=' .. match .. ' pipenv --venv'))
-    return util.path.join(venv, 'bin', 'python')
+  local match = vim.fn.glob(util.path.join(workspace, "Pipfile"))
+  if match ~= "" then
+    local venv = vim.fn.trim(vim.fn.system("PIPENV_PIPFILE=" .. match .. " pipenv --venv"))
+    return util.path.join(venv, "bin", "python")
   end
 
   -- Fallback to system Python.
-  return vim.fn.exepath('python3') or vim.fn.exepath('python') or 'python'
+  return vim.fn.exepath "python3" or vim.fn.exepath "python" or "python"
 end
 
 lspconfig.pyright.setup {
@@ -249,5 +229,5 @@ lspconfig.pyright.setup {
   capabilities = capabilities,
   on_init = function(client)
     client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
-  end
+  end,
 }
