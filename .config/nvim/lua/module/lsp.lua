@@ -137,12 +137,17 @@ end
 for _, server in ipairs {
   "bashls",
   "cmake",
+  {
+    "clangd",
+    { "clangd", "--background-index", "--header-insertion=never", "--suggest-missing-includes", "--clang-tidy" },
+  },
+  { "cssls", { "vscode-css-languageserver", "--stdio" } },
   "cssls",
   "dockerls",
   "gopls",
-  "html",
+  { "html", { "vscode-html-languageserver", "--stdio" } },
   "intelephense",
-  "jsonls",
+  { "jsonls", { "vscode-json-languageserver", "--stdio" } },
   "rnix",
   "rust_analyzer",
   "texlab",
@@ -150,17 +155,19 @@ for _, server in ipairs {
   "vimls",
   "yamlls",
 } do
-  lspconfig[server].setup {
-    on_attach = on_attach,
-    capabilities = capabilities,
-  }
+  if type(server) == "table" then
+    lspconfig[server[1]].setup {
+      cmd = server[2],
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }
+  else
+    lspconfig[server].setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }
+  end
 end
-
-lspconfig.clangd.setup {
-  cmd = { "clangd", "--background-index", "--header-insertion=never", "--suggest-missing-includes", "--clang-tidy" },
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
 
 local function get_lua_runtime()
   local result = {}
