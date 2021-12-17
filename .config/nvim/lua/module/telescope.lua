@@ -12,6 +12,9 @@ telescope.setup {
       vertical = {
         mirror = true,
       },
+      center = {
+        mirror = true,
+      },
     },
     hl_result_eol = false,
     preview = {
