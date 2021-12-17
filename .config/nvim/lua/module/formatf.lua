@@ -13,6 +13,7 @@ local cmds = {
   java = "astyle -A2 -s2 -c -J -n -q -z2 -xC80",
   sh = "shfmt -w -i 2 -ci -sr",
   bash = "shfmt -w -i 2 -ci -sr",
+  nix = "nixpkgs-fmt",
 }
 
 local m = {}
