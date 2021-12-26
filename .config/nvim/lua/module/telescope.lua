@@ -123,7 +123,7 @@ vim.api.nvim_set_keymap(
 )
 vim.api.nvim_set_keymap(
   "n",
-  "<leader>gw",
+  "<leader>gs",
   "<cmd>lua RTELE(); require'telescope.builtin'.grep_string{ search = vim.fn.input('Grep For >') }<CR>",
   { noremap = true }
 )
