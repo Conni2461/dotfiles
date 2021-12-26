@@ -14,6 +14,7 @@ local cmds = {
   sh = "shfmt -w -i 2 -ci -sr",
   bash = "shfmt -w -i 2 -ci -sr",
   nix = "nixpkgs-fmt",
+  php = "php-cs-fixer fix --rules=@PSR12",
 }
 
 local m = {}
