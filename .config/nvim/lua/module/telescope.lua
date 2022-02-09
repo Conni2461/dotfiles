@@ -4,6 +4,7 @@ local actions_layout = require "telescope.actions.layout"
 
 telescope.setup {
   defaults = {
+    multi_icon = "",
     layout_strategy = "flex",
     scroll_strategy = "cycle",
     selection_strategy = "reset",
@@ -45,7 +46,6 @@ telescope.setup {
     find_files = {
       theme = "dropdown",
       previewer = false,
-      find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
     },
     file_browser = {
       theme = "dropdown",
