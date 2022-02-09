@@ -30,6 +30,30 @@ vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 vim.opt.shortmess:append "c"
 vim.opt.pumblend = 10
 
+vim.diagnostic.config {
+  virtual_text = true,
+  signs = true,
+  underline = false,
+  update_in_insert = true,
+  severity_sort = true,
+  float = {
+    focusable = false,
+    style = "minimal",
+    border = "rounded",
+    header = "",
+    prefix = "",
+    format = function(d)
+      local t = vim.deepcopy(d)
+      local code = d.code or d.user_data.lsp.code
+      if code then
+        t.message = string.format("%s [%s]", t.message, code):gsub("1. ", "")
+      end
+      return t.message
+    end,
+  },
+}
+
+require"fidget".setup{}
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -57,13 +81,6 @@ cmp.setup {
     native_menu = false,
   },
 }
-
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-  underline = false,
-  virtual_text = true,
-  signs = true,
-  update_in_insert = true,
-})
 
 vim.lsp.protocol.CompletionItemKind = {
   " [text]",
@@ -98,30 +115,33 @@ capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 local on_attach = function(_, bufnr)
   local function buf_set_keymap(...)
-    vim.api.nvim_buf_set_keymap(bufnr, ...)
+    local input = { ... }
+    vim.keymap.set(input[1], input[2], input[3], { buffer = 0, noremap = true, silent = true })
   end
-  local opts = { noremap = true, silent = true }
-
-  buf_set_keymap("n", "<leader>ad", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-  buf_set_keymap("n", "<leader>at", "<cmd>lua vim.lsp.buf.type_definition()<CR>", opts)
-  buf_set_keymap("n", "<leader>ai", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-  buf_set_keymap("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-  buf_set_keymap("i", "<c-s>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-  buf_set_keymap("n", "<leader>an", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
-  buf_set_keymap("n", "<leader>ap", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-  buf_set_keymap("n", "<Leader>ar", "<cmd>lua require'telescope.builtin'.lsp_references()<CR>", opts)
-  buf_set_keymap("n", "<leader>ac", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_document_symbols{}<CR>", opts)
-  buf_set_keymap(
-    "n",
-    "<leader>aw",
-    "<cmd>lua RTELE(); require'telescope.builtin'.lsp_workspace_symbols{ query = vim.fn.input('Query >') }<CR>",
-    opts
-  )
-  buf_set_keymap("n", "<leader>aa", "<cmd>lua RTELE(); require'telescope.builtin'.lsp_code_actions{}<cr>", opts)
+  buf_set_keymap("n", "<leader>ad", vim.lsp.buf.definition)
+  buf_set_keymap("n", "<leader>at", vim.lsp.buf.type_definition)
+  buf_set_keymap("n", "<leader>ai", vim.lsp.buf.declaration)
+  buf_set_keymap("n", "K", vim.lsp.buf.hover)
+  buf_set_keymap("i", "<c-s>", vim.lsp.buf.signature_help)
+  buf_set_keymap("n", "<leader>an", vim.diagnostic.goto_next)
+  buf_set_keymap("n", "<leader>ap", vim.diagnostic.goto_prev)
+  buf_set_keymap("n", "<Leader>ar", require("telescope.builtin").lsp_references)
+  buf_set_keymap("n", "<leader>ac", function()
+    RTELE()
+    require("telescope.builtin").lsp_document_symbols()
+  end)
+  buf_set_keymap("n", "<leader>aw", function()
+    RTELE()
+    require("telescope.builtin").lsp_workspace_symbols { query = vim.fn.input "Query >" }
+  end)
+  buf_set_keymap("n", "<leader>aa", function()
+    RTELE()
+    require("telescope.builtin").lsp_code_actions()
+  end)
 
   local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
   if ft == "c" or ft == "cpp" or ft == "h" or ft == "hpp" then
-    buf_set_keymap("n", "<leader>am", ":ClangdSwitchSourceHeader<CR>", opts)
+    buf_set_keymap("n", "<leader>am", ":ClangdSwitchSourceHeader<CR>")
   end
 
   vim.cmd [[autocmd CursorHold,CursorHoldI <buffer> lua require'nvim-lightbulb'.update_lightbulb()]]

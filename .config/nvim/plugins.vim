@@ -59,6 +59,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'saadparwaiz1/cmp_luasnip'
   Plug 'nvim-lua/lsp_extensions.nvim'
   Plug 'kosayoda/nvim-lightbulb'
+  Plug 'j-hui/fidget.nvim'
   Plug 'L3MON4D3/LuaSnip'
 
   Plug 'mfussenegger/nvim-dap'
