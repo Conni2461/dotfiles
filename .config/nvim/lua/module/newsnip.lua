@@ -26,7 +26,7 @@ local force_comment = function()
   return f(function() return { string.format(vim.bo.commentstring, "") } end, {})
 end
 
-ls.snippets.all = {
+ls.add_snippets("all", {
   s({trig="copyright"}, {
     force_comment(),
     t { "Copyright (C) " },
@@ -56,7 +56,7 @@ ls.snippets.all = {
     t { "): " },
     i(0)
   }),
-}
+})
 
 local function luadoc(args, old_state)
   local nodes = {
@@ -96,7 +96,7 @@ local function luadoc(args, old_state)
   return snip
 end
 
-ls.snippets.lua = {
+ls.add_snippets("lua", {
   s({trig="fn"}, {
     d(3, luadoc, { 2 }),
     t {"", ""},
@@ -108,7 +108,7 @@ ls.snippets.lua = {
     i(0),
     t { "", "end" }
   })
-}
+})
 
 local function cdocs(args, old_state)
   local nodes = {
@@ -177,7 +177,7 @@ local function cdocs(args, old_state)
   return snip
 end
 
-ls.snippets.cpp = {
+local c_cc_snip = {
   s({trig="main"}, {
     t { "int main(int argc, char *argv[]) {", "  " },
     i(0),
@@ -206,7 +206,8 @@ ls.snippets.cpp = {
     t({ "", "}" }),
   }),
 }
-ls.snippets.cpp = ls.snippets.c
+ls.add_snippets("cpp", c_cc_snip)
+ls.add_snippets("c", c_cc_snip)
 
 vim.cmd [[
   imap <silent><expr> <C-k> luasnip#expand_or_jumpable() ? '<Plug>luasnip-expand-or-jump' : '<C-k>'
