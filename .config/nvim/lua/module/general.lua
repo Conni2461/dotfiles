@@ -1,6 +1,7 @@
 -- Basic
 vim.opt.mouse = "a"
 vim.opt.hlsearch = true
+vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.showmode = false
