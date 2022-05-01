@@ -1,2 +1,0 @@
-set termguicolors
-colorscheme gruvbox

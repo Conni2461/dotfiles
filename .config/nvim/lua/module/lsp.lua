@@ -53,7 +53,7 @@ vim.diagnostic.config {
   },
 }
 
-require"fidget".setup{}
+require("fidget").setup {}
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -134,10 +134,7 @@ local on_attach = function(_, bufnr)
     RTELE()
     require("telescope.builtin").lsp_workspace_symbols { query = vim.fn.input "Query >" }
   end)
-  buf_set_keymap("n", "<leader>aa", function()
-    RTELE()
-    require("telescope.builtin").lsp_code_actions()
-  end)
+  buf_set_keymap("n", "<leader>aa", vim.lsp.buf.code_action)
 
   local ft = vim.api.nvim_buf_get_option(bufnr, "filetype")
   if ft == "c" or ft == "cpp" or ft == "h" or ft == "hpp" then
@@ -145,13 +142,6 @@ local on_attach = function(_, bufnr)
   end
 
   vim.cmd [[autocmd CursorHold,CursorHoldI <buffer> lua require'nvim-lightbulb'.update_lightbulb()]]
-  if vim.bo.filetype == "rust" then
-    vim.cmd(
-      "autocmd InsertLeave,BufEnter,BufWinEnter,TabEnter,BufWritePost <buffer> "
-        .. 'lua require"lsp_extensions".inlay_hints{ prefix = " » ", highlight = "NonText", '
-        .. 'aligned = true, enabled = {"TypeHint", "ChainingHint", "ParameterHint"} }'
-    )
-  end
 end
 
 for _, server in ipairs {

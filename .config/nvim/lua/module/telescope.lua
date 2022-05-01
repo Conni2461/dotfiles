@@ -72,9 +72,7 @@ telescope.setup {
   },
   extensions = {
     ["ui-select"] = {
-      require("telescope.themes").get_dropdown {
-        -- even more opts
-      },
+      require("telescope.themes").get_dropdown {},
     },
     frecency = {
       persistent_filter = false,

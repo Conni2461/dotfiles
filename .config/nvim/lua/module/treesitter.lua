@@ -116,7 +116,6 @@ ts.setup {
     "rust",
     "toml",
     "typescript",
-    "vim",
     "yaml",
   },
 }

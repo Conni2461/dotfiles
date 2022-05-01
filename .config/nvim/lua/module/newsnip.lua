@@ -1,4 +1,4 @@
-local ls = require'luasnip'
+local ls = require "luasnip"
 -- some shorthands...
 local s = ls.s
 local sn = ls.sn
@@ -9,58 +9,60 @@ local c = ls.c
 local d = ls.d
 
 vim.g.snips_author = "conni2461"
-vim.g.snips_email  = "Simon-Hauser@outlook.de"
+vim.g.snips_email = "Simon-Hauser@outlook.de"
 vim.g.snips_github = "conni2461"
 
-ls.config.set_config({
+ls.config.set_config {
   history = true,
   -- Update more often, :h events for more info.
-  updateevents = 'TextChanged,TextChangedI'
-})
+  updateevents = "TextChanged,TextChangedI",
+}
 
 local function mirror(args)
   return sn(nil, { t { args[1][1] } })
 end
 
 local force_comment = function()
-  return f(function() return { string.format(vim.bo.commentstring, "") } end, {})
+  return f(function()
+    return { string.format(vim.bo.commentstring, "") }
+  end, {})
 end
 
 ls.add_snippets("all", {
-  s({trig="copyright"}, {
+  s({ trig = "copyright" }, {
     force_comment(),
     t { "Copyright (C) " },
     i(1, { vim.g.snips_author }),
     t { " " },
-    i(2, { os.date("%Y") }),
-    i(0)
+    i(2, { os.date "%Y" }),
+    i(0),
   }),
-  s({trig="todo"}, {
+  s({ trig = "todo" }, {
     force_comment(),
     t { "TODO(" },
     i(1, { vim.g.snips_author }),
     t { "): " },
-    i(0)
+    i(0),
   }),
-  s({trig="fixme"}, {
+  s({ trig = "fixme" }, {
     force_comment(),
     t { "FIXME(" },
     i(1, { vim.g.snips_author }),
     t { "): " },
-    i(0)
+    i(0),
   }),
-  s({trig="note"}, {
+  s({ trig = "note" }, {
     force_comment(),
     t { "NOTE(" },
     i(1, { vim.g.snips_author }),
     t { "): " },
-    i(0)
+    i(0),
   }),
 })
 
 local function luadoc(args, old_state)
   local nodes = {
-    t({ "--- " }),
+    t { "--- " },
     i(1, { "A short Description" }),
   }
   local param_nodes = {}
@@ -72,7 +74,7 @@ local function luadoc(args, old_state)
 
   local insert = 2
   for _, arg in ipairs(vim.split(args[1][1], ", ", true)) do
-    if arg ~= '' then
+    if arg ~= "" then
       local inode
       -- if there was some text in this parameter, use it as static_text for this new snippet.
       if old_state and old_state[arg] then
@@ -80,10 +82,7 @@ local function luadoc(args, old_state)
       else
         inode = i(insert)
       end
-      vim.list_extend(
-        nodes,
-        { t({ "", "" }), t({ "---@param " .. arg .. " " }), inode }
-      )
+      vim.list_extend(nodes, { t { "", "" }, t { "---@param " .. arg .. " " }, inode })
       param_nodes["arg" .. arg] = inode
 
       insert = insert + 1
@@ -97,24 +96,24 @@ local function luadoc(args, old_state)
 end
 
 ls.add_snippets("lua", {
-  s({trig="fn"}, {
+  s({ trig = "fn" }, {
     d(3, luadoc, { 2 }),
-    t {"", ""},
+    t { "", "" },
     t { "function " },
     i(1, { "myFunc" }),
-    t { "("},
+    t { "(" },
     i(2),
     t { ")", "  " },
     i(0),
-    t { "", "end" }
-  })
+    t { "", "end" },
+  }),
 })
 
 local function cdocs(args, old_state)
   local nodes = {
-    t({ "/**", " * " }),
+    t { "/**", " * " },
     i(1, { "A short Description" }),
-    t({ "", "" }),
+    t { "", "" },
   }
 
   -- These will be merged with the snippet; that way, should the snippet be updated,
@@ -128,7 +127,7 @@ local function cdocs(args, old_state)
 
   -- At least one param.
   if string.find(args[2][1], ", ") then
-    vim.list_extend(nodes, { t({ " * ", "" }) })
+    vim.list_extend(nodes, { t { " * ", "" } })
   end
 
   local insert = 2
@@ -143,10 +142,7 @@ local function cdocs(args, old_state)
       else
         inode = i(insert)
       end
-      vim.list_extend(
-        nodes,
-        { t({ " * @param " .. arg .. " " }), inode, t({ "", "" }) }
-      )
+      vim.list_extend(nodes, { t { " * @param " .. arg .. " " }, inode, t { "", "" } })
       param_nodes["arg" .. arg] = inode
 
       insert = insert + 1
@@ -161,15 +157,12 @@ local function cdocs(args, old_state)
       inode = i(insert)
     end
 
-    vim.list_extend(
-      nodes,
-      { t({ " * ", " * @return " }), inode, t({ "", "" }) }
-    )
+    vim.list_extend(nodes, { t { " * ", " * @return " }, inode, t { "", "" } })
     param_nodes.ret = inode
     insert = insert + 1
   end
 
-  vim.list_extend(nodes, { t({ " */" }) })
+  vim.list_extend(nodes, { t { " */" } })
 
   local snip = sn(nil, nodes)
   -- Error on attempting overwrite.
@@ -178,32 +171,39 @@ local function cdocs(args, old_state)
 end
 
 local c_cc_snip = {
-  s({trig="main"}, {
+  s({ trig = "main" }, {
     t { "int main(int argc, char *argv[]) {", "  " },
     i(0),
-    t { "", "  return 0;", "}" }
+    t { "", "  return 0;", "}" },
   }),
-  s({trig="ndef"}, {
-    t { "#idndef " }, i(1),
-    t { "", "#define " }, d(2, mirror, { 1 }), t { " " }, i(3),
-    t { "", "#endif /* ifndef " }, d(4, mirror, { 1 }), t { " */", "" },
-    i(0)
+  s({ trig = "ndef" }, {
+    t { "#idndef " },
+    i(1),
+    t { "", "#define " },
+    d(2, mirror, { 1 }),
+    t { " " },
+    i(3),
+    t { "", "#endif /* ifndef " },
+    d(4, mirror, { 1 }),
+    t { " */", "" },
+    i(0),
   }),
-  s({trig="guard"}, {
-    t { "#idndef " }, i(1),
+  s({ trig = "guard" }, {
+    t { "#idndef " },
+    i(1),
   }),
   s({ trig = "fn" }, {
     d(4, cdocs, { 1, 3 }),
-    t({ "", "" }),
+    t { "", "" },
     i(1, { "void" }),
-    t({ " " }),
+    t { " " },
     i(2, { "myFunc" }),
-    t({ "(" }),
+    t { "(" },
     i(3),
-    t({ ")" }),
-    t({ " {", "  " }),
+    t { ")" },
+    t { " {", "  " },
     i(0),
-    t({ "", "}" }),
+    t { "", "}" },
   }),
 }
 ls.add_snippets("cpp", c_cc_snip)

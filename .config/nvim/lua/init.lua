@@ -8,6 +8,10 @@ P = function(...)
   print(vim.inspect(...))
 end
 
+require "module.general"
+
+require "module.startify"
+require "module.comment"
 require "module.treesitter"
 require "module.lsp"
 require "module.telescope"
@@ -21,23 +25,3 @@ require("colorizer").setup()
 require("gitsigns").setup()
 
 vim.notify = require "notify"
-vim.api.nvim_set_keymap("n", "<leader>af", ":lua require('module.formatf').run()<CR>", { noremap = true })
-
-require("Comment.ft").set("lua", { "--%s", "--[[%s]]" })
-require("Comment").setup {
-  ignore = nil,
-  opleader = {
-    line = "gc",
-    block = "gb",
-  },
-  mappings = {
-    basic = true,
-    extra = true,
-    extended = false,
-  },
-  toggler = {
-    line = "gcc",
-    block = "gbc",
-  },
-  post_hook = nil,
-}

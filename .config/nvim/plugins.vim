@@ -42,9 +42,6 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'rcarriga/nvim-notify'
 
-  Plug 'junegunn/goyo.vim'
-  Plug 'vimwiki/vimwiki', { 'on': 'VimwikiIndex' }
-
   Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'nvim-treesitter/nvim-treesitter-refactor'
   Plug 'nvim-treesitter/nvim-treesitter-textobjects'
@@ -57,7 +54,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'hrsh7th/cmp-path'
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'saadparwaiz1/cmp_luasnip'
-  Plug 'nvim-lua/lsp_extensions.nvim'
   Plug 'kosayoda/nvim-lightbulb'
   Plug 'j-hui/fidget.nvim'
   Plug 'L3MON4D3/LuaSnip'
@@ -68,13 +64,3 @@ call plug#begin('~/.config/nvim/plugged')
 
   Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
-
-let g:loaded_gzip         = 1
-let g:loaded_tar          = 1
-let g:loaded_tarPlugin    = 1
-let g:loaded_zipPlugin    = 1
-let g:loaded_2html_plugin = 1
-let g:loaded_netrw        = 1
-let g:loaded_netrwPlugin  = 1
-let g:loaded_matchit      = 1
-let g:loaded_spec         = 1
