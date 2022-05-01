@@ -34,12 +34,6 @@ vim.opt.foldlevelstart = 99
 vim.opt.termguicolors = true
 vim.cmd [[ colorscheme gruvbox ]]
 
---TODO(conni2461):
-vim.cmd [[
-  filetype plugin indent on
-  syntax on
-]]
-
 vim.opt.inccommand = "split"
 
 -- History
@@ -163,3 +157,11 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
   group = remove_group,
 })
+
+-- User commands
+vim.api.nvim_create_user_command("T", function()
+  vim.cmd [[
+    botright 15split term://$SHELL
+    startinsert
+  ]]
+end, {})
