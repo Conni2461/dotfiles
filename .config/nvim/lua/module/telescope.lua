@@ -89,11 +89,10 @@ telescope.setup {
   },
 }
 
-telescope.load_extension "smart_history"
 telescope.load_extension "fzf"
-telescope.load_extension "frecency"
-telescope.load_extension "octo"
 telescope.load_extension "ui-select"
+-- telescope.load_extension "smart_history"
+-- telescope.load_extension "frecency"
 
 vim.api.nvim_set_keymap(
   "n",

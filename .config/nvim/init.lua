@@ -1,3 +1,5 @@
+require "module.plugins"
+
 RELOAD = require("plenary.reload").reload_module
 RTELE = function()
   RELOAD "module.telescope"

@@ -84,11 +84,12 @@ If you ran into problems check the path of both extensions. It is possible that 
 
 ## Vim
 
-- [Neovim](https://github.com/neovim/neovim/) >= 0.6 required
+- [Neovim](https://github.com/neovim/neovim/) >= 0.7 required
 
-When neovim is started for the first time, vim-plug is downloaded and `:PlugInstall` is executed.
-To update plugins use `:PlugUpdate` and to upgrade vim-plug run `:PlugUpgrade`.
-All further commands can be found on [here](https://github.com/junegunn/vim-plug).
+When neovim is started for the first time,
+[packer.nvim](https://github.com/wbthomason/packer.nvim) is downloaded. After
+that run `:PackerSync` To update plugins use `:PackerUpdate`. Some plugins need
+to be installed locally and will not be pulled!
 
 A full list of used plugins:
 
@@ -108,14 +109,11 @@ A full list of used plugins:
 | [telescope](https://github.com/nvim-telescope/telescope.nvim)                              | Find, Filter, Preview, Pick. Fuzzyfinder written in Lua, with providers for treesitter and lsp  |
 | [telescope-fzf-native](https://github.com/nvim-telescope/telescope-fzf-native.nvim)        | Native fzf sorter for telescope                                                                 |
 | [telescope-symbols](https://github.com/nvim-telescope/telescope-symbols.nvim)              | symbol data for telescope                                                                       |
+| [telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim)          | telescope ui select hook                                                                        |
 | [telescope-frecency](https://github.com/nvim-telescope/telescope-frecency.nvim)            | Smart MRU for telescope                                                                         |
 | [telescope-smart-history](https://github.com/nvim-telescope/telescope-smart-history.nvim)  | Smart history replacement for the telescope builtin history                                     |
-| [telescope-ui-select](https://github.com/nvim-telescope/telescope-ui-select.nvim)          | telescope ui select hook                                                                        |
-| [octo](https://github.com/pwntester/octo.nvim)                                             | Github integration in neovim. With telescope integration                                        |
 | [gitsigns](https://github.com/lewis6991/gitsigns.nvim)                                     | Git signs written in pure lua                                                                   |
 | [notify](https://github.com/rcarriga/nvim-notify)                                          | neovim notification system                                                                      |
-| [goyo](https://github.com/junegunn/goyo.vim)                                               | Distraction-free writing in Vim                                                                 |
-| [vimwiki](https://github.com/vimwiki/vimwiki)                                              | Personal Wiki for Vim                                                                           |
 | [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)                           | Currently used for Syntax highlighting and incremental selection.                               |
 | [treesitter-refactor](https://github.com/nvim-treesitter/nvim-treesitter-refactor)         | Adds Refactor module to Treesitter. Highlight definition, smart rename and more.                |
 | [treesitter-textobjects](https://github.com/nvim-treesitter/nvim-treesitter-textobjects)   | Adds Textobjects based on treesitter                                                            |
@@ -123,14 +121,13 @@ A full list of used plugins:
 | [treesitter-lua](https://github.com/tjdevries/tree-sitter-lua)                             | Treesitter lua grammar                                                                          |
 | [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)                                 | Providing config for built-in lsp                                                               |
 | [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)                                            | Completion engine                                                                               |
-| [nvim-cmp-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)                                    | Lsp source for completion engine                                                                |
 | [nvim-cmp-buffer](https://github.com/hrsh7th/cmp-buffer)                                   | Buffer source for completion engine                                                             |
 | [nvim-cmp-path](https://github.com/hrsh7th/cmp-path)                                       | Path source for completion engine                                                               |
+| [nvim-cmp-lsp](https://github.com/hrsh7th/cmp-nvim-lsp)                                    | Lsp source for completion engine                                                                |
 | [LuaSnip](https://github.com/L3MON4D3/LuaSnip)                                             | Snippets plugin                                                                                 |
 | [cmp-luasnip](https://github.com/saadparwaiz1/cmp_luasnip)                                 | Snippets source for completion plugin                                                           |
-| [lsp extensions](https://github.com/tjdevries/lsp_extensions.nvim)                         | Adds more lsp stuff. Example: Inlay hints                                                       |
 | [lightbulb](https://github.com/kosayoda/nvim-lightbulb)                                    | Show lightbulb when there is a code action at the current line                                  |
+| [fidget](https://github.com/j-hui/fidget.nvim)                                             | Standalone UI for nvim-lsp progress                                                             |
 | [dap](https://github.com/mfussenegger/nvim-dap)                                            | Debug Adapter Protocol client implementation for Neovim                                         |
 | [dap virtual text](https://github.com/theHamsta/nvim-dap-virtual-text)                     | Displayes virtual text coming from dap using treesitter                                         |
-| [nvim lua debug](https://github.com/jbyuki/one-small-step-for-vimkind)                     | Debug lua neovim code in neovim                                                                 |
 | [colorizer](https://github.com/norcalli/nvim-colorizer.lua)                                | Adds color to hexcodes                                                                          |
