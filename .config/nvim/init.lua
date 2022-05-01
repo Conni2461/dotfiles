@@ -1,9 +1,9 @@
 require "module.plugins"
 
 RELOAD = require("plenary.reload").reload_module
-RTELE = function()
-  RELOAD "module.telescope"
-  RELOAD "telescope"
+R = function(x)
+  RELOAD(x)
+  return require(x)
 end
 
 P = function(...)
@@ -12,8 +12,6 @@ end
 
 require "module.general"
 
-require "module.startify"
-require "module.comment"
 require "module.treesitter"
 require "module.lsp"
 require "module.telescope"
@@ -21,9 +19,4 @@ require "module.newsnip"
 require "module.dap"
 
 require("module.simpleline").init()
-require("module.gtest").setup()
-
-require("colorizer").setup()
-require("gitsigns").setup()
-
-vim.notify = require "notify"
+-- require("module.gtest").setup()

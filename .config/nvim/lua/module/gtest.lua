@@ -48,7 +48,7 @@ local gen_gtest_job = function(chan, args)
   return make
 end
 
-m.run_test = function()
+local run_test = function()
   local file = vim.api.nvim_buf_get_lines(0, 0, -1, false)
   local cursor = vim.api.nvim_win_get_cursor(0)
   local a, b = string.match(file[cursor[1]], "^%s*TEST%(([^,]+),%s([^)]*)%).*$")
@@ -57,7 +57,7 @@ m.run_test = function()
   gen_gtest_job(chan, { "--gtest_color=yes", "--gtest_filter=" .. a .. "." .. b }):start()
 end
 
-m.run_file = function()
+local run_file = function()
   local file = vim.api.nvim_buf_get_lines(0, 0, -1, false)
   local i = 1
   local len = #file
@@ -71,15 +71,15 @@ m.run_file = function()
   gen_gtest_job(chan, { "--gtest_color=yes", "--gtest_filter=" .. a .. "*" }):start()
 end
 
-m.run_all = function()
+local run_all = function()
   local _, chan = get_window()
   gen_gtest_job(chan, { "--gtest_color=yes" }):start()
 end
 
 m.setup = function()
-  vim.cmd [=[nnoremap <leader>rt <cmd>lua require("module.gtest").run_test()<CR> ]=]
-  vim.cmd [=[nnoremap <leader>rf <cmd>lua require("module.gtest").run_file()<CR> ]=]
-  vim.cmd [=[nnoremap <leader>rr <cmd>lua require("module.gtest").run_all()<CR> ]=]
+  vim.keymap.set("n", "<leader>rt", run_test, { noremap = true })
+  vim.keymap.set("n", "<leader>rf", run_file, { noremap = true })
+  vim.keymap.set("n", "<leader>rr", run_all, { noremap = true })
 end
 
 return m

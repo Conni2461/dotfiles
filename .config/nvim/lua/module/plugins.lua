@@ -17,7 +17,7 @@ require("packer").startup(function(use)
     use(opts)
   end
 
-  use 'wbthomason/packer.nvim'
+  use "wbthomason/packer.nvim"
   use "morhetz/gruvbox"
 
   use "kshenoy/vim-signature"
@@ -25,7 +25,12 @@ require("packer").startup(function(use)
   use "rhysd/git-messenger.vim"
   use "gisphm/vim-gitignore"
 
-  use "numToStr/Comment.nvim"
+  use {
+    "numToStr/Comment.nvim",
+    config = function()
+      require "module.comment"
+    end,
+  }
   use "tpope/vim-scriptease"
   use "godlygeek/tabular"
 
@@ -33,7 +38,12 @@ require("packer").startup(function(use)
 
   -- use 'tami5/sql.nvim'
 
-  use "mhinz/vim-startify"
+  use {
+    "mhinz/vim-startify",
+    config = function()
+      require "module.startify"
+    end,
+  }
 
   local_use "plenary.nvim"
   local_use "telescope.nvim"
@@ -43,9 +53,19 @@ require("packer").startup(function(use)
   -- use 'nvim-telescope/telescope-frecency.nvim'
   -- use 'nvim-telescope/telescope-smart-history.nvim'
 
-  use "lewis6991/gitsigns.nvim"
+  use {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("gitsigns").setup()
+    end,
+  }
 
-  use "rcarriga/nvim-notify"
+  use {
+    "rcarriga/nvim-notify",
+    config = function()
+      vim.notify = require "notify"
+    end,
+  }
 
   use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
   use "nvim-treesitter/nvim-treesitter-refactor"
@@ -66,5 +86,10 @@ require("packer").startup(function(use)
   use "mfussenegger/nvim-dap"
   use "theHamsta/nvim-dap-virtual-text"
 
-  use "norcalli/nvim-colorizer.lua"
+  use {
+    "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
+    end,
+  }
 end)

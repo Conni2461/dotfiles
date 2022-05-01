@@ -126,13 +126,9 @@ local on_attach = function(_, bufnr)
   buf_set_keymap("n", "<leader>an", vim.diagnostic.goto_next)
   buf_set_keymap("n", "<leader>ap", vim.diagnostic.goto_prev)
   buf_set_keymap("n", "<Leader>ar", require("telescope.builtin").lsp_references)
-  buf_set_keymap("n", "<leader>ac", function()
-    RTELE()
-    require("telescope.builtin").lsp_document_symbols()
-  end)
+  buf_set_keymap("n", "<leader>ac", R("telescope.builtin").lsp_document_symbols)
   buf_set_keymap("n", "<leader>aw", function()
-    RTELE()
-    require("telescope.builtin").lsp_workspace_symbols { query = vim.fn.input "Query >" }
+    R("telescope.builtin").lsp_workspace_symbols { query = vim.fn.input "Query >" }
   end)
   buf_set_keymap("n", "<leader>aa", vim.lsp.buf.code_action)
 
@@ -141,7 +137,11 @@ local on_attach = function(_, bufnr)
     buf_set_keymap("n", "<leader>am", ":ClangdSwitchSourceHeader<CR>")
   end
 
-  vim.cmd [[autocmd CursorHold,CursorHoldI <buffer> lua require'nvim-lightbulb'.update_lightbulb()]]
+  local lsp_group = vim.api.nvim_create_augroup("custom_lsp_stuff", { clear = true })
+  vim.api.nvim_create_autocmd(
+    "CursorHold,CursorHoldI",
+    { pattern = "<buffer>", callback = require("nvim-lightbulb").update_lightbulb, group = lsp_group }
+  )
 end
 
 for _, server in ipairs {

@@ -94,45 +94,14 @@ telescope.load_extension "ui-select"
 -- telescope.load_extension "smart_history"
 -- telescope.load_extension "frecency"
 
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>w",
-  "<cmd>lua RTELE(); require'telescope.builtin'.git_files{}<CR>",
-  { noremap = true }
-)
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>q",
-  "<cmd>lua RTELE(); require'telescope.builtin'.find_files{}<CR>",
-  { noremap = true }
-)
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>gp",
-  "<cmd>lua RTELE(); require'telescope.builtin'.live_grep{}<CR>",
-  { noremap = true }
-)
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>gw",
-  "<cmd>lua RTELE(); require'telescope.builtin'.grep_string{ word_match = '-w' }<CR>",
-  { noremap = true }
-)
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>gs",
-  "<cmd>lua RTELE(); require'telescope.builtin'.grep_string{ search = vim.fn.input('Grep For >') }<CR>",
-  { noremap = true }
-)
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>bg",
-  "<cmd>lua RTELE(); require'telescope.builtin'.buffers{}<CR>",
-  { noremap = true }
-)
-vim.api.nvim_set_keymap(
-  "n",
-  "<leader>bs",
-  "<cmd>lua RTELE(); require'telescope.builtin'.current_buffer_fuzzy_find{}<CR>",
-  { noremap = true }
-)
+vim.keymap.set("n", "<leader>w", R("telescope.builtin").git_files, { noremap = true })
+vim.keymap.set("n", "<leader>q", R("telescope.builtin").find_files, { noremap = true })
+vim.keymap.set("n", "<leader>gp", R("telescope.builtin").live_grep, { noremap = true })
+vim.keymap.set("n", "<leader>gw", function()
+  R("telescope.builtin").grep_string { word_match = "-w" }
+end, { noremap = true })
+vim.keymap.set("n", "<leader>gs", function()
+  R("telescope.builtin").grep_string { search = vim.fn.input "Grep For >" }
+end, { noremap = true })
+vim.keymap.set("n", "<leader>bg", R("telescope.builtin").buffers, { noremap = true })
+vim.keymap.set("n", "<leader>bs", R("telescope.builtin").current_buffer_fuzzy_find, { noremap = true })

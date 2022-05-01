@@ -1,7 +1,7 @@
 local dap = require "dap"
 
 local mapper = function(mode, key, result)
-  vim.api.nvim_set_keymap(mode, key, result, { noremap = true, silent = true })
+  vim.keymap.set(mode, key, result, { noremap = true, silent = true })
 end
 
 dap.adapters.cpp = {
@@ -77,22 +77,22 @@ dap.configurations.cpp = {
 -- Enable virutal text, requires theHamsta/nvim-dap-virutal-text
 -- vim.g.dap_virtual_text = true
 
-mapper("n", "<F3>", "<cmd>lua require'dap'.stop()<CR>")
-mapper("n", "<F5>", "<cmd>lua require'dap'.continue()<CR>")
-mapper("n", "<F10>", "<cmd>lua require'dap'.step_over()<CR>")
-mapper("n", "<F11>", "<cmd>lua require'dap'.step_into()<CR>")
-mapper("n", "<F12>", "<cmd>lua require'dap'.step_out()<CR>")
-mapper("n", "<F12>", "<cmd>lua require'dap'.step_out()<CR>")
-mapper("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<CR>")
-mapper(
-  "n",
-  "<leader>dc",
-  "<cmd>lua require'dap'.toggle_breakpoint(vim.fn.input('Breakpoint Condition: '), nil, nil, true)<CR>"
-)
-mapper(
-  "n",
-  "<leader>dl",
-  "<cmd>lua require'dap'.toggle_breakpoint(nil, nil, vim.fn.input('Log point message: '), true)<CR>"
-)
-mapper("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle({height=15})<CR>")
-vim.cmd "command! -nargs=0 DapBreakpoints :lua require'dap'.list_breakpoints()"
+mapper("n", "<F3>", dap.stop)
+mapper("n", "<F5>", dap.continue)
+mapper("n", "<F10>", dap.step_over)
+mapper("n", "<F11>", dap.step_into)
+mapper("n", "<F12>", dap.step_out)
+mapper("n", "<F12>", dap.step_out)
+mapper("n", "<leader>db", dap.toggle_breakpoint)
+mapper("n", "<leader>dc", function()
+  dap.toggle_breakpoint(vim.fn.input "Breakpoint Condition: ", nil, nil, true)
+end)
+mapper("n", "<leader>dl", function()
+  dap.toggle_breakpoint(nil, nil, vim.fn.input "Log point message: ", true)
+end)
+mapper("n", "<leader>dr", function()
+  dap.repl.toggle { height = 15 }
+end)
+vim.api.nvim_create_user_command("DapBreakpoints", function(opts)
+  dap.list_breakpoints()
+end, { nargs = 0 })
