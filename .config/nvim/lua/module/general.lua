@@ -1,49 +1,45 @@
 -- Basic
-vim.opt.mouse = "a"
-vim.opt.hlsearch = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.clipboard = "unnamedplus"
-vim.opt.showmode = false
-vim.opt.showtabline = 1
-vim.opt.scrolloff = 2
-vim.opt.cmdheight = 1
-vim.opt.updatetime = 300
+vim.o.mouse = "a"
+vim.o.hlsearch = true
+vim.o.clipboard = "unnamedplus"
+vim.o.showmode = false
+vim.o.scrolloff = 2
+vim.o.updatetime = 300
 
-vim.opt.signcolumn = "yes"
-vim.opt.colorcolumn = "80"
-vim.opt.cursorline = true
+vim.wo.signcolumn = "yes"
+vim.wo.colorcolumn = "80"
+vim.wo.cursorline = true
+vim.wo.number = true
+vim.wo.relativenumber = true
+vim.wo.breakindent = true
 
-vim.opt.number = true
-vim.opt.relativenumber = true
+vim.o.hidden = true
+vim.o.splitbelow = true
+vim.o.splitright = true
 
-vim.opt.hidden = true
-vim.opt.splitbelow = true
-vim.opt.splitright = true
+vim.o.tabstop = 4
+vim.o.shiftwidth = 4
+vim.o.expandtab = false
+vim.o.listchars = "tab:¦ "
+vim.o.list = true
 
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = false
-vim.opt.listchars = "tab:¦ "
-vim.opt.list = true
+vim.wo.foldenable = true
+vim.wo.foldmethod = "indent"
+vim.o.foldlevelstart = 99
 
-vim.opt.foldenable = true
-vim.opt.foldmethod = "indent"
-vim.opt.foldlevelstart = 99
-
-vim.opt.termguicolors = true
+vim.o.termguicolors = true
 vim.cmd [[ colorscheme gruvbox ]]
 
-vim.opt.inccommand = "split"
+vim.o.inccommand = "split"
 
 -- History
-vim.opt.history = 1000
-vim.opt.undofile = true
-vim.opt.undodir = vim.fn.expand "~/.local/share/nvim/undo"
-vim.opt.undolevels = 100
-vim.opt.undoreload = 1000
-vim.opt.backupdir = vim.fn.expand "~/.local/share/nvim/backup/"
-vim.opt.directory = vim.fn.expand "~/.local/share/nvim/backup/"
+vim.o.history = 1000
+vim.bo.undofile = true
+vim.o.undodir = vim.fn.expand "~/.local/share/nvim/undo"
+vim.o.undolevels = 100
+vim.o.undoreload = 1000
+vim.o.backupdir = vim.fn.expand "~/.local/share/nvim/backup/"
+vim.o.directory = vim.fn.expand "~/.local/share/nvim/backup/"
 
 -- keymaps
 vim.g.mapleader = ","

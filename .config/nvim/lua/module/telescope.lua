@@ -39,7 +39,7 @@ telescope.setup {
         ["<esc>"] = actions.close,
       },
     },
-    file_ignore_patterns = { "build", "tags", "src/parser.c" },
+    file_ignore_patterns = { "src/parser.c" },
     dynamic_preview_title = true,
   },
   pickers = {
