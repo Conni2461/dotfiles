@@ -86,6 +86,9 @@ require("packer").startup(function(use)
   use "mfussenegger/nvim-dap"
   use "theHamsta/nvim-dap-virtual-text"
 
+  use "tpope/vim-dadbod"
+  use "kristijanhusak/vim-dadbod-ui"
+
   use {
     "norcalli/nvim-colorizer.lua",
     config = function()
