@@ -65,8 +65,6 @@ telescope.setup {
     },
     man_pages = { sections = { "2", "3" } },
     lsp_references = { path_display = { "shorten" } },
-    lsp_document_symbols = { path_display = { "hidden" } },
-    lsp_workspace_symbols = { path_display = { "shorten" } },
     lsp_code_actions = { theme = "dropdown" },
     current_buffer_fuzzy_find = { theme = "dropdown" },
   },
