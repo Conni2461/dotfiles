@@ -82,6 +82,22 @@ cmp.setup {
   },
 }
 
+cmp.setup.cmdline("/", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = "buffer", keyword_length = 5 },
+  },
+})
+
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = "path" },
+  }, {
+    { name = "cmdline" },
+  }),
+})
+
 vim.lsp.protocol.CompletionItemKind = {
   " [text]",
   " [method]",
