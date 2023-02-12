@@ -88,8 +88,8 @@ end
 local m = {}
 
 m.init = function()
-  vim.cmd [=[ autocmd BufWinEnter,WinEnter * :lua require("module/simpleline").update("active") ]=]
-  vim.cmd [=[ autocmd WinLeave * :lua require("module/simpleline").update("inactive") ]=]
+  vim.cmd [=[ autocmd BufWinEnter,WinEnter * :lua require("module/simpleline").update(true) ]=]
+  vim.cmd [=[ autocmd WinLeave * :lua require("module/simpleline").update(false) ]=]
   for _, tbl in pairs(hl_groups) do
     if #tbl > 1 then
       vim.cmd(string.format("hi %s gui=bold guifg=%s guibg=%s", unpack(tbl)))
@@ -98,11 +98,11 @@ m.init = function()
   m.update()
 end
 
-m.update = function(mode)
-  mode = mode or "active"
+m.update = function(active)
+  active = vim.F.if_nil(active, true)
 
   local curr = vim.api.nvim_get_current_win()
-  if mode == "active" then
+  if active == true then
     Job
       :new({
         "git",
