@@ -8,7 +8,7 @@ local external_format = function(cmd)
 end
 
 local builtin_fmt = function()
-  vim.lsp.buf.format { async = true }
+  vim.lsp.buf.formatting {}
 end
 
 local cmds = {
@@ -16,10 +16,12 @@ local cmds = {
   c = external_format "clang-format --style=file -i",
   cpp = external_format "clang-format --style=file -i",
   rust = builtin_fmt,
+  go = builtin_fmt,
   python = external_format "black",
   html = external_format "prettier -w",
   yaml = external_format "prettier -w",
   json = external_format "prettier -w",
+  svelte = external_format "prettier -w",
   javascript = external_format "prettier -w",
   typescript = external_format "prettier -w",
   lua = external_format "stylua",
