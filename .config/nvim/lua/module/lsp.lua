@@ -66,7 +66,7 @@ cmp.setup {
     ["<C-d>"] = cmp.mapping.scroll_docs(-4),
     ["<C-f>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
+    ["<C-e>"] = cmp.mapping.abort(),
     ["<CR>"] = cmp.mapping.confirm {
       select = true,
     },
@@ -82,7 +82,7 @@ cmp.setup {
   },
 }
 
-cmp.setup.cmdline("/", {
+cmp.setup.cmdline({ '/', '?' }, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = "buffer", keyword_length = 5 },
@@ -126,8 +126,7 @@ vim.lsp.protocol.CompletionItemKind = {
   " [type]",
 }
 
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local on_attach = function(_, bufnr)
   local function buf_set_keymap(...)
@@ -179,6 +178,7 @@ for _, server in ipairs {
   "tsserver",
   "vimls",
   "yamlls",
+  "ocamllsp",
 } do
   if type(server) == "table" then
     lspconfig[server[1]].setup {
@@ -208,7 +208,7 @@ local function get_lua_runtime()
   return result
 end
 
-lspconfig.sumneko_lua.setup {
+lspconfig.lua_ls.setup {
   cmd = { "lua-language-server" },
   on_attach = on_attach,
   capabilities = capabilities,
@@ -229,6 +229,7 @@ lspconfig.sumneko_lua.setup {
         library = get_lua_runtime(),
         maxPreload = 1000,
         preloadFileSize = 1000,
+        checkThirdParty = false,
       },
     },
   },
