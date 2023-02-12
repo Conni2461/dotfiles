@@ -21,6 +21,9 @@ telescope.setup {
     preview = {
       msg_bg_fillchar = " ",
     },
+    history = {
+      cycle_wrap = true,
+    },
     cache = false,
     mappings = {
       i = {
