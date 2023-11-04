@@ -121,15 +121,6 @@ ts.setup {
   },
 }
 
-local configs = parsers.get_parser_configs()
-local treesitter_group = vim.api.nvim_create_augroup("custom_treesitter_stuff", { clear = true })
-vim.api.nvim_create_autocmd("Filetype", {
-  pattern = table.concat(
-    vim.tbl_map(function(ft)
-      return configs[ft].filetype or ft
-    end, parsers.available_parsers()),
-    ","
-  ),
-  command = "setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()",
-  group = treesitter_group,
-})
+vim.wo.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+vim.wo.foldenable = false
