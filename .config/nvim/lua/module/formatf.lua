@@ -8,7 +8,7 @@ local external_format = function(cmd)
 end
 
 local builtin_fmt = function()
-  vim.lsp.buf.formatting {}
+  vim.lsp.buf.format{ async = true }
 end
 
 local cmds = {
