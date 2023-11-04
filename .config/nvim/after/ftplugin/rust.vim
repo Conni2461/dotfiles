@@ -1,1 +1,1 @@
-setlocal tabstop=2 shiftwidth=2 expandtab smarttab
+setlocal tabstop=4 shiftwidth=4 expandtab smarttab
