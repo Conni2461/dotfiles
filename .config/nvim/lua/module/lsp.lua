@@ -82,7 +82,7 @@ cmp.setup {
   },
 }
 
-cmp.setup.cmdline({ '/', '?' }, {
+cmp.setup.cmdline({ "/", "?" }, {
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = "buffer", keyword_length = 5 },
@@ -165,6 +165,7 @@ for _, server in ipairs {
   {
     "clangd",
     { "clangd", "--background-index", "--header-insertion=never", "--suggest-missing-includes", "--clang-tidy" },
+    { "c", "cpp", "objc", "objcpp", "cuda" },
   },
   { "cssls", { "css-languageserver", "--stdio" } },
   "dockerls",
@@ -173,19 +174,28 @@ for _, server in ipairs {
   "intelephense",
   { "jsonls", { "vscode-json-languageserver", "--stdio" } },
   "rnix",
-  "rust_analyzer",
   "texlab",
   "tsserver",
+  "svelte",
   "vimls",
   "yamlls",
   "ocamllsp",
 } do
   if type(server) == "table" then
-    lspconfig[server[1]].setup {
-      cmd = server[2],
-      on_attach = on_attach,
-      capabilities = capabilities,
-    }
+    if server[3] then
+      lspconfig[server[1]].setup {
+        cmd = server[2],
+        on_attach = on_attach,
+        capabilities = capabilities,
+        filetypes = server[3],
+      }
+    else
+      lspconfig[server[1]].setup {
+        cmd = server[2],
+        on_attach = on_attach,
+        capabilities = capabilities,
+      }
+    end
   else
     lspconfig[server].setup {
       on_attach = on_attach,
@@ -193,6 +203,18 @@ for _, server in ipairs {
     }
   end
 end
+
+lspconfig.rust_analyzer.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  settings = {
+    ["rust-analyzer"] = {
+      cargo = {
+        loadOutDirsFromCheck = true,
+      },
+    },
+  },
+}
 
 local function get_lua_runtime()
   local result = {}
