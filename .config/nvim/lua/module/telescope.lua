@@ -49,10 +49,11 @@ telescope.setup {
     find_files = {
       theme = "dropdown",
       previewer = false,
-    },
-    file_browser = {
-      theme = "dropdown",
-      previewer = false,
+      layout_config = {
+        center = {
+          width = 120,
+        },
+      },
     },
     git_files = {
       theme = "dropdown",
@@ -97,7 +98,9 @@ telescope.load_extension "ui-select"
 
 vim.keymap.set("n", "<leader>w", R("telescope.builtin").git_files, { noremap = true })
 vim.keymap.set("n", "<leader>q", R("telescope.builtin").find_files, { noremap = true })
-vim.keymap.set("n", "<leader>gp", R("telescope.builtin").live_grep, { noremap = true })
+vim.keymap.set("n", "<leader>gp", function()
+  R("telescope.builtin").live_grep { previewer = false }
+end, { noremap = true })
 vim.keymap.set("n", "<leader>gw", function()
   R("telescope.builtin").grep_string { word_match = "-w" }
 end, { noremap = true })

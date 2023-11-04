@@ -50,8 +50,6 @@ require("packer").startup(function(use)
   local_use "telescope-fzf-native.nvim"
   use "nvim-telescope/telescope-symbols.nvim"
   local_use "telescope-ui-select.nvim"
-  -- use 'nvim-telescope/telescope-frecency.nvim'
-  -- use 'nvim-telescope/telescope-smart-history.nvim'
 
   use {
     "lewis6991/gitsigns.nvim",
