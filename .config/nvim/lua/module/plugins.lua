@@ -80,7 +80,7 @@ require("packer").startup(function(use)
   use "L3MON4D3/LuaSnip"
   use "saadparwaiz1/cmp_luasnip"
   use "kosayoda/nvim-lightbulb"
-  use "j-hui/fidget.nvim"
+  use { "j-hui/fidget.nvim", tag = 'legacy' }
 
   use "mfussenegger/nvim-dap"
   use "theHamsta/nvim-dap-virtual-text"
