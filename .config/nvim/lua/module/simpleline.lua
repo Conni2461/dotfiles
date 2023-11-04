@@ -103,18 +103,16 @@ m.update = function(active)
 
   local curr = vim.api.nvim_get_current_win()
   if active == true then
-    Job
-      :new({
-        "git",
-        "branch",
-        "--show-current",
-        on_exit = function(j, c)
-          if c == 0 then
-            cached_entries.branch = j:result()[1]
-          end
-        end,
-      })
-      :start()
+    Job:new({
+      "git",
+      "branch",
+      "--show-current",
+      on_exit = function(j, c)
+        if c == 0 then
+          cached_entries.branch = j:result()[1]
+        end
+      end,
+    }):start()
     cached_entries.filetype = devicons.get_icon(vim.fn.expand "%:t", vim.bo.filetype)
     vim.api.nvim_win_set_option(curr, "statusline", [=[%!luaeval('require("module/simpleline").active()')]=])
   else

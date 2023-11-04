@@ -33,14 +33,12 @@ local gen_gtest_job = function(chan, args)
     on_stderr = writer,
     on_exit = function(_, code)
       if code == 0 then
-        Job
-          :new({
-            command = "./build/test/MPTtest",
-            args = args,
-            on_stdout = writer,
-            on_stderr = writer,
-          })
-          :start()
+        Job:new({
+          command = "./build/test/MPTtest",
+          args = args,
+          on_stdout = writer,
+          on_stderr = writer,
+        }):start()
       end
     end,
   }
