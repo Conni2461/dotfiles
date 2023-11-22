@@ -159,63 +159,6 @@ local on_attach = function(_, bufnr)
   )
 end
 
-for _, server in ipairs {
-  "bashls",
-  "cmake",
-  {
-    "clangd",
-    { "clangd", "--background-index", "--header-insertion=never", "--suggest-missing-includes", "--clang-tidy" },
-    { "c", "cpp", "objc", "objcpp", "cuda" },
-  },
-  { "cssls", { "css-languageserver", "--stdio" } },
-  "dockerls",
-  "gopls",
-  { "html", { "html-languageserver", "--stdio" } },
-  "intelephense",
-  { "jsonls", { "vscode-json-languageserver", "--stdio" } },
-  "rnix",
-  "texlab",
-  "tsserver",
-  "svelte",
-  "vimls",
-  "yamlls",
-  "ocamllsp",
-} do
-  if type(server) == "table" then
-    if server[3] then
-      lspconfig[server[1]].setup {
-        cmd = server[2],
-        on_attach = on_attach,
-        capabilities = capabilities,
-        filetypes = server[3],
-      }
-    else
-      lspconfig[server[1]].setup {
-        cmd = server[2],
-        on_attach = on_attach,
-        capabilities = capabilities,
-      }
-    end
-  else
-    lspconfig[server].setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
-    }
-  end
-end
-
-lspconfig.rust_analyzer.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    ["rust-analyzer"] = {
-      cargo = {
-        loadOutDirsFromCheck = true,
-      },
-    },
-  },
-}
-
 local function get_lua_runtime()
   local result = {}
   for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
@@ -230,59 +173,90 @@ local function get_lua_runtime()
   return result
 end
 
-lspconfig.lua_ls.setup {
-  cmd = { "lua-language-server" },
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      telemetry = {
-        enable = false,
-      },
-      runtime = {
-        version = "LuaJIT",
-        path = vim.split(package.path, ";"),
-      },
-      diagnostics = {
-        enable = true,
-        globals = { "vim", "describe", "it", "before_each", "teardown", "pending" },
-      },
-      workspace = {
-        library = get_lua_runtime(),
-        maxPreload = 1000,
-        preloadFileSize = 1000,
-        checkThirdParty = false,
-      },
-    },
-  },
-}
-
-local function get_python_path(workspace)
+local function get_python_path()
   -- Use activated virtualenv.
   if vim.env.VIRTUAL_ENV then
     return util.path.join(vim.env.VIRTUAL_ENV, "bin", "python")
-  end
-
-  -- Check for a poetry.lock file
-  if vim.fn.glob(util.path.join(workspace, "poetry.lock")) ~= "" then
-    return util.path.join(vim.fn.trim(vim.fn.system "poetry env info -p"), "bin", "python")
-  end
-
-  -- Find and use virtualenv from pipenv in workspace directory.
-  local match = vim.fn.glob(util.path.join(workspace, "Pipfile"))
-  if match ~= "" then
-    local venv = vim.fn.trim(vim.fn.system("PIPENV_PIPFILE=" .. match .. " pipenv --venv"))
-    return util.path.join(venv, "bin", "python")
   end
 
   -- Fallback to system Python.
   return vim.fn.exepath "python3" or vim.fn.exepath "python" or "python"
 end
 
-lspconfig.pyright.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  on_init = function(client)
-    client.config.settings.python.pythonPath = get_python_path(client.config.root_dir)
-  end,
-}
+for _, server in ipairs {
+  "bashls",
+  "cmake",
+  {
+    "clangd",
+    cmd = { "clangd", "--background-index", "--header-insertion=never", "--suggest-missing-includes", "--clang-tidy" },
+    filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+  },
+  { "cssls", cmd = { "css-languageserver", "--stdio" } },
+  "dockerls",
+  "gopls",
+  { "html", cmd = { "html-languageserver", "--stdio" } },
+  "intelephense",
+  { "jsonls", cmd = { "vscode-json-languageserver", "--stdio" } },
+  {
+    "lua_ls",
+    cmd = { "lua-language-server" },
+    settings = {
+      Lua = {
+        telemetry = {
+          enable = false,
+        },
+        runtime = {
+          version = "LuaJIT",
+          path = vim.split(package.path, ";"),
+        },
+        diagnostics = {
+          enable = true,
+          globals = { "vim", "describe", "it", "before_each", "teardown", "pending" },
+        },
+        workspace = {
+          library = get_lua_runtime(),
+          maxPreload = 1000,
+          preloadFileSize = 1000,
+          checkThirdParty = false,
+        },
+      },
+    },
+  },
+  {
+    "pyright",
+    on_init = function(client)
+      client.config.settings.python.pythonPath = get_python_path()
+    end,
+  },
+  "rnix",
+  {
+    "rust_analyzer",
+    settings = {
+      ["rust-analyzer"] = {
+        cargo = {
+          loadOutDirsFromCheck = true,
+        },
+      },
+    },
+  },
+  "texlab",
+  "tsserver",
+  "svelte",
+  "tailwindcss",
+} do
+  if type(server) == "table" then
+    lspconfig[server[1]].setup {
+      cmd = server.cmd,
+      on_attach = on_attach,
+      capabilities = capabilities,
+      filetypes = server.filetypes,
+      settings = server.settings,
+      on_init = server.on_init,
+    }
+  else
+    lspconfig[server].setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }
+  end
+end
