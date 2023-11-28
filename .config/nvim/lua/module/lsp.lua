@@ -53,7 +53,6 @@ vim.diagnostic.config {
   },
 }
 
-require("fidget").setup {}
 cmp.setup {
   snippet = {
     expand = function(args)

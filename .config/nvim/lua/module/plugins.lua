@@ -1,97 +1,106 @@
-local install_path = vim.fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
-
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-  vim.fn.system { "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path }
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system {
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  }
 end
+vim.opt.rtp:prepend(lazypath)
 
-require("packer").startup(function(use)
-  local local_use = function(v, opts)
-    opts = vim.F.if_nil(opts, {})
+require("lazy").setup({
+  {
+    "morhetz/gruvbox",
+    priority = 1000,
+    config = function()
+      vim.o.termguicolors = true
+      vim.cmd.colorscheme "gruvbox"
+    end,
+  },
 
-    if vim.fn.isdirectory(vim.fn.expand("~/plugins/" .. v)) == 1 then
-      opts[1] = "~/plugins/" .. v
-    else
-      print("~/plugins/" .. v .. " does not exist")
-      return
-    end
-    use(opts)
-  end
+  "kshenoy/vim-signature",
 
-  use "wbthomason/packer.nvim"
-  use "morhetz/gruvbox"
+  "rhysd/git-messenger.vim",
+  "gisphm/vim-gitignore",
 
-  use "kshenoy/vim-signature"
-
-  use "rhysd/git-messenger.vim"
-  use "gisphm/vim-gitignore"
-
-  use {
+  {
     "numToStr/Comment.nvim",
     config = function()
       require "module.comment"
     end,
-  }
-  use "tpope/vim-scriptease"
-  use "godlygeek/tabular"
+  },
+  "tpope/vim-scriptease",
 
-  use "kyazdani42/nvim-web-devicons"
+  "kyazdani42/nvim-web-devicons",
 
-  -- use 'tami5/sql.nvim'
-
-  use {
+  {
     "mhinz/vim-startify",
     config = function()
       require "module.startify"
     end,
-  }
+  },
 
-  local_use "plenary.nvim"
-  local_use "telescope.nvim"
-  local_use "telescope-fzf-native.nvim"
-  use "nvim-telescope/telescope-symbols.nvim"
-  local_use "telescope-ui-select.nvim"
-
-  use {
+  {
     "lewis6991/gitsigns.nvim",
     config = function()
       require("gitsigns").setup()
     end,
-  }
+  },
 
-  use {
+  {
     "rcarriga/nvim-notify",
     config = function()
       vim.notify = require "notify"
     end,
-  }
+  },
 
-  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
-  use "nvim-treesitter/nvim-treesitter-refactor"
-  use "nvim-treesitter/nvim-treesitter-textobjects"
-  use "nvim-treesitter/playground"
-  local_use "tree-sitter-lua"
+  { "nvim-lua/plenary.nvim", dev = true },
+  { "nvim-telescope/telescope.nvim", dev = true },
+  { "nvim-telescope/telescope-fzf-native.nvim", dev = true },
+  "nvim-telescope/telescope-symbols.nvim",
+  { "nvim-telescope/telescope-ui-select.nvim", dev = true },
 
-  use "neovim/nvim-lspconfig"
-  use "hrsh7th/nvim-cmp"
-  use "hrsh7th/cmp-buffer"
-  use "hrsh7th/cmp-path"
-  use "hrsh7th/cmp-nvim-lsp"
-  use "hrsh7th/cmp-cmdline"
-  use "L3MON4D3/LuaSnip"
-  use "saadparwaiz1/cmp_luasnip"
-  use "kosayoda/nvim-lightbulb"
-  use { "j-hui/fidget.nvim", tag = 'legacy' }
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-textobjects",
+      "nvim-treesitter/nvim-treesitter-refactor",
+      "nvim-treesitter/playground",
+      { "tjdevries/tree-sitter-lua", dev = true },
+    },
+  },
 
-  use "mfussenegger/nvim-dap"
-  use "theHamsta/nvim-dap-virtual-text"
+  {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+      { "j-hui/fidget.nvim", opts = {}, tag = "legacy" },
+      "kosayoda/nvim-lightbulb",
+    },
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-cmdline",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+    },
+  },
 
-  use "tpope/vim-dadbod"
-  use "kristijanhusak/vim-dadbod-ui"
-
-  use {
+  {
     "norcalli/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup()
     end,
-  }
-end)
+  },
+}, {
+  dev = {
+    path = "~/plugins",
+  },
+})

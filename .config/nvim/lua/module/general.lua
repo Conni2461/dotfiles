@@ -27,9 +27,6 @@ vim.wo.foldenable = true
 vim.wo.foldmethod = "indent"
 vim.o.foldlevelstart = 99
 
-vim.o.termguicolors = true
-vim.cmd [[ colorscheme gruvbox ]]
-
 vim.o.inccommand = "split"
 
 -- History
@@ -40,10 +37,6 @@ vim.o.undolevels = 100
 vim.o.undoreload = 1000
 vim.o.backupdir = vim.fn.expand "~/.local/share/nvim/backup/"
 vim.o.directory = vim.fn.expand "~/.local/share/nvim/backup/"
-
--- keymaps
-vim.g.mapleader = ","
-vim.g.maplocalleader = ","
 
 vim.keymap.set("i", "jk", "<esc>", { silent = true })
 
