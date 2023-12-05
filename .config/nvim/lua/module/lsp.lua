@@ -183,7 +183,14 @@ local function get_python_path()
 end
 
 for _, server in ipairs {
-  "bashls",
+  {
+    "bashls",
+    settings = {
+      ["bashIde"] = {
+        shellcheckArguments = "-o add-default-case,avoid-nullary-conditions,check-set-e-suppressed,deprecate-which,quote-safe-variables,require-double-brackets,require-variable-braces -S style",
+      },
+    },
+  },
   "cmake",
   {
     "clangd",
