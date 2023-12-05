@@ -92,6 +92,7 @@ require("lazy").setup({
       "saadparwaiz1/cmp_luasnip",
     },
   },
+  "nvimtools/none-ls.nvim",
 
   {
     "norcalli/nvim-colorizer.lua",

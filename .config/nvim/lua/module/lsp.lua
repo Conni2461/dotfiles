@@ -266,3 +266,19 @@ for _, server in ipairs {
     }
   end
 end
+
+local null_ls = require "null-ls"
+null_ls.setup {
+  sources = {
+    -- misc
+    -- null_ls.builtins.diagnostics.commitlint,
+
+    -- nix
+    null_ls.builtins.code_actions.statix,
+    null_ls.builtins.diagnostics.statix,
+    null_ls.builtins.diagnostics.deadnix,
+
+    -- lua
+    -- null_ls.builtins.diagnostics.luacheck
+  },
+}
