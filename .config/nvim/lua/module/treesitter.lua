@@ -94,6 +94,8 @@ ts.setup {
     "css",
     "dockerfile",
     "fennel",
+    "gitcommit",
+    "git_config",
     "glimmer",
     "go",
     "gomod",
