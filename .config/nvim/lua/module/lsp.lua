@@ -228,13 +228,13 @@ for _, server in ipairs {
       },
     },
   },
+  "nil_ls",
   {
     "pyright",
     on_init = function(client)
       client.config.settings.python.pythonPath = get_python_path()
     end,
   },
-  "rnix",
   {
     "rust_analyzer",
     settings = {
