@@ -150,12 +150,6 @@ local on_attach = function(_, bufnr)
   if ft == "c" or ft == "cpp" or ft == "h" or ft == "hpp" then
     buf_set_keymap("n", "<leader>am", ":ClangdSwitchSourceHeader<CR>")
   end
-
-  local lsp_group = vim.api.nvim_create_augroup("custom_lsp_stuff", { clear = true })
-  vim.api.nvim_create_autocmd(
-    "CursorHold,CursorHoldI",
-    { pattern = "<buffer>", callback = require("nvim-lightbulb").update_lightbulb, group = lsp_group }
-  )
 end
 
 local function get_lua_runtime()

@@ -78,7 +78,6 @@ require("lazy").setup({
     "neovim/nvim-lspconfig",
     dependencies = {
       { "j-hui/fidget.nvim", opts = {}, tag = "legacy" },
-      "kosayoda/nvim-lightbulb",
     },
   },
   {
