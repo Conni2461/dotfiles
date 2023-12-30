@@ -134,14 +134,13 @@ local remove_group = vim.api.nvim_create_augroup("remove", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
+    local no_trim = vim.env["__VIM_NO_TRIM"] or "false"
+    if no_trim:lower() == "true" then
+      return
+    end
+
     -- trim trailing whitespaces
     trim [[%s/\s\+$//e]]
-  end,
-  group = remove_group,
-})
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function()
     -- trim trailing lines
     trim [[%s/\($\n\s*\)\+\%$//]]
   end,
