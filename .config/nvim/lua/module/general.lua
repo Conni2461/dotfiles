@@ -93,17 +93,15 @@ vim.keymap.set("i", "?", "?<c-g>u", { noremap = true })
 
 vim.keymap.set("n", "<leader>af", require("module.formatf").run, { noremap = true })
 
--- autocommands
-local files_group = vim.api.nvim_create_augroup("files", { clear = true })
-vim.api.nvim_create_autocmd(
-  { "BufRead", "BufNewFile" },
-  { pattern = "*.ms,*.me,*.mom,*.man", command = "setf groff", group = files_group }
-)
-vim.api.nvim_create_autocmd(
-  { "BufRead", "BufNewFile" },
-  { pattern = "*.tex", command = "setf tex", group = files_group }
-)
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, { pattern = "*.h", command = "setf c", group = files_group })
+vim.filetype.add {
+  extension = {
+    tpp = "cpp",
+  },
+  filename = {
+    SConstructGeneral = "python",
+    SConscript = "python",
+  },
+}
 
 local yank_group = vim.api.nvim_create_augroup("yank", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
