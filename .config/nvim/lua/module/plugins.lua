@@ -34,7 +34,21 @@ require("lazy").setup({
   },
   "tpope/vim-scriptease",
 
-  "kyazdani42/nvim-web-devicons",
+  {
+    "kyazdani42/nvim-web-devicons",
+    config = function()
+      require("nvim-web-devicons").setup {
+        override_by_extension = {
+          ["tpp"] = {
+            icon = "",
+            color = "#8810b0",
+            cterm_color = "53",
+            name = "Tpp",
+          },
+        },
+      }
+    end,
+  },
 
   {
     "mhinz/vim-startify",
