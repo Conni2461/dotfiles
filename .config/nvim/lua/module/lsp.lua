@@ -243,6 +243,7 @@ for _, server in ipairs {
   "tsserver",
   "svelte",
   "tailwindcss",
+  "zls",
 } do
   if type(server) == "table" then
     lspconfig[server[1]].setup {
