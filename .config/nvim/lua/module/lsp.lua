@@ -242,6 +242,7 @@ for _, server in ipairs {
   "texlab",
   "tsserver",
   "svelte",
+  "vuels",
   "tailwindcss",
   "zls",
 } do
