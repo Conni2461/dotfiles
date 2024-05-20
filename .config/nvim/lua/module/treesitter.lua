@@ -1,8 +1,7 @@
 local ts = require "nvim-treesitter.configs"
-local parsers = require "nvim-treesitter.parsers"
 
-vim.treesitter.query.set("lua", "folds", "")
-vim.treesitter.query.set("lua", "indents", "")
+-- vim.treesitter.query.set("lua", "folds", "")
+-- vim.treesitter.query.set("lua", "indents", "")
 
 ts.setup {
   highlight = { enable = true },
