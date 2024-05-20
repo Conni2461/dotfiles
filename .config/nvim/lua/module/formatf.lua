@@ -8,7 +8,8 @@ local external_format = function(cmd)
 end
 
 local builtin_fmt = function()
-  vim.lsp.buf.format { async = true }
+  vim.lsp.buf.format { async = false }
+  vim.cmd [[:silent w]]
 end
 
 local cmds = {
@@ -29,7 +30,7 @@ local cmds = {
   java = external_format "astyle -A2 -s2 -c -J -n -q -z2 -xC80",
   sh = external_format "shfmt -w -i 2 -ci -sr",
   bash = external_format "shfmt -w -i 2 -ci -sr",
-  nix = external_format "nixpkgs-fmt",
+  nix = external_format "nixfmt",
   php = external_format "php-cs-fixer fix --rules=@PSR12",
 }
 
