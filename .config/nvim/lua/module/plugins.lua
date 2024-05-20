@@ -13,7 +13,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   {
-    "morhetz/gruvbox",
+    "ellisonleao/gruvbox.nvim",
     priority = 1000,
     config = function()
       vim.o.termguicolors = true
@@ -39,6 +39,12 @@ require("lazy").setup({
     config = function()
       require("nvim-web-devicons").setup {
         override_by_extension = {
+          ["toml"] = {
+            icon = "",
+            color = "#6d8086",
+            cterm_color = "66",
+            name = "Toml",
+          },
           ["tpp"] = {
             icon = "",
             color = "#8810b0",
@@ -84,7 +90,7 @@ require("lazy").setup({
       "nvim-treesitter/nvim-treesitter-textobjects",
       "nvim-treesitter/nvim-treesitter-refactor",
       "nvim-treesitter/playground",
-      { "tjdevries/tree-sitter-lua", dev = true },
+      -- { "tjdevries/tree-sitter-lua", dev = true },
     },
   },
 
