@@ -125,7 +125,6 @@ ts.setup {
     "r",
     "regex",
     "requirements",
-    "rst",
     "ruby",
     "rust",
     "sql",
