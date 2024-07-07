@@ -222,7 +222,15 @@ for _, server in ipairs {
       },
     },
   },
-  "nil_ls",
+  { "nil_ls",
+    settings = {
+      ["nil"] = {
+        formatting = {
+          command = {"nixfmt"},
+        }
+      }
+    }
+  },
   {
     "pyright",
     on_init = function(client)
