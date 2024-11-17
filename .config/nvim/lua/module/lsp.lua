@@ -181,7 +181,7 @@ for _, server in ipairs {
     "bashls",
     settings = {
       ["bashIde"] = {
-        shellcheckArguments = "-o add-default-case,avoid-nullary-conditions,check-set-e-suppressed,deprecate-which,quote-safe-variables,require-double-brackets,require-variable-braces -S style",
+        shellcheckArguments = "--extended-analysis=false -o add-default-case,avoid-nullary-conditions,check-set-e-suppressed,deprecate-which,quote-safe-variables,require-double-brackets,require-variable-braces -S style",
       },
     },
   },
@@ -248,7 +248,7 @@ for _, server in ipairs {
     },
   },
   "texlab",
-  "tsserver",
+  "ts_ls",
   "svelte",
   "vuels",
   "tailwindcss",
