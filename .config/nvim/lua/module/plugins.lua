@@ -20,6 +20,9 @@ require("lazy").setup({
       vim.cmd.colorscheme "gruvbox"
     end,
   },
+  { "projekt0n/github-nvim-theme" },
+  { "catppuccin/nvim" },
+  { "folke/tokyonight.nvim" },
 
   "kshenoy/vim-signature",
 
