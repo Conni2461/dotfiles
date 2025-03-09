@@ -196,7 +196,12 @@ for _, server in ipairs {
   "gopls",
   { "html", cmd = { "vscode-html-language-server", "--stdio" } },
   "intelephense",
+  {
+    "java_language_server",
+    cmd = { "java-language-server" },
+  },
   { "jsonls", cmd = { "vscode-json-language-server", "--stdio" } },
+  { "tinymist" },
   {
     "lua_ls",
     cmd = { "lua-language-server" },
