@@ -34,6 +34,7 @@ local cmds = {
   svelte = builtin_fmt,
   toml = external_format "taplo format",
   typescript = builtin_fmt,
+  typst = external_format "typstyle -i",
   vue = builtin_fmt,
   yaml = external_format "prettier -w",
   zig = builtin_fmt,
