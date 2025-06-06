@@ -2,40 +2,29 @@ local lspconfig = require "lspconfig"
 local util = require "lspconfig/util"
 local cmp = require "cmp"
 
-vim.fn.sign_define("DiagnosticSignError", {
-  text = " ",
-  texthl = "DiagnosticError",
-})
-vim.fn.sign_define("DiagnosticSignWarn", {
-  text = " ",
-  texthl = "DiagnosticWarn",
-})
-vim.fn.sign_define("DiagnosticSignInfo", {
-  text = " ",
-  texthl = "DiagnosticInfo",
-})
-vim.fn.sign_define("DiagnosticSignHint", {
-  text = "ﯦ ",
-  texthl = "DiagnosticHint",
-})
-
-vim.cmd [[
-  hi DiagnosticError guifg=Red guibg=#282a2e
-  hi DiagnosticWarn guifg=Orange guibg=#282a2e
-  hi DiagnosticInfo guifg=LightBlue guibg=#282a2e
-  hi DiagnosticHint guifg=LightGrey guibg=#282a2e
-]]
-
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 vim.opt.shortmess:append "c"
 vim.opt.pumblend = 10
 
 vim.diagnostic.config {
   virtual_text = true,
-  signs = true,
   underline = false,
   update_in_insert = true,
   severity_sort = true,
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = " ",
+      [vim.diagnostic.severity.WARN] = " ",
+      [vim.diagnostic.severity.INFO] = "󰋼 ",
+      [vim.diagnostic.severity.HINT] = "󰌵 ",
+    },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = "DiagnosticError",
+      [vim.diagnostic.severity.WARN] = "DiagnosticWarn",
+      [vim.diagnostic.severity.INFO] = "DiagnosticInfo",
+      [vim.diagnostic.severity.HINT] = "DiagnosticHint",
+    },
+  },
   float = {
     focusable = false,
     style = "minimal",
@@ -185,6 +174,7 @@ for _, server in ipairs {
       },
     },
   },
+  "buf_ls",
   "cmake",
   {
     "clangd",
@@ -243,6 +233,7 @@ for _, server in ipairs {
       client.config.settings.python.pythonPath = get_python_path()
     end,
   },
+  "ruff",
   {
     "rust_analyzer",
     settings = {
@@ -253,11 +244,11 @@ for _, server in ipairs {
       },
     },
   },
+  "svelte",
+  "tailwindcss",
   "texlab",
   "ts_ls",
-  "svelte",
   "vuels",
-  "tailwindcss",
   "zls",
 } do
   if type(server) == "table" then

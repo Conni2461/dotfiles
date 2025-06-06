@@ -2,12 +2,12 @@ local Job = require "plenary.job"
 local devicons = require "nvim-web-devicons"
 
 local hl_groups = {
-  default = { "ColorColumn" },
-  normal = { "SimplelineNormal", "#005f00", "#afdf00" },
-  insert = { "SimplelineInsert", "#005f5f", "#ffffff" },
-  visual = { "SimplelineVisual", "#870000", "#ff8700" },
-  replace = { "SimplelineReplace", "#ffffff", "#df0000" },
-  linenr = { "SimplelineNumber", "#303030", "#9e9e9e" },
+  default = { "SimplelineText", "#3c3836", "#ebdbb2", "reverse" },
+  normal = { "SimplelineNormal", "#005f00", "#afdf00", "bold" },
+  insert = { "SimplelineInsert", "#005f5f", "#ffffff", "bold" },
+  visual = { "SimplelineVisual", "#870000", "#ff8700", "bold" },
+  replace = { "SimplelineReplace", "#ffffff", "#df0000", "bold" },
+  linenr = { "SimplelineNumber", "#303030", "#9e9e9e", "bold" },
 }
 local mode_map = {
   ["n"] = { "N", hl_groups.normal[1] },
@@ -29,18 +29,16 @@ end
 local static_entries = {
   filename = block(hl_groups.default[1], " %t"),
   info = block(hl_groups.linenr[1], "%l:%c ▏%p%%"),
-  inactive = block(hl_groups.default[1], "%t"),
 }
-local cached_entries = { branch = "", filetype = "" }
+local cached_entries = { branch = "", filetypes = {}, unknown_filetypes = {} }
 
 local severities = { "Error", "Warn", "Info", "Hint" }
 local severities_gens = (function()
   local res = {}
-  for _, s in ipairs(severities) do
-    table.insert(
-      res,
-      "%%#Diagnostic" .. s .. "#%%(" .. vim.trim(vim.fn.sign_getdefined("DiagnosticSign" .. s)[1].text) .. "%d %%)"
-    )
+  local curr_config = vim.diagnostic.config() -- this is a deepcopy ...
+  for idx, s in ipairs(severities) do
+    table.insert(res, "%%#Diagnostic" .. s .. "#%%(" .. vim.trim(curr_config["signs"]["text"][idx]) .. "%d %%)")
+    table.insert(res, "")
   end
   return res
 end)()
@@ -71,9 +69,26 @@ local diagnostics = function()
   return table.concat(output)
 end
 
-local filetype = function()
-  if cached_entries.filetype and cached_entries.filetype ~= "" then
-    return block(hl_groups.default[1], string.format("%%( %s%%)", cached_entries.filetype))
+local filetype = function(ft)
+  local curr_filetype = vim.F.if_nil(ft, vim.bo.ft)
+  if curr_filetype == "" then
+    return ""
+  end
+  if not cached_entries.filetypes[curr_filetype] and not cached_entries.unknown_filetypes[curr_filetype] then
+    local devicon = devicons.get_icon_by_filetype(curr_filetype)
+    if devicon == nil then
+      cached_entries.unknown_filetypes[curr_filetype] = true
+    else
+      cached_entries.filetypes[curr_filetype] = devicon
+    end
+  end
+
+  if
+    not cached_entries.unknown_filetypes[curr_filetype]
+    and cached_entries.filetypes[curr_filetype]
+    and cached_entries.filetypes[curr_filetype] ~= ""
+  then
+    return block(hl_groups.default[1], string.format("%%( %s%%)", cached_entries.filetypes[curr_filetype]))
   end
   return ""
 end
@@ -92,7 +107,7 @@ m.init = function()
   vim.cmd [=[ autocmd WinLeave * :lua require("module/simpleline").update(false) ]=]
   for _, tbl in pairs(hl_groups) do
     if #tbl > 1 then
-      vim.cmd(string.format("hi %s gui=bold guifg=%s guibg=%s", unpack(tbl)))
+      vim.cmd(string.format("hi %s guifg=%s guibg=%s cterm=reverse gui=%s", unpack(tbl)))
     end
   end
   m.update()
@@ -113,13 +128,17 @@ m.update = function(active)
         end
       end,
     }):start()
-    cached_entries.filetype = devicons.get_icon(vim.fn.expand "%:t", vim.bo.filetype)
-    vim.api.nvim_win_set_option(curr, "statusline", [=[%!luaeval('require("module/simpleline").active()')]=])
-  else
-    vim.api.nvim_win_set_option(
-      curr,
+    vim.api.nvim_set_option_value(
       "statusline",
-      string.format([=[%%!luaeval('require("module/simpleline").inactive(%d)')]=], curr)
+      [=[%!luaeval('require("module/simpleline").active()')]=],
+      { win = curr }
+    )
+  else
+    local statusline = string.format([=[%%!luaeval('require("module/simpleline").inactive(%d)')]=], curr)
+    vim.api.nvim_set_option_value(
+      "statusline",
+      statusline,
+      { win = curr }
     )
   end
 end
@@ -139,13 +158,9 @@ end
 
 m.inactive = function(winid)
   local bufnr = vim.api.nvim_win_get_buf(winid)
-  local icon = devicons.get_icon(
-    vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":t"),
-    vim.api.nvim_buf_get_option(bufnr, "filetype")
-  )
   return table.concat {
-    icon and block(hl_groups.default[1], string.format("%%(%s %%)", icon)) or "",
-    static_entries.inactive,
+    filetype(vim.api.nvim_get_option_value("filetype", {buf=bufnr})),
+    static_entries.filename,
   }
 end
 
