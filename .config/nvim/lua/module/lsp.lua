@@ -1,5 +1,3 @@
-local lspconfig = require "lspconfig"
-local util = require "lspconfig/util"
 local cmp = require "cmp"
 
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
@@ -158,7 +156,7 @@ end
 local function get_python_path()
   -- Use activated virtualenv.
   if vim.env.VIRTUAL_ENV then
-    return util.path.join(vim.env.VIRTUAL_ENV, "bin", "python")
+    return vim.fs.joinpath(vim.env.VIRTUAL_ENV, "bin", "python")
   end
 
   -- Fallback to system Python.
@@ -252,19 +250,19 @@ for _, server in ipairs {
   "zls",
 } do
   if type(server) == "table" then
-    lspconfig[server[1]].setup {
+    vim.lsp.config(server[1], {
       cmd = server.cmd,
       on_attach = on_attach,
       capabilities = capabilities,
       filetypes = server.filetypes,
       settings = server.settings,
       on_init = server.on_init,
-    }
+    })
   else
-    lspconfig[server].setup {
+    vim.lsp.config(server, {
       on_attach = on_attach,
       capabilities = capabilities,
-    }
+    })
   end
 end
 

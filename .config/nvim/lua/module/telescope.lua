@@ -2,7 +2,7 @@ local telescope = require "telescope"
 local actions = require "telescope.actions"
 local actions_layout = require "telescope.actions.layout"
 
-vim.api.nvim_set_hl(0,"TelescopePromptPrefix",{fg="#ffab00"})
+vim.api.nvim_set_hl(0, "TelescopePromptPrefix", { fg = "#ffab00" })
 
 telescope.setup {
   defaults = {
