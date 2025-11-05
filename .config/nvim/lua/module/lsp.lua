@@ -258,11 +258,13 @@ for _, server in ipairs {
       settings = server.settings,
       on_init = server.on_init,
     })
+    vim.lsp.enable(server[1])
   else
     vim.lsp.config(server, {
       on_attach = on_attach,
       capabilities = capabilities,
     })
+    vim.lsp.enable(server)
   end
 end
 
