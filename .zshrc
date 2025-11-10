@@ -100,4 +100,17 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 fi
 
 # Local plugins
-[ -f "$XDG_CONFIG_HOME/zsh/plugins/git-prompt.zsh" ] && source $XDG_CONFIG_HOME/zsh/plugins/git-prompt.zsh
+[ -f "${XDG_CONFIG_HOME}/zsh/plugins/git-prompt.zsh" ] && source ${XDG_CONFIG_HOME}/zsh/plugins/git-prompt.zsh
+[ -f "${XDG_CONFIG_HOME}/zsh/plugins/undistract-me.zsh" ] && source ${XDG_CONFIG_HOME}/zsh/plugins/undistract-me.zsh
+
+
+if hash atuin >/dev/null 2>&1; then
+  eval "$(atuin init zsh --disable-up-arrow)"
+fi
+if hash direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
+
+function jwt-decode() {
+  jq -R 'split(".") |.[0:2] | map(gsub("-"; "+") | gsub("_"; "/") | gsub("%3D"; "=") | @base64d) | map(fromjson)' <<< $1
+}
