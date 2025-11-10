@@ -143,7 +143,7 @@ local function get_lua_runtime()
   local result = {}
   for _, path in pairs(vim.api.nvim_list_runtime_paths()) do
     local lua_path = path .. "/lua"
-    local stat = vim.loop.fs_stat(lua_path)
+    local stat = vim.uv.fs_stat(lua_path)
     if stat and stat.type == "directory" then
       result[lua_path] = true
     end

@@ -8,7 +8,7 @@ snips._global = {
   todo = U.force_comment [[TODO(${1=vim.g.snips_author}): ]],
   fixme = U.force_comment [[FIXME(${1=vim.g.snips_author}): ]],
   note = U.force_comment [[NOTE(${1=vim.g.snips_author}): ]],
-  uname = function() return vim.loop.os_uname().sysname end,
+  uname = function() return vim.uv.os_uname().sysname end,
   date = function() return os.date() end,
   epoch = function() return os.time() end,
 }
