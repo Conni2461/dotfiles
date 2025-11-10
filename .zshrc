@@ -6,7 +6,6 @@ PS1='%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magent
 
 # History Settings
 # Use same history file for zsh and bash
-HISTFILE="$HOME/.sh_history"
 HISTSIZE=10000000
 SAVEHIST=10000000
 unsetopt EXTENDED_HISTORY
@@ -19,9 +18,6 @@ zmodload zsh/complist
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 compinit
-
-# Enable gpg signing over ssh
-export GPG_TTY=$(tty)
 
 # Fix ssh for some terminals
 export TERM=xterm-256color
@@ -103,11 +99,5 @@ if (( ${+terminfo[smkx]} && ${+terminfo[rmkx]} )); then
 	add-zle-hook-widget -Uz zle-line-finish zle_application_mode_stop
 fi
 
-# Load zsh-syntax-highlighting; should be last.
-[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[ -f "/usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh" ] && source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-[ -f "/usr/share/doc/pkgfile/command-not-found.zsh" ] && source /usr/share/doc/pkgfile/command-not-found.zsh
-
 # Local plugins
-[ -f "$XDG_CONFIG_HOME/zsh/plugins/you-should-use.zsh" ] && source $XDG_CONFIG_HOME/zsh/plugins/you-should-use.zsh
 [ -f "$XDG_CONFIG_HOME/zsh/plugins/git-prompt.zsh" ] && source $XDG_CONFIG_HOME/zsh/plugins/git-prompt.zsh
