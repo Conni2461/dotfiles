@@ -131,6 +131,7 @@ ts.setup {
     "ssh_config",
     "strace",
     "svelte",
+    "terraform",
     "toml",
     "tsx",
     "twig",

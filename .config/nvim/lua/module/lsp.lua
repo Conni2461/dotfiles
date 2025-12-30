@@ -244,6 +244,7 @@ for _, server in ipairs {
   },
   "svelte",
   "tailwindcss",
+  "terraformls",
   "texlab",
   "ts_ls",
   "vuels",
