@@ -96,6 +96,7 @@ vim.keymap.set("n", "<leader>af", require("module.formatf").run, { noremap = tru
 vim.filetype.add {
   extension = {
     tpp = "cpp",
+    tt = "tt2",
   },
   filename = {
     SConstructGeneral = "python",
