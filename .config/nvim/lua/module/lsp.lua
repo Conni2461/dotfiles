@@ -181,7 +181,11 @@ for _, server in ipairs {
   },
   { "cssls", cmd = { "vscode-css-language-server", "--stdio" } },
   "dockerls",
-  "gopls",
+  { "gopls", settings = {
+    gopls = {
+      gofumpt = true,
+    },
+  } },
   { "html", cmd = { "vscode-html-language-server", "--stdio" } },
   "intelephense",
   {
@@ -225,6 +229,7 @@ for _, server in ipairs {
       },
     },
   },
+  "perlnavigator",
   {
     "pyright",
     on_init = function(client)
