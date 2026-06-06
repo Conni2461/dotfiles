@@ -27,7 +27,6 @@ require("lazy").setup({
   "kshenoy/vim-signature",
 
   "rhysd/git-messenger.vim",
-  "gisphm/vim-gitignore",
 
   {
     "numToStr/Comment.nvim",
@@ -73,13 +72,6 @@ require("lazy").setup({
     end,
   },
 
-  {
-    "rcarriga/nvim-notify",
-    config = function()
-      vim.notify = require "notify"
-    end,
-  },
-
   { "nvim-lua/plenary.nvim", dev = true },
   { "nvim-telescope/telescope.nvim", dev = true },
   { "nvim-telescope/telescope-fzf-native.nvim", dev = true },
@@ -88,19 +80,16 @@ require("lazy").setup({
 
   {
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
+    branch = "main",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-      "nvim-treesitter/nvim-treesitter-refactor",
-      "nvim-treesitter/playground",
-      -- { "tjdevries/tree-sitter-lua", dev = true },
+      { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main", },
     },
   },
 
   {
     "neovim/nvim-lspconfig",
     dependencies = {
-      { "j-hui/fidget.nvim", opts = {}, tag = "legacy" },
+      { "j-hui/fidget.nvim" },
     },
   },
   {
@@ -117,7 +106,7 @@ require("lazy").setup({
   "nvimtools/none-ls.nvim",
 
   {
-    "norcalli/nvim-colorizer.lua",
+    "catgoose/nvim-colorizer.lua",
     config = function()
       require("colorizer").setup()
     end,
