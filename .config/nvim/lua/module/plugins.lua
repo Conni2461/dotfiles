@@ -111,6 +111,20 @@ require("lazy").setup({
       require("colorizer").setup()
     end,
   },
+
+  {
+    "nickjvandyke/opencode.nvim",
+    config = function()
+      require "module.opencode"
+    end,
+  },
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("todo-comments").setup {}
+    end,
+  },
 }, {
   dev = {
     path = "~/plugins",
