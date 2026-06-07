@@ -29,6 +29,8 @@ vim.o.foldlevelstart = 99
 
 vim.o.inccommand = "split"
 
+vim.o.laststatus = 3
+
 -- History
 vim.o.history = 1000
 vim.bo.undofile = true
