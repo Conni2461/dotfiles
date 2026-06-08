@@ -27,6 +27,7 @@ require("lazy").setup({
   "kshenoy/vim-signature",
 
   "rhysd/git-messenger.vim",
+  "tpope/vim-fugitive",
 
   {
     "numToStr/Comment.nvim",
