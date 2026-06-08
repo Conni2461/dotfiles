@@ -102,9 +102,28 @@ end
 
 local m = {}
 
+local function is_float(win)
+  local ok, cfg = pcall(vim.api.nvim_win_get_config, win)
+  return ok and cfg.relative ~= ""
+end
+
 m.init = function()
-  vim.cmd [=[ autocmd BufWinEnter,WinEnter * :lua require("module/simpleline").update(true) ]=]
-  vim.cmd [=[ autocmd WinLeave * :lua require("module/simpleline").update(false) ]=]
+  local aug = vim.api.nvim_create_augroup("Simpleline", { clear = true })
+
+  vim.api.nvim_create_autocmd({ "BufWinEnter", "WinEnter" }, {
+    group = aug,
+    callback = function()
+      m.update(true)
+    end,
+  })
+
+  vim.api.nvim_create_autocmd("WinLeave", {
+    group = aug,
+    callback = function()
+      m.update(false)
+    end,
+  })
+
   for _, tbl in pairs(hl_groups) do
     if #tbl > 1 then
       vim.cmd(string.format("hi %s guifg=%s guibg=%s cterm=reverse gui=%s", unpack(tbl)))
@@ -115,9 +134,13 @@ end
 
 m.update = function(active)
   active = vim.F.if_nil(active, true)
-
   local curr = vim.api.nvim_get_current_win()
-  if active == true then
+
+  if is_float(curr) then
+    return
+  end
+
+  if active then
     Job:new({
       "git",
       "branch",
@@ -134,12 +157,16 @@ m.update = function(active)
       { win = curr }
     )
   else
-    local statusline = string.format([=[%%!luaeval('require("module/simpleline").inactive(%d)')]=], curr)
-    vim.api.nvim_set_option_value(
-      "statusline",
-      statusline,
-      { win = curr }
-    )
+    vim.schedule(function()
+      if is_float(vim.api.nvim_get_current_win()) then
+        return
+      end
+      if not vim.api.nvim_win_is_valid(curr) then
+        return
+      end
+      local statusline = string.format([=[%%!luaeval('require("module/simpleline").inactive(%d)')]=], curr)
+      vim.api.nvim_set_option_value("statusline", statusline, { win = curr })
+    end)
   end
 end
 
@@ -159,7 +186,7 @@ end
 m.inactive = function(winid)
   local bufnr = vim.api.nvim_win_get_buf(winid)
   return table.concat {
-    filetype(vim.api.nvim_get_option_value("filetype", {buf=bufnr})),
+    filetype(vim.api.nvim_get_option_value("filetype", { buf = bufnr })),
     static_entries.filename,
   }
 end

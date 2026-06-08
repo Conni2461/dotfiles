@@ -95,7 +95,7 @@ telescope.setup {
 
 telescope.load_extension "fzf"
 telescope.load_extension "ui-select"
-telescope.load_extension("todo-comments")
+telescope.load_extension "todo-comments"
 -- telescope.load_extension "smart_history"
 -- telescope.load_extension "frecency"
 
