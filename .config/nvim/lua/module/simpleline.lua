@@ -1,4 +1,3 @@
-local Job = require "plenary.job"
 local devicons = require "nvim-web-devicons"
 
 local hl_groups = {
@@ -30,7 +29,7 @@ local static_entries = {
   filename = block(hl_groups.default[1], " %t"),
   info = block(hl_groups.linenr[1], "%l:%c ▏%p%%"),
 }
-local cached_entries = { branch = "", filetypes = {}, unknown_filetypes = {} }
+local cached_entries = { filetypes = {}, unknown_filetypes = {} }
 
 local severities = { "Error", "Warn", "Info", "Hint" }
 local severities_gens = (function()
@@ -94,8 +93,9 @@ local filetype = function(ft)
 end
 
 local branch = function()
-  if cached_entries.branch ~= "" then
-    return block(hl_groups.default[1], string.format("%%( ▏ %s%%)", cached_entries.branch))
+  local head = vim.b.gitsigns_head or ""
+  if head and head ~= "" then
+    return block(hl_groups.default[1], string.format("%%( ▏ %s%%)", head))
   end
   return ""
 end
@@ -141,16 +141,6 @@ m.update = function(active)
   end
 
   if active then
-    Job:new({
-      "git",
-      "branch",
-      "--show-current",
-      on_exit = function(j, c)
-        if c == 0 then
-          cached_entries.branch = j:result()[1]
-        end
-      end,
-    }):start()
     vim.api.nvim_set_option_value(
       "statusline",
       [=[%!luaeval('require("module/simpleline").active()')]=],
