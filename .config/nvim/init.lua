@@ -21,7 +21,5 @@ vim.defer_fn(function()
 end, 0)
 require "module.lsp"
 require "module.telescope"
--- require "module.dap"
 
 require("module.simpleline").init()
--- require("module.gtest").setup()
