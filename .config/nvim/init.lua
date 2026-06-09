@@ -16,9 +16,6 @@ end
 
 require "module.general"
 
-vim.defer_fn(function()
-  require "module.treesitter"
-end, 0)
 require "module.lsp"
 require "module.telescope"
 

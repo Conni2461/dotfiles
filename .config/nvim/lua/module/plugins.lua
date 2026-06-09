@@ -75,11 +75,10 @@ require("lazy").setup({
   { "nvim-telescope/telescope-ui-select.nvim", dev = true },
 
   {
-    "nvim-treesitter/nvim-treesitter",
-    branch = "main",
-    dependencies = {
-      { "nvim-treesitter/nvim-treesitter-textobjects", branch = "main" },
-    },
+    "romus204/tree-sitter-manager.nvim",
+    config = function()
+      require "module.treesitter"
+    end,
   },
 
   {
