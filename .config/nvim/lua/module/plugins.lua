@@ -32,7 +32,7 @@ require("lazy").setup({
   "tpope/vim-scriptease",
 
   {
-    "kyazdani42/nvim-web-devicons",
+    "nvim-tree/nvim-web-devicons",
     config = function()
       require("nvim-web-devicons").setup {
         override_by_extension = {
@@ -54,9 +54,10 @@ require("lazy").setup({
   },
 
   {
-    "mhinz/vim-startify",
+    "goolord/alpha-nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      require "module.startify"
+      require "module.alpha"
     end,
   },
 
