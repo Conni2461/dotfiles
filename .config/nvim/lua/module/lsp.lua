@@ -49,7 +49,13 @@ require("blink.cmp").setup {
 
   completion = {
     list = {
-      selection = { preselect = true, auto_insert = false },
+      selection = {
+        preselect = true,
+        auto_insert = true,
+      },
+    },
+    menu = {
+      winblend = 10,
     },
     documentation = {
       auto_show = true,
