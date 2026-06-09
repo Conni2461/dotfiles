@@ -29,12 +29,6 @@ require("lazy").setup({
   "rhysd/git-messenger.vim",
   "tpope/vim-fugitive",
 
-  {
-    "numToStr/Comment.nvim",
-    config = function()
-      require "module.comment"
-    end,
-  },
   "tpope/vim-scriptease",
 
   {
@@ -94,15 +88,12 @@ require("lazy").setup({
     },
   },
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-cmdline",
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
-    },
+    "saghen/blink.cmp",
+    dependencies = { "saghen/blink.lib" },
+    build = function()
+      require("blink.cmp").build():pwait()
+    end,
+    config = false,
   },
   "nvimtools/none-ls.nvim",
 
@@ -119,6 +110,30 @@ require("lazy").setup({
       require "module.opencode"
     end,
   },
+  -- {
+  --   "olimorris/codecompanion.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --   },
+  --   opts = {
+  --     interactions = {
+  --       chat = { adapter = "opencode" },
+  --       inline = { adapter = "opencode" },
+  --       cli = {
+  --         agent = "opencode",
+  --         agents = {
+  --           opencode = {
+  --             cmd = "opencode",
+  --             args = {},
+  --             description = "Opencode CLI",
+  --             provider = "terminal",
+  --           },
+  --         },
+  --       },
+  --     },
+  --   },
+  -- },
+
   {
     "folke/todo-comments.nvim",
     dependencies = { "nvim-lua/plenary.nvim" },

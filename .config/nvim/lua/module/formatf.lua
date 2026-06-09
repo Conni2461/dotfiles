@@ -3,7 +3,6 @@ local external_format = function(cmd)
     vim.cmd [[:silent w!]]
     vim.cmd((":silent !%s %%"):format(cmd))
     vim.cmd [[:silent e]]
-    vim.cmd [[:silent LuaSnipUnlinkCurrent]]
   end
 end
 
