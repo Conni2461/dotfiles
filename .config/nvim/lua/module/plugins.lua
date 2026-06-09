@@ -146,4 +146,5 @@ require("lazy").setup({
   dev = {
     path = "~/plugins",
   },
+  rocks = { enabled = false },
 })

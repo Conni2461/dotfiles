@@ -84,9 +84,9 @@ telescope.setup {
       show_unindexed = true,
       ignore_patterns = { "*.git/*", "*/tmp/*", "*.foo" },
       workspaces = {
-        ["conf"]    = vim.fn.expand "~/.config",
-        ["nvim"]    = vim.fn.expand "~/.config/nvim/plugged",
-        ["data"]    = vim.fn.expand "~/.local/share",
+        ["conf"] = vim.fn.expand "~/.config",
+        ["nvim"] = vim.fn.expand "~/.config/nvim/plugged",
+        ["data"] = vim.fn.expand "~/.local/share",
         ["project"] = vim.fn.expand "~/repos",
       },
     },

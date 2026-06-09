@@ -34,11 +34,11 @@ vim.o.laststatus = 2
 -- History
 vim.o.history = 1000
 vim.bo.undofile = true
-vim.o.undodir = vim.fn.stdpath("data") .. "/undo"
+vim.o.undodir = vim.fn.stdpath "data" .. "/undo"
 vim.o.undolevels = 100
 vim.o.undoreload = 1000
-vim.o.backupdir = vim.fn.stdpath("data") .. "/backup/"
-vim.o.directory = vim.fn.stdpath("data") .. "/backup/"
+vim.o.backupdir = vim.fn.stdpath "data" .. "/backup/"
+vim.o.directory = vim.fn.stdpath "data" .. "/backup/"
 
 vim.keymap.set("i", "jk", "<esc>", { silent = true })
 

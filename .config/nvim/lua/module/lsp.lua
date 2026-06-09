@@ -212,7 +212,6 @@ for _, server in ipairs {
   "terraformls",
   "texlab",
   "ts_ls",
-  "vuels",
   "zls",
 } do
   if type(server) == "table" then
