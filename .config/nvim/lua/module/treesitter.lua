@@ -35,6 +35,7 @@ require("tree-sitter-manager").setup {
     "julia",
     "kotlin",
     "latex",
+    "lua",
     "make",
     "nginx",
     "nix",
