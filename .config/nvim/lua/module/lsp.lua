@@ -1,3 +1,9 @@
+local cmp = require "cmp"
+
+vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
+vim.opt.shortmess:append "c"
+vim.opt.pumblend = 10
+
 vim.diagnostic.config {
   virtual_text = true,
   underline = false,
@@ -34,59 +40,85 @@ vim.diagnostic.config {
   },
 }
 
-require("blink.cmp").setup {
-  keymap = {
-    preset = "none",
-    ["<C-p>"] = { "select_prev", "fallback" },
-    ["<C-n>"] = { "select_next", "fallback" },
-    ["<C-d>"] = { "scroll_documentation_up", "fallback" },
-    ["<C-f>"] = { "scroll_documentation_down", "fallback" },
-    ["<C-Space>"] = { "show", "fallback" },
-    ["<C-e>"] = { "cancel", "fallback" },
-    -- select = true behaviour: blink pre-selects the first item by default
-    ["<CR>"] = { "accept", "fallback" },
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      require("luasnip").lsp_expand(args.body)
+    end,
   },
-
-  completion = {
-    list = {
-      selection = {
-        preselect = true,
-        auto_insert = true,
-      },
-    },
-    menu = {
-      winblend = 10,
-    },
-    documentation = {
-      auto_show = true,
-      window = { border = "rounded" },
+  mapping = {
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-n>"] = cmp.mapping.select_next_item(),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.abort(),
+    ["<CR>"] = cmp.mapping.confirm {
+      select = true,
     },
   },
-
   sources = {
-    default = { "lsp", "path", "buffer", "cmdline" },
-
-    providers = {
-      buffer = { min_keyword_length = 5 },
-      cmdline = {
-        enabled = function()
-          return vim.fn.getcmdtype() ~= ":" or not vim.fn.getcmdline():match "^[%%0-9,'<>%-]*!"
-        end,
-      },
-    },
+    { name = "nvim_lsp" },
+    { name = "path" },
+    { name = "luasnip" },
+    { name = "buffer", keyword_length = 5 },
   },
-
-  fuzzy = { implementation = "prefer_rust_with_warning" },
+  experimental = {
+    native_menu = false,
+  },
 }
 
-local capabilities = require("blink.cmp").get_lsp_capabilities()
+cmp.setup.cmdline({ "/", "?" }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = "buffer", keyword_length = 5 },
+  },
+})
+
+cmp.setup.cmdline(":", {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = "path" },
+  }, {
+    { name = "cmdline" },
+  }),
+})
+
+vim.lsp.protocol.CompletionItemKind = {
+  " [text]",
+  " [method]",
+  "ƒ [function]",
+  " [constructor]",
+  " [field]",
+  " [variable]",
+  " [class]",
+  " [interface]",
+  " [module]",
+  " [property]",
+  " [unit]",
+  " [value]",
+  " [enum]",
+  " [keyword]",
+  "﬌ [snippet]",
+  " [color]",
+  " [file]",
+  " [reference]",
+  " [dir]",
+  " [enummember]",
+  " [constant]",
+  " [struct]",
+  "  [event]",
+  " [operator]",
+  " [type]",
+}
+
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 local on_attach = function(_, bufnr)
   local function buf_set_keymap(...)
     local input = { ... }
     vim.keymap.set(input[1], input[2], input[3], { buffer = 0, noremap = true, silent = true })
   end
-
   buf_set_keymap("n", "<leader>ad", vim.lsp.buf.definition)
   buf_set_keymap("n", "<leader>at", vim.lsp.buf.type_definition)
   buf_set_keymap("n", "<leader>ai", vim.lsp.buf.declaration)
@@ -116,6 +148,7 @@ local function get_lua_runtime()
       result[lua_path] = true
     end
   end
+
   result[vim.fn.expand "$VIMRUNTIME/lua"] = true
   return result
 end
@@ -125,6 +158,7 @@ local function get_python_path()
   if vim.env.VIRTUAL_ENV then
     return vim.fs.joinpath(vim.env.VIRTUAL_ENV, "bin", "python")
   end
+
   -- Fallback to system Python.
   return vim.fn.exepath "python3" or vim.fn.exepath "python" or "python"
 end
@@ -244,10 +278,12 @@ null_ls.setup {
   sources = {
     -- misc
     -- null_ls.builtins.diagnostics.commitlint,
+
     -- nix
     null_ls.builtins.code_actions.statix,
     null_ls.builtins.diagnostics.statix,
     null_ls.builtins.diagnostics.deadnix,
+
     -- lua
     -- null_ls.builtins.diagnostics.luacheck
   },
