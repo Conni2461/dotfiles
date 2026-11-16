@@ -39,12 +39,13 @@ preview() {
       fi
       ;;
     *)
+      # sk drops tabs in the preview, so expand them.
       if [ "$1" = index ]; then
         # shellcheck disable=SC2046
         git diff --color --cached --find-copies-harder -- $(paths "$2")
       else
         git diff --color -- "$(path "$2")"
-      fi
+      fi | sed 's/\t/    /g'
       ;;
   esac
 }
