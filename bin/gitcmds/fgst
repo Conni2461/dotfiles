@@ -3,6 +3,16 @@
 # fgst - pick entries of `git status` with sk and add, checkout or unstage them.
 # Entries are `git status --porcelain` lines: "XY path", or "XY orig -> path" for
 # renames (R) and copies (C). X is the index status, Y the worktree status.
+# Paths with spaces are quoted ("a b"); paths with `"`, `\` or newlines are
+# not supported.
+
+# Paths are passed around newline separated.
+IFS='
+'
+
+status() {
+  git -c core.quotePath=false status --porcelain
+}
 
 # Strips the status column. Tolerates a trimmed leading space ("M file").
 entry() {
@@ -11,23 +21,30 @@ entry() {
   echo "${e# }"
 }
 
+unquote() {
+  case "$1" in
+    \"*\") e="${1#\"}" && echo "${e%\"}" ;;
+    *) echo "$1" ;;
+  esac
+}
+
 # The current path of an entry (the new one for renames/copies).
 path() {
   e=$(entry "$1")
-  echo "${e#* -> }"
+  unquote "${e#* -> }"
 }
 
 # The index paths of an entry. Unstaging a rename needs both sides; a copy only
 # the new one, as its source may carry its own staged changes.
 paths() {
   case "$1" in
-    R*) e=$(entry "$1") && echo "${e%% -> *}" "${e#* -> }" ;;
+    R*) e=$(entry "$1") && unquote "${e%% -> *}" && unquote "${e#* -> }" ;;
     *) path "$1" ;;
   esac
 }
 
 # Modes: add (worktree changes incl. untracked), worktree (tracked worktree
-# changes), index (staged changes).
+# changes, without merge conflicts), index (staged changes).
 preview() {
   case "$2" in
     '??'*)
@@ -52,9 +69,9 @@ preview() {
 
 main() {
   case $1 in
-    add) entries=$(git status --porcelain | grep -v '^. ') ;;
-    worktree) entries=$(git status --porcelain | grep -v -e '^. ' -e '^??') ;;
-    index) entries=$(git status --porcelain | grep -v -e '^ ' -e '^??') ;;
+    add) entries=$(status | grep -v '^. ') ;;
+    worktree) entries=$(status | grep -v -e '^. ' -e '^??' -e '^U' -e '^.U' -e '^AA' -e '^DD') ;;
+    index) entries=$(status | grep -v -e '^ ' -e '^??') ;;
   esac
   [ -z "$entries" ] && exit
 
@@ -64,21 +81,38 @@ main() {
     done
 }
 
+# A checksum of each file's worktree diff, to tell which files a patch changed.
+sums() {
+  for f in "$@"; do
+    echo "$(git diff -- "$f" | cksum) $f"
+  done
+}
+
+# Runs an interactive patch command on $files and lists the files it changed.
+# shellcheck disable=SC2086
+patch() {
+  msg=$1 && shift
+  before=$(sums $files)
+  "$@" -- $files || exit
+  changed=$(sums $files | grep -vxF "$before" | cut -d' ' -f3-)
+  if [ -n "$changed" ]; then echo "$msg" && echo "$changed"; fi
+}
+
 cd "$(git rev-parse --show-toplevel)" || exit 1
 
-# $files is a whitespace separated path list, word splitting is intended.
+# $files is a newline separated path list, word splitting is intended.
 # shellcheck disable=SC2086
 
 case "$1" in
   af)
     files=$(main add '[Add Files] >')
     [ -z "$files" ] && exit
-    git add $files && echo "Files added:" && echo "$files"
+    git add -- $files && echo "Files added:" && echo "$files"
     ;;
   ah)
     files=$(main worktree '[Add Hunks] >')
     [ -z "$files" ] && exit
-    git add --patch $files && echo "Hunks added:" && echo "$files"
+    patch "Hunks added:" git add --patch
     ;;
   cf)
     files=$(main worktree '[Checkout Files] >')
@@ -88,12 +122,17 @@ case "$1" in
   ch)
     files=$(main worktree '[Checkout Hunks] >')
     [ -z "$files" ] && exit
-    git checkout -p -- $files && echo "Hunks restored:" && echo "$files"
+    patch "Hunks restored:" git checkout -p
     ;;
   uf)
     files=$(main index '[Unstage Files] >')
     [ -z "$files" ] && exit
-    git reset HEAD -- $files >/dev/null && echo "Files unstaged:" && echo "$files"
+    # Without a commit there is no HEAD to reset to.
+    if git rev-parse -q --verify HEAD >/dev/null; then
+      git reset HEAD -- $files >/dev/null
+    else
+      git rm -q --cached -- $files
+    fi && echo "Files unstaged:" && echo "$files"
     ;;
   preview) preview "$2" "$3" ;;
   *) exit 1 ;;
